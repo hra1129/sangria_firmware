@@ -39,5 +39,10 @@ pico-sdk
 .vscode
 _deps
 cmake-*
-build
 .DS_Store
+CMakeCache.txt
+Makefile
+CMakeFiles
+cmake_install.cmake
+pico-sdk
+tmp
