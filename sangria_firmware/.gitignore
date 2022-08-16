@@ -2,6 +2,11 @@
 .vscode
 _deps
 cmake-*
-build
 .DS_Store
 *.pdf
+CMakeCache.txt
+Makefile
+CMakeFiles
+cmake_install.cmake
+pico-sdk
+tmp
