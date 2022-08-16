@@ -1,7 +1,8 @@
 if (TARGET tinyusb_device)
 	add_executable(sangria_firmware
-	        main.c
-	        sangria_firmware.c
+	        main.cpp
+	        sangria_firmware.cpp
+	        sangria_jogdial.cpp
 	        )
 
 	# pull in common dependencies

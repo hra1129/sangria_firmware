@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware configuration file
+//	Sangria firmware Jogdial
 //	Copyright (c) 2021 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,40 +23,36 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_FIRMWARE_CONFIG_H__
-#define __SANGRIA_FIRMWARE_CONFIG_H__
+#ifndef __SANGRIA_JOGDIAL_H__
+#define __SANGRIA_JOGDIAL_H__
 
-// --------------------------------------------------------------------
-//	GPIO PIN defines: keyboard/buttons
-//
-#define SANGRIA_BACK		23
-#define SANGRIA_JOG_A		3
-#define SANGRIA_JOG_B		4
-#define SANGRIA_JOG_PUSH	5
-#define SANGRIA_COL1		18
-#define SANGRIA_COL2		19
-#define SANGRIA_COL3		20
-#define SANGRIA_COL4		21
-#define SANGRIA_COL5		22
-#define SANGRIA_ROW1		6
-#define SANGRIA_ROW2		7
-#define SANGRIA_ROW3		8
-#define SANGRIA_ROW4		9
-#define SANGRIA_ROW5		10
-#define SANGRIA_ROW6		11
-#define SANGRIA_ROW7		12
+#include <cstdint>
+#include "sangria_firmware_config.h"
 
-// --------------------------------------------------------------------
-//	GPIO PIN defines: keyboard back light device
-//
-#define SANGRIA_BACK_LIGHT	13
+class CSANGRIA_JOGDIAL {
+private:
+	uint32_t		last_key_code;
+	uint32_t		current_key_code;
+	const uint32_t	key_code_mask = (1 << SANGRIA_BACK) | (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
 
-// --------------------------------------------------------------------
-//	GPIO PIN defines: OLED display device
-//
-#define SANGRIA_OLED_ON_N	14
-#define SANGRIA_OLED_RST_N	24
-#define SANGRIA_OLED_SCL	1
-#define SANGRIA_OLED_SDA	0
+	// --------------------------------------------------------------------
+	//	Update state
+	uint32_t _get_jog_update_state( void );
+public:
+	// --------------------------------------------------------------------
+	//	Constructor
+	CSANGRIA_JOGDIAL();
+
+	// --------------------------------------------------------------------
+	//	Update key state
+	void update( void );
+
+	// --------------------------------------------------------------------
+	//	Get key state : true = pressed, false = unpressed
+	bool get_back_button( void );
+	bool get_enter_button( void );
+	bool get_up_button( void );
+	bool get_down_button( void );
+};
 
 #endif

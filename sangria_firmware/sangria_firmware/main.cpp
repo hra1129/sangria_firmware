@@ -28,35 +28,30 @@
 #include <string.h>
 
 #include "pico/stdlib.h"
-#include "sangria_firmware_config.h"
 #include "hardware/gpio.h"
 //#include "tusb.h"
-
 //#include "usb_descriptors.h"
 
-static int key_state_back, key_state_jog_a, key_state_jog_b, key_state_jog_push;
+#include "sangria_firmware_config.h"
+#include "sangria_jogdial.h"
+
+CSANGRIA_JOGDIAL jogdial;
 
 // --------------------------------------------------------------------
 static void key_update( void ) {
 
-	if( gpio_get( SANGRIA_BACK ) != key_state_back ) {
-		key_state_back = 1 - key_state_back;
-		printf( "BACK = %d\n", key_state_back );
+	jogdial.update();
+	if( jogdial.get_back_button() ) {
+		printf( "BACK pressed.\n" );
 	}
-
-	if( gpio_get( SANGRIA_JOG_A ) != key_state_jog_a ) {
-		key_state_jog_a = 1 - key_state_jog_a;
-		printf( "JOG_A = %d\n", key_state_jog_a );
+	if( jogdial.get_enter_button() ) {
+		printf( "ENTER pressed.\n" );
 	}
-
-	if( gpio_get( SANGRIA_JOG_B ) != key_state_jog_b ) {
-		key_state_jog_b = 1 - key_state_jog_b;
-		printf( "JOG_B = %d\n", key_state_jog_b );
+	if( jogdial.get_up_button() ) {
+		printf( "UP pressed.\n" );
 	}
-
-	if( gpio_get( SANGRIA_JOG_PUSH ) != key_state_jog_push ) {
-		key_state_jog_push = 1 - key_state_jog_push;
-		printf( "JOG_PUSH = %d\n", key_state_jog_push );
+	if( jogdial.get_down_button() ) {
+		printf( "DOWN pressed.\n" );
 	}
 }
 
@@ -68,32 +63,15 @@ int main( void ) {
 	gpio_init( SANGRIA_BACK_LIGHT );
 	gpio_set_dir( SANGRIA_BACK_LIGHT, GPIO_OUT );
 
-	gpio_init( SANGRIA_BACK );
-	gpio_init( SANGRIA_JOG_A );
-	gpio_init( SANGRIA_JOG_B );
-	gpio_init( SANGRIA_JOG_PUSH );
-	gpio_set_dir( SANGRIA_BACK, GPIO_IN );
-	gpio_set_dir( SANGRIA_JOG_A, GPIO_IN );
-	gpio_set_dir( SANGRIA_JOG_B, GPIO_IN );
-	gpio_set_dir( SANGRIA_JOG_PUSH, GPIO_IN );
-	gpio_pull_down( SANGRIA_BACK );
-	gpio_pull_up( SANGRIA_JOG_A );
-	gpio_pull_up( SANGRIA_JOG_B );
-	gpio_pull_up( SANGRIA_JOG_PUSH );
-	key_state_back		= 0;
-	key_state_jog_a		= 1;
-	key_state_jog_b		= 1;
-	key_state_jog_push	= 1;
-
 	while( 1 ) {
 		gpio_put( SANGRIA_BACK_LIGHT, 1 );
-		for( i = 0; i < 500; i++ ) {
-			sleep_ms( 1 );
+		for( i = 0; i < 50; i++ ) {
+			sleep_ms( 10 );
 			key_update();
 		}
 		gpio_put( SANGRIA_BACK_LIGHT, 0 );
-		for( i = 0; i < 500; i++ ) {
-			sleep_ms( 1 );
+		for( i = 0; i < 50; i++ ) {
+			sleep_ms( 10 );
 			key_update();
 		}
 	}
