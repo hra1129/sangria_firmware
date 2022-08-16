@@ -76,10 +76,14 @@ int main( void ) {
 	gpio_set_dir( SANGRIA_JOG_A, GPIO_IN );
 	gpio_set_dir( SANGRIA_JOG_B, GPIO_IN );
 	gpio_set_dir( SANGRIA_JOG_PUSH, GPIO_IN );
+	gpio_pull_down( SANGRIA_BACK );
+	gpio_pull_up( SANGRIA_JOG_A );
+	gpio_pull_up( SANGRIA_JOG_B );
+	gpio_pull_up( SANGRIA_JOG_PUSH );
 	key_state_back		= 0;
-	key_state_jog_a		= 0;
-	key_state_jog_b		= 0;
-	key_state_jog_push	= 0;
+	key_state_jog_a		= 1;
+	key_state_jog_b		= 1;
+	key_state_jog_push	= 1;
 
 	while( 1 ) {
 		gpio_put( SANGRIA_BACK_LIGHT, 1 );
