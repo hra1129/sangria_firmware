@@ -1,9 +1,11 @@
 if (TARGET tinyusb_device)
-	add_executable(sangria_firmware
-	        main.cpp
-	        sangria_firmware.cpp
-	        sangria_jogdial.cpp
-	        )
+	add_executable(
+		sangria_firmware
+		main.cpp
+		sangria_firmware.cpp
+		sangria_jogdial.cpp
+		sangria_keyboard.cpp
+	)
 
 	# pull in common dependencies
 	target_link_libraries(sangria_firmware pico_stdlib)
@@ -15,5 +17,5 @@ if (TARGET tinyusb_device)
 	# create map/bin/hex file etc.
 	pico_add_extra_outputs(sangria_firmware)
 elseif(PICO_ON_DEVICE)
-    message(WARNING "not building hello_usb because TinyUSB submodule is not initialized in the SDK")
+	message(WARNING "not building hello_usb because TinyUSB submodule is not initialized in the SDK")
 endif()

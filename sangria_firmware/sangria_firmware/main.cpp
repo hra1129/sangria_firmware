@@ -2,7 +2,7 @@
 //	The MIT License (MIT)
 //	
 //	Sangria firmware
-//	Copyright (c) 2021 Takayuki Hara
+//	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,9 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -34,8 +34,10 @@
 
 #include "sangria_firmware_config.h"
 #include "sangria_jogdial.h"
+#include "sangria_keyboard.h"
 
 CSANGRIA_JOGDIAL jogdial;
+CSANGRIA_KEYBOARD keyboard;
 
 // --------------------------------------------------------------------
 static void key_update( void ) {
@@ -53,6 +55,8 @@ static void key_update( void ) {
 	if( jogdial.get_down_button() ) {
 		printf( "DOWN pressed.\n" );
 	}
+
+	keyboard.update();
 }
 
 // --------------------------------------------------------------------
