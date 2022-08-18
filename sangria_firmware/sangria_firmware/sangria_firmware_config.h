@@ -34,17 +34,7 @@
 #define SANGRIA_JOG_B		4
 #define SANGRIA_JOG_PUSH	5
 #define SANGRIA_COL1		18
-#define SANGRIA_COL2		19
-#define SANGRIA_COL3		20
-#define SANGRIA_COL4		21
-#define SANGRIA_COL5		22
 #define SANGRIA_ROW1		6
-#define SANGRIA_ROW2		7
-#define SANGRIA_ROW3		8
-#define SANGRIA_ROW4		9
-#define SANGRIA_ROW5		10
-#define SANGRIA_ROW6		11
-#define SANGRIA_ROW7		12
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard back light device
@@ -58,5 +48,30 @@
 #define SANGRIA_OLED_RST_N	24
 #define SANGRIA_OLED_SCL	1
 #define SANGRIA_OLED_SDA	0
+#define SANGRIA_OLED_I2C	i2c0
+#define SANGRIA_OLED_CLOCK	(400 * 1000)	//	400kHz
+#define SANGRIA_OLED_ADDR	0x3C
+#define SANGRIA_OLED_CMD	0x00
+#define SANGRIA_OLED_DATA	0x40
+
+#define SANGRIA_BQ_ADDR		0x6B
+#define SANGRIA_BQ_INT		17
+#define SANGRIA_BQ_OTG		16
+#define SANGRIA_BQ_CE		2
+
+// --------------------------------------------------------------------
+//	GPIO PIN defines: keyboard/buttons
+//	[!] NOT CHANGE!
+//
+#define SANGRIA_COL2		(SANGRIA_COL1 + 1)
+#define SANGRIA_COL3		(SANGRIA_COL2 + 1)
+#define SANGRIA_COL4		(SANGRIA_COL3 + 1)
+#define SANGRIA_COL5		(SANGRIA_COL4 + 1)
+#define SANGRIA_ROW2		(SANGRIA_ROW1 + 1)
+#define SANGRIA_ROW3		(SANGRIA_ROW2 + 1)
+#define SANGRIA_ROW4		(SANGRIA_ROW3 + 1)
+#define SANGRIA_ROW5		(SANGRIA_ROW4 + 1)
+#define SANGRIA_ROW6		(SANGRIA_ROW5 + 1)
+#define SANGRIA_ROW7		(SANGRIA_ROW6 + 1)
 
 #endif

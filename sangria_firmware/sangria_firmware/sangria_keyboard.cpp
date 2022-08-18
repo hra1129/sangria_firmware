@@ -42,6 +42,7 @@ CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
 	gpio_init( SANGRIA_ROW5 );
 	gpio_init( SANGRIA_ROW6 );
 	gpio_init( SANGRIA_ROW7 );
+	gpio_init( SANGRIA_BACK_LIGHT );
 
 	gpio_set_dir( SANGRIA_COL1, GPIO_IN );
 	gpio_set_dir( SANGRIA_COL2, GPIO_IN );
@@ -70,6 +71,9 @@ CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
 	gpio_pull_up( SANGRIA_ROW5 );
 	gpio_pull_up( SANGRIA_ROW6 );
 	gpio_pull_up( SANGRIA_ROW7 );
+
+	gpio_set_dir( SANGRIA_BACK_LIGHT, GPIO_OUT );
+	gpio_put( SANGRIA_BACK_LIGHT, 0 );
 }
 
 // --------------------------------------------------------------------
@@ -94,4 +98,9 @@ void CSANGRIA_KEYBOARD::update( void ) {
 		}
 		printf( "\n" );
 	}
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_KEYBOARD::backlight( bool is_on ) {
+	gpio_put( SANGRIA_BACK_LIGHT, is_on );
 }

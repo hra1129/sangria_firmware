@@ -5,10 +5,11 @@ if (TARGET tinyusb_device)
 		sangria_firmware.cpp
 		sangria_jogdial.cpp
 		sangria_keyboard.cpp
+		sangria_oled.cpp
 	)
 
 	# pull in common dependencies
-	target_link_libraries(sangria_firmware pico_stdlib)
+	target_link_libraries(sangria_firmware pico_stdlib hardware_i2c)
 
 	# enable usb output, disable uart output
 	pico_enable_stdio_usb(sangria_firmware 1)

@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware keyboard
+//	Sangria firmware OLED display
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,28 +23,27 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_KEYBOARD_H__
-#define __SANGRIA_KEYBOARD_H__
+#ifndef __SANGRIA_OLED_H__
+#define __SANGRIA_OLED_H__
 
 #include <cstdint>
 #include "sangria_firmware_config.h"
 
-class CSANGRIA_KEYBOARD {
+class CSANGRIA_OLED {
 private:
-	uint8_t last_key_matrix[5];
+	// --------------------------------------------------------------------
+	//	Send command
+	void send_bq_command( uint8_t command );
+	void send_command( uint8_t command );
 
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
-	CSANGRIA_KEYBOARD();
+	CSANGRIA_OLED();
 
 	// --------------------------------------------------------------------
 	//	Update key state
 	void update( void );
-
-	// --------------------------------------------------------------------
-	//	backlight control
-	void backlight( bool is_on );
 };
 
 #endif

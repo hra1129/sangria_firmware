@@ -1,0 +1,36 @@
+BQ24296M ............ Battery charger
+RP2040 .............. RaspberryPiPico
+	BACK		GPIO23 (IN , RP2040-35pin)  Push button.
+
+W25Q16JVUXIQ ........ SPI flash
+	Pico firmware
+
+SIQ-02FV53 .......... JOG dial
+	DIAL_PUSH	GPIO5 (IN , RP2040-7pin)
+	DIAL_A		GPIO3 (IN , RP2040-5pin)
+	DIAL_B		GPIO4 (IN , RP2040-6pin)
+
+OLED-SH1107-12880 ... 0.78 inch OLED display 128x80 SPI
+	https://www.szmaclight.com/product/0-78-inch-mono-oled-display-panel-128x80-sh1107-spi.html
+
+	/OLED_ON	GPIO14 (OUT, RP2040-17pin)
+	/OLED_RST	GPIO24 (OUT, RP2040-36pin)
+	BQ_SCL		GPIO1  (OUT, RP2040-3pin)
+	BQ_SDA		GPIO0  (OUT, RP2040-2pin)
+
+BBQ10KBD ............ Brackberry Q10 Keyboard module
+	https://github.com/arturo182/BBQ10KBD
+
+	BACKLIT		GPIO13 (OUT, RP2040-16pin)
+	COL1		GPIO18 (OUT, RP2040-29pin)
+	COL2		GPIO19 (OUT, RP2040-30pin)
+	COL3		GPIO20 (OUT, RP2040-31pin)
+	COL4		GPIO21 (OUT, RP2040-32pin)
+	COL5		GPIO22 (OUT, RP2040-34pin)
+	ROW1		GPIO6  (IN , RP2040-8pin)
+	ROW2		GPIO7  (IN , RP2040-9pin)
+	ROW3		GPIO8  (IN , RP2040-11pin)
+	ROW4		GPIO9  (IN , RP2040-12pin)
+	ROW5		GPIO10 (IN , RP2040-13pin)
+	ROW6		GPIO11 (IN , RP2040-14pin)
+	ROW7		GPIO12 (IN , RP2040-15pin)

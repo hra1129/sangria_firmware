@@ -35,6 +35,7 @@
 #include "sangria_firmware_config.h"
 #include "sangria_jogdial.h"
 #include "sangria_keyboard.h"
+#include "sangria_oled.h"
 
 CSANGRIA_JOGDIAL jogdial;
 CSANGRIA_KEYBOARD keyboard;
@@ -64,16 +65,23 @@ int main( void ) {
 	int i;
 
 	stdio_init_all();
-	gpio_init( SANGRIA_BACK_LIGHT );
-	gpio_set_dir( SANGRIA_BACK_LIGHT, GPIO_OUT );
 
 	while( 1 ) {
-		gpio_put( SANGRIA_BACK_LIGHT, 1 );
+		jogdial.update();
+		if( jogdial.get_back_button() ) {
+			break;
+		}
+	}
+	
+	CSANGRIA_OLED oled;
+
+	while( 1 ) {
+		keyboard.backlight( 1 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
 			key_update();
 		}
-		gpio_put( SANGRIA_BACK_LIGHT, 0 );
+		keyboard.backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
 			key_update();
