@@ -1122,9 +1122,9 @@ Discarded input sections
                 0x00000000       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .data.i2c1_inst
                 0x00000000        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
- .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
- .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
- .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
+ .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
+ .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
+ .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
  .data          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-calloc.o)
@@ -1333,11 +1333,11 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
+ .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x10000100     0x7840
+.text           0x10000100     0x76e0
                 0x10000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1436,592 +1436,592 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x1000066c       0x14 CMakeFiles/sangria_firmware.dir/sangria_keyboard.cpp.obj
                 0x1000066c                CSANGRIA_KEYBOARD::backlight(bool)
  .text._ZN13CSANGRIA_OLEDC2Ev
-                0x10000680      0x2e0 CMakeFiles/sangria_firmware.dir/sangria_oled.cpp.obj
+                0x10000680      0x180 CMakeFiles/sangria_firmware.dir/sangria_oled.cpp.obj
                 0x10000680                CSANGRIA_OLED::CSANGRIA_OLED()
                 0x10000680                CSANGRIA_OLED::CSANGRIA_OLED()
  .text.gpio_set_function
-                0x10000960       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10000960                gpio_set_function
+                0x10000800       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10000800                gpio_set_function
  .text.gpio_set_pulls
-                0x10000990       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10000990                gpio_set_pulls
+                0x10000830       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10000830                gpio_set_pulls
  .text.gpio_init
-                0x100009c0       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x100009c0                gpio_init
+                0x10000860       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10000860                gpio_init
  .text.hw_claim_or_assert
-                0x100009fc       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x100009fc                hw_claim_or_assert
+                0x1000089c       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x1000089c                hw_claim_or_assert
  .text.hw_claim_unused_from_range
-                0x10000a40       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x10000a40                hw_claim_unused_from_range
+                0x100008e0       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x100008e0                hw_claim_unused_from_range
  .text.running_on_fpga
-                0x10000adc       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x10000adc                running_on_fpga
+                0x1000097c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x1000097c                running_on_fpga
  .text.spin_locks_reset
-                0x10000aec       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10000aec                spin_locks_reset
+                0x1000098c       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x1000098c                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x10000b08       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10000b08                next_striped_spin_lock_num
+                0x100009a8       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x100009a8                next_striped_spin_lock_num
  .text.spin_lock_claim_unused
-                0x10000b20       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10000b20                spin_lock_claim_unused
+                0x100009c0       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x100009c0                spin_lock_claim_unused
  .text.irq_set_enabled
-                0x10000b40       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000b40                irq_set_enabled
+                0x100009e0       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x100009e0                irq_set_enabled
  .text.irq_set_pending
-                0x10000b64       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000b64                irq_set_pending
+                0x10000a04       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000a04                irq_set_pending
  .text.irq_has_shared_handler
-                0x10000b74       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000b74                irq_has_shared_handler
+                0x10000a14       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000a14                irq_has_shared_handler
  .text.irq_get_vtable_handler
-                0x10000ba0       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000ba0                irq_get_vtable_handler
+                0x10000a40       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000a40                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x10000bb0       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000bb0                irq_set_exclusive_handler
+                0x10000a50       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000a50                irq_set_exclusive_handler
  .text.irq_add_shared_handler
-                0x10000c04      0x1e4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000c04                irq_add_shared_handler
+                0x10000aa4      0x1e4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000aa4                irq_add_shared_handler
  .text.irq_remove_handler
-                0x10000de8      0x1b4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000de8                irq_remove_handler
+                0x10000c88      0x1b4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000c88                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x10000f9c       0xb4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000f9c                irq_add_tail_to_free_list
+                0x10000e3c       0xb4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000e3c                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x10001050       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001050                irq_init_priorities
+                0x10000ef0       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000ef0                irq_init_priorities
  .text.user_irq_claim_unused
-                0x10001074       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001074                user_irq_claim_unused
+                0x10000f14       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000f14                user_irq_claim_unused
  .text.lock_init
-                0x100010a4       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x100010a4                lock_init
+                0x10000f44       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x10000f44                lock_init
  .text.timer_pool_entry_comparator
-                0x100010b4       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100010b4                timer_pool_entry_comparator
+                0x10000f54       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000f54                timer_pool_entry_comparator
  .text.sleep_until_callback
-                0x100010e8       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000f88       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x10001118      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000fb8      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x10001218      0x1c8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100010b8      0x1c8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_add_alarm_at.constprop.0
-                0x100013e0      0x11c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001280      0x11c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x100014fc       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100014fc                alarm_pool_init_default
+                0x1000139c       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000139c                alarm_pool_init_default
  .text.alarm_pool_get_default
-                0x10001560        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001560                alarm_pool_get_default
+                0x10001400        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001400                alarm_pool_get_default
  .text.alarm_pool_add_alarm_at
-                0x10001568      0x198 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001568                alarm_pool_add_alarm_at
+                0x10001408      0x198 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001408                alarm_pool_add_alarm_at
  .text.sleep_until
-                0x10001700       0xac CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001700                sleep_until
+                0x100015a0       0xac CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100015a0                sleep_until
  .text.sleep_us
-                0x100017ac       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100017ac                sleep_us
+                0x1000164c       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000164c                sleep_us
  .text.sleep_ms
-                0x100017dc       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100017dc                sleep_ms
+                0x1000167c       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000167c                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x10001814       0xd4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001814                best_effort_wfe_or_timeout
+                0x100016b4       0xd4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100016b4                best_effort_wfe_or_timeout
  .text.hardware_alarm_irq_handler
-                0x100018e8       0xb8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10001788       0xb8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x100019a0       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100019a0                hardware_alarm_claim
+                0x10001840       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10001840                hardware_alarm_claim
  .text.time_us_64
-                0x100019b8       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100019b8                time_us_64
+                0x10001858       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10001858                time_us_64
  .text.busy_wait_until
-                0x100019cc       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100019cc                busy_wait_until
+                0x1000186c       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x1000186c                busy_wait_until
  .text.hardware_alarm_set_callback
-                0x100019ec       0x8c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100019ec                hardware_alarm_set_callback
+                0x1000188c       0x8c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x1000188c                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x10001a78       0xe0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10001a78                hardware_alarm_set_target
+                0x10001918       0xe0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10001918                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x10001b58       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10001b58                hardware_alarm_cancel
+                0x100019f8       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100019f8                hardware_alarm_cancel
  .text.ph_merge_nodes
-                0x10001b94       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001a34       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x10001bfc       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10001bfc                ph_post_alloc_init
+                0x10001a9c       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001a9c                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x10001c38       0x90 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10001c38                ph_merge_two_pass
+                0x10001ad8       0x90 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001ad8                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x10001cc8       0xf8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001b68       0xf8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x10001dc0       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10001dc0                ph_remove_head
+                0x10001c60       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001c60                ph_remove_head
  .text.ph_remove_and_free_node
-                0x10001ebc       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10001ebc                ph_remove_and_free_node
+                0x10001d5c       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10001d5c                ph_remove_and_free_node
  .text.mutex_init
-                0x10001f38       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10001f38                mutex_init
+                0x10001dd8       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10001dd8                mutex_init
  .text.recursive_mutex_init
-                0x10001f54       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10001f54                recursive_mutex_init
+                0x10001df4       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10001df4                recursive_mutex_init
  .text.critical_section_init
-                0x10001f70       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x10001f70                critical_section_init
+                0x10001e10       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x10001e10                critical_section_init
  .text.runtime_init
-                0x10001f90       0xf0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10001f90                runtime_init
- .text.exit     0x10002080        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10002080                exit
- .text.panic    0x10002084       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10002084                panic
+                0x10001e30       0xf0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10001e30                runtime_init
+ .text.exit     0x10001f20        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10001f20                exit
+ .text.panic    0x10001f24       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10001f24                panic
  .text.hard_assertion_failure
-                0x100020b4        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x100020b4                hard_assertion_failure
+                0x10001f54        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10001f54                hard_assertion_failure
  .text.clocks_init
-                0x100020c0      0x2bc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x100020c0                clocks_init
+                0x10001f60      0x2bc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10001f60                clocks_init
  .text.clock_get_hz
-                0x1000237c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x1000237c                clock_get_hz
+                0x1000221c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x1000221c                clock_get_hz
  .text.pll_init
-                0x10002388       0xb0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x10002388                pll_init
+                0x10002228       0xb0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x10002228                pll_init
  .text.watchdog_start_tick
-                0x10002438       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x10002438                watchdog_start_tick
+                0x100022d8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x100022d8                watchdog_start_tick
  .text.watchdog_reboot
-                0x10002448       0x98 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x10002448                watchdog_reboot
+                0x100022e8       0x98 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x100022e8                watchdog_reboot
  .text.xosc_init
-                0x100024e0       0x28 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x100024e0                xosc_init
+                0x10002380       0x28 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x10002380                xosc_init
  .text._out_null
-                0x10002508        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100023a8        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x1000250c       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100023ac       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x100025a8      0x1cc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002448      0x1cc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_char
-                0x10002774       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002614       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x10002784       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._etoa    0x10002794      0x44c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x10002be0      0x398 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002624       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._etoa    0x10002634      0x44c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x10002a80      0x398 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x10002f78      0xb04 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002e18      0xb04 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.vfctprintf
-                0x10003a7c       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10003a7c                vfctprintf
+                0x1000391c       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000391c                vfctprintf
  .text.weak_raw_vprintf
-                0x10003a9c       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10003a9c                weak_raw_vprintf
- .text          0x10003acc       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x1000393c       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000393c                weak_raw_vprintf
+ .text          0x1000396c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x10003adc       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10003adc                rom_func_lookup
+                0x1000397c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x1000397c                rom_func_lookup
  .text.rom_data_lookup
-                0x10003aec       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10003aec                rom_data_lookup
+                0x1000398c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x1000398c                rom_data_lookup
  .text.rom_funcs_lookup
-                0x10003afc       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10003afc                rom_funcs_lookup
+                0x1000399c       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x1000399c                rom_funcs_lookup
  .text.__wrap___aeabi_idiv
-                0x10003b40       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10003b40                __wrap___aeabi_idivmod
-                0x10003b40                divmod_s32s32
-                0x10003b40                div_s32s32
-                0x10003b40                __wrap___aeabi_idiv
-                0x10003b48                divmod_s32s32_unsafe
-                0x10003b74                divmod_s32s32_savestate
+                0x100039e0       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x100039e0                __wrap___aeabi_idivmod
+                0x100039e0                divmod_s32s32
+                0x100039e0                div_s32s32
+                0x100039e0                __wrap___aeabi_idiv
+                0x100039e8                divmod_s32s32_unsafe
+                0x10003a14                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x10003b90       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10003b90                __wrap___aeabi_uidiv
-                0x10003b90                __wrap___aeabi_uidivmod
-                0x10003b90                div_u32u32
-                0x10003b90                divmod_u32u32
-                0x10003b98                divmod_u32u32_unsafe
-                0x10003bc0                divmod_u32u32_savestate
+                0x10003a30       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10003a30                __wrap___aeabi_uidiv
+                0x10003a30                __wrap___aeabi_uidivmod
+                0x10003a30                div_u32u32
+                0x10003a30                divmod_u32u32
+                0x10003a38                divmod_u32u32_unsafe
+                0x10003a60                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x10003bdc      0x434 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10003bdc                div_s64s64
-                0x10003bdc                divmod_s64s64
-                0x10003bdc                __wrap___aeabi_ldivmod
-                0x10003c14                divmod_u64u64
-                0x10003c14                div_u64u64
-                0x10003c14                __wrap___aeabi_uldivmod
-                0x10003c24                divmod_u64u64_savestate
-                0x10003c4c                divmod_s64s64_unsafe
-                0x10003cd4                divmod_u64u64_unsafe
+                0x10003a7c      0x434 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10003a7c                div_s64s64
+                0x10003a7c                divmod_s64s64
+                0x10003a7c                __wrap___aeabi_ldivmod
+                0x10003ab4                divmod_u64u64
+                0x10003ab4                div_u64u64
+                0x10003ab4                __wrap___aeabi_uldivmod
+                0x10003ac4                divmod_u64u64_savestate
+                0x10003aec                divmod_s64s64_unsafe
+                0x10003b74                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x10004010       0x80 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004010                __wrap___aeabi_drsub
-                0x10004016                __wrap___aeabi_dsub
-                0x10004028                __wrap___aeabi_dadd
-                0x1000403a                __wrap___aeabi_ddiv
-                0x10004076                __wrap___aeabi_dmul
+                0x10003eb0       0x80 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003eb0                __wrap___aeabi_drsub
+                0x10003eb6                __wrap___aeabi_dsub
+                0x10003ec8                __wrap___aeabi_dadd
+                0x10003eda                __wrap___aeabi_ddiv
+                0x10003f16                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x10004090       0x6c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004090                __wrap___aeabi_cdrcmple
-                0x100040a0                __wrap___aeabi_cdcmpeq
-                0x100040a0                __wrap___aeabi_cdcmple
+                0x10003f30       0x6c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003f30                __wrap___aeabi_cdrcmple
+                0x10003f40                __wrap___aeabi_cdcmpeq
+                0x10003f40                __wrap___aeabi_cdcmple
  .text.__wrap___aeabi_dcmplt
-                0x100040fc        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x100040fc                __wrap___aeabi_dcmplt
+                0x10003f9c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003f9c                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x10004108       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004108                __wrap___aeabi_dcmple
+                0x10003fa8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003fa8                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x10004118       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004118                __wrap___aeabi_dcmpge
+                0x10003fb8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003fb8                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x10004128        0xa CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004128                __wrap___aeabi_dcmpgt
+                0x10003fc8        0xa CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003fc8                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x10004132       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004132                __wrap___aeabi_dcmpun
- *fill*         0x1000414e        0x2 
+                0x10003fd2       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003fd2                __wrap___aeabi_dcmpun
+ *fill*         0x10003fee        0x2 
  .text.__wrap___aeabi_i2d
-                0x10004150       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004150                __wrap___aeabi_ui2d
-                0x10004158                __wrap___aeabi_i2d
+                0x10003ff0       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003ff0                __wrap___aeabi_ui2d
+                0x10003ff8                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x10004188       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10004188                double2int_z
-                0x10004188                __wrap___aeabi_d2iz
+                0x10004028       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10004028                double2int_z
+                0x10004028                __wrap___aeabi_d2iz
  .text.__wrap___aeabi_d2uiz
-                0x100041d0       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x100041d0                __wrap___aeabi_d2uiz
-                0x100041d0                double2uint
+                0x10004070       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10004070                __wrap___aeabi_d2uiz
+                0x10004070                double2uint
  .text.__aeabi_double_init
-                0x100041e8       0x94 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x100041e8                __aeabi_double_init
+                0x10004088       0x94 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x10004088                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x1000427c       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x1000427c                double_table_shim_on_use_helper
+                0x1000411c       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x1000411c                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x100042a8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x100042a8                drsub_shim
-                0x100042ae                dsub_shim
+                0x10004148       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10004148                drsub_shim
+                0x1000414e                dsub_shim
  .text.dadd_shim
-                0x100042b8      0x15c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x100042b8                dadd_shim
+                0x10004158      0x15c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10004158                dadd_shim
  .text.dmul_shim
-                0x10004414      0x15c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10004414                dmul_shim
+                0x100042b4      0x15c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100042b4                dmul_shim
  .text.ddiv_shim
-                0x10004570      0x1b0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10004570                ddiv_shim
+                0x10004410      0x1b0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10004410                ddiv_shim
  .text.double2uint_shim
-                0x10004720        0xe CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10004720                double2uint_shim
-                0x10004722                double2ufix_shim
- *fill*         0x1000472e        0x2 
+                0x100045c0        0xe CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100045c0                double2uint_shim
+                0x100045c2                double2ufix_shim
+ *fill*         0x100045ce        0x2 
  .text.double2uint64_shim
-                0x10004730       0x70 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10004730                double2uint64_shim
-                0x10004732                double2ufix64_shim
-                0x10004752                d2fix_a
+                0x100045d0       0x70 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100045d0                double2uint64_shim
+                0x100045d2                double2ufix64_shim
+                0x100045f2                d2fix_a
  .text.dunpacks
-                0x100047a0       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x100047a0                dunpacks
+                0x10004640       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10004640                dunpacks
  .text.__aeabi_lmul
-                0x100047dc       0x32 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x100047dc                __wrap___aeabi_lmul
- *fill*         0x1000480e        0x2 
+                0x1000467c       0x32 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x1000467c                __wrap___aeabi_lmul
+ *fill*         0x100046ae        0x2 
  .text.__aeabi_float_init
-                0x10004810       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x10004810                __aeabi_float_init
+                0x100046b0       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x100046b0                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x10004874       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x10004874                float_table_shim_on_use_helper
- .text          0x100048a0       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100048a0                __aeabi_mem_init
- .text.memset   0x100048b0        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100048b0                __wrap_memset
- .text.memcpy   0x100048bc        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100048bc                __wrap_memcpy
-                0x100048bc                __wrap___aeabi_memcpy
+                0x10004714       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x10004714                float_table_shim_on_use_helper
+ .text          0x10004740       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10004740                __aeabi_mem_init
+ .text.memset   0x10004750        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10004750                __wrap_memset
+ .text.memcpy   0x1000475c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x1000475c                __wrap_memcpy
+                0x1000475c                __wrap___aeabi_memcpy
  .text.stdio_out_chars_no_crlf
-                0x100048c8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004768       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_out_chars_crlf
-                0x100048d8       0xb4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004778       0xb4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x1000498c       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x1000482c       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_put_string.isra.0
-                0x100049f0       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004890       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x10004aec       0xa0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004aec                __wrap_putchar
+                0x1000498c       0xa0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x1000498c                __wrap_putchar
  .text.__wrap_puts
-                0x10004b8c       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004b8c                __wrap_puts
+                0x10004a2c       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004a2c                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x10004bc8       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004bc8                stdio_set_driver_enabled
+                0x10004a68       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004a68                stdio_set_driver_enabled
  .text.__wrap_vprintf
-                0x10004bf8       0xd8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004bf8                __wrap_vprintf
+                0x10004a98       0xd8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004a98                __wrap_vprintf
  .text.__wrap_printf
-                0x10004cd0       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004cd0                __wrap_printf
+                0x10004b70       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004b70                __wrap_printf
  .text.stdio_init_all
-                0x10004ce8        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004ce8                stdio_init_all
+                0x10004b88        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004b88                stdio_init_all
  .text.resetd_init
-                0x10004cf0        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004b90        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_reset
-                0x10004cf4        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004b94        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_open
-                0x10004d00       0x28 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004ba0       0x28 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_xfer_cb
-                0x10004d28        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004bc8        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_control_xfer_cb
-                0x10004d2c       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004bcc       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.usbd_app_driver_get_cb
-                0x10004d90        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x10004d90                usbd_app_driver_get_cb
+                0x10004c30        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004c30                usbd_app_driver_get_cb
  .text.tud_cdc_line_coding_cb
-                0x10004d9c       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x10004d9c                tud_cdc_line_coding_cb
+                0x10004c3c       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004c3c                tud_cdc_line_coding_cb
  .text.stdio_usb_in_chars
-                0x10004dd0       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10004dd0                stdio_usb_in_chars
+                0x10004c70       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004c70                stdio_usb_in_chars
  .text.stdio_usb_out_chars
-                0x10004e38       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004cd8       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.timer_task
-                0x10004f1c       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .text.usb_irq  0x10004f34       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004dbc       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .text.usb_irq  0x10004dd4       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.low_priority_worker_irq
-                0x10004f44       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004de4       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_init
-                0x10004f68       0xb0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10004f68                stdio_usb_init
+                0x10004e08       0xb0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004e08                stdio_usb_init
  .text.tud_descriptor_device_cb
-                0x10005018        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10005018                tud_descriptor_device_cb
+                0x10004eb8        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004eb8                tud_descriptor_device_cb
  .text.tud_descriptor_configuration_cb
-                0x10005020        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10005020                tud_descriptor_configuration_cb
+                0x10004ec0        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004ec0                tud_descriptor_configuration_cb
  .text.tud_descriptor_string_cb
-                0x10005028       0x74 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10005028                tud_descriptor_string_cb
+                0x10004ec8       0x74 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004ec8                tud_descriptor_string_cb
  .text.dcd_rp2040_irq
-                0x1000509c      0x21c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004f3c      0x21c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .text.dcd_int_enable
-                0x100052b8        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100052b8                dcd_int_enable
+                0x10005158        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10005158                dcd_int_enable
  .text.dcd_set_address
-                0x100052c4       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100052c4                dcd_set_address
+                0x10005164       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10005164                dcd_set_address
  .text.dcd_connect
-                0x100052d8       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100052d8                dcd_connect
+                0x10005178       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10005178                dcd_connect
  .text.dcd_init
-                0x100052e8      0x144 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100052e8                dcd_init
+                0x10005188      0x144 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10005188                dcd_init
  .text.dcd_edpt0_status_complete
-                0x1000542c       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x1000542c                dcd_edpt0_status_complete
+                0x100052cc       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100052cc                dcd_edpt0_status_complete
  .text.dcd_edpt_open
-                0x10005448       0xf0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10005448                dcd_edpt_open
+                0x100052e8       0xf0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100052e8                dcd_edpt_open
  .text.dcd_edpt_close_all
-                0x10005538       0xbc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10005538                dcd_edpt_close_all
+                0x100053d8       0xbc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100053d8                dcd_edpt_close_all
  .text.dcd_edpt_xfer
-                0x100055f4       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100055f4                dcd_edpt_xfer
+                0x10005494       0x24 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10005494                dcd_edpt_xfer
  .text.dcd_edpt_stall
-                0x10005618       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10005618                dcd_edpt_stall
+                0x100054b8       0x38 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100054b8                dcd_edpt_stall
  .text.dcd_edpt_clear_stall
-                0x10005650       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10005650                dcd_edpt_clear_stall
+                0x100054f0       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100054f0                dcd_edpt_clear_stall
  .text._hw_endpoint_buffer_control_update32.part.0.isra.0
-                0x10005680       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10005520       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .text.rp2040_usb_init
-                0x1000569c       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000569c                rp2040_usb_init
+                0x1000553c       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000553c                rp2040_usb_init
  .text.hw_endpoint_reset_transfer
-                0x100056e8        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x100056e8                hw_endpoint_reset_transfer
+                0x10005588        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10005588                hw_endpoint_reset_transfer
  .text._hw_endpoint_buffer_control_update32
-                0x100056f4       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x100056f4                _hw_endpoint_buffer_control_update32
+                0x10005594       0x44 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10005594                _hw_endpoint_buffer_control_update32
  .text.hw_endpoint_xfer_start
-                0x10005738      0x138 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10005738                hw_endpoint_xfer_start
+                0x100055d8      0x138 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x100055d8                hw_endpoint_xfer_start
  .text.hw_endpoint_xfer_continue
-                0x10005870      0x1e4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10005870                hw_endpoint_xfer_continue
+                0x10005710      0x1e4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10005710                hw_endpoint_xfer_continue
  .text.tud_mounted
-                0x10005a54       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005a54                tud_mounted
+                0x100058f4       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100058f4                tud_mounted
  .text.tud_suspended
-                0x10005a64       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005a64                tud_suspended
+                0x10005904       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005904                tud_suspended
  .text.tud_inited
-                0x10005a74        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005a74                tud_inited
+                0x10005914        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005914                tud_inited
  .text.tud_init
-                0x10005a80       0xd8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005a80                tud_init
+                0x10005920       0xd8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005920                tud_init
  .text.tud_task
-                0x10005b58      0x8ec CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005b58                tud_task
+                0x100059f8      0x8ec CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100059f8                tud_task
  .text.dcd_event_bus_signal
-                0x10006444      0x120 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006444                dcd_event_bus_signal
+                0x100062e4      0x120 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100062e4                dcd_event_bus_signal
  .text.dcd_event_bus_reset
-                0x10006564       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006564                dcd_event_bus_reset
+                0x10006404       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006404                dcd_event_bus_reset
  .text.dcd_event_setup_received
-                0x100065b8       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100065b8                dcd_event_setup_received
+                0x10006458       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006458                dcd_event_setup_received
  .text.dcd_event_xfer_complete
-                0x10006608       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006608                dcd_event_xfer_complete
+                0x100064a8       0x68 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100064a8                dcd_event_xfer_complete
  .text.usbd_open_edpt_pair
-                0x10006670       0x80 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006670                usbd_open_edpt_pair
+                0x10006510       0x80 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006510                usbd_open_edpt_pair
  .text.usbd_edpt_open
-                0x100066f0       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100066f0                usbd_edpt_open
+                0x10006590       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006590                usbd_edpt_open
  .text.usbd_edpt_claim
-                0x10006720       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006720                usbd_edpt_claim
+                0x100065c0       0x64 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100065c0                usbd_edpt_claim
  .text.usbd_edpt_release
-                0x10006784       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10006784                usbd_edpt_release
+                0x10006624       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006624                usbd_edpt_release
  .text.usbd_edpt_xfer
-                0x100067d0       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100067d0                usbd_edpt_xfer
+                0x10006670       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006670                usbd_edpt_xfer
  .text.tud_control_status
-                0x10006818       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006818                tud_control_status
+                0x100066b8       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100066b8                tud_control_status
  .text.tud_control_xfer
-                0x10006848       0xbc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006848                tud_control_xfer
+                0x100066e8       0xbc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100066e8                tud_control_xfer
  .text.usbd_control_reset
-                0x10006904       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006904                usbd_control_reset
+                0x100067a4       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100067a4                usbd_control_reset
  .text.usbd_control_set_complete_callback
-                0x10006918        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006918                usbd_control_set_complete_callback
+                0x100067b8        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100067b8                usbd_control_set_complete_callback
  .text.usbd_control_set_request
-                0x10006924       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006924                usbd_control_set_request
+                0x100067c4       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100067c4                usbd_control_set_request
  .text.usbd_control_xfer_cb
-                0x10006940       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10006940                usbd_control_xfer_cb
+                0x100067e0       0xfc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100067e0                usbd_control_xfer_cb
  .text.tud_cdc_n_connected
-                0x10006a3c       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006a3c                tud_cdc_n_connected
+                0x100068dc       0x30 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x100068dc                tud_cdc_n_connected
  .text.tud_cdc_n_available
-                0x10006a6c       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006a6c                tud_cdc_n_available
+                0x1000690c       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000690c                tud_cdc_n_available
  .text.tud_cdc_n_read
-                0x10006a84       0x70 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006a84                tud_cdc_n_read
+                0x10006924       0x70 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006924                tud_cdc_n_read
  .text.tud_cdc_n_write_flush
-                0x10006af4       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006af4                tud_cdc_n_write_flush
+                0x10006994       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006994                tud_cdc_n_write_flush
  .text.tud_cdc_n_write
-                0x10006b6c       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006b6c                tud_cdc_n_write
+                0x10006a0c       0x34 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006a0c                tud_cdc_n_write
  .text.tud_cdc_n_write_available
-                0x10006ba0       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006ba0                tud_cdc_n_write_available
+                0x10006a40       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006a40                tud_cdc_n_write_available
  .text.cdcd_init
-                0x10006bb8       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006bb8                cdcd_init
+                0x10006a58       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006a58                cdcd_init
  .text.cdcd_reset
-                0x10006c34       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006c34                cdcd_reset
+                0x10006ad4       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006ad4                cdcd_reset
  .text.cdcd_open
-                0x10006c60       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006c60                cdcd_open
+                0x10006b00       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006b00                cdcd_open
  .text.cdcd_control_xfer_cb
-                0x10006d44       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006d44                cdcd_control_xfer_cb
+                0x10006be4       0xe4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006be4                cdcd_control_xfer_cb
  .text.cdcd_xfer_cb
-                0x10006e28      0x148 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10006e28                cdcd_xfer_cb
+                0x10006cc8      0x148 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10006cc8                cdcd_xfer_cb
  .text.tusb_init
-                0x10006f70        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006f70                tusb_init
+                0x10006e10        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006e10                tusb_init
  .text.tusb_inited
-                0x10006f7c        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006f7c                tusb_inited
+                0x10006e1c        0x8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006e1c                tusb_inited
  .text.tu_edpt_validate
-                0x10006f84       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006f84                tu_edpt_validate
+                0x10006e24       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006e24                tu_edpt_validate
  .text.tu_edpt_bind_driver
-                0x10006ffc       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006ffc                tu_edpt_bind_driver
+                0x10006e9c       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006e9c                tu_edpt_bind_driver
  .text.tu_fifo_config
-                0x10007028       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007028                tu_fifo_config
+                0x10006ec8       0x78 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006ec8                tu_fifo_config
  .text.tu_fifo_count
-                0x100070a0       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100070a0                tu_fifo_count
+                0x10006f40       0x20 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006f40                tu_fifo_count
  .text.tu_fifo_empty
-                0x100070c0       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100070c0                tu_fifo_empty
+                0x10006f60       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006f60                tu_fifo_empty
  .text.tu_fifo_remaining
-                0x100070d0       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100070d0                tu_fifo_remaining
+                0x10006f70       0x1c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006f70                tu_fifo_remaining
  .text.tu_fifo_read
-                0x100070ec       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100070ec                tu_fifo_read
+                0x10006f8c       0x9c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006f8c                tu_fifo_read
  .text.tu_fifo_read_n
-                0x10007188      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007188                tu_fifo_read_n
+                0x10007028      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10007028                tu_fifo_read_n
  .text.tu_fifo_write
-                0x10007288       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007288                tu_fifo_write
+                0x10007128       0x7c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10007128                tu_fifo_write
  .text.tu_fifo_write_n
-                0x10007304      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007304                tu_fifo_write_n
+                0x100071a4      0x100 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x100071a4                tu_fifo_write_n
  .text.tu_fifo_clear
-                0x10007404       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007404                tu_fifo_clear
+                0x100072a4       0x4c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x100072a4                tu_fifo_clear
  .text.tu_fifo_set_overwritable
-                0x10007450       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10007450                tu_fifo_set_overwritable
+                0x100072f0       0x3c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x100072f0                tu_fifo_set_overwritable
  .text.startup._retrieve_unique_id_on_boot
-                0x1000748c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x1000732c       0x10 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .text.pico_get_unique_board_id_string
-                0x1000749c      0x1a8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
-                0x1000749c                pico_get_unique_board_id_string
+                0x1000733c      0x1a8 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x1000733c                pico_get_unique_board_id_string
  .text.flash_get_unique_id
-                0x10007644       0x40 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
-                0x10007644                flash_get_unique_id
+                0x100074e4       0x40 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x100074e4                flash_get_unique_id
  .text.i2c_set_baudrate
-                0x10007684       0xc4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10007684                i2c_set_baudrate
+                0x10007524       0xc4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x10007524                i2c_set_baudrate
  .text.i2c_init
-                0x10007748       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10007748                i2c_init
+                0x100075e8       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x100075e8                i2c_init
  .text.i2c_write_blocking
-                0x1000779c       0xd0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x1000779c                i2c_write_blocking
- .text.strlen   0x1000786c       0x5c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
-                0x1000786c                strlen
+                0x1000763c       0xd0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000763c                i2c_write_blocking
+ .text.strlen   0x1000770c       0x5c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
+                0x1000770c                strlen
  *(.fini)
- .fini          0x100078c8        0x4 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crti.o
-                0x100078c8                _fini
- *fill*         0x100078cc        0x4 
- .fini.__stub   0x100078d0       0x70 linker stubs
+ .fini          0x10007768        0x4 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crti.o
+                0x10007768                _fini
+ *fill*         0x1000776c        0x4 
+ .fini.__stub   0x10007770       0x70 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2033,138 +2033,140 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x10007940        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x10007940                . = ALIGN (0x4)
+ .eh_frame      0x100077e0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x100077e0                . = ALIGN (0x4)
 
-.glue_7         0x10007940        0x0
- .glue_7        0x10007940        0x0 linker stubs
+.glue_7         0x100077e0        0x0
+ .glue_7        0x100077e0        0x0 linker stubs
 
-.glue_7t        0x10007940        0x0
- .glue_7t       0x10007940        0x0 linker stubs
+.glue_7t        0x100077e0        0x0
+ .glue_7t       0x100077e0        0x0 linker stubs
 
-.vfp11_veneer   0x10007940        0x0
- .vfp11_veneer  0x10007940        0x0 linker stubs
+.vfp11_veneer   0x100077e0        0x0
+ .vfp11_veneer  0x100077e0        0x0 linker stubs
 
-.v4_bx          0x10007940        0x0
- .v4_bx         0x10007940        0x0 linker stubs
+.v4_bx          0x100077e0        0x0
+ .v4_bx         0x100077e0        0x0 linker stubs
 
-.iplt           0x10007940        0x0
- .iplt          0x10007940        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x100077e0        0x0
+ .iplt          0x100077e0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10007940      0x5f8
+.rodata         0x100077e0      0x580
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata._ZL10key_updatev.str1.4
-                0x10007940       0x3a CMakeFiles/sangria_firmware.dir/main.cpp.obj
- *fill*         0x1000797a        0x2 
+                0x100077e0       0x3a CMakeFiles/sangria_firmware.dir/main.cpp.obj
+ *fill*         0x1000781a        0x2 
  .rodata._ZN17CSANGRIA_KEYBOARD6updateEv.str1.4
-                0x1000797c       0x13 CMakeFiles/sangria_firmware.dir/sangria_keyboard.cpp.obj
- *fill*         0x1000798f        0x1 
- .rodata._ZN13CSANGRIA_OLEDC2Ev.str1.4
-                0x10007990       0x82 CMakeFiles/sangria_firmware.dir/sangria_oled.cpp.obj
- *fill*         0x10007a12        0x2 
+                0x1000781c       0x13 CMakeFiles/sangria_firmware.dir/sangria_keyboard.cpp.obj
+ *fill*         0x1000782f        0x1 
+ .rodata._ZZN13CSANGRIA_OLEDC4EvE8__bi_148
+                0x10007830        0x8 CMakeFiles/sangria_firmware.dir/sangria_oled.cpp.obj
  .rodata.spin_lock_claim_unused.str1.4
-                0x10007a14       0x1b CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x10007a2f        0x1 
+                0x10007838       0x1b CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x10007853        0x1 
  .rodata.user_irq_claim_unused.str1.4
-                0x10007a30       0x1b CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x10007a4b        0x1 
+                0x10007854       0x1b CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1000786f        0x1 
  .rodata.hardware_alarm_claim.str1.4
-                0x10007a4c       0x22 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x10007a6e        0x2 
+                0x10007870       0x22 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x10007892        0x2 
  .rodata.panic.str1.4
-                0x10007a70       0x12 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x10007a82        0x2 
+                0x10007894       0x12 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x100078a6        0x2 
  .rodata.hard_assertion_failure.str1.4
-                0x10007a84        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x100078a8        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata._ftoa.str1.4
-                0x10007a90       0x15 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x10007aa5        0x3 
+                0x100078b4       0x15 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x100078c9        0x3 
  .rodata._vsnprintf
-                0x10007aa8      0x1e0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100078cc      0x1e0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x10007aac        0x4 
  .rodata.pow10.0
-                0x10007c88       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10007ab0       0x50 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.str1.4
-                0x10007cd8       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007b00       0x48 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x10007d20        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007b48        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x10007d2c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007b54        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x10007d38        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007b60        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x10007d44        0x2 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x10007d46        0x2 
+                0x10007b6c        0x2 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x10007b6e        0x2 
  .rodata._resetd_driver
-                0x10007d48       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10007b70       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .rodata.str1.4
-                0x10007d60       0x13 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- *fill*         0x10007d73        0x1 
+                0x10007b88       0x13 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ *fill*         0x10007b9b        0x1 
  .rodata.__bi_118.0
-                0x10007d74        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10007b9c        0xc CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .rodata.str1.4
-                0x10007d80       0x2a CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x10007daa        0x2 
+                0x10007ba8       0x2a CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x10007bd2        0x2 
  .rodata.usbd_desc_cfg
-                0x10007dac       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10007bd4       0x54 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_device
-                0x10007e00       0x12 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x10007e12        0x2 
+                0x10007c28       0x12 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x10007c3a        0x2 
  .rodata.usbd_desc_str
-                0x10007e14       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10007c3c       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.dcd_rp2040_irq.str1.4
-                0x10007e2c       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10007c54       0x14 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata._hw_endpoint_buffer_control_update32.part.0.isra.0.str1.4
-                0x10007e40       0x1f CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007e5f        0x1 
+                0x10007c68       0x1f CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007c87        0x1 
  .rodata.hw_endpoint_xfer_continue.str1.4
-                0x10007e60       0x29 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007e89        0x3 
+                0x10007c88       0x29 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007cb1        0x3 
  .rodata.str1.4
-                0x10007e8c        0x7 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007e93        0x1 
+                0x10007cb4        0x7 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007cbb        0x1 
  .rodata.tud_task
-                0x10007e94       0x8c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10007cbc       0x8c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x10007f20       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10007f38                . = ALIGN (0x4)
+                0x10007d48       0x18 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10007d60                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10007f38                . = ALIGN (0x4)
+                0x10007d60                . = ALIGN (0x4)
 
-.rel.dyn        0x10007f38        0x0
- .rel.iplt      0x10007f38        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x10007d60        0x0
+ .rel.iplt      0x10007d60        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10007f38                __exidx_start = .
+                0x10007d60                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10007f38                __exidx_end = .
-                0x10007f38                . = ALIGN (0x4)
-                0x10007f38                __binary_info_start = .
+                0x10007d60                __exidx_end = .
+                0x10007d60                . = ALIGN (0x4)
+                0x10007d60                __binary_info_start = .
 
-.binary_info    0x10007f38       0x20
+.binary_info    0x10007d60       0x24
  *(.binary_info.keep.*)
+ .binary_info.keep.__bi_ptr148
+                0x10007d60        0x4 CMakeFiles/sangria_firmware.dir/sangria_oled.cpp.obj
  .binary_info.keep.__bi_ptr22
-                0x10007f38        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d64        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x10007f3c        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d68        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x10007f40        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d6c        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x10007f44        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d70        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x10007f48        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d74        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x10007f4c        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d78        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr81
-                0x10007f50        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10007d7c        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr118
-                0x10007f54        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10007f58                __binary_info_end = .
-                0x10007f58                . = ALIGN (0x4)
-                0x10007f58                __etext = .
+                0x10007d80        0x4 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10007d84                __binary_info_end = .
+                0x10007d84                . = ALIGN (0x4)
+                0x10007d84                __etext = .
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -2173,7 +2175,7 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x20000000       0xc0 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x20000000                ram_vector_table
 
-.data           0x200000c0      0x3cc load address 0x10007f58
+.data           0x200000c0      0x3cc load address 0x10007d84
                 0x200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2278,27 +2280,27 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x2000048c                . = ALIGN (0x4)
                 0x2000048c                __data_end__ = .
 
-.igot.plt       0x2000048c        0x0 load address 0x10008324
+.igot.plt       0x2000048c        0x0 load address 0x10008150
  .igot.plt      0x2000048c        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x2000048c        0x0 load address 0x10008324
+                0x2000048c        0x0 load address 0x10008150
                 0x2000048c                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x20040000        0x0 load address 0x10008324
+.scratch_x      0x20040000        0x0 load address 0x10008150
                 0x20040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                . = ALIGN (0x4)
                 0x20040000                __scratch_x_end__ = .
-                0x10008324                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10008150                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10008324
+.scratch_y      0x20041000        0x0 load address 0x10008150
                 0x20041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                . = ALIGN (0x4)
                 0x20041000                __scratch_y_end__ = .
-                0x10008324                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10008150                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .bss            0x20000490      0xd9c
                 0x20000490                . = ALIGN (0x4)
@@ -2410,8 +2412,8 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  *(.stack*)
  .stack         0x20041000      0x800 CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x10008324        0x0
-                0x10008324                __flash_binary_end = .
+.flash_end      0x10008150        0x0
+                0x10008150                __flash_binary_end = .
                 0x20040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -2494,7 +2496,7 @@ LOAD CMakeFiles/sangria_firmware.dir/936531764aea65db7280ebb444b961b1/pico-sdk/s
 LOAD CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
 LOAD CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
 LOAD CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-LOAD C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
+LOAD C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -2616,7 +2618,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000082c       0x2c CMakeFiles/sangria_firmware.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .ARM.attributes
-                0x00000858       0x22 C:\Users\hra\AppData\Local\Temp\ccm7WRQB.o
+                0x00000858       0x22 C:\Users\hra\AppData\Local\Temp\cchDWB0I.o
  .ARM.attributes
                 0x0000087a       0x1e c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
