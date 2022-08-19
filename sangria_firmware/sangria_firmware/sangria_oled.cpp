@@ -111,15 +111,15 @@
 
 
 // --------------------------------------------------------------------
-void CSANGRIA_OLED::send_bq_command( uint8_t command ) {
-	uint8_t send_buffer[2] = { 0x80, command };
+void CSANGRIA_OLED::send_command( uint8_t command ) {
+	uint8_t send_buffer[2] = { SANGRIA_OLED_CMD, command };
 
-	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_BQ_ADDR, send_buffer, sizeof(send_buffer), false );
+	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
 }
 
 // --------------------------------------------------------------------
-void CSANGRIA_OLED::send_command( uint8_t command ) {
-	uint8_t send_buffer[2] = { 0x80, command };
+void CSANGRIA_OLED::send_data( uint8_t data ) {
+	uint8_t send_buffer[2] = { SANGRIA_OLED_DATA, data };
 
 	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
 }
@@ -136,8 +136,8 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_set_dir( SANGRIA_OLED_ON_N, GPIO_OUT );
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
-	//	OLED Power OFF
-	gpio_put( SANGRIA_OLED_ON_N, 0 );
+	//	OLED Power ON
+	gpio_put( SANGRIA_OLED_ON_N, 1 );
 
 	//	I2C initialization, OLED connected SH1107 by I2C.
 	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
@@ -147,11 +147,7 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_pull_up( SANGRIA_OLED_SCL );
 	bi_decl( bi_2pins_with_func( SANGRIA_OLED_SDA, SANGRIA_OLED_SCL, GPIO_FUNC_I2C ) );
 
-	//	Put the BQ device in boost mode before putting 0 in SANGRIA_OLED_ON_N
-	//	T.B.D.
-
 	//	OLED Power ON and RESET
-	//gpio_put( SANGRIA_OLED_ON_N, 0 );
 	gpio_put( SANGRIA_OLED_RST_N, 0 );
 	//	Reset pin must maintain L for at least 10us.
 	sleep_us( 20 );
@@ -268,52 +264,41 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 //	
 //	i2c_write_blocking ( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, sizeof(buf), false );
 
-	this->send_command( 0xAE );		// display off
-	this->send_command( 0x00 );		// set lower column address
-	this->send_command( 0x10 );		// set higher column address
-	this->send_command( 0xB0 );		// set page address
-	this->send_command( 0xDC );		// set display start line
-	this->send_command( 0x00 );
-	this->send_command( 0x81 );		// cotract control
-	this->send_command( 0x6E );		// 128
-	this->send_command( 0x20 );		// set memory addressing mode
-	this->send_command( 0xA0 );		// set segment remap
-	this->send_command( 0xC0 );		// com scan direction
-	this->send_command( 0xA4 );		// disable entire display on
-	this->send_command( 0xA6 );		// normal/reverse
-	this->send_command( 0xA8 );		// multiplex ratio
-	this->send_command( 0x3F );
-	this->send_command( 0xD3 );		// set display offset
-	this->send_command( 0x60 );
-	this->send_command( 0xD5 );		// set osc division
-	this->send_command( 0x41 );
-	this->send_command( 0xD9 );		// set pre-charge period
-	this->send_command( 0x22 );
-	this->send_command( 0xDB );		// set vcomh
-	this->send_command( 0x35 );
-	this->send_command( 0xAD );		// set charge pump enable
-	this->send_command( 0x8A );		// set DC-DC enable
-	this->send_command( 0xAF );		// display on
+	this->send_command( 0xAE );		//	turn off OLED display*/
+	this->send_command( 0x04 );		//	turn off OLED display*/
+	this->send_command( 0x10 );		//	turn off OLED display*/	
+	this->send_command( 0x40 );		//	set lower column address*/ 
+	this->send_command( 0x81 );		//	set higher column address*/ 
+	this->send_command( 0x80 );		//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F, SSD1305_CMD)
+	this->send_command( 0xA1 );		//--set contrast control register
+	this->send_command( 0xA6 );		// Set SEG Output Current Brightness ??? 
+	this->send_command( 0xA8 );		//--Set SEG/Column Mapping	
+	this->send_command( 0x1F );		//Set COM/Row Scan Direction   
+	this->send_command( 0xC0 );		//--set normal display  ????????? 
+	this->send_command( 0xD3 );		//--set multiplex ratio(1 to 64)
+	this->send_command( 0x00 );		//--1/64 duty
+	this->send_command( 0xD5 );		//-set display offset	Shift Mapping RAM Counter (0x00~0x3F) 
+	this->send_command( 0xF0 );		//-not offset
+	this->send_command( 0xD8 );		//--set display clock divide ratio/oscillator frequency
+	this->send_command( 0x05 );		//--set divide ratio, Set Clock as 100 Frames/Sec
+	this->send_command( 0xD9 );		//--set pre-charge period
+	this->send_command( 0xC2 );		//Set Pre-Charge as 15 Clocks & Discharge as 1 Clock
+	this->send_command( 0xDA );		//--set com pins hardware configuration 
+	this->send_command( 0x12 );
+	this->send_command( 0xDB );		/*set vcomh*/
+	this->send_command( 0x08 );		//Set VCOM Deselect Level
+	this->send_command( 0xAF );		//-Set Page Addressing Mode (0x00/0x01/0x02)
 
 	sleep_ms( 120 );
 
-	uint8_t i,j;
+	uint8_t i, j;
 	
-	for(i = 0; i < 8; i++) {
-		buf[0] = OLED_CONTROL_CMD_STREAM;
-		buf[1] = OLED_SET_PAGE_START_ADDRESS | i;		// set page start address(B0`B7)
-		buf[2] = OLED_SET_COLUMN_RANGE;					// set Column Address
-		buf[3] = 0x00;									// Column Start Address(0-127)
-		buf[4] = 0x7F;									// Column Stop Address(0-127)
-		
-		(void)i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, 5, false );
-		
-		buf[0] = OLED_CONTROL_DATA_STREAM;
-		for(j = 0; j < 8; j++) {
-			buf[1 + j] = (i << 3) | j;
-		}
-		for(j = 0; j < 16; j++) {
-			i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, 9, false );
+	for( i = 0; i < 4; i++ ) {
+		this->send_command( 0xB0 + i );
+		this->send_command( 0x04 );
+		this->send_command( 0x10 );
+		for( j = 0; j < 128; j++ ) {
+			this->send_data( j );
 		}
 	}
 }

@@ -32,9 +32,9 @@
 class CSANGRIA_OLED {
 private:
 	// --------------------------------------------------------------------
-	//	Send command
-	void send_bq_command( uint8_t command );
+	//	Send byte
 	void send_command( uint8_t command );
+	void send_data( uint8_t data );
 
 public:
 	// --------------------------------------------------------------------
