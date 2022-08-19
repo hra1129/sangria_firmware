@@ -204,72 +204,97 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 //
 //	this->send_command( OLED_SET_DISP | 0x01 );			// turn display on
 
-	uint8_t buf[29];
-	
-	buf[0] = OLED_CONTROL_CMD_STREAM;
-	
-	/* Display off */
-	buf[1] = OLED_DISPLAY_OFF;
-	
-	/* Set MUX Ratio A8h, 3Fh*/
-	buf[2] = OLED_SET_MULTIPLEX_RATIO;
-	buf[3] =0x3F;
-	
-	/* Set Display Offset D3h, 00h */
-	buf[4] = OLED_SET_DISPLAY_OFFSET;
-	buf[5] = 0x00;
-	
-	/* Set Display Start Line 40h */
-	buf[6] = OLED_SET_DISPLAY_START_LINE;
-	
-	/* Set Segment re-map A0h/A1h */
-	buf[7] = OLED_SET_SEGMENT_REMAP_LOW;
-	
-	/* Set COM Output Scan Direction C0h/C8h */
-	buf[8] = OLED_SET_COM_SCAN_INC;
-	
-	/* Set COM Pins hardware configuration DAh, 02*/
-	buf[9] = OLED_SET_COM_PIN_MAP;
-	buf[10] = 0x12;
-	
-	/* Set Contrast Control 81h, 7Fh */
-	buf[11] = OLED_SET_CONTRAST;
-	buf[12] = 0x7F;
-	
-	/* Disable Entire Display On A4h */
-	buf[13] = OLED_DISPLAY_ALL_ON_RESUME;
-	
-	/* Set Normal Display A6h */
-	buf[14] = OLED_NORMAL_DISPLAY;
-	
-	/* Set Osc Frequency D5h, 80h */
-	buf[15] = OLED_SET_DISPLAY_CLK_DIV;
-	buf[16] = 0x80;	
-	
-	buf[17] = OLED_SET_MEMORY_ADDR_MODE;
-	buf[18] = 0x10;
-	
-	buf[19] = OLED_SET_COLUMN_RANGE;
-	buf[20] = 0x00;
-	buf[21] = 0x7F;
-	
-	buf[22] = OLED_SET_PAGE_RANGE;
-	buf[23] = 0x00;
-	buf[24] = 0x07;
-	
-	buf[25] = OLED_DEACTIVATE_SCROLL;
-	
-	/* Enable charge pump regulator 8Dh, 14h */
-	buf[26] = OLED_SET_CHARGE_PUMP;
-	buf[27] = 0x14;
-	
-	/* Display On AFh */
-	buf[28] = OLED_DISPLAY_ON;
-	
-	i2c_write_blocking ( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, sizeof(buf), false );
+	uint8_t buf[256];
+//	
+//	buf[0] = OLED_CONTROL_CMD_STREAM;
+//	
+//	/* Display off */
+//	buf[1] = OLED_DISPLAY_OFF;
+//	
+//	/* Set MUX Ratio A8h, 3Fh*/
+//	buf[2] = OLED_SET_MULTIPLEX_RATIO;
+//	buf[3] =0x3F;
+//	
+//	/* Set Display Offset D3h, 00h */
+//	buf[4] = OLED_SET_DISPLAY_OFFSET;
+//	buf[5] = 0x00;
+//	
+//	/* Set Display Start Line 40h */
+//	buf[6] = OLED_SET_DISPLAY_START_LINE;
+//	
+//	/* Set Segment re-map A0h/A1h */
+//	buf[7] = OLED_SET_SEGMENT_REMAP_LOW;
+//	
+//	/* Set COM Output Scan Direction C0h/C8h */
+//	buf[8] = OLED_SET_COM_SCAN_INC;
+//	
+//	/* Set COM Pins hardware configuration DAh, 02*/
+//	buf[9] = OLED_SET_COM_PIN_MAP;
+//	buf[10] = 0x12;
+//	
+//	/* Set Contrast Control 81h, 7Fh */
+//	buf[11] = OLED_SET_CONTRAST;
+//	buf[12] = 0x7F;
+//	
+//	/* Disable Entire Display On A4h */
+//	buf[13] = OLED_DISPLAY_ALL_ON_RESUME;
+//	
+//	/* Set Normal Display A6h */
+//	buf[14] = OLED_NORMAL_DISPLAY;
+//	
+//	/* Set Osc Frequency D5h, 80h */
+//	buf[15] = OLED_SET_DISPLAY_CLK_DIV;
+//	buf[16] = 0x80;	
+//	
+//	buf[17] = OLED_SET_MEMORY_ADDR_MODE;
+//	buf[18] = 0x10;
+//	
+//	buf[19] = OLED_SET_COLUMN_RANGE;
+//	buf[20] = 0x00;
+//	buf[21] = 0x7F;
+//	
+//	buf[22] = OLED_SET_PAGE_RANGE;
+//	buf[23] = 0x00;
+//	buf[24] = 0x07;
+//	
+//	buf[25] = OLED_DEACTIVATE_SCROLL;
+//	
+//	/* Enable charge pump regulator 8Dh, 14h */
+//	buf[26] = OLED_SET_CHARGE_PUMP;
+//	buf[27] = 0x14;
+//	
+//	/* Display On AFh */
+//	buf[28] = OLED_DISPLAY_ON;
+//	
+//	i2c_write_blocking ( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, sizeof(buf), false );
 
-	
-	
+	this->send_command( 0xAE );		// display off
+	this->send_command( 0x00 );		// set lower column address
+	this->send_command( 0x10 );		// set higher column address
+	this->send_command( 0xB0 );		// set page address
+	this->send_command( 0xDC );		// set display start line
+	this->send_command( 0x00 );
+	this->send_command( 0x81 );		// cotract control
+	this->send_command( 0x6E );		// 128
+	this->send_command( 0x20 );		// set memory addressing mode
+	this->send_command( 0xA0 );		// set segment remap
+	this->send_command( 0xC0 );		// com scan direction
+	this->send_command( 0xA4 );		// disable entire display on
+	this->send_command( 0xA6 );		// normal/reverse
+	this->send_command( 0xA8 );		// multiplex ratio
+	this->send_command( 0x3F );
+	this->send_command( 0xD3 );		// set display offset
+	this->send_command( 0x60 );
+	this->send_command( 0xD5 );		// set osc division
+	this->send_command( 0x41 );
+	this->send_command( 0xD9 );		// set pre-charge period
+	this->send_command( 0x22 );
+	this->send_command( 0xDB );		// set vcomh
+	this->send_command( 0x35 );
+	this->send_command( 0xAD );		// set charge pump enable
+	this->send_command( 0x8A );		// set DC-DC enable
+	this->send_command( 0xAF );		// display on
+
 	sleep_ms( 120 );
 
 	uint8_t i,j;
