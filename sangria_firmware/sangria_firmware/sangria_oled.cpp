@@ -136,8 +136,6 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_set_dir( SANGRIA_OLED_ON_N, GPIO_OUT );
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
-	//	OLED Power ON
-	gpio_put( SANGRIA_OLED_ON_N, 1 );
 
 	//	I2C initialization, OLED connected SH1107 by I2C.
 	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
@@ -148,11 +146,13 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	bi_decl( bi_2pins_with_func( SANGRIA_OLED_SDA, SANGRIA_OLED_SCL, GPIO_FUNC_I2C ) );
 
 	//	OLED Power ON and RESET
-	gpio_put( SANGRIA_OLED_RST_N, 0 );
-	//	Reset pin must maintain L for at least 10us.
-	sleep_us( 20 );
+	gpio_put( SANGRIA_OLED_ON_N, 1 );
 	gpio_put( SANGRIA_OLED_RST_N, 1 );
-	sleep_ms( 120 );
+	sleep_ms( 100 );
+	gpio_put( SANGRIA_OLED_RST_N, 0 );
+	sleep_ms( 100 );
+	gpio_put( SANGRIA_OLED_RST_N, 1 );
+	sleep_ms( 100 );
 
 //	this->send_command( OLED_SET_DISP | 0x00 );			// set display off
 //
