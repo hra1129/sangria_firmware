@@ -1,0 +1,16 @@
++
++--- pico-sdk (https://github.com/raspberrypi/pico-sdk.git)
++--- sangria_firmware
+|      +--- build (directory)
+|      +--- sangria_firmware (directory)
+|      +--- .gitignore
+|      +--- cmake_rebuild.bat
+|      +--- CMakeLists.txt
+|      +--- pico_sdk_import.cmake
+|      +--- sangria_firmware_auto_set_url.cmake
+
++--- .gitattributes
++--- .gitignore
++--- directory.txt (This file.)
++--- LICENSE
++--- README.md
