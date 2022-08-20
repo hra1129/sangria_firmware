@@ -81,11 +81,13 @@ int main( void ) {
 			sleep_ms( 10 );
 			key_update();
 		}
+		oled.update();
 		keyboard.backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
 			key_update();
 		}
+		oled.update();
 	}
 	return 0;
 }

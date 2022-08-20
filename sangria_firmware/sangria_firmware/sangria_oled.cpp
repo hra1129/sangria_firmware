@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------
 
 #include <cstdio>
+#include <cstdlib>
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -35,52 +36,6 @@
 #define OLED_CONTROL_CMD_SINGLE		0x80
 #define OLED_CONTROL_CMD_STREAM		0x00
 #define OLED_CONTROL_DATA_STREAM	0x40
-
-//// Fundamental commands (pg.28-33)
-//#define OLED_SET_CONTRAST            0x81
-//#define OLED_DISPLAY_ALL_ON_RESUME   0xA4
-//#define OLED_DISPLAY_ALL_ON_IGNORE   0xA5
-//#define OLED_NORMAL_DISPLAY          0xA6
-//#define OLED_INVERT_DISPLAY          0xA7
-//#define OLED_DISPLAY_OFF             0xAE
-//#define OLED_DISPLAY_ON              0xAF
-//
-//// Scrolling #defines (pg.28-30)
-//#define OLED_RIGHT_HORIZONTAL_SCROLL                 0x26
-//#define OLED_LEFT_HORIZONTAL_SCROLL                  0x27
-//#define OLED_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL    0x29
-//#define OLED_VERTICAL_AND_LEFT_HORIZONTAL_SCROLL     0x2A
-//#define OLED_DEACTIVATE_SCROLL                       0x2E
-//#define OLED_ACTIVATE_SCROLL                         0x2F
-//#define OLED_SET_VERTICAL_SCROLL_AREA                0xA3
-//
-//// Addressing Command Table (pg.30)
-//#define OLED_SET_LOW_COLUMN          0x00
-//#define OLED_SET_HIGH_COLUMN         0x10
-//#define OLED_SET_MEMORY_ADDR_MODE    0x20    // follow with 0x00 = HORZ mode = Behave like a KS108 graphic LCD
-//#define OLED_SET_COLUMN_RANGE        0x21    // can be used only in HORZ/VERT mode - follow with 0x00 and 0x7F = COL127
-//#define OLED_SET_PAGE_RANGE          0x22    // can be used only in HORZ/VERT mode - follow with 0x00 and 0x07 = PAGE7
-//#define OLED_SET_PAGE_START_ADDRESS  0xB0
-//
-//// Hardware Config (pg.31)
-//#define OLED_SET_DISPLAY_START_LINE  0x40
-//#define OLED_SET_SEGMENT_REMAP_LOW   0xA0
-//#define OLED_SET_SEGMENT_REMAP_HIGH  0xA1
-//#define OLED_SET_MULTIPLEX_RATIO     0xA8    // follow with 0x3F = 64 MUX
-//#define OLED_SET_COM_SCAN_INC        0xC0
-//#define OLED_SET_COM_SCAN_DEC        0xC8
-//#define OLED_SET_DISPLAY_OFFSET      0xD3    // follow with 0x00
-//#define OLED_SET_COM_PIN_MAP         0xDA    // follow with 0x12
-//
-//// Timing and Driving Scheme (pg.32)
-//#define OLED_SET_DISPLAY_CLK_DIV     0xD5    // follow with 0x80
-//#define OLED_SET_PRECHARGE           0xD9    // follow with 0xF1
-//#define OLED_SET_VCOMH_DESELCT       0xDB    // follow with 0x30
-//#define OLED_NOP                     0xE3    // NOP
-//
-//// Charge Pump (pg.62)
-//#define OLED_SET_CHARGE_PUMP         0x8D    // follow with 0x14
-
 
 #define OLED_SET_CONTRAST			0x81
 #define OLED_SET_ENTIRE_ON			0xA4
@@ -108,14 +63,11 @@
 #define OLED_NUM_PAGES				(OLED_HEIGHT / OLED_PAGE_HEIGHT)
 #define OLED_BUF_LEN				(OLED_NUM_PAGES * OLED_WIDTH)
 
-
-
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::send_command( uint8_t command ) {
 	uint8_t send_buffer[2] = { SANGRIA_OLED_CMD, command };
 
 	int result = i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
-
 	printf( "OLED_COM <= 0x%02X : result = %d\n", command, result );
 }
 
@@ -123,18 +75,14 @@ void CSANGRIA_OLED::send_command( uint8_t command ) {
 void CSANGRIA_OLED::send_data( uint8_t data ) {
 	uint8_t send_buffer[2] = { SANGRIA_OLED_DATA, data };
 
-	int result = i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
-
-	printf( "OLED_DAT <= 0x%02X : result = %d\n", data, result );
+	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
 }
 
 // --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
 	uint8_t i, j;
-
-	gpio_init( SANGRIA_BQ_INT );
-	gpio_init( SANGRIA_BQ_OTG );
-	gpio_init( SANGRIA_BQ_CE );
+	uint8_t buf[128];
+	int cnt;
 
 	gpio_init( SANGRIA_OLED_ON_N );
 	gpio_init( SANGRIA_OLED_RST_N );
@@ -142,6 +90,9 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_set_dir( SANGRIA_OLED_ON_N, GPIO_OUT );
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
+	//	OLED Power OFF
+	gpio_put( SANGRIA_OLED_ON_N, 0 );
+	sleep_ms( 100 );
 
 	//	I2C initialization, OLED connected SH1107 by I2C.
 	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
@@ -153,70 +104,98 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 
 	//	Built-in DC-DC pump power is being used immediately after turning on the power: (Data sheet p.43)
 	//	- Turn on the VDD and AVDD power, keep the RES pin="L" (>10us)
-	gpio_put( SANGRIA_OLED_RST_N, 0 );
-	gpio_put( SANGRIA_OLED_ON_N, 1 );
+	gpio_put( SANGRIA_OLED_RST_N, 0 );		//	OLED Reset ON
+	gpio_put( SANGRIA_OLED_ON_N, 1 );		//	OLED Power ON
 	sleep_us( 30 );
 	//	- Release the reset state (RES pin="H") Reset timing depends on SH1107 data sheet
-	gpio_put( SANGRIA_OLED_RST_N, 1 );
+	gpio_put( SANGRIA_OLED_RST_N, 1 );		//	OLED Reset OFF
 	sleep_ms( 100 );
 	//	- Initialized state (Default)
 	//	- Set up initial code (user setup)
-	this->send_command( 0xAE );		// set display off
-	this->send_command( 0x20 );		// set memory address mode: Page addressing mode
-	this->send_command( 0xA1 );		// set segment re-map: ADC=1
+	cnt = 0;
+	buf[cnt++] = 0x00;				// Control byte
 
-	this->send_command( 0xA8 );		// set multiplex ration
-	this->send_command( 127 );		// - 127
+	buf[cnt++] = 0xAE;				// set display off
 
-	this->send_command( 0xD3 );		// set display offset
-	this->send_command( 0x18 );		// - COM24
+	buf[cnt++] = 0xD5;				// set display clock divide ratio (p.35, Section 14.)
+	buf[cnt++] = 0x80;				// - 2 suggested ratio
 
-	this->send_command( 0x81 );		// set contrast control
-	this->send_command( 255 );		// - 255
+	buf[cnt++] = 0xA8;				// set multiplex ration
+	buf[cnt++] = 0x12;				// - 
 
-	this->send_command( 0xD5 );		// set display clock divide ratio (p.35, Section 14.)
-	this->send_command( 0x50 );		// - div ratio of 1, standard freq
+	buf[cnt++] = 0xD3;				// set display offset
+	buf[cnt++] = 0x62;				// - 
 
-	this->send_command( 0xD9 );		// set pre-charge period (p.36: Section 15.)
-	this->send_command( 0x22 );		// - 
+	buf[cnt++] = 0x40;				// set start line
 
-	this->send_command( 0xDB );		// set VCOMH deselect level (p.37: Section 16.)
-	this->send_command( 0x35 );		// - 0.770 x Vcc
+	buf[cnt++] = 0xAD;				// set DC-DC setting
+	buf[cnt++] = 0x8B;				// DC-DC ON
 
+	buf[cnt++] = 0xA1;				// set segment re-map: ADC=1
 
-	this->send_command( 0xA4 );		// set entire display on to follow RAM content
-	this->send_command( 0xA5 );		// ‹­§“I‚É‘S“_“”
+	buf[cnt++] = 0xC8;				// set common output scan direction
 
-	this->send_command( 0xA6 );		// set normal (not inverted) display
+	buf[cnt++] = 0xDA;				// 
+	buf[cnt++] = 0x12;				// 
 
-	//	- Clear internal RAM to "00H"
-	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
-		//	set page address = i
-		this->send_command( 0xB0 + i );			//	set page address (p.42: No.12)
-		//	set column address = 24 (0x18)
-		this->send_command( 0x08 );				//	set lower column address (p.23: Section 1)
-		this->send_command( 0x11 );				//	set higher column address(p.23: Section 2)
-		for( j = 0; j < 80; j++ ) {
-			this->send_data( 0 );				//	clear
-		}
-	}
-	//	- Set display on: AFh
-	this->send_command( 0xAF );					//	display on
+	buf[cnt++] = 0x81;				// set contrast control
+	buf[cnt++] = 0x80;				// - 128
+
+	buf[cnt++] = 0xD9;				// set pre-charge period (p.36: Section 15.)
+	buf[cnt++] = 0x22;				// -
+
+	buf[cnt++] = 0xDB;				// set VCOMH deselect level (p.37: Section 16.)
+	buf[cnt++] = 0x40;				// - ???? x Vcc
+
+	buf[cnt++] = 0xA6;				// set normal (not inverted) display
+
+	buf[cnt++] = 0xAF;				// set display on
+
+	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+
 	//	- Wait 100ms
 	sleep_ms( 100 );
 
+	//	- Clear internal RAM to "00H"
 	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
+		cnt = 0;
 		//	set page address = i
-		this->send_command( 0xB0 + i );			//	set page address (p.42: No.12)
+		buf[cnt++] = 0x00;					// Control byte
+		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
 		//	set column address = 24 (0x18)
-		this->send_command( 0x08 );				//	set lower column address (p.23: Section 1)
-		this->send_command( 0x11 );				//	set higher column address(p.23: Section 2)
+		buf[cnt++] = 0x08;					//	set lower column address (p.23: Section 1)
+		buf[cnt++] = 0x11;					//	set higher column address(p.23: Section 2)
+		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+
+		cnt = 0;
+		buf[cnt++] = 0x40;
 		for( j = 0; j < 80; j++ ) {
-			this->send_data( j );
+			buf[cnt++] = 0;
 		}
+		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
 	}
 }
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::update( void ) {
+	int i, j, cnt;
+	uint8_t buf[200];
+
+	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
+		cnt = 0;
+		//	set page address = i
+		buf[cnt++] = 0x00;					// Control byte
+		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
+		//	set column address = 24 (0x18)
+		buf[cnt++] = 0x08;					//	set lower column address (p.23: Section 1)
+		buf[cnt++] = 0x11;					//	set higher column address(p.23: Section 2)
+		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+
+		cnt = 0;
+		buf[cnt++] = 0x40;
+		for( j = 0; j < 80; j++ ) {
+			buf[cnt++] = (uint8_t) rand();
+		}
+		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+	}
 }

@@ -82,7 +82,7 @@ void CSANGRIA_KEYBOARD::update( void ) {
 	uint32_t key_data;
 	uint8_t current_key_matrix[5];
 
-	//printf( "\033[0;0H--------\n" );
+	printf( "\033[0;0H--------\n" );
 	for( i = 0; i < 5; i++ ) {
 		port = i + SANGRIA_COL1;
 		gpio_set_dir( port, GPIO_OUT );
@@ -93,10 +93,10 @@ void CSANGRIA_KEYBOARD::update( void ) {
 		key_data = (key_data >> SANGRIA_ROW1) & 0x7F;	// 7bit
 		current_key_matrix[i] = (uint8_t) key_data;
 
-		//for( int j = 0; j < 7; j++ ) {
-		//	printf( "%d", (int)(((key_data << j) & 0x40) != 0) );
-		//}
-		//printf( "\n" );
+		for( int j = 0; j < 7; j++ ) {
+			printf( "%d", (int)(((key_data << j) & 0x40) != 0) );
+		}
+		printf( "\n" );
 	}
 }
 
