@@ -81,7 +81,7 @@ void CSANGRIA_OLED::send_data( uint8_t data ) {
 // --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
 	uint8_t i, j;
-	uint8_t buf[128];
+	uint8_t buf[200];
 	int cnt;
 
 	gpio_init( SANGRIA_OLED_ON_N );
@@ -121,7 +121,7 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	buf[cnt++] = 0x80;				// - 2 suggested ratio
 
 	buf[cnt++] = 0xA8;				// set multiplex ration
-	buf[cnt++] = 0x12;				// - 
+	buf[cnt++] = 63;				// - 
 
 	buf[cnt++] = 0xD3;				// set display offset
 	buf[cnt++] = 0x62;				// - 
@@ -163,13 +163,13 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 		buf[cnt++] = 0x00;					// Control byte
 		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
 		//	set column address = 24 (0x18)
-		buf[cnt++] = 0x08;					//	set lower column address (p.23: Section 1)
-		buf[cnt++] = 0x11;					//	set higher column address(p.23: Section 2)
+		buf[cnt++] = 0x02;					//	set lower column address (p.23: Section 1)
+		buf[cnt++] = 0x10;					//	set higher column address(p.23: Section 2)
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
 
 		cnt = 0;
 		buf[cnt++] = 0x40;
-		for( j = 0; j < 80; j++ ) {
+		for( j = 0; j < 128; j++ ) {
 			buf[cnt++] = 0;
 		}
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
@@ -187,13 +187,13 @@ void CSANGRIA_OLED::update( void ) {
 		buf[cnt++] = 0x00;					// Control byte
 		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
 		//	set column address = 24 (0x18)
-		buf[cnt++] = 0x08;					//	set lower column address (p.23: Section 1)
-		buf[cnt++] = 0x11;					//	set higher column address(p.23: Section 2)
+		buf[cnt++] = 0x02;					//	set lower column address (p.23: Section 1)
+		buf[cnt++] = 0x10;					//	set higher column address(p.23: Section 2)
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
 
 		cnt = 0;
 		buf[cnt++] = 0x40;
-		for( j = 0; j < 80; j++ ) {
+		for( j = 0; j < 128; j++ ) {
 			buf[cnt++] = (uint8_t) rand();
 		}
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );

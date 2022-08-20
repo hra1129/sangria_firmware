@@ -724,7 +724,7 @@ Disassembly of section .text:
 10000698:	b5e0      	push	{r5, r6, r7, lr}
 1000069a:	2680      	movs	r6, #128	; 0x80
 1000069c:	2580      	movs	r5, #128	; 0x80
-1000069e:	b0a3      	sub	sp, #140	; 0x8c
+1000069e:	b0b5      	sub	sp, #212	; 0xd4
 100006a0:	4683      	mov	fp, r0
 100006a2:	200e      	movs	r0, #14
 100006a4:	0624      	lsls	r4, r4, #24
@@ -792,7 +792,7 @@ Disassembly of section .text:
 10000736:	2064      	movs	r0, #100	; 0x64
 10000738:	f000 ffbe 	bl	100016b8 <sleep_ms>
 1000073c:	4b1d      	ldr	r3, [pc, #116]	; (100007b4 <_ZN13CSANGRIA_OLEDC1Ev+0x128>)
-1000073e:	ad16      	add	r5, sp, #88	; 0x58
+1000073e:	ad22      	add	r5, sp, #136	; 0x88
 10000740:	469a      	mov	sl, r3
 10000742:	2340      	movs	r3, #64	; 0x40
 10000744:	4699      	mov	r9, r3
@@ -812,7 +812,7 @@ Disassembly of section .text:
 10000762:	c310      	stmia	r3!, {r4}
 10000764:	429d      	cmp	r5, r3
 10000766:	d1fc      	bne.n	10000762 <_ZN13CSANGRIA_OLEDC1Ev+0xd6>
-10000768:	2350      	movs	r3, #80	; 0x50
+10000768:	2380      	movs	r3, #128	; 0x80
 1000076a:	3701      	adds	r7, #1
 1000076c:	54f4      	strb	r4, [r6, r3]
 1000076e:	0032      	movs	r2, r6
@@ -825,7 +825,7 @@ Disassembly of section .text:
 1000077e:	2fc0      	cmp	r7, #192	; 0xc0
 10000780:	d1e1      	bne.n	10000746 <_ZN13CSANGRIA_OLEDC1Ev+0xba>
 10000782:	4658      	mov	r0, fp
-10000784:	b023      	add	sp, #140	; 0x8c
+10000784:	b035      	add	sp, #212	; 0xd4
 10000786:	bcf0      	pop	{r4, r5, r6, r7}
 10000788:	46bb      	mov	fp, r7
 1000078a:	46b2      	mov	sl, r6
@@ -836,12 +836,12 @@ Disassembly of section .text:
 10000794:	20000460 	.word	0x20000460
 10000798:	000186a0 	.word	0x000186a0
 1000079c:	80d5ae00 	.word	0x80d5ae00
-100007a0:	62d312a8 	.word	0x62d312a8
+100007a0:	62d33fa8 	.word	0x62d33fa8
 100007a4:	a18bad40 	.word	0xa18bad40
 100007a8:	8112dac8 	.word	0x8112dac8
 100007ac:	db22d980 	.word	0xdb22d980
 100007b0:	ffffa640 	.word	0xffffa640
-100007b4:	00001108 	.word	0x00001108
+100007b4:	00001002 	.word	0x00001002
 
 100007b8 <_ZN13CSANGRIA_OLED6updateEv>:
 100007b8:	4b1f      	ldr	r3, [pc, #124]	; (10000838 <_ZN13CSANGRIA_OLED6updateEv+0x80>)
@@ -853,11 +853,11 @@ Disassembly of section .text:
 100007c4:	4645      	mov	r5, r8
 100007c6:	46de      	mov	lr, fp
 100007c8:	4698      	mov	r8, r3
-100007ca:	3308      	adds	r3, #8
+100007ca:	3302      	adds	r3, #2
 100007cc:	b5e0      	push	{r5, r6, r7, lr}
 100007ce:	469b      	mov	fp, r3
-100007d0:	2559      	movs	r5, #89	; 0x59
-100007d2:	3309      	adds	r3, #9
+100007d0:	2589      	movs	r5, #137	; 0x89
+100007d2:	330e      	adds	r3, #14
 100007d4:	27b0      	movs	r7, #176	; 0xb0
 100007d6:	469a      	mov	sl, r3
 100007d8:	b0b5      	sub	sp, #212	; 0xd4
@@ -891,7 +891,7 @@ Disassembly of section .text:
 10000814:	3701      	adds	r7, #1
 10000816:	9300      	str	r3, [sp, #0]
 10000818:	0032      	movs	r2, r6
-1000081a:	2351      	movs	r3, #81	; 0x51
+1000081a:	2381      	movs	r3, #129	; 0x81
 1000081c:	213c      	movs	r1, #60	; 0x3c
 1000081e:	4648      	mov	r0, r9
 10000820:	b2ff      	uxtb	r7, r7
