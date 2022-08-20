@@ -121,7 +121,7 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	buf[cnt++] = 0x80;				// - 2 suggested ratio
 
 	buf[cnt++] = 0xA8;				// set multiplex ration
-	buf[cnt++] = 63;				// - 
+	buf[cnt++] = 127;				// - 
 
 	buf[cnt++] = 0xD3;				// set display offset
 	buf[cnt++] = 0x62;				// - 
@@ -136,7 +136,7 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	buf[cnt++] = 0xC8;				// set common output scan direction
 
 	buf[cnt++] = 0xDA;				// 
-	buf[cnt++] = 0x12;				// 
+	buf[cnt++] = 0x02;				// 
 
 	buf[cnt++] = 0x81;				// set contrast control
 	buf[cnt++] = 0x80;				// - 128
