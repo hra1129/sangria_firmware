@@ -66,12 +66,12 @@ int main( void ) {
 
 	stdio_init_all();
 
-	while( 1 ) {
-		jogdial.update();
-		if( jogdial.get_back_button() ) {
-			break;
-		}
-	}
+	//while( 1 ) {
+	//	jogdial.update();
+	//	if( jogdial.get_back_button() ) {
+	//		break;
+	//	}
+	//}
 	
 	CSANGRIA_OLED oled;
 

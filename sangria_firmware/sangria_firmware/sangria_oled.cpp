@@ -33,29 +33,59 @@
 
 #include "sangria_oled.h"
 
-#define OLED_CONTROL_CMD_SINGLE		0x80
-#define OLED_CONTROL_CMD_STREAM		0x00
-#define OLED_CONTROL_DATA_STREAM	0x40
+#define OLED_CONTROL_CMD_SINGLE							0x80
+#define OLED_CONTROL_CMD_STREAM							0x00
+#define OLED_CONTROL_DATA_STREAM						0x40
 
-#define OLED_SET_CONTRAST			0x81
-#define OLED_SET_ENTIRE_ON			0xA4
-#define OLED_SET_NORM_INV			0xA6
-#define OLED_SET_DISP				0xAE
-#define OLED_SET_MEM_ADDR			0x20
-#define OLED_SET_COL_ADDR			0x21
-#define OLED_SET_PAGE_ADDR			0x22
-#define OLED_SET_DISP_START_LINE	0x40
-#define OLED_SET_SEG_REMAP			0xA0
-#define OLED_SET_MUX_RATIO			0xA8
-#define OLED_SET_COM_OUT_DIR		0xC0
-#define OLED_SET_DISP_OFFSET		0xD3
-#define OLED_SET_COM_PIN_CFG		0xDA
-#define OLED_SET_DISP_CLK_DIV		0xD5
-#define OLED_SET_PRECHARGE			0xD9
-#define OLED_SET_VCOM_DESEL			0xDB
-#define OLED_SET_CHARGE_PUMP		0x8D
-#define OLED_SET_HORIZ_SCROLL		0x26
-#define OLED_SET_SCROLL				0x2E
+// Control byte
+#define SSD1306_CONTROL_CMD_SINGLE						0x80
+#define SSD1306_CONTROL_CMD_STREAM						0x00
+#define SSD1306_CONTROL_DATA_STREAM						0x40
+
+// Fundamental commands (pg.28)
+#define SSD1306_SET_CONTRAST							0x81
+#define SSD1306_DISPLAY_ALL_ON_RESUME					0xA4
+#define SSD1306_DISPLAY_ALL_ON_IGNORE					0xA5
+#define SSD1306_NORMAL_DISPLAY							0xA6
+#define SSD1306_INVERT_DISPLAY							0xA7
+#define SSD1306_DISPLAY_OFF								0xAE
+#define SSD1306_DISPLAY_ON								0xAF
+
+// Scrolling #defines (pg.28-30)
+#define SSD1306_RIGHT_HORIZONTAL_SCROLL					0x26
+#define SSD1306_LEFT_HORIZONTAL_SCROLL					0x27
+#define SSD1306_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL	0x29
+#define SSD1306_VERTICAL_AND_LEFT_HORIZONTAL_SCROLL		0x2A
+#define SSD1306_DEACTIVATE_SCROLL						0x2E
+#define SSD1306_ACTIVATE_SCROLL							0x2F
+#define SSD1306_SET_VERTICAL_SCROLL_AREA				0xA3
+
+// Addressing Command Table (pg.30)
+#define SSD1306_SET_LOW_COLUMN							0x00
+#define SSD1306_SET_HIGH_COLUMN							0x10
+#define SSD1306_SET_MEMORY_ADDR_MODE					0x20	// follow with 0x00 = HORZ mode = Behave like a KS108 graphic LCD
+#define SSD1306_SET_COLUMN_RANGE						0x21	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x7F = COL127
+#define SSD1306_SET_PAGE_RANGE							0x22	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x07 = PAGE7
+#define SSD1306_SET_PAGE_START_ADDRESS					0xB0
+
+// Hardware Config (pg.31)
+#define SSD1306_SET_DISPLAY_START_LINE					0x40
+#define SSD1306_SET_SEGMENT_REMAP_LOW					0xA0
+#define SSD1306_SET_SEGMENT_REMAP_HIGH					0xA1
+#define SSD1306_SET_MULTIPLEX_RATIO						0xA8	// follow with 0x3F = 64 MUX
+#define SSD1306_SET_COM_SCAN_INC						0xC0
+#define SSD1306_SET_COM_SCAN_DEC						0xC8
+#define SSD1306_SET_DISPLAY_OFFSET						0xD3	// follow with 0x00
+#define SSD1306_SET_COM_PIN_MAP							0xDA	// follow with 0x12
+
+// Timing and Driving Scheme (pg.32)
+#define SSD1306_SET_DISPLAY_CLK_DIV						0xD5	// follow with 0x80
+#define SSD1306_SET_PRECHARGE							0xD9	// follow with 0xF1
+#define SSD1306_SET_VCOMH_DESELCT						0xDB	// follow with 0x30
+#define SSD1306_NOP										0xE3	// NOP
+
+// Charge Pump (pg.62)
+#define SSD1306_SET_CHARGE_PUMP							0x8D	// follow with 0x14
 
 #define OLED_HEIGHT					128
 #define OLED_WIDTH					80
@@ -64,24 +94,9 @@
 #define OLED_BUF_LEN				(OLED_NUM_PAGES * OLED_WIDTH)
 
 // --------------------------------------------------------------------
-void CSANGRIA_OLED::send_command( uint8_t command ) {
-	uint8_t send_buffer[2] = { SANGRIA_OLED_CMD, command };
-
-	int result = i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
-	printf( "OLED_COM <= 0x%02X : result = %d\n", command, result );
-}
-
-// --------------------------------------------------------------------
-void CSANGRIA_OLED::send_data( uint8_t data ) {
-	uint8_t send_buffer[2] = { SANGRIA_OLED_DATA, data };
-
-	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, send_buffer, sizeof(send_buffer), false );
-}
-
-// --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
 	uint8_t i, j;
-	uint8_t buf[200];
+	uint8_t buf[160];
 	int cnt;
 
 	gpio_init( SANGRIA_OLED_ON_N );
@@ -113,62 +128,69 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	//	- Initialized state (Default)
 	//	- Set up initial code (user setup)
 	cnt = 0;
-	buf[cnt++] = 0x00;				// Control byte
+	buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;		// Control byte
 
-	buf[cnt++] = 0xAE;				// set display off
+	buf[cnt++] = SSD1306_DISPLAY_OFF;				// set display off
 
-	buf[cnt++] = 0xD5;				// set display clock divide ratio (p.35, Section 14.)
-	buf[cnt++] = 0x80;				// - 2 suggested ratio
+	buf[cnt++] = SSD1306_SET_MULTIPLEX_RATIO;		// set multiplex ration
+	buf[cnt++] = 0x3F;								// - 63
 
-	buf[cnt++] = 0xA8;				// set multiplex ration
-	buf[cnt++] = 127;				// - 
+	buf[cnt++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
+	buf[cnt++] = 0x00;								// - 
 
-	buf[cnt++] = 0xD3;				// set display offset
-	buf[cnt++] = 0x62;				// - 
+	buf[cnt++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
 
-	buf[cnt++] = 0x40;				// set start line
+	buf[cnt++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
 
-	buf[cnt++] = 0xAD;				// set DC-DC setting
-	buf[cnt++] = 0x8B;				// DC-DC ON
+	buf[cnt++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
 
-	buf[cnt++] = 0xA1;				// set segment re-map: ADC=1
+	buf[cnt++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 12h
+	buf[cnt++] = 0x12;								// 
 
-	buf[cnt++] = 0xC8;				// set common output scan direction
+	buf[cnt++] = SSD1306_SET_CONTRAST;				// set contrast control
+	buf[cnt++] = 0x7F;								// - 127
 
-	buf[cnt++] = 0xDA;				// 
-	buf[cnt++] = 0x02;				// 
+	buf[cnt++] = SSD1306_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
 
-	buf[cnt++] = 0x81;				// set contrast control
-	buf[cnt++] = 0x80;				// - 128
+	buf[cnt++] = SSD1306_NORMAL_DISPLAY;			// set normal (not inverted) display
 
-	buf[cnt++] = 0xD9;				// set pre-charge period (p.36: Section 15.)
-	buf[cnt++] = 0x22;				// -
+	buf[cnt++] = SSD1306_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, 80h
+	buf[cnt++] = 0x80;
 
-	buf[cnt++] = 0xDB;				// set VCOMH deselect level (p.37: Section 16.)
-	buf[cnt++] = 0x40;				// - ???? x Vcc
+	buf[cnt++] = SSD1306_SET_MEMORY_ADDR_MODE;
+	buf[cnt++] = 0x10;
+	
+	buf[cnt++] = SSD1306_SET_COLUMN_RANGE;
+	buf[cnt++] = 0x00;
+	buf[cnt++] = 0x7F;
+	
+	buf[cnt++] = SSD1306_SET_PAGE_RANGE;
+	buf[cnt++] = 0x00;
+	buf[cnt++] = 0x07;
+	
+	buf[cnt++] = SSD1306_DEACTIVATE_SCROLL;
 
-	buf[cnt++] = 0xA6;				// set normal (not inverted) display
+	buf[cnt++] = SSD1306_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 14h
+	buf[cnt++] = 0x14;
 
-	buf[cnt++] = 0xAF;				// set display on
+	buf[cnt++] = SSD1306_DISPLAY_ON;				// set display on AFh
 
 	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
-
-	//	- Wait 100ms
-	sleep_ms( 100 );
 
 	//	- Clear internal RAM to "00H"
 	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
 		cnt = 0;
 		//	set page address = i
-		buf[cnt++] = 0x00;					// Control byte
-		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
+		buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
+		buf[cnt++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
 		//	set column address = 24 (0x18)
-		buf[cnt++] = 0x02;					//	set lower column address (p.23: Section 1)
-		buf[cnt++] = 0x10;					//	set higher column address(p.23: Section 2)
+		buf[cnt++] = SSD1306_SET_COLUMN_RANGE;				// set column address
+		buf[cnt++] = 0x00;									//	column start address
+		buf[cnt++] = 0x7F;									//	column end address
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
 
 		cnt = 0;
-		buf[cnt++] = 0x40;
+		buf[cnt++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
 		for( j = 0; j < 128; j++ ) {
 			buf[cnt++] = 0;
 		}
@@ -184,15 +206,16 @@ void CSANGRIA_OLED::update( void ) {
 	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
 		cnt = 0;
 		//	set page address = i
-		buf[cnt++] = 0x00;					// Control byte
-		buf[cnt++] = 0xB0 + i;				//	set page address (p.42: No.12)
+		buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
+		buf[cnt++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
 		//	set column address = 24 (0x18)
-		buf[cnt++] = 0x02;					//	set lower column address (p.23: Section 1)
-		buf[cnt++] = 0x10;					//	set higher column address(p.23: Section 2)
+		buf[cnt++] = SSD1306_SET_COLUMN_RANGE;				// set column address
+		buf[cnt++] = 0x00;									//	column start address
+		buf[cnt++] = 0x7F;									//	column end address
 		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
 
 		cnt = 0;
-		buf[cnt++] = 0x40;
+		buf[cnt++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
 		for( j = 0; j < 128; j++ ) {
 			buf[cnt++] = (uint8_t) rand();
 		}
