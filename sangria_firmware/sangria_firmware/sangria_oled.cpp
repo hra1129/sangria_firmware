@@ -25,6 +25,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -33,9 +34,8 @@
 
 #include "sangria_oled.h"
 
-#define OLED_CONTROL_CMD_SINGLE							0x80
-#define OLED_CONTROL_CMD_STREAM							0x00
-#define OLED_CONTROL_DATA_STREAM						0x40
+// I2C address
+#define OLED_ADDR										0x3C
 
 // Control byte
 #define SSD1306_CONTROL_CMD_SINGLE						0x80
@@ -87,17 +87,15 @@
 // Charge Pump (pg.62)
 #define SSD1306_SET_CHARGE_PUMP							0x8D	// follow with 0x14
 
-#define OLED_HEIGHT					128
-#define OLED_WIDTH					80
+#define OLED_WIDTH					128
+#define OLED_HEIGHT					32
 #define OLED_PAGE_HEIGHT			8
 #define OLED_NUM_PAGES				(OLED_HEIGHT / OLED_PAGE_HEIGHT)
 #define OLED_BUF_LEN				(OLED_NUM_PAGES * OLED_WIDTH)
 
 // --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
-	uint8_t i, j;
-	uint8_t buf[160];
-	int cnt;
+	int count;
 
 	gpio_init( SANGRIA_OLED_ON_N );
 	gpio_init( SANGRIA_OLED_RST_N );
@@ -107,7 +105,6 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 
 	//	OLED Power OFF
 	gpio_put( SANGRIA_OLED_ON_N, 0 );
-	sleep_ms( 100 );
 
 	//	I2C initialization, OLED connected SH1107 by I2C.
 	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
@@ -116,109 +113,129 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_pull_up( SANGRIA_OLED_SDA );
 	gpio_pull_up( SANGRIA_OLED_SCL );
 	bi_decl( bi_2pins_with_func( SANGRIA_OLED_SDA, SANGRIA_OLED_SCL, GPIO_FUNC_I2C ) );
+	sleep_ms( 1 );
 
 	//	Built-in DC-DC pump power is being used immediately after turning on the power: (Data sheet p.43)
 	//	- Turn on the VDD and AVDD power, keep the RES pin="L" (>10us)
-	gpio_put( SANGRIA_OLED_RST_N, 0 );		//	OLED Reset ON
 	gpio_put( SANGRIA_OLED_ON_N, 1 );		//	OLED Power ON
-	sleep_us( 30 );
-	//	- Release the reset state (RES pin="H") Reset timing depends on SH1107 data sheet
-	gpio_put( SANGRIA_OLED_RST_N, 1 );		//	OLED Reset OFF
-	sleep_ms( 100 );
-	//	- Initialized state (Default)
+	sleep_ms( 1 );
+
 	//	- Set up initial code (user setup)
-	cnt = 0;
-	buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;		// Control byte
+	count = 0;
+	this->send_buffer[count++] = SSD1306_CONTROL_CMD_STREAM;		// Control byte
 
-	buf[cnt++] = SSD1306_DISPLAY_OFF;				// set display off
+	this->send_buffer[count++] = SSD1306_DISPLAY_OFF;				// set display off
 
-	buf[cnt++] = SSD1306_SET_MULTIPLEX_RATIO;		// set multiplex ration
-	buf[cnt++] = 0x3F;								// - 63
+	this->send_buffer[count++] = SSD1306_SET_MULTIPLEX_RATIO;		// set multiplex ration
+	this->send_buffer[count++] = 0x3F;								// - 63
 
-	buf[cnt++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
-	buf[cnt++] = 0x00;								// - 
+	this->send_buffer[count++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
+	this->send_buffer[count++] = 0x00;								// - 
 
-	buf[cnt++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
+	this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
 
-	buf[cnt++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
+	this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
 
-	buf[cnt++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
+	this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
 
-	buf[cnt++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 12h
-	buf[cnt++] = 0x12;								// 
+	this->send_buffer[count++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 02h
+	this->send_buffer[count++] = 0x02;								// 
 
-	buf[cnt++] = SSD1306_SET_CONTRAST;				// set contrast control
-	buf[cnt++] = 0x7F;								// - 127
+	this->send_buffer[count++] = SSD1306_SET_CONTRAST;				// set contrast control
+	this->send_buffer[count++] = 0x7F;								// - 127
 
-	buf[cnt++] = SSD1306_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
+	this->send_buffer[count++] = SSD1306_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
 
-	buf[cnt++] = SSD1306_NORMAL_DISPLAY;			// set normal (not inverted) display
+	this->send_buffer[count++] = SSD1306_NORMAL_DISPLAY;			// set normal (not inverted) display
 
-	buf[cnt++] = SSD1306_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, 80h
-	buf[cnt++] = 0x80;
+	this->send_buffer[count++] = SSD1306_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, 80h
+	this->send_buffer[count++] = 0x80;
 
-	buf[cnt++] = SSD1306_SET_MEMORY_ADDR_MODE;
-	buf[cnt++] = 0x10;
-	
-	buf[cnt++] = SSD1306_SET_COLUMN_RANGE;
-	buf[cnt++] = 0x00;
-	buf[cnt++] = 0x7F;
-	
-	buf[cnt++] = SSD1306_SET_PAGE_RANGE;
-	buf[cnt++] = 0x00;
-	buf[cnt++] = 0x07;
-	
-	buf[cnt++] = SSD1306_DEACTIVATE_SCROLL;
+	this->send_buffer[count++] = SSD1306_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 14h
+	this->send_buffer[count++] = 0x14;
 
-	buf[cnt++] = SSD1306_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 14h
-	buf[cnt++] = 0x14;
+	this->send_buffer[count++] = SSD1306_DISPLAY_ON;				// set display on AFh
 
-	buf[cnt++] = SSD1306_DISPLAY_ON;				// set display on AFh
-
-	i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+	i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
 
 	//	- Clear internal RAM to "00H"
-	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
-		cnt = 0;
-		//	set page address = i
-		buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
-		buf[cnt++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
-		//	set column address = 24 (0x18)
-		buf[cnt++] = SSD1306_SET_COLUMN_RANGE;				// set column address
-		buf[cnt++] = 0x00;									//	column start address
-		buf[cnt++] = 0x7F;									//	column end address
-		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
-
-		cnt = 0;
-		buf[cnt++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
-		for( j = 0; j < 128; j++ ) {
-			buf[cnt++] = 0;
-		}
-		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
-	}
+	this->clear();
+	this->update();
 }
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::update( void ) {
-	int i, j, cnt;
-	uint8_t buf[200];
+	int i, j, y, bit, pattern, count;
 
-	for( i = 0; i < OLED_NUM_PAGES; i++ ) {
-		cnt = 0;
+	for( i = 0, y = 0; i < OLED_NUM_PAGES; i++, y += OLED_PAGE_HEIGHT ) {
+		count = 0;
 		//	set page address = i
-		buf[cnt++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
-		buf[cnt++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
+		this->send_buffer[count++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
+		this->send_buffer[count++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
 		//	set column address = 24 (0x18)
-		buf[cnt++] = SSD1306_SET_COLUMN_RANGE;				// set column address
-		buf[cnt++] = 0x00;									//	column start address
-		buf[cnt++] = 0x7F;									//	column end address
-		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+		this->send_buffer[count++] = SSD1306_SET_COLUMN_RANGE;				// set column address
+		this->send_buffer[count++] = 0x00;									//	column start address
+		this->send_buffer[count++] = 0x7F;									//	column end address
+		i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
 
-		cnt = 0;
-		buf[cnt++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
+		count = 0;
+		this->send_buffer[count++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
 		for( j = 0; j < 128; j++ ) {
-			buf[cnt++] = (uint8_t) rand();
+			pattern = 0;
+			for( bit = 0; bit < OLED_PAGE_HEIGHT; bit++ ) {
+				pattern = (pattern >> 1) | (this->frame_buffer[ y + bit ][ j ] << (OLED_PAGE_HEIGHT - 1));
+			}
+			this->send_buffer[count++] = (uint8_t) pattern;
 		}
-		i2c_write_blocking( SANGRIA_OLED_I2C, SANGRIA_OLED_ADDR, buf, cnt, false );
+		i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
+	}
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::clear( void ) {
+
+	memset( this->frame_buffer, 0, sizeof(this->frame_buffer) );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::pset( int x, int y, int c ) {
+
+	if( x < 0 || y < 0 || x >= OLED_WIDTH || y >= OLED_HEIGHT ) {
+		return;
+	}
+	this->frame_buffer[y][x] = ( c ? 1: 0 );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::line( int x1, int y1, int x2, int y2, int c ) {
+	int x, y, dx, dy, vx, vy, count;
+
+	dx = x2 - x1;
+	dy = y2 - y1;
+
+	vx = (dx == 0) ? 0: (dx < 0) ? -1: 1;
+	vy = (dy == 0) ? 0: (dy < 0) ? -1: 1;
+	dx = (dx < 0) ? -dx: dx;
+	dy = (dy < 0) ? -dy: dy;
+
+	if( dx > dy ) {
+		for( x = x1, y = y1, count = 0; x != x2; x += vx ) {
+			this->pset( x, y, c );
+			count += dy;
+			if( count >= dx ) {
+				y += vy;
+				count -= dx;
+			}
+		}
+	}
+	else {
+		for( y = y1, x = x1, count = 0; y != y2; y += vy ) {
+			this->pset( x, y, c );
+			count += dx;
+			if( count >= dy ) {
+				x += vx;
+				count -= dy;
+			}
+		}
 	}
 }

@@ -31,10 +31,8 @@
 
 class CSANGRIA_OLED {
 private:
-	// --------------------------------------------------------------------
-	//	Send byte
-	void send_command( uint8_t command );
-	void send_data( uint8_t data );
+	uint8_t frame_buffer[32][128];
+	uint8_t send_buffer[256];
 
 public:
 	// --------------------------------------------------------------------
@@ -42,8 +40,54 @@ public:
 	CSANGRIA_OLED();
 
 	// --------------------------------------------------------------------
-	//	Update key state
+	//	Update
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//		Transfers the contents of the frame buffer to OLED.
+	//
 	void update( void );
+
+	// --------------------------------------------------------------------
+	//	Clear
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//		Clear the contents of the frame buffer.
+	//
+	void clear( void );
+
+	// --------------------------------------------------------------------
+	//	Pixel set
+	//	input:
+	//		x ..... X position
+	//		y ..... Y position
+	//		c ..... color (0 or 1)
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a point at coordinates (X,Y)
+	//
+	void pset( int x, int y, int c );
+
+	// --------------------------------------------------------------------
+	//	Line
+	//	input:
+	//		x1 .... X1 position
+	//		y1 .... Y1 position
+	//		x2 .... X2 position
+	//		y2 .... Y2 position
+	//		c ..... color (0 or 1)
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a line from coordinates (X1,Y1) to coordinates (X2,Y2)
+	//
+	void line( int x1, int y1, int x2, int y2, int c );
 };
 
 #endif
