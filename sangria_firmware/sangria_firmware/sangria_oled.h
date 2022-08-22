@@ -88,6 +88,8 @@ public:
 	//		Draw a line from coordinates (X1,Y1) to coordinates (X2,Y2)
 	//
 	void line( int x1, int y1, int x2, int y2, int c );
+
+	void copy( uint8_t *p_image, int width, int height );
 };
 
 #endif

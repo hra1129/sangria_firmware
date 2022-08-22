@@ -130,13 +130,16 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	this->send_buffer[count++] = 0x3F;								// - 63
 
 	this->send_buffer[count++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
-	this->send_buffer[count++] = 0x00;								// - 
+	//this->send_buffer[count++] = 0x00;								// - 
+	this->send_buffer[count++] = 0x20;								// - 
 
 	this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
 
-	this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
+	//this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
+	this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
 
-	this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
+	//this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
+	this->send_buffer[count++] = SSD1306_SET_COM_SCAN_DEC;			// set common output scan direction
 
 	this->send_buffer[count++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 02h
 	this->send_buffer[count++] = 0x02;								// 
@@ -183,7 +186,7 @@ void CSANGRIA_OLED::update( void ) {
 		for( j = 0; j < 128; j++ ) {
 			pattern = 0;
 			for( bit = 0; bit < OLED_PAGE_HEIGHT; bit++ ) {
-				pattern = (pattern >> 1) | (this->frame_buffer[ y + bit ][ j ] << (OLED_PAGE_HEIGHT - 1));
+				pattern = (pattern >> 1) | ((uint8_t)(this->frame_buffer[ y + bit ][ j ] != 0) << (OLED_PAGE_HEIGHT - 1));
 			}
 			this->send_buffer[count++] = (uint8_t) pattern;
 		}
@@ -238,4 +241,10 @@ void CSANGRIA_OLED::line( int x1, int y1, int x2, int y2, int c ) {
 			}
 		}
 	}
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::copy( uint8_t *p_image, int width, int height ) {
+
+	memcpy( this->frame_buffer, p_image, width * height );
 }

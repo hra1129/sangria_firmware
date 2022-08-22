@@ -40,6 +40,8 @@
 CSANGRIA_JOGDIAL jogdial;
 CSANGRIA_KEYBOARD keyboard;
 
+extern uint8_t sangria_logo[];
+
 // --------------------------------------------------------------------
 static void key_update( void ) {
 
@@ -82,7 +84,8 @@ int main( void ) {
 			key_update();
 		}
 		oled.clear();
-		oled.line( 0, 0, 127, 31, 1 );
+		//oled.line( 0, 0, 127, 31, 1 );
+		oled.copy( sangria_logo, 128, 32 );
 		oled.update();
 		keyboard.backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
@@ -90,7 +93,8 @@ int main( void ) {
 			key_update();
 		}
 		oled.clear();
-		oled.line( 127, 0, 0, 31, 1 );
+		//oled.line( 127, 0, 0, 31, 1 );
+		oled.copy( sangria_logo, 128, 32 );
 		oled.update();
 	}
 	return 0;
