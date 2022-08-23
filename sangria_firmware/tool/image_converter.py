@@ -23,7 +23,7 @@ def convert( input_name, output_name ):
 		file.write( '\n' )
 		file.write( 'int %s_width  = %d;\n' % ( output_name, img.width ) )
 		file.write( 'int %s_height = %d;\n' % ( output_name, img.height ) )
-		file.write( 'uint8_t %s[] = {\n' % output_name )
+		file.write( 'const uint8_t %s[] = {\n' % output_name )
 		line_count = 0
 		x = 0
 		y = 0
@@ -32,7 +32,12 @@ def convert( input_name, output_name ):
 				file.write( '\t' )
 			( r, g, b ) = img.getpixel( ( x, y ) )
 			p = int((r + g + b) / 3)
-			file.write( '0x%02X, ' % p )
+			if p >= 192:
+				file.write( '0xFF, ' )
+			elif p >= 64:
+				file.write( '0x80, ' )
+			else:
+				file.write( '0x00, ' )
 			if (line_count % 16) == 15:
 				file.write( '\n' )
 			x = x + 1

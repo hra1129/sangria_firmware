@@ -130,16 +130,17 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	this->send_buffer[count++] = 0x3F;								// - 63
 
 	this->send_buffer[count++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
-	//this->send_buffer[count++] = 0x00;								// - 
-	this->send_buffer[count++] = 0x20;								// - 
-
-	this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
-
-	//this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
-	this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
-
-	//this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
-	this->send_buffer[count++] = SSD1306_SET_COM_SCAN_DEC;			// set common output scan direction
+	#if SANGRIA_OLED_REV == 1
+		this->send_buffer[count++] = 0x20;								// - Vertical reverse
+		this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
+		this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
+		this->send_buffer[count++] = SSD1306_SET_COM_SCAN_DEC;			// set common output scan direction
+	#else
+		this->send_buffer[count++] = 0x00;								// - Normal
+		this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
+		this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
+		this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
+	#endif
 
 	this->send_buffer[count++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 02h
 	this->send_buffer[count++] = 0x02;								// 
@@ -244,7 +245,13 @@ void CSANGRIA_OLED::line( int x1, int y1, int x2, int y2, int c ) {
 }
 
 // --------------------------------------------------------------------
-void CSANGRIA_OLED::copy( uint8_t *p_image, int width, int height ) {
+void CSANGRIA_OLED::copy( const uint8_t *p_image, int width, int height, int x, int y ) {
+	int px, py;
 
-	memcpy( this->frame_buffer, p_image, width * height );
+	for( py = 0; py < height; py++ ) {
+		for( px = 0; px < width; px++ ) {
+			this->pset( x + px, y + py, *p_image );
+			p_image++;
+		}
+	}
 }

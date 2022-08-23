@@ -39,8 +39,33 @@
 
 CSANGRIA_JOGDIAL jogdial;
 CSANGRIA_KEYBOARD keyboard;
+CSANGRIA_OLED oled;
 
 extern uint8_t sangria_logo[];
+
+// --------------------------------------------------------------------
+class CANIME {
+public:
+	int x;
+	int y;
+
+	CANIME() {
+		x = 128;
+		y = 32;
+	}
+
+	void draw( CSANGRIA_OLED &oled ) {
+		if( x ) {
+			x = x - 1;
+		}
+		if( y && (x & 3) == 0 ) {
+			y = y - 1;
+		}
+		oled.clear();
+		oled.copy( sangria_logo, 128, 32, x, y );
+		oled.update();
+	}
+};
 
 // --------------------------------------------------------------------
 static void key_update( void ) {
@@ -65,6 +90,7 @@ static void key_update( void ) {
 // --------------------------------------------------------------------
 int main( void ) {
 	int i;
+	CANIME anime;
 
 	stdio_init_all();
 
@@ -74,28 +100,20 @@ int main( void ) {
 	//		break;
 	//	}
 	//}
-	
-	CSANGRIA_OLED oled;
 
 	while( 1 ) {
 		keyboard.backlight( 1 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
 			key_update();
+			anime.draw( oled );
 		}
-		oled.clear();
-		//oled.line( 0, 0, 127, 31, 1 );
-		oled.copy( sangria_logo, 128, 32 );
-		oled.update();
 		keyboard.backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
 			key_update();
+			anime.draw( oled );
 		}
-		oled.clear();
-		//oled.line( 127, 0, 0, 31, 1 );
-		oled.copy( sangria_logo, 128, 32 );
-		oled.update();
 	}
 	return 0;
 }

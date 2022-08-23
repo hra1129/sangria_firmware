@@ -89,7 +89,20 @@ public:
 	//
 	void line( int x1, int y1, int x2, int y2, int c );
 
-	void copy( uint8_t *p_image, int width, int height );
+	// --------------------------------------------------------------------
+	//	Line
+	//	input:
+	//		p_image ... image data address
+	//		width ..... width of image data
+	//		height .... height of image data
+	//		x ......... left position
+	//		y ......... top position
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a image
+	//
+	void copy( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
 };
 
 #endif

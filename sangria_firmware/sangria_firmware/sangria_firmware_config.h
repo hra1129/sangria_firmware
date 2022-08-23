@@ -44,13 +44,15 @@
 // --------------------------------------------------------------------
 //	GPIO PIN defines: OLED display device
 //
-#define SANGRIA_OLED_ON_N	14
-#define SANGRIA_OLED_RST_N	24
+#define SANGRIA_OLED_ON_N	14				// NOT AVAILABLE
+#define SANGRIA_OLED_RST_N	24				// NOT AVAILABLE
 #define SANGRIA_OLED_SCL	1
 #define SANGRIA_OLED_SDA	0
 #define SANGRIA_OLED_I2C	i2c_default
 #define SANGRIA_OLED_CLOCK	(400 * 1000)
+#define SANGRIA_OLED_REV	1				// 0: NORMAL, 1: REVERSE
 
+// --------------------------------------------------------------------
 #define SANGRIA_BQ_ADDR		0x6B
 #define SANGRIA_BQ_INT		17
 #define SANGRIA_BQ_OTG		16
