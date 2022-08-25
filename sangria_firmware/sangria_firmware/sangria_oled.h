@@ -31,6 +31,8 @@
 
 class CSANGRIA_OLED {
 private:
+	int x;
+	int y;
 	uint8_t frame_buffer[32][128];
 	uint8_t send_buffer[256];
 
@@ -103,6 +105,50 @@ public:
 	//		Draw a image
 	//
 	void copy( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
+
+	// --------------------------------------------------------------------
+	//	scroll_up
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//		Scroll
+	//
+	void scroll_up( void );
+
+	// --------------------------------------------------------------------
+	//	putc
+	//	input:
+	//		c ......... target character ASCII code
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a character
+	//
+	void putc( char c );
+
+	// --------------------------------------------------------------------
+	//	putc
+	//	input:
+	//		p_str ...... target string
+	//	output:
+	//		none
+	//	comment:
+	//		Draw string
+	//
+	void puts( const char *p_str );
+
+	// --------------------------------------------------------------------
+	//	set_position
+	//	input:
+	//		xx ...... character drawing position X
+	//		yy ...... character drawing position Y
+	//	output:
+	//		none
+	//	comment:
+	//
+	void set_position( int xx, int yy );
 };
 
 #endif

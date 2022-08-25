@@ -7,6 +7,7 @@ if (TARGET tinyusb_device)
 		sangria_keyboard.cpp
 		sangria_oled.cpp
 		sangria_logo.cpp
+		# sangria_usb_keyboard.cpp
 	)
 
 	# pull in common dependencies
