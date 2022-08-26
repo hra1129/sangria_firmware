@@ -33,13 +33,35 @@ class CSANGRIA_OLED {
 private:
 	int x;
 	int y;
-	uint8_t frame_buffer[32][128];
+	uint8_t frame_buffer[ OLED_WIDTH * OLED_HEIGHT ];
 	uint8_t send_buffer[256];
 
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_OLED();
+
+	// --------------------------------------------------------------------
+	//	Power ON
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//		OLED Power ON
+	//
+	void power_on( void );
+
+	// --------------------------------------------------------------------
+	//	Power OFF
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//		OLED Power OFF
+	//
+	void power_off( void );
 
 	// --------------------------------------------------------------------
 	//	Update

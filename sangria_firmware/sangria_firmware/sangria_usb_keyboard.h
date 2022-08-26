@@ -25,4 +25,11 @@
 
 #ifndef __SANGRIA_USB_KEYBOARD_H__
 #define __SANGRIA_USB_KEYBOARD_H__
+
+#include "sangria_keyboard.h"
+#include "sangria_jogdial.h"
+
+void hid_task( void );
+//void hid_task( CSANGRIA_KEYBOARD &keyboard, CSANGRIA_JOGDIAL &jogdial );
+
 #endif

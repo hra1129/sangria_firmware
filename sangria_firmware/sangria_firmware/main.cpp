@@ -27,7 +27,11 @@
 #include <cstdio>
 #include <cstring>
 
+#include "bsp/board.h"
+#include "tusb.h"
+
 #include "pico/stdlib.h"
+#include "pico/multicore.h"
 #include "hardware/gpio.h"
 
 #include "sangria_firmware_config.h"
@@ -35,10 +39,6 @@
 #include "sangria_keyboard.h"
 #include "sangria_oled.h"
 #include "sangria_usb_keyboard.h"
-
-CSANGRIA_JOGDIAL jogdial;
-CSANGRIA_KEYBOARD keyboard;
-CSANGRIA_OLED oled;
 
 extern uint8_t sangria_logo[];
 
@@ -50,6 +50,9 @@ public:
 	int wait;
 	int state;
 	int count;
+	CSANGRIA_OLED *p_oled;
+	CSANGRIA_JOGDIAL *p_jogdial;
+	CSANGRIA_KEYBOARD *p_keyboard;
 
 	CANIME() {
 		x = 128;
@@ -58,7 +61,13 @@ public:
 		state = 0;
 	}
 
-	void draw( CSANGRIA_OLED &oled ) {
+	void set( CSANGRIA_OLED *p_oled, CSANGRIA_JOGDIAL *p_jogdial, CSANGRIA_KEYBOARD *p_keyboard ) {
+		this->p_oled = p_oled;
+		this->p_jogdial = p_jogdial;
+		this->p_keyboard = p_keyboard;
+	}
+
+	void draw( void ) {
 		if( state == 0 ) {
 			if( x ) {
 				x = x - 1;
@@ -66,8 +75,8 @@ public:
 			if( y && (x & 3) == 0 ) {
 				y = y - 1;
 			}
-			oled.clear();
-			oled.copy( sangria_logo, 128, 32, x, y );
+			p_oled->clear();
+			p_oled->copy( sangria_logo, 128, 32, x, y );
 			if( x == 0 && y == 0 ) {
 				state = 1;
 				wait = 200;
@@ -76,8 +85,8 @@ public:
 		else if( state == 1 ) {
 			wait--;
 			if( wait == 0 ) {
-				oled.clear();
-				oled.puts( "SANGRIA v0.1\n" );
+				p_oled->clear();
+				p_oled->puts( "SANGRIA v0.1\n" );
 				state = 2;
 				wait = 20;
 				count = 10;
@@ -86,61 +95,98 @@ public:
 		else if( state == 2 ) {
 			wait--;
 			if( wait == 0 ) {
-				oled.putc( '.' );
+				p_oled->putc( '.' );
 				count--;
 				wait = 20;
 				if( count == 0 ) {
 					state = 3;
-					oled.puts( "\nOK." );
+					p_oled->puts( "\nOK." );
 				}
 			}
 		}
 		else {
-			jogdial.update();
-			if( jogdial.get_back_button() ) {
-				oled.puts( "\nBACK pressed." );
+			p_jogdial->update();
+			if( p_jogdial->get_back_button() ) {
+				p_oled->puts( "\nBACK pressed." );
 			}
-			if( jogdial.get_enter_button() ) {
-				oled.puts( "\nENTER pressed." );
+			if( p_jogdial->get_enter_button() ) {
+				p_oled->puts( "\nENTER pressed." );
 			}
-			if( jogdial.get_up_button() ) {
-				oled.puts( "\nUP pressed." );
+			if( p_jogdial->get_up_button() ) {
+				p_oled->puts( "\nUP pressed." );
 			}
-			if( jogdial.get_down_button() ) {
-				oled.puts( "\nDOWN pressed." );
+			if( p_jogdial->get_down_button() ) {
+				p_oled->puts( "\nDOWN pressed." );
 			}
 		}
-		oled.update();
+		p_oled->update();
 	}
 };
 
 // --------------------------------------------------------------------
-int main( void ) {
-	int i;
-	CANIME anime;
+void usb_core( void ) {
 
-	stdio_init_all();
+	for(;;) {
+		//	tinyusb device task
+		tud_task();
+		//	sangria_usb_keyboard HID task
+		//hid_task( keyboard, jogdial );
+		hid_task();
+	}
+}
+
+// --------------------------------------------------------------------
+void other_core( void ) {
+	CANIME anime;
+	uint32_t start_ms, end_ms;
+	int i;
+
+	CSANGRIA_OLED oled;
+	CSANGRIA_JOGDIAL jogdial;
+	CSANGRIA_KEYBOARD keyboard;
+	oled.power_on();
+
+	anime.set( &oled, &jogdial, &keyboard );
+
+	while( 1 ) {
+		sleep_ms( 10 );
+		keyboard.backlight( 1 );
+		for( i = 0; i < 50; i++ ) {
+			start_ms = board_millis();
+			keyboard.update();
+			anime.draw();
+			end_ms = board_millis();
+			if( (end_ms - start_ms) < 10 ) {
+				sleep_ms( 10 - (end_ms - start_ms) );
+			}
+		}
+		keyboard.backlight( 0 );
+		for( i = 0; i < 50; i++ ) {
+			start_ms = board_millis();
+			keyboard.update();
+			anime.draw();
+			end_ms = board_millis();
+			if( (end_ms - start_ms) < 10 ) {
+				sleep_ms( 10 - (end_ms - start_ms) );
+			}
+		}
+	}
+}
+
+// --------------------------------------------------------------------
+int main( void ) {
+
+	board_init();
+	tusb_init();
 
 	//while( 1 ) {
-	//	jogdial.update();
-	//	if( jogdial.get_back_button() ) {
+	//	p_jogdial->update();
+	//	if( p_jogdial->get_back_button() ) {
 	//		break;
 	//	}
 	//}
 
-	while( 1 ) {
-		keyboard.backlight( 1 );
-		for( i = 0; i < 50; i++ ) {
-			sleep_ms( 10 );
-			keyboard.update();
-			anime.draw( oled );
-		}
-		keyboard.backlight( 0 );
-		for( i = 0; i < 50; i++ ) {
-			sleep_ms( 10 );
-			keyboard.update();
-			anime.draw( oled );
-		}
-	}
+	multicore_launch_core1( other_core );
+	usb_core();
 	return 0;
 }

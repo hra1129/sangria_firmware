@@ -87,8 +87,6 @@
 // Charge Pump (pg.62)
 #define SSD1306_SET_CHARGE_PUMP							0x8D	// follow with 0x14
 
-#define OLED_WIDTH					128
-#define OLED_HEIGHT					32
 #define OLED_PAGE_HEIGHT			8
 #define OLED_NUM_PAGES				(OLED_HEIGHT / OLED_PAGE_HEIGHT)
 #define OLED_BUF_LEN				(OLED_NUM_PAGES * OLED_WIDTH)
@@ -200,18 +198,14 @@ static const uint8_t _font[] = {
 
 // --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
-	int count;
 
-	this->x = 0;
-	this->y = 0;
 	gpio_init( SANGRIA_OLED_ON_N );
 	gpio_init( SANGRIA_OLED_RST_N );
 
 	gpio_set_dir( SANGRIA_OLED_ON_N, GPIO_OUT );
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
-	//	OLED Power OFF
-	gpio_put( SANGRIA_OLED_ON_N, 0 );
+	this->power_off();
 
 	//	I2C initialization, OLED connected SH1107 by I2C.
 	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
@@ -220,7 +214,12 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_pull_up( SANGRIA_OLED_SDA );
 	gpio_pull_up( SANGRIA_OLED_SCL );
 	bi_decl( bi_2pins_with_func( SANGRIA_OLED_SDA, SANGRIA_OLED_SCL, GPIO_FUNC_I2C ) );
-	sleep_ms( 1 );
+	sleep_ms( 10 );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::power_on( void ) {
+	int count;
 
 	//	Built-in DC-DC pump power is being used immediately after turning on the power: (Data sheet p.43)
 	//	- Turn on the VDD and AVDD power, keep the RES pin="L" (>10us)
@@ -275,6 +274,12 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 }
 
 // --------------------------------------------------------------------
+void CSANGRIA_OLED::power_off( void ) {
+	//	OLED Power OFF
+	gpio_put( SANGRIA_OLED_ON_N, 0 );
+}
+
+// --------------------------------------------------------------------
 void CSANGRIA_OLED::update( void ) {
 	int i, j, y, bit, pattern, count;
 
@@ -294,7 +299,7 @@ void CSANGRIA_OLED::update( void ) {
 		for( j = 0; j < 128; j++ ) {
 			pattern = 0;
 			for( bit = 0; bit < OLED_PAGE_HEIGHT; bit++ ) {
-				pattern = (pattern >> 1) | ((uint8_t)(this->frame_buffer[ y + bit ][ j ] != 0) << (OLED_PAGE_HEIGHT - 1));
+				pattern = (pattern >> 1) | ((uint8_t)(this->frame_buffer[ (y + bit) * OLED_WIDTH + j ] != 0) << (OLED_PAGE_HEIGHT - 1));
 			}
 			this->send_buffer[count++] = (uint8_t) pattern;
 		}
@@ -304,8 +309,13 @@ void CSANGRIA_OLED::update( void ) {
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::clear( void ) {
+	int y, x;
 
-	memset( this->frame_buffer, 0, sizeof(this->frame_buffer) );
+	for( y = 0; y < OLED_HEIGHT; y++ ) {
+		for( x = 0; x < OLED_WIDTH; x++ ) {
+			this->frame_buffer[ OLED_WIDTH * y + x ] = 0;
+		}
+	}
 	this->x = 0;
 	this->y = 0;
 }
@@ -316,7 +326,7 @@ void CSANGRIA_OLED::pset( int x, int y, int c ) {
 	if( x < 0 || y < 0 || x >= OLED_WIDTH || y >= OLED_HEIGHT ) {
 		return;
 	}
-	this->frame_buffer[y][x] = ( c ? 1: 0 );
+	this->frame_buffer[ OLED_WIDTH * y + x ] = ( c ? 1: 0 );
 }
 
 // --------------------------------------------------------------------
@@ -371,12 +381,12 @@ void CSANGRIA_OLED::scroll_up( void ) {
 
 	for( y = 0; y < ((OLED_CHAR_HEIGHT - 1) * OLED_FONT_HEIGHT); y++ ) {
 		for( x = 0; x < OLED_WIDTH; x++ ) {
-			this->frame_buffer[y][x] = this->frame_buffer[y + OLED_FONT_HEIGHT][x];
+			this->frame_buffer[ y * OLED_WIDTH + x ] = this->frame_buffer[ (y + OLED_FONT_HEIGHT) * OLED_WIDTH + x ];
 		}
 	}
 	for( ; y < (OLED_CHAR_HEIGHT * OLED_FONT_HEIGHT); y++ ) {
 		for( x = 0; x < OLED_WIDTH; x++ ) {
-			this->frame_buffer[y][x] = 0;
+			this->frame_buffer[ y * OLED_WIDTH + x ] = 0;
 		}
 	}
 }
