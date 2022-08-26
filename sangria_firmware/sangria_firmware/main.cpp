@@ -96,31 +96,23 @@ public:
 			}
 		}
 		else {
-			//	halt
+			jogdial.update();
+			if( jogdial.get_back_button() ) {
+				oled.puts( "\nBACK pressed." );
+			}
+			if( jogdial.get_enter_button() ) {
+				oled.puts( "\nENTER pressed." );
+			}
+			if( jogdial.get_up_button() ) {
+				oled.puts( "\nUP pressed." );
+			}
+			if( jogdial.get_down_button() ) {
+				oled.puts( "\nDOWN pressed." );
+			}
 		}
 		oled.update();
 	}
 };
-
-// --------------------------------------------------------------------
-static void key_update( void ) {
-
-	jogdial.update();
-	if( jogdial.get_back_button() ) {
-		printf( "BACK pressed.\n" );
-	}
-	if( jogdial.get_enter_button() ) {
-		printf( "ENTER pressed.\n" );
-	}
-	if( jogdial.get_up_button() ) {
-		printf( "UP pressed.\n" );
-	}
-	if( jogdial.get_down_button() ) {
-		printf( "DOWN pressed.\n" );
-	}
-
-	keyboard.update();
-}
 
 // --------------------------------------------------------------------
 int main( void ) {
@@ -140,13 +132,13 @@ int main( void ) {
 		keyboard.backlight( 1 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
-			key_update();
+			keyboard.update();
 			anime.draw( oled );
 		}
 		keyboard.backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			sleep_ms( 10 );
-			key_update();
+			keyboard.update();
 			anime.draw( oled );
 		}
 	}

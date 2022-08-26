@@ -367,9 +367,18 @@ void CSANGRIA_OLED::copy( const uint8_t *p_image, int width, int height, int x, 
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::scroll_up( void ) {
+	int y, x;
 
-	memcpy( this->frame_buffer, this->frame_buffer + (OLED_WIDTH * OLED_FONT_HEIGHT), OLED_WIDTH * (OLED_HEIGHT - OLED_FONT_HEIGHT) );
-	memset( this->frame_buffer + OLED_WIDTH * (OLED_HEIGHT - OLED_FONT_HEIGHT), 0, OLED_WIDTH * OLED_FONT_HEIGHT );
+	for( y = 0; y < ((OLED_CHAR_HEIGHT - 1) * OLED_FONT_HEIGHT); y++ ) {
+		for( x = 0; x < OLED_WIDTH; x++ ) {
+			this->frame_buffer[y][x] = this->frame_buffer[y + OLED_FONT_HEIGHT][x];
+		}
+	}
+	for( ; y < (OLED_CHAR_HEIGHT * OLED_FONT_HEIGHT); y++ ) {
+		for( x = 0; x < OLED_WIDTH; x++ ) {
+			this->frame_buffer[y][x] = 0;
+		}
+	}
 }
 
 // --------------------------------------------------------------------
@@ -397,7 +406,7 @@ void CSANGRIA_OLED::putc( char c ) {
 	for( yy = 0; yy < OLED_FONT_HEIGHT; yy++ ) {
 		pattern = *p_font;
 		for( xx = 0; xx < OLED_FONT_WIDTH; xx++ ) {
-			this->pset( x * OLED_FONT_WIDTH + xx, y * OLED_FONT_HEIGHT + yy, pattern & 0x80 );
+			this->pset( this->x * OLED_FONT_WIDTH + xx, this->y * OLED_FONT_HEIGHT + yy, pattern & 0x80 );
 			pattern <<= 1;
 		}
 		p_font++;
