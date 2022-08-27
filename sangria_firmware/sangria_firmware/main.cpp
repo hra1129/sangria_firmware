@@ -42,6 +42,8 @@
 
 extern uint8_t sangria_logo[];
 
+static CSANGRIA_KEYBOARD *p_keyboard;
+
 // --------------------------------------------------------------------
 class CANIME {
 public:
@@ -124,14 +126,14 @@ public:
 };
 
 // --------------------------------------------------------------------
-void usb_core( void ) {
+void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 
 	for(;;) {
 		//	tinyusb device task
 		tud_task();
 		//	sangria_usb_keyboard HID task
 		//hid_task( keyboard, jogdial );
-		hid_task();
+		hid_task( keyboard );
 	}
 }
 
@@ -143,27 +145,24 @@ void other_core( void ) {
 
 	CSANGRIA_OLED oled;
 	CSANGRIA_JOGDIAL jogdial;
-	CSANGRIA_KEYBOARD keyboard;
 	oled.power_on();
 
-	anime.set( &oled, &jogdial, &keyboard );
+	anime.set( &oled, &jogdial, &(*p_keyboard) );
 
 	while( 1 ) {
 		sleep_ms( 10 );
-		keyboard.backlight( 1 );
+		p_keyboard->backlight( 1 );
 		for( i = 0; i < 50; i++ ) {
 			start_ms = board_millis();
-			keyboard.update();
 			anime.draw();
 			end_ms = board_millis();
 			if( (end_ms - start_ms) < 10 ) {
 				sleep_ms( 10 - (end_ms - start_ms) );
 			}
 		}
-		keyboard.backlight( 0 );
+		p_keyboard->backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			start_ms = board_millis();
-			keyboard.update();
 			anime.draw();
 			end_ms = board_millis();
 			if( (end_ms - start_ms) < 10 ) {
@@ -186,7 +185,10 @@ int main( void ) {
 	//	}
 	//}
 
+	CSANGRIA_KEYBOARD keyboard;
+	p_keyboard = &keyboard;
+
 	multicore_launch_core1( other_core );
-	usb_core();
+	usb_core( keyboard );
 	return 0;
 }

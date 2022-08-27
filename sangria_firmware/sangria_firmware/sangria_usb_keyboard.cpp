@@ -59,7 +59,7 @@ C_FUNC void tud_resume_cb( void ) {
 //--------------------------------------------------------------------+
 // USB HID
 //--------------------------------------------------------------------+
-static void send_hid_report( uint8_t report_id, uint32_t btn ) {
+static void send_hid_report( uint8_t report_id, uint32_t btn, CSANGRIA_KEYBOARD &keyboard ) {
 	// skip if hid is not ready yet
 	if(  !tud_hid_ready() ) {
 		return;
@@ -68,17 +68,17 @@ static void send_hid_report( uint8_t report_id, uint32_t btn ) {
 	// use to avoid send multiple consecutive zero report for keyboard
 	static bool has_keyboard_key = false;
 
-	if( btn ) {
-		uint8_t keycode[6] = { 0 };
-		keycode[0] = HID_KEY_A;
-
-		tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
+	uint8_t keycode[6];
+	int index = keyboard.update( keycode );
+	
+	if( index ) {
+		tud_hid_keyboard_report( REPORT_ID_KEYBOARD, 0, keycode );
 		has_keyboard_key = true;
 	}
 	else {
 		// send empty key report if previously has key pressed
 		if( has_keyboard_key ) {
-			tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
+			tud_hid_keyboard_report( REPORT_ID_KEYBOARD, 0, NULL );
 		}
 		has_keyboard_key = false;
 	}
@@ -91,7 +91,7 @@ static void send_hid_report( uint8_t report_id, uint32_t btn ) {
 // tud_hid_report_complete_cb() is used to send the next report after previous one is complete
 
 //void hid_task( CSANGRIA_KEYBOARD &keyboard, CSANGRIA_JOGDIAL &jogdial ) {
-void hid_task( void ) {
+void hid_task( CSANGRIA_KEYBOARD &keyboard ) {
 	// Poll every 10ms
 	const uint32_t interval_ms = 10;
 	static uint32_t start_ms = 0;
@@ -109,7 +109,7 @@ void hid_task( void ) {
 		tud_remote_wakeup();
 	}
 	else {
-		send_hid_report( REPORT_ID_KEYBOARD, jogdial_back );
+		send_hid_report( REPORT_ID_KEYBOARD, jogdial_back, keyboard );
 	}
 }
 
@@ -126,9 +126,8 @@ C_FUNC void tud_hid_report_complete_cb( uint8_t instance, uint8_t const* report,
 
 	uint8_t next_report_id = report[0] + 1;
 
-	if( next_report_id < REPORT_ID_COUNT)
-	{
-		send_hid_report(next_report_id, board_button_read());
+	if( next_report_id < REPORT_ID_COUNT) {
+		//send_hid_report(next_report_id, board_button_read(), *p_keyboard );
 	}
 }
 

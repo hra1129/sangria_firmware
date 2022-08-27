@@ -32,7 +32,10 @@
 class CSANGRIA_KEYBOARD {
 private:
 	uint8_t last_key_matrix[5];
+	uint8_t current_key_matrix[5];
 
+	uint8_t last_key_code[6];
+	uint8_t key_matrix_table[ 5 * 8 ];
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
@@ -40,7 +43,7 @@ public:
 
 	// --------------------------------------------------------------------
 	//	Update key state
-	void update( void );
+	int update( uint8_t key_code[] );
 
 	// --------------------------------------------------------------------
 	//	backlight control
