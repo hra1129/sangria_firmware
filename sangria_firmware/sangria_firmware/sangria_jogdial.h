@@ -35,9 +35,9 @@ private:
 	uint32_t		current_key_code;
 	const uint32_t	key_code_mask = (1 << SANGRIA_BACK) | (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
 
-	// --------------------------------------------------------------------
-	//	Update state
-	uint32_t _get_jog_update_state( void );
+	int last_jog;
+	int current_jog;
+
 public:
 	// --------------------------------------------------------------------
 	//	Constructor

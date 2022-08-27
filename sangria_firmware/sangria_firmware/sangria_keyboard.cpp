@@ -35,9 +35,14 @@ static const uint8_t default_key_matrix_table[] = {
 	HID_KEY_Q   , HID_KEY_W   , HID_KEY_NONE, HID_KEY_A          , HID_KEY_ALT_LEFT , HID_KEY_SPACE, HID_KEY_NONE      , HID_KEY_NONE, // COL1
 	HID_KEY_E   , HID_KEY_S   , HID_KEY_D   , HID_KEY_P          , HID_KEY_X        , HID_KEY_Z    , HID_KEY_SHIFT_LEFT, HID_KEY_NONE, // COL2
 	HID_KEY_R   , HID_KEY_G   , HID_KEY_T   , HID_KEY_SHIFT_RIGHT, HID_KEY_V        , HID_KEY_C    , HID_KEY_F         , HID_KEY_NONE, // COL3
-	HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_RETURN     , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
+	HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_ENTER      , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
 	HID_KEY_O   , HID_KEY_L   , HID_KEY_I   , HID_KEY_BACKSPACE  , HID_KEY_NONE     , HID_KEY_M    , HID_KEY_K         , HID_KEY_NONE, // COL5
 };
+
+#define JOGDIAL_BACK_KEY    HID_KEY_ESCAPE
+#define JOGDIAL_ENTER_KEY   HID_KEY_TAB
+#define JOGDIAL_UP_KEY      HID_KEY_ARROW_UP
+#define JOGDIAL_DOWN_KEY    HID_KEY_ARROW_DOWN
 
 // --------------------------------------------------------------------
 CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
@@ -98,6 +103,13 @@ CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
 	for( i = 0; i < sizeof(this->key_matrix_table); i++ ) {
 		this->key_matrix_table[i] = default_key_matrix_table[i];
 	}
+	this->p_jogdial = nullptr;
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_KEYBOARD::set_jogdial( CSANGRIA_JOGDIAL *p_jogdial ) {
+
+	this->p_jogdial = p_jogdial;
 }
 
 // --------------------------------------------------------------------
@@ -106,6 +118,27 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 	uint32_t key_data;
 
 	index = 0;
+	if( p_jogdial != nullptr ) {
+		p_jogdial->update();
+
+		if( p_jogdial->get_back_button() ) {
+			key_code[ index ] = JOGDIAL_BACK_KEY;
+			index++;
+		}
+		if( p_jogdial->get_enter_button() ) {
+			key_code[ index ] = JOGDIAL_ENTER_KEY;
+			index++;
+		}
+		if( p_jogdial->get_up_button() ) {
+			key_code[ index ] = JOGDIAL_UP_KEY;
+			index++;
+		}
+		if( p_jogdial->get_down_button() ) {
+			key_code[ index ] = JOGDIAL_DOWN_KEY;
+			index++;
+		}
+	}
+
 	for( i = 0; i < 5; i++ ) {
 		port = i + SANGRIA_COL1;
 		gpio_set_dir( port, GPIO_OUT );

@@ -28,9 +28,12 @@
 
 #include <cstdint>
 #include "sangria_firmware_config.h"
+#include "sangria_jogdial.h"
 
 class CSANGRIA_KEYBOARD {
 private:
+	CSANGRIA_JOGDIAL *p_jogdial;
+	
 	uint8_t last_key_matrix[5];
 	uint8_t current_key_matrix[5];
 
@@ -40,6 +43,10 @@ public:
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_KEYBOARD();
+
+	// --------------------------------------------------------------------
+	//	Set jogdial
+	void set_jogdial( CSANGRIA_JOGDIAL *p_jogdial );
 
 	// --------------------------------------------------------------------
 	//	Update key state

@@ -53,8 +53,6 @@ public:
 	int state;
 	int count;
 	CSANGRIA_OLED *p_oled;
-	CSANGRIA_JOGDIAL *p_jogdial;
-	CSANGRIA_KEYBOARD *p_keyboard;
 
 	CANIME() {
 		x = 128;
@@ -63,10 +61,8 @@ public:
 		state = 0;
 	}
 
-	void set( CSANGRIA_OLED *p_oled, CSANGRIA_JOGDIAL *p_jogdial, CSANGRIA_KEYBOARD *p_keyboard ) {
+	void set( CSANGRIA_OLED *p_oled ) {
 		this->p_oled = p_oled;
-		this->p_jogdial = p_jogdial;
-		this->p_keyboard = p_keyboard;
 	}
 
 	void draw( void ) {
@@ -106,21 +102,6 @@ public:
 				}
 			}
 		}
-		else {
-			p_jogdial->update();
-			if( p_jogdial->get_back_button() ) {
-				p_oled->puts( "\nBACK pressed." );
-			}
-			if( p_jogdial->get_enter_button() ) {
-				p_oled->puts( "\nENTER pressed." );
-			}
-			if( p_jogdial->get_up_button() ) {
-				p_oled->puts( "\nUP pressed." );
-			}
-			if( p_jogdial->get_down_button() ) {
-				p_oled->puts( "\nDOWN pressed." );
-			}
-		}
 		p_oled->update();
 	}
 };
@@ -132,7 +113,6 @@ void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 		//	tinyusb device task
 		tud_task();
 		//	sangria_usb_keyboard HID task
-		//hid_task( keyboard, jogdial );
 		hid_task( keyboard );
 	}
 }
@@ -144,10 +124,9 @@ void other_core( void ) {
 	int i;
 
 	CSANGRIA_OLED oled;
-	CSANGRIA_JOGDIAL jogdial;
 	oled.power_on();
 
-	anime.set( &oled, &jogdial, &(*p_keyboard) );
+	anime.set( &oled );
 
 	while( 1 ) {
 		sleep_ms( 10 );
@@ -178,15 +157,18 @@ int main( void ) {
 	board_init();
 	tusb_init();
 
+	CSANGRIA_JOGDIAL jogdial;
+
 	//while( 1 ) {
-	//	p_jogdial->update();
-	//	if( p_jogdial->get_back_button() ) {
+	//	jogdial.update();
+	//	if( jogdial.get_back_button() ) {
 	//		break;
 	//	}
 	//}
 
 	CSANGRIA_KEYBOARD keyboard;
 	p_keyboard = &keyboard;
+	keyboard.set_jogdial( &jogdial );
 
 	multicore_launch_core1( other_core );
 	usb_core( keyboard );

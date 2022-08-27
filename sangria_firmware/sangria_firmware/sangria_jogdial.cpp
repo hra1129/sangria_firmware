@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------
 
 #include "sangria_jogdial.h"
+#include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
 // --------------------------------------------------------------------
@@ -45,19 +46,44 @@ CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL() {
 
 	this->current_key_code	= (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
 	this->last_key_code		= current_key_code;
+
+	this->last_jog			= false;
+	this->current_jog		= false;
 }
 
 // --------------------------------------------------------------------
 void CSANGRIA_JOGDIAL::update( void ) {
 
 	this->last_key_code		= this->current_key_code;
-	this->current_key_code	= gpio_get_all() & this->key_code_mask;
+	this->last_jog			= this->current_jog;
+
+
+	//	チャタリング防止のために、1000us の間隔を開けて2回読んだ結果をミックスする
+	this->current_key_code	= (gpio_get_all() & this->key_code_mask) ^ (1 << SANGRIA_BACK);
+	sleep_us( 1000 );
+	this->current_key_code	= this->current_key_code & ((gpio_get_all() & this->key_code_mask) ^ (1 << SANGRIA_BACK));
+
+	//	ダイヤルの回転方向を検出する
+	if( ((this->last_key_code >> SANGRIA_JOG_A) & 1) == 1 && ((this->current_key_code >> SANGRIA_JOG_A) & 1) == 0 ) {
+		if( ((this->current_key_code >> SANGRIA_JOG_B) & 1) == 0 ) {
+			this->current_jog = 2;
+		}
+		else {
+			this->current_jog = 1;
+		}
+	}
+	else {
+		this->current_jog = 0;
+	}
+	if( this->last_jog != 0 && this->current_jog != 0 && this->last_jog != this->current_jog ) {
+		this->current_jog = 0;
+	}
 }
 
 // --------------------------------------------------------------------
 bool CSANGRIA_JOGDIAL::get_back_button( void ) {
 
-	return( (this->current_key_code & (1 << SANGRIA_BACK)) != 0 );
+	return( (this->current_key_code & (1 << SANGRIA_BACK)) == 0 );
 }
 
 // --------------------------------------------------------------------
@@ -67,27 +93,13 @@ bool CSANGRIA_JOGDIAL::get_enter_button( void ) {
 }
 
 // --------------------------------------------------------------------
-uint32_t CSANGRIA_JOGDIAL::_get_jog_update_state( void ) {
-
-	if( ((this->last_key_code >> SANGRIA_JOG_A) & 1) == 1 && ((this->current_key_code >> SANGRIA_JOG_A) & 1) == 0 ) {
-		if( ((this->current_key_code >> SANGRIA_JOG_B) & 1) == 0 ) {
-			return 2;
-		}
-		else {
-			return 1;
-		}
-	}
-	return 0;
-}
-
-// --------------------------------------------------------------------
 bool CSANGRIA_JOGDIAL::get_up_button( void ) {
 
-	return( this->_get_jog_update_state() == 1 );
+	return( this->current_jog == 1 );
 }
 
 // --------------------------------------------------------------------
 bool CSANGRIA_JOGDIAL::get_down_button( void ) {
 
-	return( this->_get_jog_update_state() == 2 );
+	return( this->current_jog == 2 );
 }
