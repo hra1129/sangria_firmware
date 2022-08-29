@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware Jogdial
+//	Sangria firmware I2C connection
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,36 +23,41 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_JOGDIAL_H__
-#define __SANGRIA_JOGDIAL_H__
+#ifndef __SANGRIA_I2C_H__
+#define __SANGRIA_I2C_H__
 
 #include <cstdint>
 #include "sangria_firmware_config.h"
 
-class CSANGRIA_JOGDIAL {
-private:
-	uint32_t		current_key_code;
-	const uint32_t	key_code_mask = (1 << SANGRIA_BACK) | (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
-	int current_jog;
-
+class CSANGRIA_I2C {
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
-	CSANGRIA_JOGDIAL();
+	CSANGRIA_I2C();
 
 	// --------------------------------------------------------------------
-	//	Update key state
-	void update( void );
+	//	write
+	//	input:
+	//		address ...... device address
+	//		p_buffer ..... send data address
+	//		count ........ size of p_buffer
+	//	output:
+	//		none
+	//	comment:
+	//
+	int write( int address, const uint8_t *p_buffer, int count );
 
 	// --------------------------------------------------------------------
-	void _jog_update( void );
-
-	// --------------------------------------------------------------------
-	//	Get key state : true = pressed, false = unpressed
-	bool get_back_button( void );
-	bool get_enter_button( void );
-	bool get_up_button( void );
-	bool get_down_button( void );
+	//	read
+	//	input:
+	//		address ...... device address
+	//		p_buffer ..... send data address
+	//		count ........ size of p_buffer
+	//	output:
+	//		none
+	//	comment:
+	//
+	int read( int address, uint8_t *p_buffer, int count );
 };
 
 #endif

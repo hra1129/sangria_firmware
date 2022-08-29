@@ -199,6 +199,7 @@ static const uint8_t _font[] = {
 // --------------------------------------------------------------------
 CSANGRIA_OLED::CSANGRIA_OLED() {
 
+	this->p_i2c = nullptr;
 	gpio_init( SANGRIA_OLED_ON_N );
 	gpio_init( SANGRIA_OLED_RST_N );
 
@@ -206,15 +207,13 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
 	this->power_off();
-
-	//	I2C initialization, OLED connected SH1107 by I2C.
-	i2c_init( SANGRIA_OLED_I2C, SANGRIA_OLED_CLOCK );
-	gpio_set_function( SANGRIA_OLED_SDA, GPIO_FUNC_I2C );
-	gpio_set_function( SANGRIA_OLED_SCL, GPIO_FUNC_I2C );
-	gpio_pull_up( SANGRIA_OLED_SDA );
-	gpio_pull_up( SANGRIA_OLED_SCL );
-	bi_decl( bi_2pins_with_func( SANGRIA_OLED_SDA, SANGRIA_OLED_SCL, GPIO_FUNC_I2C ) );
 	sleep_ms( 10 );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::set_i2c( CSANGRIA_I2C *p_i2c ) {
+
+	this->p_i2c = p_i2c;
 }
 
 // --------------------------------------------------------------------
@@ -266,7 +265,7 @@ void CSANGRIA_OLED::power_on( void ) {
 
 	this->send_buffer[count++] = SSD1306_DISPLAY_ON;				// set display on AFh
 
-	i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
+	p_i2c->write( OLED_ADDR, this->send_buffer, count );
 
 	//	- Clear internal RAM to "00H"
 	this->clear();
@@ -292,7 +291,7 @@ void CSANGRIA_OLED::update( void ) {
 		this->send_buffer[count++] = SSD1306_SET_COLUMN_RANGE;				// set column address
 		this->send_buffer[count++] = 0x00;									//	column start address
 		this->send_buffer[count++] = 0x7F;									//	column end address
-		i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
+		p_i2c->write( OLED_ADDR, this->send_buffer, count );
 
 		count = 0;
 		this->send_buffer[count++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
@@ -303,7 +302,7 @@ void CSANGRIA_OLED::update( void ) {
 			}
 			this->send_buffer[count++] = (uint8_t) pattern;
 		}
-		i2c_write_blocking( SANGRIA_OLED_I2C, OLED_ADDR, this->send_buffer, count, false );
+		p_i2c->write( OLED_ADDR, this->send_buffer, count );
 	}
 }
 

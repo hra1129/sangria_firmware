@@ -28,9 +28,11 @@
 
 #include <cstdint>
 #include "sangria_firmware_config.h"
+#include "sangria_i2c.h"
 
 class CSANGRIA_OLED {
 private:
+	CSANGRIA_I2C *p_i2c;
 	int x;
 	int y;
 	uint8_t frame_buffer[ OLED_WIDTH * OLED_HEIGHT ];
@@ -40,6 +42,16 @@ public:
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_OLED();
+
+	// --------------------------------------------------------------------
+	//	set_i2c
+	//	input:
+	//		p_i2c ..... Target connection
+	//	output:
+	//		none
+	//	comment:
+	//
+	void set_i2c( CSANGRIA_I2C *p_i2c );
 
 	// --------------------------------------------------------------------
 	//	Power ON

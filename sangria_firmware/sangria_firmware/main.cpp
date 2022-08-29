@@ -39,6 +39,7 @@
 #include "sangria_keyboard.h"
 #include "sangria_oled.h"
 #include "sangria_usb_keyboard.h"
+#include "sangria_battery.h"
 
 extern uint8_t sangria_logo[];
 
@@ -53,6 +54,7 @@ public:
 	int state;
 	int count;
 	CSANGRIA_OLED *p_oled;
+	CSANGRIA_BATTERY *p_battery;
 
 	CANIME() {
 		x = 128;
@@ -61,8 +63,9 @@ public:
 		state = 0;
 	}
 
-	void set( CSANGRIA_OLED *p_oled ) {
+	void set( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
 		this->p_oled = p_oled;
+		this->p_battery = p_battery;
 	}
 
 	void draw( void ) {
@@ -102,6 +105,16 @@ public:
 				}
 			}
 		}
+		else {
+			int i, d;
+			char s_buffer[8];
+			p_oled->clear();
+			for( i = BQ_INPUT_SOURCE; i <= BQ_VENDER_PART; i++ ) {
+				d = p_battery->read_register( i );
+				sprintf( s_buffer, "%02X: ", (int)d );
+				p_oled->puts( s_buffer );
+			}
+		}
 		p_oled->update();
 	}
 };
@@ -123,10 +136,16 @@ void other_core( void ) {
 	uint32_t start_ms, end_ms;
 	int i;
 
+	CSANGRIA_I2C i2c;
 	CSANGRIA_OLED oled;
-	oled.power_on();
+	CSANGRIA_BATTERY battery;
 
-	anime.set( &oled );
+	oled.set_i2c( &i2c );
+	battery.set_i2c( &i2c );
+
+	oled.power_on();
+	battery.power_on();
+	anime.set( &oled, &battery );
 
 	while( 1 ) {
 		sleep_ms( 10 );

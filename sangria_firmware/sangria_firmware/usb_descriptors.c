@@ -42,7 +42,7 @@
 
 // --------------------------------------------------------------------
 //	なぜか memcpy がハングアップするので、自作。
-static void my_memcpy( void *p1, void *p2, size_t s ) {
+static void my_memcpy( void *p1, const void *p2, size_t s ) {
 
 	while( s ) {
 		*(char*)p1 = *(char*)p2;
@@ -90,9 +90,9 @@ uint8_t const *tud_descriptor_device_cb( void ) {
 
 uint8_t const desc_hid_report[] = {
 	TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(REPORT_ID_KEYBOARD			)),
-	TUD_HID_REPORT_DESC_MOUSE	( HID_REPORT_ID(REPORT_ID_MOUSE				)),
-	TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID_CONSUMER_CONTROL	)),
-	TUD_HID_REPORT_DESC_GAMEPAD ( HID_REPORT_ID(REPORT_ID_GAMEPAD			))
+//	TUD_HID_REPORT_DESC_MOUSE	( HID_REPORT_ID(REPORT_ID_MOUSE				)),
+//	TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID_CONSUMER_CONTROL	)),
+//	TUD_HID_REPORT_DESC_GAMEPAD ( HID_REPORT_ID(REPORT_ID_GAMEPAD			))
 };
 
 // --------------------------------------------------------------------

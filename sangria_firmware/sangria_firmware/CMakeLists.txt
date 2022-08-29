@@ -7,9 +7,11 @@ target_sources( sangria_firmware PUBLIC
 	sangria_firmware.cpp
 	sangria_jogdial.cpp
 	sangria_keyboard.cpp
+	sangria_i2c.cpp
 	sangria_oled.cpp
 	sangria_logo.cpp
 	sangria_usb_keyboard.cpp
+	sangria_battery.cpp
 	usb_descriptors.c
 )
 

@@ -59,7 +59,7 @@ C_FUNC void tud_resume_cb( void ) {
 //--------------------------------------------------------------------+
 // USB HID
 //--------------------------------------------------------------------+
-static void send_hid_report( uint8_t report_id, uint32_t btn, CSANGRIA_KEYBOARD &keyboard ) {
+static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
 	// skip if hid is not ready yet
 	if(  !tud_hid_ready() ) {
 		return;
@@ -70,10 +70,17 @@ static void send_hid_report( uint8_t report_id, uint32_t btn, CSANGRIA_KEYBOARD 
 
 	uint8_t keycode[6];
 	int index = keyboard.update( keycode );
-	
+
 	if( index ) {
-		tud_hid_keyboard_report( REPORT_ID_KEYBOARD, 0, keycode );
-		has_keyboard_key = true;
+		if( tud_suspended() ) {
+			//	サスペンドモードの時は、ホストをウェイクアップして
+			//	REMOTE_WAKEUP を有効にする。
+			tud_remote_wakeup();
+		}
+		else {
+			tud_hid_keyboard_report( REPORT_ID_KEYBOARD, 0, keycode );
+			has_keyboard_key = true;
+		}
 	}
 	else {
 		// send empty key report if previously has key pressed
@@ -100,17 +107,7 @@ void hid_task( CSANGRIA_KEYBOARD &keyboard ) {
 		return; // not enough time
 	}
 	start_ms += interval_ms;
-
-	uint32_t const jogdial_back = board_button_read();	//jogdial.get_back_button();
-
-	if(  tud_suspended() && jogdial_back ) {
-		//	サスペンドモードの時は、ホストをウェイクアップして
-		//	REMOTE_WAKEUP を有効にする。
-		tud_remote_wakeup();
-	}
-	else {
-		send_hid_report( REPORT_ID_KEYBOARD, jogdial_back, keyboard );
-	}
+	send_hid_report( REPORT_ID_KEYBOARD, keyboard );
 }
 
 // --------------------------------------------------------------------

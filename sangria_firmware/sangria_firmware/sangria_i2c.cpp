@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware Jogdial
+//	Sangria firmware I2C connection
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,36 +23,36 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_JOGDIAL_H__
-#define __SANGRIA_JOGDIAL_H__
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
-#include <cstdint>
-#include "sangria_firmware_config.h"
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include "hardware/i2c.h"
+#include "pico/binary_info.h"
 
-class CSANGRIA_JOGDIAL {
-private:
-	uint32_t		current_key_code;
-	const uint32_t	key_code_mask = (1 << SANGRIA_BACK) | (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
-	int current_jog;
+#include "sangria_i2c.h"
 
-public:
-	// --------------------------------------------------------------------
-	//	Constructor
-	CSANGRIA_JOGDIAL();
+// --------------------------------------------------------------------
+CSANGRIA_I2C::CSANGRIA_I2C() {
 
-	// --------------------------------------------------------------------
-	//	Update key state
-	void update( void );
+	i2c_init( SANGRIA_I2C, SANGRIA_I2C_CLOCK );
+	gpio_set_function( SANGRIA_I2C_SDA, GPIO_FUNC_I2C );
+	gpio_set_function( SANGRIA_I2C_SCL, GPIO_FUNC_I2C );
+	gpio_pull_up( SANGRIA_I2C_SDA );
+	gpio_pull_up( SANGRIA_I2C_SCL );
+	bi_decl( bi_2pins_with_func( SANGRIA_I2C_SDA, SANGRIA_I2C_SCL, GPIO_FUNC_I2C ) );
+}
 
-	// --------------------------------------------------------------------
-	void _jog_update( void );
+// --------------------------------------------------------------------
+int CSANGRIA_I2C::write( int address, const uint8_t *p_buffer, int count ) {
 
-	// --------------------------------------------------------------------
-	//	Get key state : true = pressed, false = unpressed
-	bool get_back_button( void );
-	bool get_enter_button( void );
-	bool get_up_button( void );
-	bool get_down_button( void );
-};
+	return i2c_write_blocking( SANGRIA_I2C, address, p_buffer, count, false );
+}
 
-#endif
+// --------------------------------------------------------------------
+int CSANGRIA_I2C::read( int address, uint8_t *p_buffer, int count ) {
+
+	return i2c_read_blocking( SANGRIA_I2C, address, p_buffer, count, false );
+}

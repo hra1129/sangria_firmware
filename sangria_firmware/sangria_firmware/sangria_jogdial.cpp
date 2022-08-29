@@ -27,6 +27,29 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
+static CSANGRIA_JOGDIAL *p_jog;
+
+// --------------------------------------------------------------------
+void CSANGRIA_JOGDIAL::_jog_update( void ) {
+	uint32_t key_code = gpio_get_all();
+
+	if( (key_code & (1 << SANGRIA_JOG_B)) == 0 ) {
+		this->current_jog = 2;
+	}
+	else {
+		this->current_jog = 1;
+	}
+}
+
+// --------------------------------------------------------------------
+static void _jog_a_interrupt_cb( uint gpio, uint32_t events ) {
+
+	if( gpio != SANGRIA_JOG_A ) {
+		return;
+	}
+	p_jog->_jog_update();
+}
+
 // --------------------------------------------------------------------
 CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL() {
 	gpio_init( SANGRIA_BACK );
@@ -45,39 +68,17 @@ CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL() {
 	gpio_pull_up( SANGRIA_JOG_PUSH );
 
 	this->current_key_code	= (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
-	this->last_key_code		= current_key_code;
 
-	this->last_jog			= false;
-	this->current_jog		= false;
+	this->current_jog		= 0;
+
+	p_jog = this;
+	gpio_set_irq_enabled_with_callback( SANGRIA_JOG_A, 1 << 2, true, _jog_a_interrupt_cb );
 }
 
 // --------------------------------------------------------------------
 void CSANGRIA_JOGDIAL::update( void ) {
 
-	this->last_key_code		= this->current_key_code;
-	this->last_jog			= this->current_jog;
-
-
-	//	チャタリング防止のために、1000us の間隔を開けて2回読んだ結果をミックスする
 	this->current_key_code	= (gpio_get_all() & this->key_code_mask) ^ (1 << SANGRIA_BACK);
-	sleep_us( 1000 );
-	this->current_key_code	= this->current_key_code & ((gpio_get_all() & this->key_code_mask) ^ (1 << SANGRIA_BACK));
-
-	//	ダイヤルの回転方向を検出する
-	if( ((this->last_key_code >> SANGRIA_JOG_A) & 1) == 1 && ((this->current_key_code >> SANGRIA_JOG_A) & 1) == 0 ) {
-		if( ((this->current_key_code >> SANGRIA_JOG_B) & 1) == 0 ) {
-			this->current_jog = 2;
-		}
-		else {
-			this->current_jog = 1;
-		}
-	}
-	else {
-		this->current_jog = 0;
-	}
-	if( this->last_jog != 0 && this->current_jog != 0 && this->last_jog != this->current_jog ) {
-		this->current_jog = 0;
-	}
 }
 
 // --------------------------------------------------------------------
@@ -94,12 +95,18 @@ bool CSANGRIA_JOGDIAL::get_enter_button( void ) {
 
 // --------------------------------------------------------------------
 bool CSANGRIA_JOGDIAL::get_up_button( void ) {
-
-	return( this->current_jog == 1 );
+	bool result = ( this->current_jog == 1 );
+	if( result ) {
+		this->current_jog = 0;
+	}
+	return result;
 }
 
 // --------------------------------------------------------------------
 bool CSANGRIA_JOGDIAL::get_down_button( void ) {
-
-	return( this->current_jog == 2 );
+	bool result = ( this->current_jog == 2 );
+	if( result ) {
+		this->current_jog = 0;
+	}
+	return result;
 }

@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware Jogdial
+//	Sangria firmware Battery controller
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,36 +23,86 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_JOGDIAL_H__
-#define __SANGRIA_JOGDIAL_H__
+#ifndef __SANGRIA_BATTERY_H__
+#define __SANGRIA_BATTERY_H__
 
 #include <cstdint>
 #include "sangria_firmware_config.h"
+#include "sangria_i2c.h"
 
-class CSANGRIA_JOGDIAL {
+// --------------------------------------------------------------------
+//	BQ24296M Registers
+#define BQ_INPUT_SOURCE			0x00	// Read/Write
+#define BQ_POWER_ON_CONFIG		0x01	// Read/Write
+#define BQ_CHARGE_CURRENT		0x02	// Read/Write
+#define BQ_PRECHARGE_CURRENT	0x03	// Read/Write
+#define BQ_CHARGE_VOLTAGE		0x04	// Read/Write
+#define BQ_CHARGE_TERMINATION	0x05	// Read/Write
+#define BQ_BOOST_VOLTAGE		0x06	// Read/Write
+#define BQ_MISC_OPERATION		0x07	// Read/Write
+#define BQ_SYSTEM_STATUS		0x08	// Read only
+#define BQ_NEW_FAULT			0x09	// Read only
+#define BQ_VENDER_PART			0x0A	// Read only
+
+class CSANGRIA_BATTERY {
 private:
-	uint32_t		current_key_code;
-	const uint32_t	key_code_mask = (1 << SANGRIA_BACK) | (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
-	int current_jog;
+	CSANGRIA_I2C *p_i2c;
 
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
-	CSANGRIA_JOGDIAL();
+	CSANGRIA_BATTERY();
 
 	// --------------------------------------------------------------------
-	//	Update key state
-	void update( void );
+	//	set_i2c
+	//	input:
+	//		p_i2c ..... Target connection
+	//	output:
+	//		none
+	//	comment:
+	//
+	void set_i2c( CSANGRIA_I2C *p_i2c );
 
 	// --------------------------------------------------------------------
-	void _jog_update( void );
+	//	power on
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//
+	void power_on( void );
 
 	// --------------------------------------------------------------------
-	//	Get key state : true = pressed, false = unpressed
-	bool get_back_button( void );
-	bool get_enter_button( void );
-	bool get_up_button( void );
-	bool get_down_button( void );
+	//	power off
+	//	input:
+	//		none
+	//	output:
+	//		none
+	//	comment:
+	//
+	void power_off( void );
+
+	// --------------------------------------------------------------------
+	//	write register
+	//	input:
+	//		address .... register address BQ_XXXX
+	//		data ....... write data
+	//	output:
+	//		none
+	//	comment:
+	//
+	int write_register( uint8_t address, uint8_t data );
+
+	// --------------------------------------------------------------------
+	//	read register
+	//	input:
+	//		address .... register address BQ_XXXX
+	//	output:
+	//		data ....... read data
+	//	comment:
+	//
+	uint8_t read_register( uint8_t address );
 };
 
 #endif
