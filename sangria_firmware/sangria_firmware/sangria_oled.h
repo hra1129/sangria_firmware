@@ -128,7 +128,7 @@ public:
 	// --------------------------------------------------------------------
 	//	Line
 	//	input:
-	//		p_image ... image data address
+	//		p_image ... image data address (8bpp)
 	//		width ..... width of image data
 	//		height .... height of image data
 	//		x ......... left position
@@ -139,6 +139,21 @@ public:
 	//		Draw a image
 	//
 	void copy( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
+
+	// --------------------------------------------------------------------
+	//	Line
+	//	input:
+	//		p_image ... image data address (1bpp)
+	//		width ..... width of image data
+	//		height .... height of image data
+	//		x ......... left position
+	//		y ......... top position
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a image
+	//
+	void copy_1bpp( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
 
 	// --------------------------------------------------------------------
 	//	scroll_up

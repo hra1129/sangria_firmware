@@ -41,7 +41,7 @@
 #include "sangria_usb_keyboard.h"
 #include "sangria_battery.h"
 
-extern uint8_t sangria_logo[];
+#include "sangria_graphic_resource.h"
 
 static CSANGRIA_KEYBOARD *p_keyboard;
 
@@ -77,7 +77,7 @@ public:
 				y = y - 1;
 			}
 			p_oled->clear();
-			p_oled->copy( sangria_logo, 128, 32, x, y );
+			p_oled->copy_1bpp( get_sangria_logo(), 128, 32, x, y );
 			if( x == 0 && y == 0 ) {
 				state = 1;
 				wait = 200;

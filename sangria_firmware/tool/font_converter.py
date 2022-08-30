@@ -50,7 +50,8 @@ def main():
 	if len( sys.argv ) < 2:
 		usage()
 		exit()
-	output_name = re.sub( r'^(.*)\..*?$', r'\1', sys.argv[1] )
+	output_name = re.sub( r'^.*/', r'', sys.argv[1] )
+	output_name = re.sub( r'^(.*)\..*?$', r'\1', output_name )
 	print( "Input  name: %s" % sys.argv[1] )
 	print( "Output name: %s" % output_name )
 	convert( sys.argv[1], output_name )

@@ -27,29 +27,35 @@ def convert( input_name, output_name ):
 		line_count = 0
 		x = 0
 		y = 0
+		bit_count = 0
+		d = 0
 		for i in range( 0, img.width * img.height ):
-			if (line_count % 16) == 0:
+			if (line_count % 16) == 0 and bit_count == 0:
 				file.write( '\t' )
 			( r, g, b ) = img.getpixel( ( x, y ) )
 			p = int((r + g + b) / 3)
-			if p >= 192:
-				file.write( '0xFF, ' )
-			elif p >= 64:
-				file.write( '0x80, ' )
+			if p >= 128:
+				d = (d << 1) | 1
 			else:
-				file.write( '0x00, ' )
-			if (line_count % 16) == 15:
-				file.write( '\n' )
+				d = (d << 1) | 0
+			bit_count = bit_count + 1
 			x = x + 1
-			if x >= img.width:
-				x = 0
-				y = y + 1
-			line_count = line_count + 1
+			if bit_count >= 8 or x >= img.width:
+				d = d << (8 - bit_count)
+				file.write( '0x%02X, ' % d )
+				d = 0
+				bit_count = 0
+				if (line_count % 16) == 15:
+					file.write( '\n' )
+				line_count = line_count + 1
+				if x >= img.width:
+					y = y + 1
+					x = 0
 		file.write( '};\n' )
 	print( "Success!!" )
 
 def usage():
-	print( "Usage> image_converter.py <image_file>" )
+	print( "Usage> image_1bpp_converter.py <image_file>" )
 
 def main():
 	if len( sys.argv ) < 2:
