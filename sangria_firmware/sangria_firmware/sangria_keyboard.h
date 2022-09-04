@@ -38,11 +38,22 @@ private:
 	uint8_t current_key_matrix[5];
 
 	uint8_t last_key_code[6];
-	uint8_t key_matrix_table[ 5 * 8 ];
+	uint16_t key_matrix_table[4][ 5 * 8 ];
+
+	void _check_modifier_key( uint8_t key_code[], int &index, uint8_t hid_key_code, bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num );
+
+	bool alt_key;
+	bool shift_key;
+	bool caps_key;
+	bool sym_key;
+	bool ctrl_key;
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_KEYBOARD();
+
+	// --------------------------------------------------------------------
+	//	
 
 	// --------------------------------------------------------------------
 	//	Set jogdial
@@ -51,6 +62,28 @@ public:
 	// --------------------------------------------------------------------
 	//	Update key state
 	int update( uint8_t key_code[] );
+
+	// --------------------------------------------------------------------
+	//	modifier
+	bool get_alt_key( void ) const {
+		return this->alt_key;
+	}
+
+	bool get_shift_key( void ) const {
+		return this->shift_key;
+	}
+
+	bool get_caps_key( void ) const {
+		return this->caps_key;
+	}
+
+	bool get_sym_key( void ) const {
+		return this->sym_key;
+	}
+
+	bool get_ctrl_key( void ) const {
+		return this->ctrl_key;
+	}
 
 	// --------------------------------------------------------------------
 	//	backlight control

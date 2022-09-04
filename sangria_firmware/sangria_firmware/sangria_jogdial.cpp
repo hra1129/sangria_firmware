@@ -78,7 +78,7 @@ CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL() {
 // --------------------------------------------------------------------
 void CSANGRIA_JOGDIAL::update( void ) {
 
-	this->current_key_code	= (gpio_get_all() & this->key_code_mask) ^ (1 << SANGRIA_BACK);
+	this->current_key_code	= SANGRIA_JOG_MIDIFY( gpio_get_all() & this->key_code_mask );
 }
 
 // --------------------------------------------------------------------

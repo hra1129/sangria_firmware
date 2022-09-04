@@ -26,6 +26,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include <cmath>
 
 #include "bsp/board.h"
 #include "tusb.h"
@@ -44,6 +45,7 @@
 #include "sangria_graphic_resource.h"
 
 static CSANGRIA_KEYBOARD *p_keyboard;
+static CSANGRIA_JOGDIAL *p_jogdial;
 
 // --------------------------------------------------------------------
 class CANIME {
@@ -58,7 +60,7 @@ public:
 
 	CANIME() {
 		x = 128;
-		y = 32;
+		y = 0;
 		wait = 0;
 		state = 0;
 	}
@@ -70,50 +72,66 @@ public:
 
 	void draw( void ) {
 		if( state == 0 ) {
-			if( x ) {
-				x = x - 1;
-			}
-			if( y && (x & 3) == 0 ) {
-				y = y - 1;
-			}
+			//	左右からスワイプ
 			p_oled->clear();
-			p_oled->copy_1bpp( get_sangria_logo(), 128, 32, x, y );
+			if( y == 0 ) {
+				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, x, 0 );
+				y = 1;
+			}
+			else {
+				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, -x, 0 );
+				y = 0;
+				x--;
+			}
 			if( x == 0 && y == 0 ) {
 				state = 1;
-				wait = 200;
+				wait = 0;
 			}
 		}
 		else if( state == 1 ) {
-			wait--;
-			if( wait == 0 ) {
-				p_oled->clear();
-				p_oled->puts( "SANGRIA v0.1\n" );
+			//	点滅
+			x = sqrt( wait * 8 );
+			if( x != y ) {
+				y = x;
+				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
+			}
+			else {
+				p_oled->copy_1bpp( get_sangria_logo2(), 128, 32, 0, 0 );
+			}
+			wait++;
+			if( wait >= 300 ) {
 				state = 2;
-				wait = 20;
-				count = 10;
+				wait = 100;
 			}
 		}
 		else if( state == 2 ) {
+			//	停止
 			wait--;
 			if( wait == 0 ) {
-				p_oled->putc( '.' );
-				count--;
+				state = 3;
 				wait = 20;
-				if( count == 0 ) {
-					state = 3;
-					p_oled->puts( "\nOK." );
-				}
+				count = 10;
+			}
+			else {
+				p_oled->copy_1bpp( get_sangria_logo2(), 128, 32, 0, 0 );
 			}
 		}
 		else {
-			int i, d;
-			char s_buffer[8];
 			p_oled->clear();
-			for( i = BQ_INPUT_SOURCE; i <= BQ_VENDER_PART; i++ ) {
-				d = p_battery->read_register( i );
-				sprintf( s_buffer, "%02X: ", (int)d );
-				p_oled->puts( s_buffer );
+			if( p_keyboard->get_shift_key() ) {
+				p_oled->copy_1bpp( get_icon_shift(), 16, 16, 0, 0 );
 			}
+			if( p_keyboard->get_alt_key() ) {
+				p_oled->copy_1bpp( get_icon_alt(), 16, 16, 16, 0 );
+			}
+			if( p_keyboard->get_sym_key() ) {
+				p_oled->copy_1bpp( get_icon_sym(), 16, 16, 32, 0 );
+			}
+			if( p_keyboard->get_ctrl_key() ) {
+				p_oled->copy_1bpp( get_icon_ctrl(), 16, 16, 48, 0 );
+			}
+			p_oled->set_position( 0, 2 );
+			p_oled->puts( p_jogdial->get_back_button() ? "JOG BACK PRESS" : "JOG BACK UNPRESS" );
 		}
 		p_oled->update();
 	}
@@ -149,7 +167,7 @@ void other_core( void ) {
 
 	while( 1 ) {
 		sleep_ms( 10 );
-		p_keyboard->backlight( 1 );
+		//p_keyboard->backlight( 1 );
 		for( i = 0; i < 50; i++ ) {
 			start_ms = board_millis();
 			anime.draw();
@@ -158,7 +176,7 @@ void other_core( void ) {
 				sleep_ms( 10 - (end_ms - start_ms) );
 			}
 		}
-		p_keyboard->backlight( 0 );
+		//p_keyboard->backlight( 0 );
 		for( i = 0; i < 50; i++ ) {
 			start_ms = board_millis();
 			anime.draw();
@@ -177,6 +195,7 @@ int main( void ) {
 	tusb_init();
 
 	CSANGRIA_JOGDIAL jogdial;
+	p_jogdial = &jogdial;
 
 	//while( 1 ) {
 	//	jogdial.update();
@@ -188,6 +207,7 @@ int main( void ) {
 	CSANGRIA_KEYBOARD keyboard;
 	p_keyboard = &keyboard;
 	keyboard.set_jogdial( &jogdial );
+	p_keyboard->backlight( 1 );
 
 	multicore_launch_core1( other_core );
 	usb_core( keyboard );

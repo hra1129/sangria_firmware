@@ -1,3 +1,10 @@
+     ROW1 ROW2 ROW3 ROW4 ROW5 ROW6 ROW7
+COL1  Q    W   sym   A   alt  SPC  MIC
+COL2  E    S    D    P    Z    X   SH1
+COL3  R    G    T   SH2   V    C    F
+COL4  U    H    Y   RET   B    N    J
+COL5  O    L    I   BK    $    M    K
+
 #define HID_KEY_NONE                      0x00
 #define HID_KEY_A                         0x04
 #define HID_KEY_B                         0x05

@@ -36,6 +36,14 @@
 #define SANGRIA_COL1		18
 #define SANGRIA_ROW1		6
 
+#if 1
+//	RC3
+	#define SANGRIA_JOG_MIDIFY( a )		a
+#else
+//	RC1 : v0.21
+	#define SANGRIA_JOG_MIDIFY( a )		( (a) ^ (1 << SANGRIA_BACK) )
+#endif
+
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard back light device
 //

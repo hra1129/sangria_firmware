@@ -26,12 +26,17 @@
 #ifndef __SANGRIA_GRAPHIC_RESOURCE_H__
 #define __SANGRIA_GRAPHIC_RESOURCE_H__
 
-const uint8_t *get_sangria_logo( void );
+const uint8_t *get_sangria_logo1( void );
+const uint8_t *get_sangria_logo2( void );
 const uint8_t *get_icon_dc_plug( void );
 const uint8_t *get_icon_empty( void );
 const uint8_t *get_icon_half( void );
 const uint8_t *get_icon_full( void );
 const uint8_t *get_icon_no_battery( void );
+const uint8_t *get_icon_alt( void );
+const uint8_t *get_icon_shift( void );
+const uint8_t *get_icon_sym( void );
+const uint8_t *get_icon_ctrl( void );
 const uint8_t *get_font( void );
 
 #endif
