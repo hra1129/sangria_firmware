@@ -36,13 +36,7 @@
 #define SANGRIA_COL1		18
 #define SANGRIA_ROW1		6
 
-#if 1
-//	RC3
-	#define SANGRIA_JOG_MIDIFY( a )		a
-#else
-//	RC1 : v0.21
-	#define SANGRIA_JOG_MIDIFY( a )		( (a) ^ (1 << SANGRIA_BACK) )
-#endif
+#define SANGRIA_JOG_MIDIFY( a )		a
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard back light device
@@ -52,7 +46,7 @@
 // --------------------------------------------------------------------
 //	GPIO PIN defines: I2C connection ports
 //
-#define SANGRIA_I2C			i2c_defaultS
+#define SANGRIA_I2C			i2c1
 #define SANGRIA_I2C_CLOCK	(100 * 1000)
 #define SANGRIA_I2C_SCL		27
 #define SANGRIA_I2C_SDA		26
