@@ -52,10 +52,10 @@
 // --------------------------------------------------------------------
 //	GPIO PIN defines: I2C connection ports
 //
-#define SANGRIA_I2C			i2c_default
-#define SANGRIA_I2C_CLOCK	(400 * 1000)
-#define SANGRIA_I2C_SCL		1
-#define SANGRIA_I2C_SDA		0
+#define SANGRIA_I2C			i2c_defaultS
+#define SANGRIA_I2C_CLOCK	(100 * 1000)
+#define SANGRIA_I2C_SCL		27
+#define SANGRIA_I2C_SDA		26
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: OLED display device
@@ -66,6 +66,9 @@
 
 #define OLED_WIDTH			128
 #define OLED_HEIGHT			32
+
+#define OLED_POWER_ON		0
+#define OLED_POWER_OFF		1
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: Battery controller device

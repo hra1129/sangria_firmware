@@ -123,7 +123,7 @@ void CSANGRIA_OLED::power_on( void ) {
 
 	//	Built-in DC-DC pump power is being used immediately after turning on the power: (Data sheet p.43)
 	//	- Turn on the VDD and AVDD power, keep the RES pin="L" (>10us)
-	gpio_put( SANGRIA_OLED_ON_N, 1 );		//	OLED Power ON
+	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_ON );
 	sleep_ms( 1 );
 
 	//	- Set up initial code (user setup)
@@ -176,7 +176,7 @@ void CSANGRIA_OLED::power_on( void ) {
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::power_off( void ) {
 	//	OLED Power OFF
-	gpio_put( SANGRIA_OLED_ON_N, 0 );
+	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_OFF );
 }
 
 // --------------------------------------------------------------------

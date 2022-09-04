@@ -36,28 +36,45 @@
 #define SANGRIA_COL1		18
 #define SANGRIA_ROW1		6
 
+#if 1
+//	RC3
+	#define SANGRIA_JOG_MIDIFY( a )		a
+#else
+//	RC1 : v0.21
+	#define SANGRIA_JOG_MIDIFY( a )		( (a) ^ (1 << SANGRIA_BACK) )
+#endif
+
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard back light device
 //
 #define SANGRIA_BACK_LIGHT	13
 
 // --------------------------------------------------------------------
+//	GPIO PIN defines: I2C connection ports
+//
+#define SANGRIA_I2C			i2c_default
+#define SANGRIA_I2C_CLOCK	(400 * 1000)
+#define SANGRIA_I2C_SCL		1
+#define SANGRIA_I2C_SDA		0
+
+// --------------------------------------------------------------------
 //	GPIO PIN defines: OLED display device
 //
 #define SANGRIA_OLED_ON_N	14
-#define SANGRIA_OLED_RST_N	24
-#define SANGRIA_OLED_SCL	1
-#define SANGRIA_OLED_SDA	0
-#define SANGRIA_OLED_I2C	i2c_default
-#define SANGRIA_OLED_CLOCK	(100 * 1000)
-#define SANGRIA_OLED_ADDR	0x3C
-#define SANGRIA_OLED_CMD	0x00
-#define SANGRIA_OLED_DATA	0x40
+#define SANGRIA_OLED_RST_N	24				// NOT AVAILABLE
+#define SANGRIA_OLED_REV	1				// 0: NORMAL, 1: REVERSE
 
-#define SANGRIA_BQ_ADDR		0x6B
+#define OLED_WIDTH			128
+#define OLED_HEIGHT			32
+
+#define OLED_POWER_ON		0
+#define OLED_POWER_OFF		1
+
+// --------------------------------------------------------------------
+//	GPIO PIN defines: Battery controller device
 #define SANGRIA_BQ_INT		17
 #define SANGRIA_BQ_OTG		16
-#define SANGRIA_BQ_CE		2
+#define SANGRIA_BQ_CE_N		2
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard/buttons
