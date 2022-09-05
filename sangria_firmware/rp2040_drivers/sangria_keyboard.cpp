@@ -233,7 +233,7 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 					this->_check_modifier_key( key_code, index, HID_KEY_NONE, this->sym_key, this->last_key_matrix[i], key_data, j );
 					break;
 				case MODIFYER_ALT:
-					this->_check_modifier_key( key_code, index, HID_KEY_ALT_LEFT, this->alt_key, this->last_key_matrix[i], key_data, j );
+					this->alt_key = ( (key_data & (1 << j)) == 0 );
 					break;
 				case MODIFYER_CAPS:
 					this->_check_modifier_key( key_code, index, HID_KEY_CAPS_LOCK, this->caps_key, this->last_key_matrix[i], key_data, j );
