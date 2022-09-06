@@ -3,7 +3,6 @@
 _deps
 cmake-*
 .DS_Store
-*.pdf
 CMakeCache.txt
 Makefile
 CMakeFiles
