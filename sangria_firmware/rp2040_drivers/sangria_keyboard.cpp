@@ -36,6 +36,9 @@
 #define MODIFYER_SHIFT	0x103
 #define MODIFYER_CTRL	0x104
 
+#define _A( a )			0x2000		//	with ALT
+#define _S( a )			0x1000		//	with SHIFT
+
 // --------------------------------------------------------------------
 //         ROW1 ROW2 ROW3 ROW4 ROW5 ROW6 ROW7
 //    COL1  Q    W   sym   A   alt  SPC  MIC
@@ -46,36 +49,36 @@
 
 static const uint16_t default_key_matrix_table[ 4 ][ 5 * 8 ] = {
 	{	// Normal
-		// ROW1       ROW2          ROW3          ROW4                  ROW5               ROW6           ROW7                DUMMY
-		HID_KEY_Q   , HID_KEY_W   , MODIFYER_SYM, HID_KEY_A           , MODIFYER_ALT     , HID_KEY_SPACE, HID_KEY_NONE      , HID_KEY_NONE, // COL1
-		HID_KEY_E   , HID_KEY_S   , HID_KEY_D   , HID_KEY_P           , HID_KEY_X        , HID_KEY_Z    , MODIFYER_SHIFT    , HID_KEY_NONE, // COL2
-		HID_KEY_R   , HID_KEY_G   , HID_KEY_T   , MODIFYER_CTRL       , HID_KEY_V        , HID_KEY_C    , HID_KEY_F         , HID_KEY_NONE, // COL3
-		HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_ENTER       , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
-		HID_KEY_O   , HID_KEY_L   , HID_KEY_I   , HID_KEY_BACKSPACE   , HID_KEY_NONE     , HID_KEY_M    , HID_KEY_K         , HID_KEY_NONE, // COL5
+		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
+		HID_KEY_Q            , HID_KEY_W             , MODIFYER_SYM , HID_KEY_A                , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_TAB       , 0, // COL1
+		HID_KEY_E            , HID_KEY_S             , HID_KEY_D    , HID_KEY_P                , HID_KEY_X        , HID_KEY_Z         , MODIFYER_SHIFT    , 0, // COL2
+		HID_KEY_R            , HID_KEY_G             , HID_KEY_T    , MODIFYER_CTRL            , HID_KEY_V        , HID_KEY_C         , HID_KEY_F         , 0, // COL3
+		HID_KEY_U            , HID_KEY_H             , HID_KEY_Y    , HID_KEY_ENTER            , HID_KEY_B        , HID_KEY_N         , HID_KEY_J         , 0, // COL4
+		HID_KEY_O            , HID_KEY_L             , HID_KEY_I    , HID_KEY_BACKSPACE        , _S(HID_KEY_4)    , HID_KEY_M         , HID_KEY_K         , 0, // COL5
 	},
-	{	// Shift
-		// ROW1       ROW2          ROW3          ROW4                  ROW5               ROW6           ROW7                DUMMY
-		HID_KEY_Q   , HID_KEY_W   , MODIFYER_SYM, HID_KEY_A           , MODIFYER_ALT     , HID_KEY_SPACE, HID_KEY_NONE      , HID_KEY_NONE, // COL1
-		HID_KEY_E   , HID_KEY_S   , HID_KEY_D   , HID_KEY_P           , HID_KEY_X        , HID_KEY_Z    , MODIFYER_SHIFT    , HID_KEY_NONE, // COL2
-		HID_KEY_R   , HID_KEY_G   , HID_KEY_T   , MODIFYER_CTRL       , HID_KEY_V        , HID_KEY_C    , HID_KEY_F         , HID_KEY_NONE, // COL3
-		HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_ENTER       , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
-		HID_KEY_O   , HID_KEY_L   , HID_KEY_I   , HID_KEY_BACKSPACE   , HID_KEY_NONE     , HID_KEY_M    , HID_KEY_K         , HID_KEY_NONE, // COL5
+	{	// Alt
+		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
+		_A(HID_KEY_Q)        , _A(HID_KEY_W)         , MODIFYER_SYM , _A(HID_KEY_A)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_BACKSLASH , 0, // COL1
+		_A(HID_KEY_E)        , _A(HID_KEY_S)         , _A(HID_KEY_D), _A(HID_KEY_P)            , _A(HID_KEY_X)    , _A(HID_KEY_Z)     , MODIFYER_SHIFT    , 0, // COL2
+		_A(HID_KEY_R)        , _A(HID_KEY_G)         , _A(HID_KEY_T), MODIFYER_CTRL            , _A(HID_KEY_V)    , _A(HID_KEY_C)     , _A(HID_KEY_F)     , 0, // COL3
+		_A(HID_KEY_U)        , _A(HID_KEY_H)         , _A(HID_KEY_Y), HID_KEY_BRACKET_RIGHT    , _A(HID_KEY_B)    , _A(HID_KEY_N)     , _A(HID_KEY_J)     , 0, // COL4
+		_A(HID_KEY_O)        , _A(HID_KEY_L)         , _A(HID_KEY_I), HID_KEY_BRACKET_LEFT     , HID_KEY_GRAVE    , _A(HID_KEY_M)     , _A(HID_KEY_K)     , 0, // COL5
 	},
 	{	// Sym
-		// ROW1       ROW2          ROW3          ROW4                  ROW5               ROW6           ROW7                DUMMY
-		HID_KEY_Q   , HID_KEY_1   , MODIFYER_SYM, HID_KEY_A           , MODIFYER_ALT     , HID_KEY_SPACE, HID_KEY_NONE      , HID_KEY_NONE, // COL1
-		HID_KEY_2   , HID_KEY_4   , HID_KEY_D   , HID_KEY_P           , HID_KEY_8        , HID_KEY_7    , MODIFYER_SHIFT    , HID_KEY_NONE, // COL2
-		HID_KEY_3   , HID_KEY_G   , HID_KEY_T   , MODIFYER_CTRL       , HID_KEY_V        , HID_KEY_C    , HID_KEY_6         , HID_KEY_NONE, // COL3
-		HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_ENTER       , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
-		HID_KEY_O   , HID_KEY_L   , HID_KEY_I   , HID_KEY_BACKSPACE   , HID_KEY_NONE     , HID_KEY_M    , HID_KEY_K         , HID_KEY_NONE, // COL5
+		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
+		_S(HID_KEY_3)        , HID_KEY_1             , MODIFYER_SYM , _S(HID_KEY_8)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_0         , 0, // COL1
+		HID_KEY_2            , HID_KEY_4             , HID_KEY_5    , _S(HID_KEY_2)            , HID_KEY_8        , HID_KEY_7         , MODIFYER_SHIFT    , 0, // COL2
+		HID_KEY_3            , HID_KEY_SLASH         , _S(HID_KEY_9), MODIFYER_CTRL            , _S(HID_KEY_SLASH), HID_KEY_9         , HID_KEY_6         , 0, // COL3
+		HID_KEY_EQUAL        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), HID_KEY_ENTER            , _S(HID_KEY_1)    , HID_KEY_COMMA     , HID_KEY_SEMICOLON , 0, // COL4
+		_S(HID_KEY_EQUAL)    , _S(HID_KEY_APOSTROPHE), HID_KEY_MINUS, HID_KEY_BACKSPACE        , HID_KEY_EQUAL    , HID_KEY_PERIOD    , HID_KEY_APOSTROPHE, 0, // COL5
 	},
-	{	// Shift and Sym
-		// ROW1       ROW2          ROW3          ROW4                  ROW5               ROW6           ROW7                DUMMY
-		HID_KEY_Q   , HID_KEY_1   , MODIFYER_SYM, HID_KEY_A           , MODIFYER_ALT     , HID_KEY_SPACE, HID_KEY_NONE      , HID_KEY_NONE, // COL1
-		HID_KEY_2   , HID_KEY_4   , HID_KEY_D   , HID_KEY_P           , HID_KEY_8        , HID_KEY_7    , MODIFYER_SHIFT    , HID_KEY_NONE, // COL2
-		HID_KEY_3   , HID_KEY_G   , HID_KEY_T   , MODIFYER_CTRL       , HID_KEY_V        , HID_KEY_C    , HID_KEY_6         , HID_KEY_NONE, // COL3
-		HID_KEY_U   , HID_KEY_H   , HID_KEY_Y   , HID_KEY_ENTER       , HID_KEY_B        , HID_KEY_N    , HID_KEY_J         , HID_KEY_NONE, // COL4
-		HID_KEY_O   , HID_KEY_L   , HID_KEY_I   , HID_KEY_BACKSPACE   , HID_KEY_NONE     , HID_KEY_M    , HID_KEY_K         , HID_KEY_NONE, // COL5
+	{	// Alt and Sym
+		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
+		_S(HID_KEY_3)        , HID_KEY_F1            , MODIFYER_SYM , _S(HID_KEY_8)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_F10       , 0, // COL1
+		HID_KEY_F2           , HID_KEY_F4            , HID_KEY_F5   , _S(HID_KEY_2)            , HID_KEY_F8       , HID_KEY_F7        , MODIFYER_SHIFT    , 0, // COL2
+		HID_KEY_F3           , HID_KEY_SLASH         , _S(HID_KEY_9), MODIFYER_CTRL            , _S(HID_KEY_SLASH), HID_KEY_F9        , HID_KEY_F6        , 0, // COL3
+		HID_KEY_GRAVE        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), _S(HID_KEY_BRACKET_RIGHT), _S(HID_KEY_1)    , _S(HID_KEY_COMMA) , HID_KEY_SEMICOLON , 0, // COL4
+		_S(HID_KEY_BACKSLASH), _S(HID_KEY_APOSTROPHE), _S(HID_KEY_7), _S(HID_KEY_BRACKET_LEFT) , HID_KEY_EQUAL    , _S(HID_KEY_PERIOD), HID_KEY_APOSTROPHE, 0, // COL5
 	},
 };
 
