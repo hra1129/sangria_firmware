@@ -40,7 +40,7 @@ private:
 	uint8_t last_key_code[6];
 	uint16_t key_matrix_table[4][ 5 * 8 ];
 
-	void _check_modifier_key( uint8_t key_code[], int &index, uint8_t hid_key_code, bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num );
+	void _check_toggle_modifier( bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num );
 
 	bool alt_key;
 	bool shift_key;

@@ -30,14 +30,18 @@
 #include "tusb.h"
 
 // --------------------------------------------------------------------
-#define MODIFYER_SYM	0x100
-#define MODIFYER_ALT	0x101
-#define MODIFYER_CAPS	0x102
-#define MODIFYER_SHIFT	0x103
-#define MODIFYER_CTRL	0x104
+#define VHID_SYM_KEY		0x100
+#define VHID_ALT_KEY		0x101
+#define VHID_CAPS_KEY		0x102
+#define VHID_SHIFT_KEY		0x103
+#define VHID_CTRL_KEY		0x104
 
-#define _A( a )			0x2000		//	with ALT
-#define _S( a )			0x1000		//	with SHIFT
+#define MODIFIER_SHIFT_BIT	0x1000
+#define MODIFIER_ALT_BIT	0x2000
+#define MODIFIER_BIT_MASK	0xF000
+
+#define _S( a )				((a) | MODIFIER_SHIFT_BIT)		//	with SHIFT
+#define _A( a )				((a) | MODIFIER_ALT_BIT)		//	with ALT
 
 // --------------------------------------------------------------------
 //         ROW1 ROW2 ROW3 ROW4 ROW5 ROW6 ROW7
@@ -50,33 +54,33 @@
 static const uint16_t default_key_matrix_table[ 4 ][ 5 * 8 ] = {
 	{	// Normal
 		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		HID_KEY_Q            , HID_KEY_W             , MODIFYER_SYM , HID_KEY_A                , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_TAB       , 0, // COL1
-		HID_KEY_E            , HID_KEY_S             , HID_KEY_D    , HID_KEY_P                , HID_KEY_X        , HID_KEY_Z         , MODIFYER_SHIFT    , 0, // COL2
-		HID_KEY_R            , HID_KEY_G             , HID_KEY_T    , MODIFYER_CTRL            , HID_KEY_V        , HID_KEY_C         , HID_KEY_F         , 0, // COL3
+		HID_KEY_Q            , HID_KEY_W             , VHID_SYM_KEY , HID_KEY_A                , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_TAB       , 0, // COL1
+		HID_KEY_E            , HID_KEY_S             , HID_KEY_D    , HID_KEY_P                , HID_KEY_X        , HID_KEY_Z         , VHID_SHIFT_KEY    , 0, // COL2
+		HID_KEY_R            , HID_KEY_G             , HID_KEY_T    , VHID_CTRL_KEY            , HID_KEY_V        , HID_KEY_C         , HID_KEY_F         , 0, // COL3
 		HID_KEY_U            , HID_KEY_H             , HID_KEY_Y    , HID_KEY_ENTER            , HID_KEY_B        , HID_KEY_N         , HID_KEY_J         , 0, // COL4
 		HID_KEY_O            , HID_KEY_L             , HID_KEY_I    , HID_KEY_BACKSPACE        , _S(HID_KEY_4)    , HID_KEY_M         , HID_KEY_K         , 0, // COL5
 	},
 	{	// Alt
 		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_A(HID_KEY_Q)        , _A(HID_KEY_W)         , MODIFYER_SYM , _A(HID_KEY_A)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_BACKSLASH , 0, // COL1
-		_A(HID_KEY_E)        , _A(HID_KEY_S)         , _A(HID_KEY_D), _A(HID_KEY_P)            , _A(HID_KEY_X)    , _A(HID_KEY_Z)     , MODIFYER_SHIFT    , 0, // COL2
-		_A(HID_KEY_R)        , _A(HID_KEY_G)         , _A(HID_KEY_T), MODIFYER_CTRL            , _A(HID_KEY_V)    , _A(HID_KEY_C)     , _A(HID_KEY_F)     , 0, // COL3
+		_A(HID_KEY_Q)        , _A(HID_KEY_W)         , VHID_SYM_KEY , _A(HID_KEY_A)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_BACKSLASH , 0, // COL1
+		_A(HID_KEY_E)        , _A(HID_KEY_S)         , _A(HID_KEY_D), _A(HID_KEY_P)            , _A(HID_KEY_X)    , _A(HID_KEY_Z)     , VHID_SHIFT_KEY    , 0, // COL2
+		_A(HID_KEY_R)        , _A(HID_KEY_G)         , _A(HID_KEY_T), VHID_CTRL_KEY            , _A(HID_KEY_V)    , _A(HID_KEY_C)     , _A(HID_KEY_F)     , 0, // COL3
 		_A(HID_KEY_U)        , _A(HID_KEY_H)         , _A(HID_KEY_Y), HID_KEY_BRACKET_RIGHT    , _A(HID_KEY_B)    , _A(HID_KEY_N)     , _A(HID_KEY_J)     , 0, // COL4
 		_A(HID_KEY_O)        , _A(HID_KEY_L)         , _A(HID_KEY_I), HID_KEY_BRACKET_LEFT     , HID_KEY_GRAVE    , _A(HID_KEY_M)     , _A(HID_KEY_K)     , 0, // COL5
 	},
 	{	// Sym
 		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_S(HID_KEY_3)        , HID_KEY_1             , MODIFYER_SYM , _S(HID_KEY_8)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_0         , 0, // COL1
-		HID_KEY_2            , HID_KEY_4             , HID_KEY_5    , _S(HID_KEY_2)            , HID_KEY_8        , HID_KEY_7         , MODIFYER_SHIFT    , 0, // COL2
-		HID_KEY_3            , HID_KEY_SLASH         , _S(HID_KEY_9), MODIFYER_CTRL            , _S(HID_KEY_SLASH), HID_KEY_9         , HID_KEY_6         , 0, // COL3
+		_S(HID_KEY_3)        , HID_KEY_1             , VHID_SYM_KEY , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_0         , 0, // COL1
+		HID_KEY_2            , HID_KEY_4             , HID_KEY_5    , _S(HID_KEY_2)            , HID_KEY_8        , HID_KEY_7         , VHID_SHIFT_KEY    , 0, // COL2
+		HID_KEY_3            , HID_KEY_SLASH         , _S(HID_KEY_9), VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_9         , HID_KEY_6         , 0, // COL3
 		HID_KEY_EQUAL        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), HID_KEY_ENTER            , _S(HID_KEY_1)    , HID_KEY_COMMA     , HID_KEY_SEMICOLON , 0, // COL4
 		_S(HID_KEY_EQUAL)    , _S(HID_KEY_APOSTROPHE), HID_KEY_MINUS, HID_KEY_BACKSPACE        , HID_KEY_EQUAL    , HID_KEY_PERIOD    , HID_KEY_APOSTROPHE, 0, // COL5
 	},
 	{	// Alt and Sym
 		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_S(HID_KEY_3)        , HID_KEY_F1            , MODIFYER_SYM , _S(HID_KEY_8)            , MODIFYER_ALT     , HID_KEY_SPACE     , HID_KEY_F10       , 0, // COL1
-		HID_KEY_F2           , HID_KEY_F4            , HID_KEY_F5   , _S(HID_KEY_2)            , HID_KEY_F8       , HID_KEY_F7        , MODIFYER_SHIFT    , 0, // COL2
-		HID_KEY_F3           , HID_KEY_SLASH         , _S(HID_KEY_9), MODIFYER_CTRL            , _S(HID_KEY_SLASH), HID_KEY_F9        , HID_KEY_F6        , 0, // COL3
+		_S(HID_KEY_3)        , HID_KEY_F1            , VHID_SYM_KEY , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_F10       , 0, // COL1
+		HID_KEY_F2           , HID_KEY_F4            , HID_KEY_F5   , _S(HID_KEY_2)            , HID_KEY_F8       , HID_KEY_F7        , VHID_SHIFT_KEY    , 0, // COL2
+		HID_KEY_F3           , HID_KEY_SLASH         , _S(HID_KEY_9), VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_F9        , HID_KEY_F6        , 0, // COL3
 		HID_KEY_GRAVE        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), _S(HID_KEY_BRACKET_RIGHT), _S(HID_KEY_1)    , _S(HID_KEY_COMMA) , HID_KEY_SEMICOLON , 0, // COL4
 		_S(HID_KEY_BACKSLASH), _S(HID_KEY_APOSTROPHE), _S(HID_KEY_7), _S(HID_KEY_BRACKET_LEFT) , HID_KEY_EQUAL    , _S(HID_KEY_PERIOD), HID_KEY_APOSTROPHE, 0, // COL5
 	},
@@ -88,6 +92,10 @@ static const uint16_t default_key_matrix_table[ 4 ][ 5 * 8 ] = {
 #define JOGDIAL_DOWN_KEY    HID_KEY_ARROW_DOWN
 #define JOGDIAL_LEFT_KEY    HID_KEY_ARROW_LEFT
 #define JOGDIAL_RIGHT_KEY   HID_KEY_ARROW_RIGHT
+
+// --------------------------------------------------------------------
+#define MODIFIER_ALT_KEY	(1 << 0)
+#define MODIFIER_SYM_KEY	(1 << 1)
 
 // --------------------------------------------------------------------
 CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
@@ -164,26 +172,37 @@ void CSANGRIA_KEYBOARD::set_jogdial( CSANGRIA_JOGDIAL *p_jogdial ) {
 }
 
 // --------------------------------------------------------------------
-void CSANGRIA_KEYBOARD::_check_modifier_key( uint8_t key_code[], int &index, uint8_t hid_key_code, bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num ) {
+void CSANGRIA_KEYBOARD::_check_toggle_modifier( bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num ) {
 
 	if( ((last_key_press & (1 << bit_num)) != 0) && ((current_key_press & (1 << bit_num)) == 0) ) {
-		//	押されたタイミング
+		//	Timing of the push
 		current_key = !current_key;
-	}
-	if( hid_key_code != HID_KEY_NONE && current_key ) {
-		key_code[ index++ ] = hid_key_code;
 	}
 }
 
 // --------------------------------------------------------------------
 int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
-	int i, j, index, port, modifier_index;
+	int i, j, index, port, modifier_index, virtual_modifier_index;
 	uint32_t key_data;
 	uint16_t hid_key_code;
 
-	modifier_index = (this->shift_key ? 1 : 0) + (this->sym_key ? 2 : 0);
+	modifier_index = (this->alt_key ? MODIFIER_ALT_KEY : 0) + (this->sym_key ? MODIFIER_SYM_KEY : 0);
 	index = 0;
+	virtual_modifier_index = -1;	//	invalid
 
+	//	Update key press informations
+	for( i = 0; i < 5; i++ ) {
+		port = i + SANGRIA_COL1;
+		gpio_set_dir( port, GPIO_OUT );
+		gpio_put( port, 0 );
+		sleep_us( 10 );
+		key_data = (gpio_get_all() >> SANGRIA_ROW1) & 0x7F;	// 7bit
+		gpio_set_dir( port, GPIO_IN );
+		this->last_key_matrix[i] = this->current_key_matrix[i];
+		this->current_key_matrix[i] = (uint8_t) key_data;
+	}
+
+	//	Update jogdial press informations and send datas
 	if( p_jogdial != nullptr ) {
 		p_jogdial->update();
 
@@ -191,40 +210,32 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 			key_code[ index ] = JOGDIAL_BACK_KEY;
 			index++;
 		}
-		if( p_jogdial->get_enter_button() ) {
+		else if( p_jogdial->get_enter_button() ) {
 			key_code[ index ] = JOGDIAL_ENTER_KEY;
 			index++;
 		}
-		if( p_jogdial->get_up_button() ) {
-			if( (modifier_index & 2) == 0 ) {
+		else if( p_jogdial->get_up_button() ) {
+			if( (modifier_index & MODIFIER_SYM_KEY) == 0 ) {
 				key_code[ index ] = JOGDIAL_UP_KEY;
-			}
-			else {
-				key_code[ index ] = JOGDIAL_LEFT_KEY;
-			}
-			index++;
-		}
-		if( p_jogdial->get_down_button() ) {
-			if( (modifier_index & 2) == 0 ) {
-				key_code[ index ] = JOGDIAL_DOWN_KEY;
 			}
 			else {
 				key_code[ index ] = JOGDIAL_RIGHT_KEY;
 			}
 			index++;
 		}
+		else if( p_jogdial->get_down_button() ) {
+			if( (modifier_index & MODIFIER_SYM_KEY) == 0 ) {
+				key_code[ index ] = JOGDIAL_DOWN_KEY;
+			}
+			else {
+				key_code[ index ] = JOGDIAL_LEFT_KEY;
+			}
+			index++;
+		}
 	}
 
 	for( i = 0; i < 5; i++ ) {
-		port = i + SANGRIA_COL1;
-		gpio_set_dir( port, GPIO_OUT );
-		gpio_put( port, 0 );
-		sleep_us( 10 );
-		key_data = gpio_get_all();
-		gpio_set_dir( port, GPIO_IN );
-		key_data = (key_data >> SANGRIA_ROW1) & 0x7F;	// 7bit
-		this->last_key_matrix[i] = this->current_key_matrix[i];
-		this->current_key_matrix[i] = (uint8_t) key_data;
+		key_data = this->current_key_matrix[i];
 
 		for( j = 0; j < 7 && index < 6; j++ ) {
 			hid_key_code = key_matrix_table[ modifier_index ][ (i << 3) + j ];
@@ -232,27 +243,62 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 				//	Modifier
 				switch( hid_key_code ) {
 				default:
-				case MODIFYER_SYM:
-					this->_check_modifier_key( key_code, index, HID_KEY_NONE, this->sym_key, this->last_key_matrix[i], key_data, j );
+				case VHID_SYM_KEY:
+					this->_check_toggle_modifier( this->sym_key, this->last_key_matrix[i], key_data, j );
 					break;
-				case MODIFYER_ALT:
+				case VHID_ALT_KEY:
 					this->alt_key = ( (key_data & (1 << j)) == 0 );
 					break;
-				case MODIFYER_CAPS:
-					this->_check_modifier_key( key_code, index, HID_KEY_CAPS_LOCK, this->caps_key, this->last_key_matrix[i], key_data, j );
+				case VHID_CAPS_KEY:
+					this->_check_toggle_modifier( this->caps_key, this->last_key_matrix[i], key_data, j );
+					if( this->ctrl_key ) {
+						key_code[ index ] = HID_KEY_CAPS_LOCK;
+						index++;
+					}
 					break;
-				case MODIFYER_SHIFT:
-					this->_check_modifier_key( key_code, index, HID_KEY_SHIFT_LEFT, this->shift_key, this->last_key_matrix[i], key_data, j );
+				case VHID_SHIFT_KEY:
+					this->_check_toggle_modifier( this->shift_key, this->last_key_matrix[i], key_data, j );
 					break;
-				case MODIFYER_CTRL:
-					this->_check_modifier_key( key_code, index, HID_KEY_CONTROL_LEFT, this->ctrl_key, this->last_key_matrix[i], key_data, j );
+				case VHID_CTRL_KEY:
+					this->_check_toggle_modifier( this->ctrl_key, this->last_key_matrix[i], key_data, j );
+					if( this->ctrl_key ) {
+						key_code[ index ] = HID_KEY_CONTROL_LEFT;
+						index++;
+					}
 					break;
 				}
 			}
 			else {
 				if( (key_data & (1 << j)) == 0 ) {
-					key_code[ index ] = hid_key_code;
-					index++;
+					if( virtual_modifier_index == -1 ) {
+						//	始めて見つけたキーの仮想モディファイアを採用する
+						virtual_modifier_index = 0;
+						if( (hid_key_code & MODIFIER_SHIFT_BIT) != 0 ) {
+							virtual_modifier_index = _S( virtual_modifier_index );
+							if( !this->shift_key ) {
+								key_code[ index ] = HID_KEY_SHIFT_LEFT;
+								index++;
+							}
+						}
+						else {
+							if( this->shift_key ) {
+								key_code[ index ] = HID_KEY_SHIFT_LEFT;
+								index++;
+							}
+						}
+						if( (hid_key_code & MODIFIER_ALT_BIT) != 0 ) {
+							virtual_modifier_index = _A( virtual_modifier_index );
+							key_code[ index ] = HID_KEY_ALT_LEFT;
+							index++;
+						}
+						key_code[ index ] = hid_key_code & 255;
+						index++;
+					}
+					else if( (hid_key_code & MODIFIER_BIT_MASK) == (virtual_modifier_index & MODIFIER_BIT_MASK) ) {
+						//	初めて見つけたキーのモディファイアと、モディファイアが同じ場合にのみ採用する
+						key_code[ index ] = hid_key_code & 255;
+						index++;
+					}
 				}
 			}
 		}
