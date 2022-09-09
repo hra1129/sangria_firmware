@@ -1,0 +1,16 @@
+###10 Sep 2022
+
+Required due to hardware IO config change:
+    - I2C bus numbering
+    - New OLED driver
+    - Battery voltage sensing
+
+Requested new firmware features:
+    - Special key combo to enter system menu
+    - enable/disable boost mode (no VBUS inout)
+    - toggle charging/boost mode (has VBUS input)
+    - VBUS indicator
+
+Suggested changes:
+    - icon always visible, use invert for enable/disable indication
+    - SYM key use all caps
