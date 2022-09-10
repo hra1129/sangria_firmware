@@ -118,6 +118,7 @@ public:
 		}
 		else {
 			p_oled->clear();
+			//	Key status
 			if( p_keyboard->get_shift_key() ) {
 				p_oled->copy_1bpp( get_icon_shift(), 16, 16, 0, 0 );
 			}
@@ -130,8 +131,44 @@ public:
 			if( p_keyboard->get_ctrl_key() ) {
 				p_oled->copy_1bpp( get_icon_ctrl(), 16, 16, 48, 0 );
 			}
-			p_oled->set_position( 0, 2 );
-			p_oled->puts( p_jogdial->get_back_button() ? "JOG BACK PRESS" : "JOG BACK UNPRESS" );
+			//	Battery status
+			if( p_battery->check_battery_management_device() ) {
+				int status = p_battery->get_system_status();
+				const uint8_t *p_icon;
+				switch( (status >> 6) & 3 ) {
+				case 0:		//	Unkown
+					p_icon = get_icon_no_battery();
+					break;
+				case 1:		//	USB host
+					p_icon = get_icon_empty();
+					break;
+				case 2:		//	Adapter port
+					p_icon = get_icon_dc_plug();
+					break;
+				default:	//	OTG
+					p_icon = get_icon_full();
+					break;
+				}
+				p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
+				switch( (status >> 4) & 3 ) {
+				case 0:		//	Not charging
+					p_icon = get_icon_no_battery();
+					break;
+				case 1:		//	Pre charging
+					p_icon = get_icon_empty();
+					break;
+				case 2:		//	Fast charging
+					p_icon = get_icon_half();
+					break;
+				default:	//	Charge termination done
+					p_icon = get_icon_full();
+					break;
+				}
+				p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
+			}
+			else {
+				p_oled->copy_1bpp( get_icon_no_battery(), 16, 16, 96, 0 );
+			}
 		}
 		p_oled->update();
 	}
