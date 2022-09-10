@@ -30,20 +30,6 @@
 #include "sangria_firmware_config.h"
 #include "sangria_i2c.h"
 
-// --------------------------------------------------------------------
-//	BQ24296M Registers
-#define BQ_INPUT_SOURCE			0x00	// Read/Write
-#define BQ_POWER_ON_CONFIG		0x01	// Read/Write
-#define BQ_CHARGE_CURRENT		0x02	// Read/Write
-#define BQ_PRECHARGE_CURRENT	0x03	// Read/Write
-#define BQ_CHARGE_VOLTAGE		0x04	// Read/Write
-#define BQ_CHARGE_TERMINATION	0x05	// Read/Write
-#define BQ_BOOST_VOLTAGE		0x06	// Read/Write
-#define BQ_MISC_OPERATION		0x07	// Read/Write
-#define BQ_SYSTEM_STATUS		0x08	// Read only
-#define BQ_NEW_FAULT			0x09	// Read only
-#define BQ_VENDER_PART			0x0A	// Read only
-
 class CSANGRIA_BATTERY {
 private:
 	CSANGRIA_I2C *p_i2c;
@@ -62,6 +48,35 @@ public:
 	//	comment:
 	//
 	void set_i2c( CSANGRIA_I2C *p_i2c );
+
+	// --------------------------------------------------------------------
+	//	check battery management device
+	//	input:
+	//		none
+	//	output:
+	//		true .... active
+	//		false ... inactive
+	//	comment:
+	//
+	bool check_battery_management_device( void );
+
+	// --------------------------------------------------------------------
+	//	get system status
+	//	input:
+	//		none
+	//	output:
+	//		status code
+	//			bit7 VBUS_STAT[1]  : 00-Unkown, 01-USB host, 10-Adapter port, 11-OTG
+	//			bit6 VBUS_STAT[0]  : 
+	//			bit5 CHRG_STAT[1]  : 00-Not Charging, 01-Pre charge, 10-Fast charging, 11-Charge termination done
+	//			bit4 CHRG_STAT[0]  : 
+	//			bit3 DPM_STAT      : 0-Not DPM, 1-VINDPM
+	//			bit2 PG_STAT       : 0-Not power good, 1-Power good
+	//			bit1 THERM_STAT    : 0-Normal, 1-inthermal regulation
+	//			bit0 VSYS_STAT     : 0-Not in VSYSMIN regulation, 1-In VSYSMIN regulation
+	//	comment:
+	//
+	int get_system_status( void );
 
 	// --------------------------------------------------------------------
 	//	power on

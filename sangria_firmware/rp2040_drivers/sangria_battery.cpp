@@ -35,7 +35,24 @@
 #include "sangria_battery.h"
 
 // I2C address
-#define BQ_ADDR											0x6B
+#define BQ_ADDR					0x6B
+
+//	BQ24296M/BQ24297 Registers
+#define BQ_INPUT_SOURCE			0x00	// Read/Write
+#define BQ_POWER_ON_CONFIG		0x01	// Read/Write
+#define BQ_CHARGE_CURRENT		0x02	// Read/Write
+#define BQ_PRECHARGE_CURRENT	0x03	// Read/Write
+#define BQ_CHARGE_VOLTAGE		0x04	// Read/Write
+#define BQ_CHARGE_TERMINATION	0x05	// Read/Write
+#define BQ_BOOST_VOLTAGE		0x06	// Read/Write
+#define BQ_MISC_OPERATION		0x07	// Read/Write
+#define BQ_SYSTEM_STATUS		0x08	// Read only
+#define BQ_NEW_FAULT			0x09	// Read only
+#define BQ_VENDER_PART			0x0A	// Read only
+
+//	BQ_VENDER_PART
+#define ID_BQ24296				0x20
+#define ID_BQ24297				0x60
 
 // --------------------------------------------------------------------
 CSANGRIA_BATTERY::CSANGRIA_BATTERY() {
@@ -61,6 +78,23 @@ void CSANGRIA_BATTERY::set_i2c( CSANGRIA_I2C *p_i2c ) {
 }
 
 // --------------------------------------------------------------------
+bool CSANGRIA_BATTERY::check_battery_management_device( void ) {
+	uint8_t result;
+
+	result = this->read_register( BQ_VENDER_PART );
+	if( result == ID_BQ24296 || result == ID_BQ24297 ) {
+		return true;
+	}
+	return false;
+}
+
+// --------------------------------------------------------------------
+int CSANGRIA_BATTERY::get_system_status( void ) {
+
+	return this->read_register( BQ_SYSTEM_STATUS );
+}
+
+// --------------------------------------------------------------------
 void CSANGRIA_BATTERY::power_on( void ) {
 
 	gpio_put( SANGRIA_BQ_OTG, 1 );		// OTG = L : boost mode  : ON
@@ -69,6 +103,9 @@ void CSANGRIA_BATTERY::power_on( void ) {
 		(1 << 7) |		//	enable
 		(6 << 3) |		//	4.36V
 		(7 << 0) );		//	3A
+
+	//	Clear fault status
+	this->read_register( BQ_NEW_FAULT );
 }
 
 // --------------------------------------------------------------------
