@@ -26,17 +26,24 @@
 #ifndef __SANGRIA_GRAPHIC_RESOURCE_H__
 #define __SANGRIA_GRAPHIC_RESOURCE_H__
 
+typedef enum {
+	SANGRIA_ICON_AC_ADAPTER = 0,
+	SANGRIA_ICON_DC_PLUG,
+	SANGRIA_ICON_USB_POWER,
+	SANGRIA_ICON_EMPTY,
+	SANGRIA_ICON_HALF,
+	SANGRIA_ICON_HIGH,
+	SANGRIA_ICON_FULL,
+	SANGRIA_ICON_NO_BATTERY,
+	SANGRIA_ICON_ALT,
+	SANGRIA_ICON_SHIFT,
+	SANGRIA_ICON_SYM,
+	SANGRIA_ICON_CTRL,
+} SANGRIA_ICON_ID_T;
+
 const uint8_t *get_sangria_logo1( void );
 const uint8_t *get_sangria_logo2( void );
-const uint8_t *get_icon_dc_plug( void );
-const uint8_t *get_icon_empty( void );
-const uint8_t *get_icon_half( void );
-const uint8_t *get_icon_full( void );
-const uint8_t *get_icon_no_battery( void );
-const uint8_t *get_icon_alt( void );
-const uint8_t *get_icon_shift( void );
-const uint8_t *get_icon_sym( void );
-const uint8_t *get_icon_ctrl( void );
+const uint8_t *get_icon( SANGRIA_ICON_ID_T id );
 const uint8_t *get_font( void );
 
 #endif

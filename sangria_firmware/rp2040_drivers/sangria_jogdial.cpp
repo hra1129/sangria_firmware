@@ -67,7 +67,7 @@ CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL() {
 	gpio_pull_up( SANGRIA_JOG_B );
 	gpio_pull_up( SANGRIA_JOG_PUSH );
 
-	this->current_key_code	= (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH);
+	this->current_key_code	= (1 << SANGRIA_JOG_A) | (1 << SANGRIA_JOG_B) | (1 << SANGRIA_JOG_PUSH) | (1 << SANGRIA_BACK);
 
 	this->current_jog		= 0;
 

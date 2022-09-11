@@ -46,6 +46,9 @@
 
 static CSANGRIA_KEYBOARD *p_keyboard;
 static CSANGRIA_JOGDIAL *p_jogdial;
+static CSANGRIA_I2C *p_i2c;
+static CSANGRIA_OLED *p_oled;
+static CSANGRIA_BATTERY *p_battery;
 
 // --------------------------------------------------------------------
 class CANIME {
@@ -113,23 +116,23 @@ public:
 				count = 10;
 			}
 			else {
-				p_oled->copy_1bpp( get_sangria_logo2(), 128, 32, 0, 0 );
+				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
 			}
 		}
 		else {
 			p_oled->clear();
 			//	Key status
 			if( p_keyboard->get_shift_key() ) {
-				p_oled->copy_1bpp( get_icon_shift(), 16, 16, 0, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 0, 0 );
 			}
 			if( p_keyboard->get_alt_key() ) {
-				p_oled->copy_1bpp( get_icon_alt(), 16, 16, 16, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 16, 0 );
 			}
 			if( p_keyboard->get_sym_key() ) {
-				p_oled->copy_1bpp( get_icon_sym(), 16, 16, 32, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 32, 0 );
 			}
 			if( p_keyboard->get_ctrl_key() ) {
-				p_oled->copy_1bpp( get_icon_ctrl(), 16, 16, 48, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 48, 0 );
 			}
 			//	Battery status
 			if( p_battery->check_battery_management_device() ) {
@@ -137,37 +140,34 @@ public:
 				const uint8_t *p_icon;
 				switch( (status >> 6) & 3 ) {
 				case 0:		//	Unkown
-					p_icon = get_icon_no_battery();
+					p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
 					break;
 				case 1:		//	USB host
-					p_icon = get_icon_empty();
+					p_icon = get_icon( SANGRIA_ICON_USB_POWER );
 					break;
 				case 2:		//	Adapter port
-					p_icon = get_icon_dc_plug();
+					p_icon = get_icon( SANGRIA_ICON_AC_ADAPTER );
 					break;
 				default:	//	OTG
-					p_icon = get_icon_full();
+					p_icon = get_icon( SANGRIA_ICON_USB_POWER );
 					break;
 				}
 				p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
 				switch( (status >> 4) & 3 ) {
 				case 0:		//	Not charging
-					p_icon = get_icon_no_battery();
+					p_icon = get_icon( SANGRIA_ICON_EMPTY );
 					break;
 				case 1:		//	Pre charging
-					p_icon = get_icon_empty();
+					p_icon = get_icon( SANGRIA_ICON_HALF );
 					break;
 				case 2:		//	Fast charging
-					p_icon = get_icon_half();
+					p_icon = get_icon( SANGRIA_ICON_HIGH );
 					break;
 				default:	//	Charge termination done
-					p_icon = get_icon_full();
+					p_icon = get_icon( SANGRIA_ICON_FULL );
 					break;
 				}
 				p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
-			}
-			else {
-				p_oled->copy_1bpp( get_icon_no_battery(), 16, 16, 96, 0 );
 			}
 		}
 		p_oled->update();
@@ -186,65 +186,82 @@ void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 }
 
 // --------------------------------------------------------------------
-void other_core( void ) {
+static void suspend_mode( void ) {
+
+	p_keyboard->backlight( 0 );
+	while( 1 ) {
+		//	Wait for the back button on the jog dial to be pressed.
+		if( p_jogdial->get_back_button() ) {
+			break;
+		}
+		sleep_ms( 100 );
+	}
+}
+
+// --------------------------------------------------------------------
+static void wakeup_main_board( void ) {
+
+	p_keyboard->backlight( 1 );
+	p_oled->power_on();
+	p_battery->power_on();
+}
+
+// --------------------------------------------------------------------
+static void shutdown_main_board( void ) {
+
+	p_battery->power_off();
+	p_oled->power_off();
+	p_keyboard->backlight( 0 );
+}
+
+// --------------------------------------------------------------------
+static void run_mode( void ) {
 	CANIME anime;
 	uint32_t start_ms, end_ms;
-	int i;
 
-	CSANGRIA_I2C i2c;
-	CSANGRIA_OLED oled;
-	CSANGRIA_BATTERY battery;
-
-	oled.set_i2c( &i2c );
-	battery.set_i2c( &i2c );
-
-	oled.power_on();
-	battery.power_on();
-	anime.set( &oled, &battery );
+	anime.set( p_oled, p_battery );
 
 	while( 1 ) {
-		sleep_ms( 10 );
-		//p_keyboard->backlight( 1 );
-		for( i = 0; i < 50; i++ ) {
-			start_ms = board_millis();
-			anime.draw();
-			end_ms = board_millis();
-			if( (end_ms - start_ms) < 10 ) {
-				sleep_ms( 10 - (end_ms - start_ms) );
-			}
-		}
-		//p_keyboard->backlight( 0 );
-		for( i = 0; i < 50; i++ ) {
-			start_ms = board_millis();
-			anime.draw();
-			end_ms = board_millis();
-			if( (end_ms - start_ms) < 10 ) {
-				sleep_ms( 10 - (end_ms - start_ms) );
-			}
+		start_ms = board_millis();
+		anime.draw();
+		end_ms = board_millis();
+		if( (end_ms - start_ms) < 10 ) {
+			sleep_ms( 10 - (end_ms - start_ms) );
 		}
 	}
 }
 
 // --------------------------------------------------------------------
-int main( void ) {
+void other_core( void ) {
+	CSANGRIA_I2C i2c;
+	CSANGRIA_OLED oled;
+	CSANGRIA_BATTERY battery;
 
+	p_i2c = &i2c;
+	p_oled = &oled;
+	p_battery = &battery;
+
+	p_oled->set_i2c( &i2c );
+	p_battery->set_i2c( &i2c );
+
+	while( 1 ) {
+		suspend_mode();
+		wakeup_main_board();
+		run_mode();
+		shutdown_main_board();
+	}
+}
+
+// --------------------------------------------------------------------
+int main( void ) {
 	board_init();
 	tusb_init();
 
 	CSANGRIA_JOGDIAL jogdial;
-	p_jogdial = &jogdial;
-
-	//while( 1 ) {
-	//	jogdial.update();
-	//	if( jogdial.get_back_button() ) {
-	//		break;
-	//	}
-	//}
-
 	CSANGRIA_KEYBOARD keyboard;
+	p_jogdial = &jogdial;
 	p_keyboard = &keyboard;
 	keyboard.set_jogdial( &jogdial );
-	p_keyboard->backlight( 1 );
 
 	multicore_launch_core1( other_core );
 	usb_core( keyboard );

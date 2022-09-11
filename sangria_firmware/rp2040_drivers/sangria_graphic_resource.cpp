@@ -24,11 +24,24 @@
 // --------------------------------------------------------------------
 
 #include <cstdint>
+#include "sangria_graphic_resource.h"
+
+// --------------------------------------------------------------------
+static const uint8_t icon_ac_adapter[] = {
+	0x00, 0x00, 0x0C, 0x60, 0x0C, 0x60, 0x0C, 0x60, 0x0C, 0x60, 0x1F, 0xF0, 0x1F, 0xF0, 0x1F, 0xF0, 
+	0x1F, 0xF0, 0x1F, 0xF0, 0x1F, 0xF0, 0x0F, 0xE0, 0x01, 0x00, 0x01, 0x00, 0x00, 0xD0, 0x00, 0x00, 
+};
 
 // --------------------------------------------------------------------
 static const uint8_t icon_dc_plug[] = {
 	0x00, 0x00, 0x00, 0x20, 0x00, 0x40, 0x3E, 0xBE, 0x21, 0x82, 0x23, 0x02, 0x67, 0xC2, 0x6F, 0xFA, 
 	0x61, 0xF2, 0x20, 0x62, 0x20, 0xC2, 0x3E, 0xBE, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 
+};
+
+// --------------------------------------------------------------------
+static const uint8_t icon_usb_power[] = {
+	0x00, 0x00, 0x0F, 0xF0, 0x08, 0x10, 0x0A, 0x50, 0x08, 0x10, 0x08, 0x10, 0x1F, 0xF8, 0x1F, 0xF8, 
+	0x1F, 0x78, 0x1E, 0xF8, 0x1C, 0x38, 0x1F, 0x78, 0x1E, 0xF8, 0x0F, 0xF0, 0x07, 0xE0, 0x01, 0x80, 
 };
 
 // --------------------------------------------------------------------
@@ -41,6 +54,12 @@ static const uint8_t icon_empty[] = {
 static const uint8_t icon_half[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xFE, 0x20, 0x02, 0x20, 0x7A, 0x60, 0x7A, 0x60, 0x7A, 
 	0x60, 0x7A, 0x20, 0x7A, 0x20, 0x02, 0x3F, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+};
+
+// --------------------------------------------------------------------
+static const uint8_t icon_high[] = {
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xFE, 0x20, 0x02, 0x27, 0xFA, 0x67, 0xFA, 0x67, 0xFA, 
+	0x67, 0xFA, 0x27, 0xFA, 0x20, 0x02, 0x3F, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 };
 
 // --------------------------------------------------------------------
@@ -77,6 +96,22 @@ static const uint8_t icon_sym[] = {
 static const uint8_t icon_ctrl[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6E, 0xC8, 0x84, 0xA8, 0x84, 0xA8, 0x84, 0xC8, 
 	0x84, 0xA8, 0x84, 0xA8, 0x64, 0xAE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+};
+
+// --------------------------------------------------------------------
+static const uint8_t *p_icon[] = {
+	icon_ac_adapter,
+	icon_dc_plug,
+	icon_usb_power,
+	icon_empty,
+	icon_half,
+	icon_high,
+	icon_full,
+	icon_no_battery,
+	icon_alt,
+	icon_shift,
+	icon_sym,
+	icon_ctrl,
 };
 
 // --------------------------------------------------------------------
@@ -262,48 +297,8 @@ const uint8_t *get_sangria_logo2( void ) {
 }
 
 // --------------------------------------------------------------------
-const uint8_t *get_icon_dc_plug( void ) {
-	return icon_dc_plug;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_empty( void ) {
-	return icon_empty;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_half( void ) {
-	return icon_half;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_full( void ) {
-	return icon_full;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_no_battery( void ) {
-	return icon_no_battery;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_alt( void ) {
-	return icon_alt;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_shift( void ) {
-	return icon_shift;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_sym( void ) {
-	return icon_sym;
-}
-
-// --------------------------------------------------------------------
-const uint8_t *get_icon_ctrl( void ) {
-	return icon_ctrl;
+const uint8_t *get_icon( SANGRIA_ICON_ID_T id ) {
+	return p_icon[ id ];
 }
 
 // --------------------------------------------------------------------
