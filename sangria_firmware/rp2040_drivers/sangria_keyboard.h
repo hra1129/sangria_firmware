@@ -85,6 +85,8 @@ public:
 		return this->ctrl_key;
 	}
 
+	bool check_host_connected( void );
+
 	// --------------------------------------------------------------------
 	//	backlight control
 	void backlight( bool is_on );

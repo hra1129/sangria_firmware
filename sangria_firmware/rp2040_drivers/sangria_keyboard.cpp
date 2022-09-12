@@ -43,6 +43,8 @@
 #define _S( a )				((a) | MODIFIER_SHIFT_BIT)		//	with SHIFT
 #define _A( a )				((a) | MODIFIER_ALT_BIT)		//	with ALT
 
+bool tud_check_host_connected( void );
+
 // --------------------------------------------------------------------
 //         ROW1 ROW2 ROW3 ROW4 ROW5 ROW6 ROW7
 //    COL1  Q    W   sym   A   alt  SPC  MIC
@@ -312,4 +314,9 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 // --------------------------------------------------------------------
 void CSANGRIA_KEYBOARD::backlight( bool is_on ) {
 	gpio_put( SANGRIA_BACK_LIGHT, is_on );
+}
+
+// --------------------------------------------------------------------
+bool CSANGRIA_KEYBOARD::check_host_connected( void ) {
+	return tud_check_host_connected();
 }

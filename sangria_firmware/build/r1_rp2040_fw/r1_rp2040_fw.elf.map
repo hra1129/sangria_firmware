@@ -67,8 +67,6 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .data          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .bss           0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
- .text._ZN13CSANGRIA_OLED9power_offEv
-                0x00000000        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .text._ZN13CSANGRIA_OLED4psetEiii
                 0x00000000       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .text._ZN13CSANGRIA_OLED4lineEiiiii
@@ -77,19 +75,9 @@ Discarded input sections
                 0x00000000       0x58 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .text._ZN13CSANGRIA_OLED9scroll_upEv
                 0x00000000       0x44 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
- .text._ZN13CSANGRIA_OLED4putcEc
-                0x00000000      0x18c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
- .text._ZN13CSANGRIA_OLED4putsEPKc
-                0x00000000       0x1c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
- .text._ZN13CSANGRIA_OLED12set_positionEii
-                0x00000000       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
  .text          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .data          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .bss           0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
- .text._Z8get_fontv
-                0x00000000        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
- .rodata._ZL4font
-                0x00000000      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .text          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
  .data          0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
  .bss           0x00000000        0x0 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
@@ -1265,9 +1253,9 @@ Discarded input sections
                 0x00000000       0x28 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .text.board_uart_write
                 0x00000000       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
- .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
- .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
- .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
+ .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
+ .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
+ .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
  .data          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-calloc.o)
@@ -1476,11 +1464,11 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
+ .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x10000100     0x5da0
+.text           0x10000100     0x61b0
                 0x10000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1542,580 +1530,604 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x100002c0                _init
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .text*)
  .text          0x100002c4       0x48 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text._ZL22display_battery_statusP13CSANGRIA_OLEDP16CSANGRIA_BATTERY.part.0
+                0x1000030c       0x94 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
  .text._Z10other_corev
-                0x1000030c      0x348 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
-                0x1000030c                other_core()
+                0x100003a0      0x4c0 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
+                0x100003a0                other_core()
  .text._Z8usb_coreR17CSANGRIA_KEYBOARD
-                0x10000654       0x10 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
-                0x10000654                usb_core(CSANGRIA_KEYBOARD&)
+                0x10000860       0x10 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
+                0x10000860                usb_core(CSANGRIA_KEYBOARD&)
  .text.startup.main
-                0x10000664       0x3c CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
-                0x10000664                main
+                0x10000870       0x3c CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
+                0x10000870                main
  .text._ZL19_jog_a_interrupt_cbjm
-                0x100006a0       0x24 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x100008ac       0x24 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
  .text._ZN16CSANGRIA_JOGDIALC2Ev
-                0x100006c4       0x84 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x100006c4                CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL()
-                0x100006c4                CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL()
+                0x100008d0       0x84 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x100008d0                CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL()
+                0x100008d0                CSANGRIA_JOGDIAL::CSANGRIA_JOGDIAL()
  .text._ZN16CSANGRIA_JOGDIAL6updateEv
-                0x10000748       0x14 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x10000748                CSANGRIA_JOGDIAL::update()
+                0x10000954       0x14 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x10000954                CSANGRIA_JOGDIAL::update()
  .text._ZN16CSANGRIA_JOGDIAL15get_back_buttonEv
-                0x1000075c        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x1000075c                CSANGRIA_JOGDIAL::get_back_button()
+                0x10000968        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x10000968                CSANGRIA_JOGDIAL::get_back_button()
  .text._ZN16CSANGRIA_JOGDIAL16get_enter_buttonEv
-                0x10000768        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x10000768                CSANGRIA_JOGDIAL::get_enter_button()
+                0x10000974        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x10000974                CSANGRIA_JOGDIAL::get_enter_button()
  .text._ZN16CSANGRIA_JOGDIAL13get_up_buttonEv
-                0x10000774       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x10000774                CSANGRIA_JOGDIAL::get_up_button()
+                0x10000980       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x10000980                CSANGRIA_JOGDIAL::get_up_button()
  .text._ZN16CSANGRIA_JOGDIAL15get_down_buttonEv
-                0x1000078c       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
-                0x1000078c                CSANGRIA_JOGDIAL::get_down_button()
+                0x10000998       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_jogdial.cpp.obj
+                0x10000998                CSANGRIA_JOGDIAL::get_down_button()
  .text._ZN17CSANGRIA_KEYBOARDC2Ev
-                0x100007a4      0x154 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
-                0x100007a4                CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD()
-                0x100007a4                CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD()
+                0x100009b0      0x154 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x100009b0                CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD()
+                0x100009b0                CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD()
  .text._ZN17CSANGRIA_KEYBOARD11set_jogdialEP16CSANGRIA_JOGDIAL
-                0x100008f8        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
-                0x100008f8                CSANGRIA_KEYBOARD::set_jogdial(CSANGRIA_JOGDIAL*)
+                0x10000b04        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x10000b04                CSANGRIA_KEYBOARD::set_jogdial(CSANGRIA_JOGDIAL*)
  .text._ZN17CSANGRIA_KEYBOARD6updateEPh
-                0x100008fc      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
-                0x100008fc                CSANGRIA_KEYBOARD::update(unsigned char*)
+                0x10000b08      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x10000b08                CSANGRIA_KEYBOARD::update(unsigned char*)
  .text._ZN17CSANGRIA_KEYBOARD9backlightEb
-                0x10000bfc       0x14 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
-                0x10000bfc                CSANGRIA_KEYBOARD::backlight(bool)
+                0x10000e08       0x14 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x10000e08                CSANGRIA_KEYBOARD::backlight(bool)
+ .text._ZN17CSANGRIA_KEYBOARD20check_host_connectedEv
+                0x10000e1c        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x10000e1c                CSANGRIA_KEYBOARD::check_host_connected()
  .text._ZN12CSANGRIA_I2CC2Ev
-                0x10000c10       0x3c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
-                0x10000c10                CSANGRIA_I2C::CSANGRIA_I2C()
-                0x10000c10                CSANGRIA_I2C::CSANGRIA_I2C()
+                0x10000e24       0x3c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10000e24                CSANGRIA_I2C::CSANGRIA_I2C()
+                0x10000e24                CSANGRIA_I2C::CSANGRIA_I2C()
  .text._ZN12CSANGRIA_I2C5writeEiPKhi
-                0x10000c4c       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
-                0x10000c4c                CSANGRIA_I2C::write(int, unsigned char const*, int)
+                0x10000e60       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10000e60                CSANGRIA_I2C::write(int, unsigned char const*, int)
  .text._ZN12CSANGRIA_I2C4readEiPhi
-                0x10000c64       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
-                0x10000c64                CSANGRIA_I2C::read(int, unsigned char*, int)
+                0x10000e78       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10000e78                CSANGRIA_I2C::read(int, unsigned char*, int)
  .text._ZN13CSANGRIA_OLEDC2Ev
-                0x10000c7c       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000c7c                CSANGRIA_OLED::CSANGRIA_OLED()
-                0x10000c7c                CSANGRIA_OLED::CSANGRIA_OLED()
+                0x10000e90       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10000e90                CSANGRIA_OLED::CSANGRIA_OLED()
+                0x10000e90                CSANGRIA_OLED::CSANGRIA_OLED()
  .text._ZN13CSANGRIA_OLED7set_i2cEP12CSANGRIA_I2C
-                0x10000cac        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000cac                CSANGRIA_OLED::set_i2c(CSANGRIA_I2C*)
+                0x10000ec0        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10000ec0                CSANGRIA_OLED::set_i2c(CSANGRIA_I2C*)
+ .text._ZN13CSANGRIA_OLED9power_offEv
+                0x10000ec4        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10000ec4                CSANGRIA_OLED::power_off()
  .text._ZN13CSANGRIA_OLED6updateEv
-                0x10000cb0      0x168 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000cb0                CSANGRIA_OLED::update()
+                0x10000ed0      0x168 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10000ed0                CSANGRIA_OLED::update()
  .text._ZN13CSANGRIA_OLED8power_onEv
-                0x10000e18       0x98 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000e18                CSANGRIA_OLED::power_on()
+                0x10001038       0x98 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10001038                CSANGRIA_OLED::power_on()
  .text._ZN13CSANGRIA_OLED5clearEv
-                0x10000eb0       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000eb0                CSANGRIA_OLED::clear()
+                0x100010d0       0x18 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x100010d0                CSANGRIA_OLED::clear()
  .text._ZN13CSANGRIA_OLED9copy_1bppEPKhiiii
-                0x10000ec8       0x7c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
-                0x10000ec8                CSANGRIA_OLED::copy_1bpp(unsigned char const*, int, int, int, int)
+                0x100010e8       0x7c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x100010e8                CSANGRIA_OLED::copy_1bpp(unsigned char const*, int, int, int, int)
+ .text._ZN13CSANGRIA_OLED4putcEc
+                0x10001164      0x18c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x10001164                CSANGRIA_OLED::putc(char)
+ .text._ZN13CSANGRIA_OLED4putsEPKc
+                0x100012f0       0x1c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x100012f0                CSANGRIA_OLED::puts(char const*)
+ .text._ZN13CSANGRIA_OLED12set_positionEii
+                0x1000130c       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_oled.cpp.obj
+                0x1000130c                CSANGRIA_OLED::set_position(int, int)
  .text._Z17get_sangria_logo1v
-                0x10000f44        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
-                0x10000f44                get_sangria_logo1()
+                0x1000132c        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x1000132c                get_sangria_logo1()
  .text._Z17get_sangria_logo2v
-                0x10000f4c        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
-                0x10000f4c                get_sangria_logo2()
+                0x10001334        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10001334                get_sangria_logo2()
  .text._Z8get_icon17SANGRIA_ICON_ID_T
-                0x10000f54        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
-                0x10000f54                get_icon(SANGRIA_ICON_ID_T)
+                0x1000133c        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x1000133c                get_icon(SANGRIA_ICON_ID_T)
+ .text._Z8get_fontv
+                0x10001348        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10001348                get_font()
+ .text._Z24tud_check_host_connectedv
+                0x10001350        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001350                tud_check_host_connected()
  .text.tud_mount_cb
-                0x10000f60        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10000f60                tud_mount_cb
+                0x1000135c        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x1000135c                tud_mount_cb
  .text.tud_umount_cb
-                0x10000f64        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10000f64                tud_umount_cb
+                0x10001360        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001360                tud_umount_cb
  .text.tud_suspend_cb
-                0x10000f68        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10000f68                tud_suspend_cb
+                0x10001364        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001364                tud_suspend_cb
  .text.tud_resume_cb
-                0x10000f6c        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10000f6c                tud_resume_cb
+                0x10001368        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001368                tud_resume_cb
  .text._Z8hid_taskR17CSANGRIA_KEYBOARD
-                0x10000f70       0x98 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10000f70                hid_task(CSANGRIA_KEYBOARD&)
+                0x1000136c       0xa8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x1000136c                hid_task(CSANGRIA_KEYBOARD&)
  .text.tud_hid_report_complete_cb
-                0x10001008        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10001008                tud_hid_report_complete_cb
+                0x10001414        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001414                tud_hid_report_complete_cb
  .text.tud_hid_get_report_cb
-                0x1000100c        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x1000100c                tud_hid_get_report_cb
+                0x10001418        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x10001418                tud_hid_get_report_cb
  .text.tud_hid_set_report_cb
-                0x10001010        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
-                0x10001010                tud_hid_set_report_cb
+                0x1000141c        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+                0x1000141c                tud_hid_set_report_cb
  .text._ZN16CSANGRIA_BATTERYC2Ev
-                0x10001014       0x40 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
-                0x10001014                CSANGRIA_BATTERY::CSANGRIA_BATTERY()
-                0x10001014                CSANGRIA_BATTERY::CSANGRIA_BATTERY()
+                0x10001420       0x40 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
+                0x10001420                CSANGRIA_BATTERY::CSANGRIA_BATTERY()
+                0x10001420                CSANGRIA_BATTERY::CSANGRIA_BATTERY()
  .text._ZN16CSANGRIA_BATTERY7set_i2cEP12CSANGRIA_I2C
-                0x10001054        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
-                0x10001054                CSANGRIA_BATTERY::set_i2c(CSANGRIA_I2C*)
+                0x10001460        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
+                0x10001460                CSANGRIA_BATTERY::set_i2c(CSANGRIA_I2C*)
  .text._ZN16CSANGRIA_BATTERY31check_battery_management_deviceEv
-                0x10001058       0x3c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
-                0x10001058                CSANGRIA_BATTERY::check_battery_management_device()
+                0x10001464       0x3c CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
+                0x10001464                CSANGRIA_BATTERY::check_battery_management_device()
  .text._ZN16CSANGRIA_BATTERY17get_system_statusEv
-                0x10001094       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
-                0x10001094                CSANGRIA_BATTERY::get_system_status()
+                0x100014a0       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
+                0x100014a0                CSANGRIA_BATTERY::get_system_status()
  .text._ZN16CSANGRIA_BATTERY8power_onEv
-                0x100010c4       0x50 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
-                0x100010c4                CSANGRIA_BATTERY::power_on()
+                0x100014d0       0x50 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_battery.cpp.obj
+                0x100014d0                CSANGRIA_BATTERY::power_on()
  .text.tud_descriptor_device_cb
-                0x10001114        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x10001114                tud_descriptor_device_cb
+                0x10001520        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10001520                tud_descriptor_device_cb
  .text.tud_hid_descriptor_report_cb
-                0x1000111c        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x1000111c                tud_hid_descriptor_report_cb
+                0x10001528        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10001528                tud_hid_descriptor_report_cb
  .text.tud_descriptor_configuration_cb
-                0x10001124        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x10001124                tud_descriptor_configuration_cb
+                0x10001530        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10001530                tud_descriptor_configuration_cb
  .text.tud_descriptor_string_cb
-                0x1000112c       0x74 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x1000112c                tud_descriptor_string_cb
+                0x10001538       0x74 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10001538                tud_descriptor_string_cb
  .text.gpio_default_irq_handler
-                0x100011a0      0x244 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x100015ac      0x244 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_function
-                0x100013e4       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x100013e4                gpio_set_function
+                0x100017f0       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x100017f0                gpio_set_function
  .text.gpio_set_pulls
-                0x10001414       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10001414                gpio_set_pulls
+                0x10001820       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10001820                gpio_set_pulls
  .text.gpio_set_irq_enabled_with_callback
-                0x10001444       0xb0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10001444                gpio_set_irq_enabled_with_callback
+                0x10001850       0xb0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10001850                gpio_set_irq_enabled_with_callback
  .text.gpio_init
-                0x100014f4       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x100014f4                gpio_init
+                0x10001900       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10001900                gpio_init
  .text.hw_claim_or_assert
-                0x10001530       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x10001530                hw_claim_or_assert
+                0x1000193c       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x1000193c                hw_claim_or_assert
  .text.hw_claim_unused_from_range
-                0x10001574       0x9c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x10001574                hw_claim_unused_from_range
+                0x10001980       0x9c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x10001980                hw_claim_unused_from_range
  .text.running_on_fpga
-                0x10001610       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x10001610                running_on_fpga
+                0x10001a1c       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x10001a1c                running_on_fpga
  .text.spin_locks_reset
-                0x10001620       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10001620                spin_locks_reset
+                0x10001a2c       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10001a2c                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x1000163c       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x1000163c                next_striped_spin_lock_num
+                0x10001a48       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10001a48                next_striped_spin_lock_num
  .text.spin_lock_claim_unused
-                0x10001654       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10001654                spin_lock_claim_unused
+                0x10001a60       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10001a60                spin_lock_claim_unused
  .text.irq_set_enabled
-                0x10001674       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001674                irq_set_enabled
+                0x10001a80       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001a80                irq_set_enabled
  .text.irq_is_enabled
-                0x10001698       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001698                irq_is_enabled
+                0x10001aa4       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001aa4                irq_is_enabled
  .text.irq_get_vtable_handler
-                0x100016b0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100016b0                irq_get_vtable_handler
+                0x10001abc       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001abc                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x100016c0       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100016c0                irq_set_exclusive_handler
+                0x10001acc       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001acc                irq_set_exclusive_handler
  .text.irq_add_shared_handler
-                0x10001714      0x1e4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001714                irq_add_shared_handler
+                0x10001b20      0x1e4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001b20                irq_add_shared_handler
  .text.irq_remove_handler
-                0x100018f8      0x1b4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100018f8                irq_remove_handler
+                0x10001d04      0x1b4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001d04                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x10001aac       0xb4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001aac                irq_add_tail_to_free_list
+                0x10001eb8       0xb4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001eb8                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x10001b60       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10001b60                irq_init_priorities
+                0x10001f6c       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10001f6c                irq_init_priorities
  .text.lock_init
-                0x10001b84       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x10001b84                lock_init
+                0x10001f90       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x10001f90                lock_init
  .text.timer_pool_entry_comparator
-                0x10001b94       0x34 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001b94                timer_pool_entry_comparator
+                0x10001fa0       0x34 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001fa0                timer_pool_entry_comparator
  .text.sleep_until_callback
-                0x10001bc8       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001fd4       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x10001bf8      0x100 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10002004      0x100 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x10001cf8      0x1c8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10002104      0x1c8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_add_alarm_at.constprop.0
-                0x10001ec0      0x11c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100022cc      0x11c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x10001fdc       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001fdc                alarm_pool_init_default
+                0x100023e8       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100023e8                alarm_pool_init_default
  .text.sleep_until
-                0x10002040       0xac CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10002040                sleep_until
+                0x1000244c       0xac CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000244c                sleep_until
  .text.sleep_us
-                0x100020ec       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100020ec                sleep_us
+                0x100024f8       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x100024f8                sleep_us
  .text.sleep_ms
-                0x1000211c       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x1000211c                sleep_ms
+                0x10002528       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10002528                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x10002154       0xd4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x10002154                best_effort_wfe_or_timeout
+                0x10002560       0xd4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10002560                best_effort_wfe_or_timeout
  .text.hardware_alarm_irq_handler
-                0x10002228       0xb8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10002634       0xb8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x100022e0       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100022e0                hardware_alarm_claim
+                0x100026ec       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100026ec                hardware_alarm_claim
  .text.time_us_64
-                0x100022f8       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100022f8                time_us_64
+                0x10002704       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10002704                time_us_64
  .text.busy_wait_until
-                0x1000230c       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x1000230c                busy_wait_until
+                0x10002718       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10002718                busy_wait_until
  .text.hardware_alarm_set_callback
-                0x1000232c       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x1000232c                hardware_alarm_set_callback
+                0x10002738       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10002738                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x100023b8       0xe0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100023b8                hardware_alarm_set_target
+                0x100027c4       0xe0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100027c4                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x10002498       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10002498                hardware_alarm_cancel
+                0x100028a4       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100028a4                hardware_alarm_cancel
  .text.ph_merge_nodes
-                0x100024d4       0x68 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x100028e0       0x68 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x1000253c       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x1000253c                ph_post_alloc_init
+                0x10002948       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10002948                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x10002578       0x90 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10002578                ph_merge_two_pass
+                0x10002984       0x90 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10002984                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x10002608       0xf8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10002a14       0xf8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x10002700       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10002700                ph_remove_head
+                0x10002b0c       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10002b0c                ph_remove_head
  .text.ph_remove_and_free_node
-                0x100027fc       0x7c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x100027fc                ph_remove_and_free_node
+                0x10002c08       0x7c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10002c08                ph_remove_and_free_node
  .text.mutex_init
-                0x10002878       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10002878                mutex_init
+                0x10002c84       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10002c84                mutex_init
  .text.recursive_mutex_init
-                0x10002894       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10002894                recursive_mutex_init
+                0x10002ca0       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10002ca0                recursive_mutex_init
  .text.critical_section_init
-                0x100028b0       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x100028b0                critical_section_init
+                0x10002cbc       0x20 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x10002cbc                critical_section_init
  .text.uart_init
-                0x100028d0       0xe0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x100028d0                uart_init
+                0x10002cdc       0xe0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x10002cdc                uart_init
  .text.runtime_init
-                0x100029b0       0xf0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x100029b0                runtime_init
- .text.exit     0x10002aa0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10002aa0                exit
- .text.panic    0x10002aa4       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10002aa4                panic
+                0x10002dbc       0xf0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10002dbc                runtime_init
+ .text.exit     0x10002eac        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10002eac                exit
+ .text.panic    0x10002eb0       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10002eb0                panic
  .text.hard_assertion_failure
-                0x10002ad4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10002ad4                hard_assertion_failure
+                0x10002ee0        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10002ee0                hard_assertion_failure
  .text.clocks_init
-                0x10002ae0      0x2bc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10002ae0                clocks_init
+                0x10002eec      0x2bc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10002eec                clocks_init
  .text.clock_get_hz
-                0x10002d9c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10002d9c                clock_get_hz
+                0x100031a8        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x100031a8                clock_get_hz
  .text.pll_init
-                0x10002da8       0xb0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x10002da8                pll_init
+                0x100031b4       0xb0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x100031b4                pll_init
  .text.watchdog_start_tick
-                0x10002e58       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x10002e58                watchdog_start_tick
+                0x10003264       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x10003264                watchdog_start_tick
  .text.xosc_init
-                0x10002e68       0x28 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x10002e68                xosc_init
+                0x10003274       0x28 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x10003274                xosc_init
  .text._out_char
-                0x10002e90       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000329c       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.weak_raw_vprintf
-                0x10002ea0       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10002ea0                weak_raw_vprintf
- .text          0x10002ed0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x100032ac       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100032ac                weak_raw_vprintf
+ .text          0x100032dc       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x10002ee0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10002ee0                rom_func_lookup
+                0x100032ec       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x100032ec                rom_func_lookup
  .text.rom_data_lookup
-                0x10002ef0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10002ef0                rom_data_lookup
+                0x100032fc       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x100032fc                rom_data_lookup
  .text.rom_funcs_lookup
-                0x10002f00       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10002f00                rom_funcs_lookup
+                0x1000330c       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x1000330c                rom_funcs_lookup
  .text.__wrap___aeabi_uidiv
-                0x10002f44       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10002f44                __wrap___aeabi_uidiv
-                0x10002f44                __wrap___aeabi_uidivmod
-                0x10002f44                div_u32u32
-                0x10002f44                divmod_u32u32
-                0x10002f4c                divmod_u32u32_unsafe
-                0x10002f74                divmod_u32u32_savestate
+                0x10003350       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10003350                __wrap___aeabi_uidiv
+                0x10003350                __wrap___aeabi_uidivmod
+                0x10003350                div_u32u32
+                0x10003350                divmod_u32u32
+                0x10003358                divmod_u32u32_unsafe
+                0x10003380                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x10002f90      0x434 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10002f90                div_s64s64
-                0x10002f90                divmod_s64s64
-                0x10002f90                __wrap___aeabi_ldivmod
-                0x10002fc8                divmod_u64u64
-                0x10002fc8                div_u64u64
-                0x10002fc8                __wrap___aeabi_uldivmod
-                0x10002fd8                divmod_u64u64_savestate
-                0x10003000                divmod_s64s64_unsafe
-                0x10003088                divmod_u64u64_unsafe
+                0x1000339c      0x434 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x1000339c                div_s64s64
+                0x1000339c                divmod_s64s64
+                0x1000339c                __wrap___aeabi_ldivmod
+                0x100033d4                divmod_u64u64
+                0x100033d4                div_u64u64
+                0x100033d4                __wrap___aeabi_uldivmod
+                0x100033e4                divmod_u64u64_savestate
+                0x1000340c                divmod_s64s64_unsafe
+                0x10003494                divmod_u64u64_unsafe
  .text.__wrap___aeabi_i2d
-                0x100033c4       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x100033c4                __wrap___aeabi_ui2d
-                0x100033cc                __wrap___aeabi_i2d
+                0x100037d0       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x100037d0                __wrap___aeabi_ui2d
+                0x100037d8                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x100033fc       0x48 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x100033fc                double2int_z
-                0x100033fc                __wrap___aeabi_d2iz
+                0x10003808       0x48 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003808                double2int_z
+                0x10003808                __wrap___aeabi_d2iz
  .text.__wrap_srqt
-                0x10003444       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10003444                __wrap_sqrt
+                0x10003850       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10003850                __wrap_sqrt
  .text.__aeabi_double_init
-                0x1000345c       0x94 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x1000345c                __aeabi_double_init
+                0x10003868       0x94 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x10003868                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x100034f0       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x100034f0                double_table_shim_on_use_helper
+                0x100038fc       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100038fc                double_table_shim_on_use_helper
  .text.dsqrt_shim
-                0x1000351c      0x1a8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10003538                dsqrt_shim
+                0x10003928      0x1a8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10003944                dsqrt_shim
  .text.__aeabi_lmul
-                0x100036c4       0x32 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x100036c4                __wrap___aeabi_lmul
- *fill*         0x100036f6        0x2 
+                0x10003ad0       0x32 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x10003ad0                __wrap___aeabi_lmul
+ *fill*         0x10003b02        0x2 
  .text.__aeabi_float_init
-                0x100036f8       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x100036f8                __aeabi_float_init
+                0x10003b04       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x10003b04                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x1000375c       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x1000375c                float_table_shim_on_use_helper
- .text          0x10003788       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x10003788                __aeabi_mem_init
- .text.memset   0x10003798        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x10003798                __wrap_memset
- .text.memcpy   0x100037a4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100037a4                __wrap_memcpy
-                0x100037a4                __wrap___aeabi_memcpy
+                0x10003b68       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x10003b68                float_table_shim_on_use_helper
+ .text          0x10003b94       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10003b94                __aeabi_mem_init
+ .text.memset   0x10003ba4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10003ba4                __wrap_memset
+ .text.memcpy   0x10003bb0        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10003bb0                __wrap_memcpy
+                0x10003bb0                __wrap___aeabi_memcpy
  .text.stdio_out_chars_no_crlf
-                0x100037b0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003bbc       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_out_chars_crlf
-                0x100037c0       0xb4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003bcc       0xb4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_put_string.isra.0
-                0x10003874       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003c80       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x10003970       0xa0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10003970                __wrap_putchar
+                0x10003d7c       0xa0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003d7c                __wrap_putchar
  .text.__wrap_puts
-                0x10003a10       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10003a10                __wrap_puts
+                0x10003e1c       0x3c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003e1c                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x10003a4c       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10003a4c                stdio_set_driver_enabled
+                0x10003e58       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10003e58                stdio_set_driver_enabled
  .text.stdio_uart_out_chars
-                0x10003a7c       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x10003e88       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_in_chars
-                0x10003ac8       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x10003ac8                stdio_uart_in_chars
+                0x10003ed4       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x10003ed4                stdio_uart_in_chars
  .text.stdio_uart_init_full
-                0x10003b00       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x10003b00                stdio_uart_init_full
+                0x10003f0c       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x10003f0c                stdio_uart_init_full
  .text.core1_trampoline
-                0x10003b38        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x10003f44        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .text.core1_wrapper
-                0x10003b3c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x10003b3c                core1_wrapper
+                0x10003f48        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x10003f48                core1_wrapper
  .text.multicore_launch_core1_raw
-                0x10003b48       0x84 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x10003b48                multicore_launch_core1_raw
+                0x10003f54       0x84 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x10003f54                multicore_launch_core1_raw
  .text.multicore_launch_core1
-                0x10003bcc       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x10003bcc                multicore_launch_core1
+                0x10003fd8       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x10003fd8                multicore_launch_core1
  .text.i2c_set_baudrate
-                0x10003c18       0xc4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10003c18                i2c_set_baudrate
+                0x10004024       0xc4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x10004024                i2c_set_baudrate
  .text.i2c_init
-                0x10003cdc       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10003cdc                i2c_init
+                0x100040e8       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x100040e8                i2c_init
  .text.i2c_write_blocking
-                0x10003d30       0xd0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10003d30                i2c_write_blocking
+                0x1000413c       0xd0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000413c                i2c_write_blocking
  .text.i2c_read_blocking
-                0x10003e00       0xac CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x10003e00                i2c_read_blocking
+                0x1000420c       0xac CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000420c                i2c_read_blocking
  .text.dcd_rp2040_irq
-                0x10003eac      0x21c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100042b8      0x21c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .text.dcd_int_enable
-                0x100040c8        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100040c8                dcd_int_enable
+                0x100044d4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100044d4                dcd_int_enable
  .text.dcd_set_address
-                0x100040d4       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100040d4                dcd_set_address
+                0x100044e0       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100044e0                dcd_set_address
  .text.dcd_remote_wakeup
-                0x100040e8       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100040e8                dcd_remote_wakeup
+                0x100044f4       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x100044f4                dcd_remote_wakeup
  .text.dcd_connect
-                0x100040f8       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x100040f8                dcd_connect
+                0x10004504       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004504                dcd_connect
  .text.dcd_init
-                0x10004108      0x144 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004108                dcd_init
+                0x10004514      0x144 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004514                dcd_init
  .text.dcd_edpt0_status_complete
-                0x1000424c       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x1000424c                dcd_edpt0_status_complete
+                0x10004658       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004658                dcd_edpt0_status_complete
  .text.dcd_edpt_open
-                0x10004268       0xf0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004268                dcd_edpt_open
+                0x10004674       0xf0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004674                dcd_edpt_open
  .text.dcd_edpt_close_all
-                0x10004358       0xbc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004358                dcd_edpt_close_all
+                0x10004764       0xbc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004764                dcd_edpt_close_all
  .text.dcd_edpt_xfer
-                0x10004414       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004414                dcd_edpt_xfer
+                0x10004820       0x24 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004820                dcd_edpt_xfer
  .text.dcd_edpt_stall
-                0x10004438       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004438                dcd_edpt_stall
+                0x10004844       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004844                dcd_edpt_stall
  .text.dcd_edpt_clear_stall
-                0x10004470       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004470                dcd_edpt_clear_stall
+                0x1000487c       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000487c                dcd_edpt_clear_stall
  .text._hw_endpoint_buffer_control_update32.part.0.isra.0
-                0x100044a0       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x100048ac       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .text.rp2040_usb_init
-                0x100044bc       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x100044bc                rp2040_usb_init
+                0x100048c8       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x100048c8                rp2040_usb_init
  .text.hw_endpoint_reset_transfer
-                0x10004508        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004508                hw_endpoint_reset_transfer
+                0x10004914        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004914                hw_endpoint_reset_transfer
  .text._hw_endpoint_buffer_control_update32
-                0x10004514       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004514                _hw_endpoint_buffer_control_update32
+                0x10004920       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004920                _hw_endpoint_buffer_control_update32
  .text.hw_endpoint_xfer_start
-                0x10004558      0x138 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004558                hw_endpoint_xfer_start
+                0x10004964      0x138 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004964                hw_endpoint_xfer_start
  .text.hw_endpoint_xfer_continue
-                0x10004690      0x1e4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004690                hw_endpoint_xfer_continue
+                0x10004a9c      0x1e4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004a9c                hw_endpoint_xfer_continue
  .text.tud_mounted
-                0x10004874       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004874                tud_mounted
+                0x10004c80       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004c80                tud_mounted
  .text.tud_suspended
-                0x10004884       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004884                tud_suspended
+                0x10004c90       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004c90                tud_suspended
  .text.tud_remote_wakeup
-                0x10004894       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004894                tud_remote_wakeup
+                0x10004ca0       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004ca0                tud_remote_wakeup
  .text.tud_inited
-                0x100048c0        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100048c0                tud_inited
+                0x10004ccc        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004ccc                tud_inited
  .text.tud_init
-                0x100048cc       0xd8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100048cc                tud_init
+                0x10004cd8       0xd8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004cd8                tud_init
  .text.tud_task
-                0x100049a4      0x8b8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100049a4                tud_task
+                0x10004db0      0x8b8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004db0                tud_task
  .text.dcd_event_bus_signal
-                0x1000525c      0x120 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000525c                dcd_event_bus_signal
+                0x10005668      0x120 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005668                dcd_event_bus_signal
  .text.dcd_event_bus_reset
-                0x1000537c       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000537c                dcd_event_bus_reset
+                0x10005788       0x54 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005788                dcd_event_bus_reset
  .text.dcd_event_setup_received
-                0x100053d0       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100053d0                dcd_event_setup_received
+                0x100057dc       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100057dc                dcd_event_setup_received
  .text.dcd_event_xfer_complete
-                0x10005420       0x68 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005420                dcd_event_xfer_complete
+                0x1000582c       0x68 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000582c                dcd_event_xfer_complete
  .text.usbd_open_edpt_pair
-                0x10005488       0x80 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005488                usbd_open_edpt_pair
+                0x10005894       0x80 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005894                usbd_open_edpt_pair
  .text.usbd_edpt_claim
-                0x10005508       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005508                usbd_edpt_claim
+                0x10005914       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005914                usbd_edpt_claim
  .text.usbd_edpt_xfer
-                0x1000556c       0x48 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000556c                usbd_edpt_xfer
+                0x10005978       0x48 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005978                usbd_edpt_xfer
  .text.usbd_edpt_busy
-                0x100055b4       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100055b4                usbd_edpt_busy
+                0x100059c0       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100059c0                usbd_edpt_busy
  .text.tud_control_status
-                0x100055d0       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x100055d0                tud_control_status
+                0x100059dc       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x100059dc                tud_control_status
  .text.tud_control_xfer
-                0x10005600       0xbc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005600                tud_control_xfer
+                0x10005a0c       0xbc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005a0c                tud_control_xfer
  .text.usbd_control_reset
-                0x100056bc       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x100056bc                usbd_control_reset
+                0x10005ac8       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005ac8                usbd_control_reset
  .text.usbd_control_set_complete_callback
-                0x100056d0        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x100056d0                usbd_control_set_complete_callback
+                0x10005adc        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005adc                usbd_control_set_complete_callback
  .text.usbd_control_set_request
-                0x100056dc       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x100056dc                usbd_control_set_request
+                0x10005ae8       0x1c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005ae8                usbd_control_set_request
  .text.usbd_control_xfer_cb
-                0x100056f8       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x100056f8                usbd_control_xfer_cb
+                0x10005b04       0xfc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005b04                usbd_control_xfer_cb
  .text.tud_hid_n_ready
-                0x100057f4       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x100057f4                tud_hid_n_ready
+                0x10005c00       0x38 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005c00                tud_hid_n_ready
  .text.tud_hid_n_keyboard_report
-                0x1000582c       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x1000582c                tud_hid_n_keyboard_report
+                0x10005c38       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005c38                tud_hid_n_keyboard_report
  .text.hidd_init
-                0x100058b8       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x100058b8                hidd_init
+                0x10005cc4       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005cc4                hidd_init
  .text.hidd_reset
-                0x100058cc       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x100058cc                hidd_reset
+                0x10005cd8       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005cd8                hidd_reset
  .text.hidd_open
-                0x100058e0       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x100058e0                hidd_open
+                0x10005cec       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005cec                hidd_open
  .text.hidd_control_xfer_cb
-                0x1000596c      0x1a4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x1000596c                hidd_control_xfer_cb
+                0x10005d78      0x1a4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005d78                hidd_control_xfer_cb
  .text.hidd_xfer_cb
-                0x10005b10       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                0x10005b10                hidd_xfer_cb
+                0x10005f1c       0x64 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10005f1c                hidd_xfer_cb
  .text.tusb_init
-                0x10005b74        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10005b74                tusb_init
+                0x10005f80        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10005f80                tusb_init
  .text.tusb_inited
-                0x10005b80        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10005b80                tusb_inited
+                0x10005f8c        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10005f8c                tusb_inited
  .text.tu_edpt_validate
-                0x10005b88       0x78 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10005b88                tu_edpt_validate
+                0x10005f94       0x78 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10005f94                tu_edpt_validate
  .text.tu_edpt_bind_driver
-                0x10005c00       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10005c00                tu_edpt_bind_driver
+                0x1000600c       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000600c                tu_edpt_bind_driver
  .text.tu_fifo_read
-                0x10005c2c       0x9c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10005c2c                tu_fifo_read
+                0x10006038       0x9c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006038                tu_fifo_read
  .text.tu_fifo_write
-                0x10005cc8       0x7c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10005cc8                tu_fifo_write
+                0x100060d4       0x7c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x100060d4                tu_fifo_write
  .text.tu_fifo_clear
-                0x10005d44       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10005d44                tu_fifo_clear
+                0x10006150       0x4c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006150                tu_fifo_clear
  .text.board_init
-                0x10005d90       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
-                0x10005d90                board_init
+                0x1000619c       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x1000619c                board_init
  .text.board_button_read
-                0x10005dc0       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
-                0x10005dc0                board_button_read
- .text.strlen   0x10005dd0       0x5c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
-                0x10005dd0                strlen
+                0x100061cc       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x100061cc                board_button_read
+ .text.strlen   0x100061dc       0x5c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
+                0x100061dc                strlen
  *(.fini)
- .fini          0x10005e2c        0x4 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crti.o
-                0x10005e2c                _fini
- .fini.__stub   0x10005e30       0x70 linker stubs
+ .fini          0x10006238        0x4 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crti.o
+                0x10006238                _fini
+ *fill*         0x1000623c        0x4 
+ .fini.__stub   0x10006240       0x70 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2127,166 +2139,171 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x10005ea0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x10005ea0                . = ALIGN (0x4)
+ .eh_frame      0x100062b0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x100062b0                . = ALIGN (0x4)
 
-.glue_7         0x10005ea0        0x0
- .glue_7        0x10005ea0        0x0 linker stubs
+.glue_7         0x100062b0        0x0
+ .glue_7        0x100062b0        0x0 linker stubs
 
-.glue_7t        0x10005ea0        0x0
- .glue_7t       0x10005ea0        0x0 linker stubs
+.glue_7t        0x100062b0        0x0
+ .glue_7t       0x100062b0        0x0 linker stubs
 
-.vfp11_veneer   0x10005ea0        0x0
- .vfp11_veneer  0x10005ea0        0x0 linker stubs
+.vfp11_veneer   0x100062b0        0x0
+ .vfp11_veneer  0x100062b0        0x0 linker stubs
 
-.v4_bx          0x10005ea0        0x0
- .v4_bx         0x10005ea0        0x0 linker stubs
+.v4_bx          0x100062b0        0x0
+ .v4_bx         0x100062b0        0x0 linker stubs
 
-.iplt           0x10005ea0        0x0
- .iplt          0x10005ea0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x100062b0        0x0
+ .iplt          0x100062b0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10005ea0      0x9b8
+.rodata         0x100062b0      0xcc8
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
+ .rodata._Z10other_corev.str1.4
+                0x100062b0        0xd CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
+ *fill*         0x100062bd        0x3 
  .rodata._ZL24default_key_matrix_table
-                0x10005ea0      0x140 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
+                0x100062c0      0x140 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_keyboard.cpp.obj
  .rodata._ZZN12CSANGRIA_I2CC4EvE7__bi_45
-                0x10005fe0        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10006400        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
  .rodata._ZL10icon_empty
-                0x10005fe8       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006408       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL10icon_shift
-                0x10006008       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006428       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL12icon_dc_plug
-                0x10006028       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
- .rodata._ZL13sangria_logo1
-                0x10006048      0x200 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
- .rodata._ZL13sangria_logo2
-                0x10006248      0x200 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
- .rodata._ZL14icon_usb_power
                 0x10006448       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL13sangria_logo1
+                0x10006468      0x200 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL13sangria_logo2
+                0x10006668      0x200 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL14icon_usb_power
+                0x10006868       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL15icon_ac_adapter
-                0x10006468       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006888       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL15icon_no_battery
-                0x10006488       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x100068a8       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL4font
+                0x100068c8      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL6p_icon
-                0x100064a8       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006bc8       0x30 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL8icon_alt
-                0x100064d8       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006bf8       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL8icon_sym
-                0x100064f8       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006c18       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_ctrl
-                0x10006518       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006c38       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_full
-                0x10006538       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006c58       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_half
-                0x10006558       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006c78       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_high
-                0x10006578       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10006c98       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata.str1.4
-                0x10006598       0x1f CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
- *fill*         0x100065b7        0x1 
+                0x10006cb8       0x1f CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+ *fill*         0x10006cd7        0x1 
  .rodata.__compound_literal.0
-                0x100065b8        0x2 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
- *fill*         0x100065ba        0x2 
+                0x10006cd8        0x2 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+ *fill*         0x10006cda        0x2 
  .rodata.desc_configuration
-                0x100065bc       0x22 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x100065bc                desc_configuration
- *fill*         0x100065de        0x2 
+                0x10006cdc       0x22 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10006cdc                desc_configuration
+ *fill*         0x10006cfe        0x2 
  .rodata.desc_device
-                0x100065e0       0x12 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x100065e0                desc_device
- *fill*         0x100065f2        0x2 
+                0x10006d00       0x12 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10006d00                desc_device
+ *fill*         0x10006d12        0x2 
  .rodata.desc_hid_report
-                0x100065f4       0x43 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x100065f4                desc_hid_report
- *fill*         0x10006637        0x1 
+                0x10006d14       0x43 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10006d14                desc_hid_report
+ *fill*         0x10006d57        0x1 
  .rodata.spin_lock_claim_unused.str1.4
-                0x10006638       0x1b CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x10006653        0x1 
+                0x10006d58       0x1b CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x10006d73        0x1 
  .rodata.hardware_alarm_claim.str1.4
-                0x10006654       0x22 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x10006676        0x2 
+                0x10006d74       0x22 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x10006d96        0x2 
  .rodata.panic.str1.4
-                0x10006678       0x12 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x1000668a        0x2 
+                0x10006d98       0x12 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x10006daa        0x2 
  .rodata.hard_assertion_failure.str1.4
-                0x1000668c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10006dac        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata.str1.4
-                0x10006698       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006db8       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x100066dc        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006dfc        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x100066e8        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006e08        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x100066f4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006e14        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x10006700        0x2 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x10006702        0x2 
+                0x10006e20        0x2 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x10006e22        0x2 
  .rodata.dcd_rp2040_irq.str1.4
-                0x10006704       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10006e24       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata._hw_endpoint_buffer_control_update32.part.0.isra.0.str1.4
-                0x10006718       0x1f CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10006737        0x1 
+                0x10006e38       0x1f CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10006e57        0x1 
  .rodata.hw_endpoint_xfer_continue.str1.4
-                0x10006738       0x29 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10006761        0x3 
+                0x10006e58       0x29 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10006e81        0x3 
  .rodata.str1.4
-                0x10006764        0x7 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1000676b        0x1 
+                0x10006e84        0x7 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10006e8b        0x1 
  .rodata.tud_task
-                0x1000676c       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006e8c       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x100067f8       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10006f18       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.hidd_control_xfer_cb
-                0x10006810       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10006f30       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
  .rodata.str1.4
-                0x10006840        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10006f60        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .rodata.__bi_121.0
-                0x10006844        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10006f64        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .rodata.__bi_131.1
-                0x10006850        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
-                0x10006858                . = ALIGN (0x4)
+                0x10006f70        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10006f78                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10006858                . = ALIGN (0x4)
+                0x10006f78                . = ALIGN (0x4)
 
-.rel.dyn        0x10006858        0x0
- .rel.iplt      0x10006858        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x10006f78        0x0
+ .rel.iplt      0x10006f78        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10006858                __exidx_start = .
+                0x10006f78                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10006858                __exidx_end = .
-                0x10006858                . = ALIGN (0x4)
-                0x10006858                __binary_info_start = .
+                0x10006f78                __exidx_end = .
+                0x10006f78                . = ALIGN (0x4)
+                0x10006f78                __binary_info_start = .
 
-.binary_info    0x10006858       0x28
+.binary_info    0x10006f78       0x28
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr45
-                0x10006858        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10006f78        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
  .binary_info.keep.__bi_ptr22
-                0x1000685c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f7c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x10006860        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f80        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x10006864        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f84        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x10006868        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f88        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x1000686c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f8c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x10006870        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f90        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr81
-                0x10006874        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10006f94        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr121
-                0x10006878        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10006f98        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .binary_info.keep.__bi_ptr131
-                0x1000687c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10006f9c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  *(.binary_info.*)
-                0x10006880                __binary_info_end = .
-                0x10006880                . = ALIGN (0x4)
-                0x10006880                __etext = .
+                0x10006fa0                __binary_info_end = .
+                0x10006fa0                . = ALIGN (0x4)
+                0x10006fa0                __etext = .
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -2295,7 +2312,7 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x20000000       0xc0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x20000000                ram_vector_table
 
-.data           0x200000c0      0x2fc load address 0x10006880
+.data           0x200000c0      0x2fc load address 0x10006fa0
                 0x200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2395,27 +2412,27 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x200003bc                . = ALIGN (0x4)
                 0x200003bc                __data_end__ = .
 
-.igot.plt       0x200003bc        0x0 load address 0x10006b7c
+.igot.plt       0x200003bc        0x0 load address 0x1000729c
  .igot.plt      0x200003bc        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x200003bc        0x0 load address 0x10006b7c
+                0x200003bc        0x0 load address 0x1000729c
                 0x200003bc                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x20040000        0x0 load address 0x10006b7c
+.scratch_x      0x20040000        0x0 load address 0x1000729c
                 0x20040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                . = ALIGN (0x4)
                 0x20040000                __scratch_x_end__ = .
-                0x10006b7c                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x1000729c                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10006b7c
+.scratch_y      0x20041000        0x0 load address 0x1000729c
                 0x20041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                . = ALIGN (0x4)
                 0x20041000                __scratch_y_end__ = .
-                0x10006b7c                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x1000729c                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .bss            0x200003c0      0x9f0
                 0x200003c0                . = ALIGN (0x4)
@@ -2495,20 +2512,22 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x20000da0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .bss.uart_instance
                 0x20000da4        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .bss._ZZL15send_hid_reporthR17CSANGRIA_KEYBOARDE16has_keyboard_key
+ .bss._ZL7mounted
                 0x20000da8        0x1 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
+ .bss._ZZL15send_hid_reporthR17CSANGRIA_KEYBOARDE16has_keyboard_key
+                0x20000da9        0x1 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_usb_keyboard.cpp.obj
  .bss._app_driver_count
-                0x20000da9        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .bss._usbd_initialized
                 0x20000daa        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .bss.claimed   0x20000dab        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .bss._usbd_initialized
+                0x20000dab        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .bss.claimed   0x20000dac        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.irq_hander_chain_free_slot_head
-                0x20000dac        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x20000dad        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .bss.timer_callbacks_pending
-                0x20000dad        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x20000dae        0x1 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  *(COMMON)
                 0x20000db0                . = ALIGN (0x4)
- *fill*         0x20000dae        0x2 
+ *fill*         0x20000daf        0x1 
                 0x20000db0                __bss_end__ = .
 
 .heap           0x20000db0      0x800
@@ -2526,8 +2545,8 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  *(.stack*)
  .stack         0x20041000      0x800 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x10006b7c        0x0
-                0x10006b7c                __flash_binary_end = .
+.flash_end      0x1000729c        0x0
+                0x1000729c                __flash_binary_end = .
                 0x20040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -2612,7 +2631,7 @@ LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/
 LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 LOAD CMakeFiles/r1_rp2040_fw.dir/936531764aea65db7280ebb444b961b1/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
-LOAD C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
+LOAD C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -2744,7 +2763,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000908       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .ARM.attributes
-                0x00000934       0x22 C:\Users\hra\AppData\Local\Temp\ccQz0qCa.o
+                0x00000934       0x22 C:\Users\hra\AppData\Local\Temp\ccoWGr4k.o
  .ARM.attributes
                 0x00000956       0x1e c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes

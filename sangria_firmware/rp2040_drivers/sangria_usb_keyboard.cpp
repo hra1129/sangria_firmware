@@ -30,6 +30,13 @@
 
 #define C_FUNC extern "C"
 
+static volatile bool mounted = false;
+
+// --------------------------------------------------------------------
+bool tud_check_host_connected( void ) {
+	return mounted;
+}
+
 // --------------------------------------------------------------------
 //	デバイスがマウントされたときに呼び出される
 //	Invoked when device is mounted.
@@ -62,8 +69,10 @@ C_FUNC void tud_resume_cb( void ) {
 static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
 	// skip if hid is not ready yet
 	if(  !tud_hid_ready() ) {
+		mounted = false;
 		return;
 	}
+	mounted = true;
 
 	// use to avoid send multiple consecutive zero report for keyboard
 	static bool has_keyboard_key = false;
