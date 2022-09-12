@@ -190,8 +190,8 @@ static void suspend_mode( void ) {
 
 	p_keyboard->backlight( 0 );
 	while( 1 ) {
-		//	Wait for the back button on the jog dial to be pressed.
-		if( p_jogdial->get_back_button() ) {
+		//	Wait for the BOOT button to be pressed.
+		if( board_button_read() ) {
 			break;
 		}
 		sleep_ms( 100 );

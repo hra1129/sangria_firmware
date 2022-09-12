@@ -190,8 +190,8 @@ static void suspend_mode( void ) {
 
 	p_keyboard->backlight( 0 );
 	while( 1 ) {
-		//	Wait for the back button on the jog dial to be pressed.
-		if( p_jogdial->get_back_button() ) {
+		//	Wait for the BOOT button to be pressed.
+		if( board_button_read() ) {
 			break;
 		}
 		sleep_ms( 100 );
@@ -201,17 +201,17 @@ static void suspend_mode( void ) {
 // --------------------------------------------------------------------
 static void wakeup_main_board( void ) {
 
+	p_keyboard->backlight( 1 );
 	p_oled->power_on();
 	p_battery->power_on();
-	p_keyboard->backlight( 1 );
 }
 
 // --------------------------------------------------------------------
 static void shutdown_main_board( void ) {
 
-	p_keyboard->backlight( 0 );
 	p_battery->power_off();
 	p_oled->power_off();
+	p_keyboard->backlight( 0 );
 }
 
 // --------------------------------------------------------------------
