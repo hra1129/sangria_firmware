@@ -31,6 +31,9 @@
 #define C_FUNC extern "C"
 
 static volatile bool mounted = false;
+static int unmount_counter = 0;
+
+#define UNMOUNT_DETECT	20
 
 // --------------------------------------------------------------------
 bool tud_check_host_connected( void ) {
@@ -41,12 +44,16 @@ bool tud_check_host_connected( void ) {
 //	デバイスがマウントされたときに呼び出される
 //	Invoked when device is mounted.
 C_FUNC void tud_mount_cb( void ) {
+	mounted = true;
 }
 
 // --------------------------------------------------------------------
 //	デバイスがアンマウントされたときに呼び出される
 //	Invoked when device is unmounted
 C_FUNC void tud_umount_cb( void ) {
+	//	なぜか、この関数は呼ばれないようだ
+	//	For some reason, this function doesn't seem to be called.
+	mounted = false;
 }
 
 // --------------------------------------------------------------------
@@ -69,10 +76,16 @@ C_FUNC void tud_resume_cb( void ) {
 static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
 	// skip if hid is not ready yet
 	if(  !tud_hid_ready() ) {
-		mounted = false;
+		unmount_counter++;
+		if( unmount_counter > UNMOUNT_DETECT ) {
+			//	しばらくの間、hid_ready にならなければ、切断されたと判断する
+			//	If it does not become hid_ready for a while, it is assumed to be disconnected
+			unmount_counter = UNMOUNT_DETECT;
+			mounted = false;
+		}
 		return;
 	}
-	mounted = true;
+	unmount_counter = 0;
 
 	// use to avoid send multiple consecutive zero report for keyboard
 	static bool has_keyboard_key = false;

@@ -170,7 +170,7 @@ public:
 				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 32, 0 );
 			}
 			if( p_keyboard->get_ctrl_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 48, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 48, 0 );
 			}
 			//	Battery status
 			display_battery_status( this->p_oled, this->p_battery );
@@ -191,7 +191,7 @@ public:
 
 	CSHUTDOWN_ANIME() {
 		state = 0;
-		p_string = "SHUTDOWN....";
+		p_string = "RasPi0 HAS\nSHUTDOWN...";
 		index = 0;
 		count = 0;
 	}
