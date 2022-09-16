@@ -52,9 +52,10 @@ static CSANGRIA_BATTERY *p_battery;
 
 // --------------------------------------------------------------------
 static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
+	const uint8_t *p_icon;
+
 	if( p_battery->check_battery_management_device() ) {
 		int status = p_battery->get_system_status();
-		const uint8_t *p_icon;
 		switch( (status >> 6) & 3 ) {
 		case 0:		//	Unkown
 			p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
@@ -84,6 +85,14 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 			p_icon = get_icon( SANGRIA_ICON_FULL );
 			break;
 		}
+		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
+	}
+	else {
+		//	Unkown
+		p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
+		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
+		//	Not charging
+		p_icon = get_icon( SANGRIA_ICON_EMPTY );
 		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
 	}
 }
@@ -291,9 +300,6 @@ static int suspend_mode( void ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		p_keyboard->backlight( 1 );
-		sleep_ms( 100 );
-		p_keyboard->backlight( 0 );
 		sleep_ms( 100 );
 	}
 }
@@ -380,18 +386,6 @@ static void shutdown_mode( void ) {
 
 // --------------------------------------------------------------------
 void other_core( void ) {
-	CSANGRIA_I2C i2c;
-	CSANGRIA_OLED oled;
-	CSANGRIA_BATTERY battery;
-
-	p_i2c = &i2c;
-	p_oled = &oled;
-	p_battery = &battery;
-
-	p_oled->set_i2c( &i2c );
-	p_battery->set_i2c( &i2c );
-
-	p_battery->power_on();
 
 	while( 1 ) {
 		if( suspend_mode() == 0 ) {
@@ -406,15 +400,28 @@ void other_core( void ) {
 
 // --------------------------------------------------------------------
 int main( void ) {
+
 	board_init();
-	tusb_init();
 
 	CSANGRIA_JOGDIAL jogdial;
 	CSANGRIA_KEYBOARD keyboard;
+	CSANGRIA_I2C i2c_all( SANGRIA_I2C, SANGRIA_I2C_CLOCK, SANGRIA_I2C_SCL, SANGRIA_I2C_SDA );
+	CSANGRIA_OLED oled;
+	CSANGRIA_BATTERY battery;
+
 	p_jogdial = &jogdial;
 	p_keyboard = &keyboard;
-	keyboard.set_jogdial( &jogdial );
+	p_i2c = &i2c_all;
+	p_oled = &oled;
+	p_battery = &battery;
 
+	p_oled->set_i2c( p_i2c );
+	p_battery->set_i2c( p_i2c );
+	keyboard.set_jogdial( p_jogdial );
+
+	p_battery->power_on();
+
+	tusb_init();
 	multicore_launch_core1( other_core );
 	usb_core( keyboard );
 	return 0;

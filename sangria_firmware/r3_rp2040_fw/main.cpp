@@ -46,15 +46,17 @@
 
 static CSANGRIA_KEYBOARD *p_keyboard;
 static CSANGRIA_JOGDIAL *p_jogdial;
-static CSANGRIA_I2C *p_i2c;
+static CSANGRIA_I2C *p_i2c_oled;
+static CSANGRIA_I2C *p_i2c_bq;
 static CSANGRIA_OLED *p_oled;
 static CSANGRIA_BATTERY *p_battery;
 
 // --------------------------------------------------------------------
 static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
+	const uint8_t *p_icon;
+
 	if( p_battery->check_battery_management_device() ) {
 		int status = p_battery->get_system_status();
-		const uint8_t *p_icon;
 		switch( (status >> 6) & 3 ) {
 		case 0:		//	Unkown
 			p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
@@ -84,6 +86,14 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 			p_icon = get_icon( SANGRIA_ICON_FULL );
 			break;
 		}
+		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
+	}
+	else {
+		//	Unkown
+		p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
+		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
+		//	Not charging
+		p_icon = get_icon( SANGRIA_ICON_EMPTY );
 		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
 	}
 }
@@ -173,7 +183,7 @@ public:
 				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 48, 0 );
 			}
 			//	Battery status
-			display_battery_status( this->p_oled, this->p_battery );
+			//display_battery_status( this->p_oled, this->p_battery );
 		}
 		p_oled->update();
 	}
@@ -319,7 +329,7 @@ static int battery_status_mode( void ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		display_battery_status( p_oled, p_battery );
+		//display_battery_status( p_oled, p_battery );
 		sleep_ms( 100 );
 		time_out--;
 	}
@@ -380,25 +390,13 @@ static void shutdown_mode( void ) {
 
 // --------------------------------------------------------------------
 void other_core( void ) {
-	CSANGRIA_I2C i2c;
-	CSANGRIA_OLED oled;
-	CSANGRIA_BATTERY battery;
-
-	p_i2c = &i2c;
-	p_oled = &oled;
-	p_battery = &battery;
-
-	p_oled->set_i2c( &i2c );
-	p_battery->set_i2c( &i2c );
-
-	p_battery->power_on();
 
 	while( 1 ) {
-		if( suspend_mode() == 0 ) {
-			if( battery_status_mode() == 0 ) {
-				continue;
-			}
-		}
+//		if( suspend_mode() == 0 ) {
+//			if( battery_status_mode() == 0 ) {
+//				continue;
+//			}
+//		}
 		run_mode();
 		shutdown_mode();
 	}
@@ -406,15 +404,30 @@ void other_core( void ) {
 
 // --------------------------------------------------------------------
 int main( void ) {
+
 	board_init();
-	tusb_init();
 
 	CSANGRIA_JOGDIAL jogdial;
 	CSANGRIA_KEYBOARD keyboard;
+	CSANGRIA_I2C i2c_oled( SANGRIA_OLED_I2C, SANGRIA_I2C1_CLOCK, SANGRIA_I2C1_SCL, SANGRIA_I2C1_SDA );
+	CSANGRIA_I2C i2c_bq( SANGRIA_BQ_I2C, SANGRIA_I2C0_CLOCK, SANGRIA_I2C0_SCL, SANGRIA_I2C0_SDA );
+	CSANGRIA_OLED oled;
+	CSANGRIA_BATTERY battery;
+
 	p_jogdial = &jogdial;
 	p_keyboard = &keyboard;
-	keyboard.set_jogdial( &jogdial );
+	p_i2c_oled = &i2c_oled;
+	p_i2c_bq = &i2c_bq;
+	p_oled = &oled;
+	p_battery = &battery;
 
+	p_oled->set_i2c( p_i2c_oled );
+	p_battery->set_i2c( p_i2c_bq );
+	keyboard.set_jogdial( p_jogdial );
+
+	//p_battery->power_on();
+
+	tusb_init();
 	multicore_launch_core1( other_core );
 	usb_core( keyboard );
 	return 0;

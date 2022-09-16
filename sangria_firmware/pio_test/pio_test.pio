@@ -1,0 +1,29 @@
+;
+;	PIO test
+;
+
+.program pio_test
+.wrap_target
+	set pins, 1
+	set pins, 0
+.wrap
+
+% c-sdk {
+static inline void pio_test_program_init( PIO pio, uint sm, uint offset, uint pin ) {
+	pio_sm_config c = pio_test_program_get_default_config( offset );
+
+	// ステートマシンのOUTピングループを1つのピン、つまりこの関数の `pin` 
+	// パラメータにマップします。
+	sm_config_set_out_pins( &c, pin, 1 );
+	sm_config_set_set_pins( &c, pin, 1 );
+	// このピンのGPIO機能を設定する（パッドにPIOを接続する）。
+	pio_gpio_init( pio, pin );
+	// PIOでピンの方向を出力に設定する。
+	pio_sm_set_consecutive_pindirs( pio, sm, pin, 1, true);
+
+	// コンフィギュレーションをロードし、プログラムのスタート地点にジャンプします。
+	pio_sm_init( pio, sm, offset, &c );
+	// ステートマシンの実行を設定する。
+	pio_sm_set_enabled( pio, sm, true );
+}
+%}

@@ -35,24 +35,25 @@
 #include "sangria_i2c.h"
 
 // --------------------------------------------------------------------
-CSANGRIA_I2C::CSANGRIA_I2C() {
+CSANGRIA_I2C::CSANGRIA_I2C( i2c_inst_t *i2c, uint32_t rate, uint32_t scl, uint32_t sda ) {
 
-	i2c_init( SANGRIA_I2C, SANGRIA_I2C_CLOCK );
-	gpio_set_function( SANGRIA_I2C_SDA, GPIO_FUNC_I2C );
-	gpio_set_function( SANGRIA_I2C_SCL, GPIO_FUNC_I2C );
-	gpio_pull_up( SANGRIA_I2C_SDA );
-	gpio_pull_up( SANGRIA_I2C_SCL );
-	bi_decl( bi_2pins_with_func( SANGRIA_I2C_SDA, SANGRIA_I2C_SCL, GPIO_FUNC_I2C ) );
+	p_i2c = i2c;
+	i2c_init( this->p_i2c, rate );
+	gpio_set_function( sda, GPIO_FUNC_I2C );
+	gpio_set_function( scl, GPIO_FUNC_I2C );
+	gpio_pull_up( sda );
+	gpio_pull_up( scl );
+	bi_decl( bi_2pins_with_func( sda, scl, GPIO_FUNC_I2C ) );
 }
 
 // --------------------------------------------------------------------
 int CSANGRIA_I2C::write( int address, const uint8_t *p_buffer, int count ) {
 
-	return i2c_write_blocking( SANGRIA_I2C, address, p_buffer, count, false );
+	return i2c_write_blocking( this->p_i2c, address, p_buffer, count, false );
 }
 
 // --------------------------------------------------------------------
 int CSANGRIA_I2C::read( int address, uint8_t *p_buffer, int count ) {
 
-	return i2c_read_blocking( SANGRIA_I2C, address, p_buffer, count, false );
+	return i2c_read_blocking( this->p_i2c, address, p_buffer, count, false );
 }

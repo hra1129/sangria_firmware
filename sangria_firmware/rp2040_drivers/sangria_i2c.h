@@ -27,13 +27,17 @@
 #define __SANGRIA_I2C_H__
 
 #include <cstdint>
+#include "hardware/i2c.h"
 #include "sangria_firmware_config.h"
 
 class CSANGRIA_I2C {
+private:
+	i2c_inst_t* p_i2c;
+
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
-	CSANGRIA_I2C();
+	CSANGRIA_I2C( i2c_inst_t* i2c, uint32_t rate, uint32_t scl, uint32_t sda );
 
 	// --------------------------------------------------------------------
 	//	write

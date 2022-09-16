@@ -39,54 +39,55 @@
 #define OLED_ADDR										0x3C
 
 // Control byte
-#define SSD1306_CONTROL_CMD_SINGLE						0x80
-#define SSD1306_CONTROL_CMD_STREAM						0x00
-#define SSD1306_CONTROL_DATA_STREAM						0x40
+#define SSD13X6_CONTROL_CMD_SINGLE						0x80
+#define SSD13X6_CONTROL_CMD_STREAM						0x00
+#define SSD13X6_CONTROL_DATA_STREAM						0x40
 
 // Fundamental commands (pg.28)
-#define SSD1306_SET_CONTRAST							0x81
-#define SSD1306_DISPLAY_ALL_ON_RESUME					0xA4
-#define SSD1306_DISPLAY_ALL_ON_IGNORE					0xA5
-#define SSD1306_NORMAL_DISPLAY							0xA6
-#define SSD1306_INVERT_DISPLAY							0xA7
-#define SSD1306_DISPLAY_OFF								0xAE
-#define SSD1306_DISPLAY_ON								0xAF
+#define SSD13X6_SET_CONTRAST							0x81
+#define SSD13X6_DISPLAY_ALL_ON_RESUME					0xA4
+#define SSD13X6_DISPLAY_ALL_ON_IGNORE					0xA5
+#define SSD13X6_NORMAL_DISPLAY							0xA6
+#define SSD13X6_INVERT_DISPLAY							0xA7
+#define SSD13X6_DISPLAY_OFF								0xAE
+#define SSD13X6_DISPLAY_ON								0xAF
 
 // Scrolling #defines (pg.28-30)
-#define SSD1306_RIGHT_HORIZONTAL_SCROLL					0x26
-#define SSD1306_LEFT_HORIZONTAL_SCROLL					0x27
-#define SSD1306_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL	0x29
-#define SSD1306_VERTICAL_AND_LEFT_HORIZONTAL_SCROLL		0x2A
-#define SSD1306_DEACTIVATE_SCROLL						0x2E
-#define SSD1306_ACTIVATE_SCROLL							0x2F
-#define SSD1306_SET_VERTICAL_SCROLL_AREA				0xA3
+#define SSD13X6_RIGHT_HORIZONTAL_SCROLL					0x26
+#define SSD13X6_LEFT_HORIZONTAL_SCROLL					0x27
+#define SSD13X6_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL	0x29
+#define SSD13X6_VERTICAL_AND_LEFT_HORIZONTAL_SCROLL		0x2A
+#define SSD13X6_DEACTIVATE_SCROLL						0x2E
+#define SSD13X6_ACTIVATE_SCROLL							0x2F
+#define SSD13X6_SET_VERTICAL_SCROLL_AREA				0xA3
 
 // Addressing Command Table (pg.30)
-#define SSD1306_SET_LOW_COLUMN							0x00
-#define SSD1306_SET_HIGH_COLUMN							0x10
-#define SSD1306_SET_MEMORY_ADDR_MODE					0x20	// follow with 0x00 = HORZ mode = Behave like a KS108 graphic LCD
-#define SSD1306_SET_COLUMN_RANGE						0x21	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x7F = COL127
-#define SSD1306_SET_PAGE_RANGE							0x22	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x07 = PAGE7
-#define SSD1306_SET_PAGE_START_ADDRESS					0xB0
+#define SSD13X6_SET_LOW_COLUMN							0x00
+#define SSD13X6_SET_HIGH_COLUMN							0x10
+#define SSD13X6_SET_MEMORY_ADDR_MODE					0x20	// follow with 0x00 = HORZ mode = Behave like a KS108 graphic LCD
+#define SSD13X6_SET_COLUMN_RANGE						0x21	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x7F = COL127
+#define SSD13X6_SET_PAGE_RANGE							0x22	// can be used only in HORZ/VERT mode - follow with 0x00 and 0x07 = PAGE7
+#define SSD13X6_SET_PAGE_START_ADDRESS					0xB0
 
 // Hardware Config (pg.31)
-#define SSD1306_SET_DISPLAY_START_LINE					0x40
-#define SSD1306_SET_SEGMENT_REMAP_LOW					0xA0
-#define SSD1306_SET_SEGMENT_REMAP_HIGH					0xA1
-#define SSD1306_SET_MULTIPLEX_RATIO						0xA8	// follow with 0x3F = 64 MUX
-#define SSD1306_SET_COM_SCAN_INC						0xC0
-#define SSD1306_SET_COM_SCAN_DEC						0xC8
-#define SSD1306_SET_DISPLAY_OFFSET						0xD3	// follow with 0x00
-#define SSD1306_SET_COM_PIN_MAP							0xDA	// follow with 0x12
+#define SSD13X6_SET_DISPLAY_START_LINE					0x40
+#define SSD13X6_SET_SEGMENT_REMAP_LOW					0xA0
+#define SSD13X6_SET_SEGMENT_REMAP_HIGH					0xA1
+#define SSD13X6_SET_MULTIPLEX_RATIO						0xA8	// follow with 0x3F = 64 MUX
+#define SSD13X6_SET_COM_SCAN_INC						0xC0
+#define SSD13X6_SET_COM_SCAN_DEC						0xC8
+#define SSD13X6_SET_DISPLAY_OFFSET						0xD3	// follow with 0x00
+#define SSD13X6_SET_COM_PIN_MAP							0xDA	// follow with 0x12
 
 // Timing and Driving Scheme (pg.32)
-#define SSD1306_SET_DISPLAY_CLK_DIV						0xD5	// follow with 0x80
-#define SSD1306_SET_PRECHARGE							0xD9	// follow with 0xF1
-#define SSD1306_SET_VCOMH_DESELCT						0xDB	// follow with 0x30
-#define SSD1306_NOP										0xE3	// NOP
+#define SSD13X6_SET_DISPLAY_CLK_DIV						0xD5	// follow with 0x80
+#define SSD13X6_SET_ZOOM_IN								0xD6
+#define SSD13X6_SET_PRECHARGE							0xD9	// follow with 0xF1
+#define SSD13X6_SET_VCOMH_DESELCT						0xDB	// follow with 0x30
+#define SSD13X6_NOP										0xE3	// NOP
 
 // Charge Pump (pg.62)
-#define SSD1306_SET_CHARGE_PUMP							0x8D	// follow with 0x14
+#define SSD13X6_SET_CHARGE_PUMP							0x8D	// follow with 0x14
 
 #define OLED_PAGE_HEIGHT			8
 #define OLED_NUM_PAGES				(OLED_HEIGHT / OLED_PAGE_HEIGHT)
@@ -131,43 +132,54 @@ void CSANGRIA_OLED::power_on( void ) {
 
 	//	- Set up initial code (user setup)
 	count = 0;
-	this->send_buffer[count++] = SSD1306_CONTROL_CMD_STREAM;		// Control byte
+	this->send_buffer[count++] = SSD13X6_CONTROL_CMD_STREAM;		// Control byte
 
-	this->send_buffer[count++] = SSD1306_DISPLAY_OFF;				// set display off
+	this->send_buffer[count++] = SSD13X6_DISPLAY_OFF;				// set display off
 
-	this->send_buffer[count++] = SSD1306_SET_MULTIPLEX_RATIO;		// set multiplex ration
-	this->send_buffer[count++] = 0x3F;								// - 63
-
-	this->send_buffer[count++] = SSD1306_SET_DISPLAY_OFFSET;		// set display offset
-	#if SANGRIA_OLED_REV == 1
+	#if SANGRIA_OLED_DRIVER == SANGRIA_SSD1306
+		//	for Sangria RC1 (SSD1306)
+		this->send_buffer[count++] = SSD13X6_SET_MULTIPLEX_RATIO;		// set multiplex ration
+		this->send_buffer[count++] = 0x3F;								// - 63
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_OFFSET;		// set display offset
 		this->send_buffer[count++] = 0x20;								// - Vertical reverse
-		this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
-		this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
-		this->send_buffer[count++] = SSD1306_SET_COM_SCAN_DEC;			// set common output scan direction
-	#else
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_START_LINE;	// set start line
+		this->send_buffer[count++] = SSD13X6_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
+		this->send_buffer[count++] = SSD13X6_SET_COM_SCAN_DEC;			// set common output scan direction
+		this->send_buffer[count++] = SSD13X6_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 02h
+		this->send_buffer[count++] = 0x02;								// 
+	#elif SANGRIA_OLED_DRIVER == SANGRIA_SSD1316
+		//	for Sangria RC3 (SSD1316)
+		this->send_buffer[count++] = SSD13X6_SET_MULTIPLEX_RATIO;		// set multiplex ration
+		this->send_buffer[count++] = 38;
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_OFFSET;		// set display offset
 		this->send_buffer[count++] = 0x00;								// - Normal
-		this->send_buffer[count++] = SSD1306_SET_DISPLAY_START_LINE;	// set start line
-		this->send_buffer[count++] = SSD1306_SET_SEGMENT_REMAP_LOW;		// set segment re-map: ADC=1
-		this->send_buffer[count++] = SSD1306_SET_COM_SCAN_INC;			// set common output scan direction
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_START_LINE;	// set start line
+		this->send_buffer[count++] = SSD13X6_SET_SEGMENT_REMAP_HIGH;	// set segment re-map: ADC=1  (left-right reverse)
+		this->send_buffer[count++] = SSD13X6_SET_COM_SCAN_INC;			// set common output scan direction
+		this->send_buffer[count++] = SSD13X6_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 12h
+		this->send_buffer[count++] = 0x12;								// 
+	#else
+		#error "Unsupported OLED Driver."
 	#endif
 
-	this->send_buffer[count++] = SSD1306_SET_COM_PIN_MAP;			// set COM pins hardware configuration DAh, 02h
-	this->send_buffer[count++] = 0x02;								// 
-
-	this->send_buffer[count++] = SSD1306_SET_CONTRAST;				// set contrast control
+	this->send_buffer[count++] = SSD13X6_SET_CONTRAST;				// set contrast control
 	this->send_buffer[count++] = 0x7F;								// - 127
 
-	this->send_buffer[count++] = SSD1306_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
+	this->send_buffer[count++] = SSD13X6_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
 
-	this->send_buffer[count++] = SSD1306_NORMAL_DISPLAY;			// set normal (not inverted) display
+	this->send_buffer[count++] = SSD13X6_NORMAL_DISPLAY;			// set normal (not inverted) display
 
-	this->send_buffer[count++] = SSD1306_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, 80h
-	this->send_buffer[count++] = 0x80;
-
-	this->send_buffer[count++] = SSD1306_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 14h
+	#if SANGRIA_OLED_DRIVER == SANGRIA_SSD1306
+		//	for Sangria RC1 (SSD1306)
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, 80h
+		this->send_buffer[count++] = 0x80;
+	#else
+		this->send_buffer[count++] = SSD13X6_SET_DISPLAY_CLK_DIV;		// set OSC frequency D5h, C1h
+		this->send_buffer[count++] = 0xC1;
+	#endif
+	this->send_buffer[count++] = SSD13X6_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 14h
 	this->send_buffer[count++] = 0x14;
-
-	this->send_buffer[count++] = SSD1306_DISPLAY_ON;				// set display on AFh
+	this->send_buffer[count++] = SSD13X6_DISPLAY_ON;				// set display on AFh
 
 	p_i2c->write( OLED_ADDR, this->send_buffer, count );
 
@@ -189,17 +201,22 @@ void CSANGRIA_OLED::update( void ) {
 	for( i = 0, y = 0; i < OLED_NUM_PAGES; i++, y += OLED_PAGE_HEIGHT ) {
 		count = 0;
 		//	set page address = i
-		this->send_buffer[count++] = SSD1306_CONTROL_CMD_STREAM;			// Control byte
-		this->send_buffer[count++] = SSD1306_SET_PAGE_START_ADDRESS + i;	// set page address
+		this->send_buffer[count++] = SSD13X6_CONTROL_CMD_STREAM;			// Control byte
+		this->send_buffer[count++] = SSD13X6_SET_PAGE_START_ADDRESS + i;	// set page address
 		//	set column address = 24 (0x18)
-		this->send_buffer[count++] = SSD1306_SET_COLUMN_RANGE;				// set column address
-		this->send_buffer[count++] = 0x00;									//	column start address
-		this->send_buffer[count++] = 0x7F;									//	column end address
+#if SANGRIA_OLED_DRIVER == SANGRIA_SSD1306
+		this->send_buffer[count++] = SSD13X6_SET_COLUMN_RANGE;				// set column address
+		this->send_buffer[count++] = 0;										//	column start address
+		this->send_buffer[count++] = OLED_WIDTH - 1;						//	column end address
+#elif SANGRIA_OLED_DRIVER == SANGRIA_SSD1316
+		this->send_buffer[count++] = 0x00;									//	set lower column start address
+		this->send_buffer[count++] = 0x10;									//	set higher column start address
+#endif
 		p_i2c->write( OLED_ADDR, this->send_buffer, count );
 
 		count = 0;
-		this->send_buffer[count++] = SSD1306_CONTROL_DATA_STREAM;			// Control byte
-		for( j = 0; j < 128; j++ ) {
+		this->send_buffer[count++] = SSD13X6_CONTROL_DATA_STREAM;			// Control byte
+		for( j = 0; j < OLED_WIDTH; j++ ) {
 			pattern = 0;
 			for( bit = 0; bit < OLED_PAGE_HEIGHT; bit++ ) {
 				pattern = (pattern >> 1) | ((uint8_t)(this->frame_buffer[ (y + bit) * OLED_WIDTH + j ] != 0) << (OLED_PAGE_HEIGHT - 1));
