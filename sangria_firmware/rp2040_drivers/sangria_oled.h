@@ -35,7 +35,7 @@ private:
 	CSANGRIA_I2C *p_i2c;
 	int x;
 	int y;
-	uint8_t frame_buffer[ OLED_WIDTH * OLED_HEIGHT * 2 ];
+	uint8_t frame_buffer[ OLED_WIDTH * OLED_HEIGHT + 128 * 32 ];	// NEED +128*32, BUG. PENDING.
 	uint8_t send_buffer[256];
 
 public:

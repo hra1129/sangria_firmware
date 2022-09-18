@@ -293,7 +293,8 @@ static int suspend_mode( void ) {
 
 	p_keyboard->backlight( 0 );
 	while( 1 ) {
-		if( board_button_read() ) {
+		p_jogdial->update();
+		if( p_jogdial->get_enter_button() ) {
 			//	Go to Battery Status Mode
 			return 0;
 		}
@@ -301,10 +302,7 @@ static int suspend_mode( void ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		p_keyboard->backlight( 1 );
-		sleep_ms( 100 );
-		p_keyboard->backlight( 0 );
-		sleep_ms( 100 );
+		sleep_ms( 200 );
 	}
 }
 
@@ -345,6 +343,7 @@ static void run_mode( void ) {
 
 	anime.set( p_oled, p_battery );
 
+	p_battery->power_on();
 	p_keyboard->backlight( 1 );
 	p_oled->power_on();
 
@@ -372,7 +371,9 @@ static void shutdown_mode( void ) {
 
 	while( 1 ) {
 		start_ms = board_millis();
-		anime.draw();
+		if( !anime.draw() ) {
+			break;
+		}
 
 		if( p_keyboard->check_host_connected() ) {
 			break;
@@ -392,11 +393,11 @@ static void shutdown_mode( void ) {
 void other_core( void ) {
 
 	while( 1 ) {
-//		if( suspend_mode() == 0 ) {
-//			if( battery_status_mode() == 0 ) {
-//				continue;
-//			}
-//		}
+		if( suspend_mode() == 0 ) {
+			if( battery_status_mode() == 0 ) {
+				continue;
+			}
+		}
 		run_mode();
 		shutdown_mode();
 	}
@@ -425,10 +426,9 @@ int main( void ) {
 	p_battery->set_i2c( p_i2c_bq );
 	keyboard.set_jogdial( p_jogdial );
 
-	//p_battery->power_on();
+	multicore_launch_core1( other_core );
 
 	tusb_init();
-	multicore_launch_core1( other_core );
 	usb_core( keyboard );
 	return 0;
 }

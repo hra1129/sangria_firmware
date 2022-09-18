@@ -13,19 +13,30 @@
 // -------- //
 
 #define pio_test_wrap_target 0
-#define pio_test_wrap 1
+#define pio_test_wrap 12
 
 static const uint16_t pio_test_program_instructions[] = {
             //     .wrap_target
-    0xe001, //  0: set    pins, 1                    
-    0xe000, //  1: set    pins, 0                    
+    0xa0e0, //  0: mov    osr, pins                  
+    0x6042, //  1: out    y, 2                       
+    0x8080, //  2: pull   noblock                    
+    0xa027, //  3: mov    x, osr                     
+    0x006c, //  4: jmp    !y, 12                     
+    0x6068, //  5: out    null, 8                    
+    0x0087, //  6: jmp    y--, 7                     
+    0x006c, //  7: jmp    !y, 12                     
+    0x6068, //  8: out    null, 8                    
+    0x008a, //  9: jmp    y--, 10                    
+    0x006c, // 10: jmp    !y, 12                     
+    0x6068, // 11: out    null, 8                    
+    0x6008, // 12: out    pins, 8                    
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program pio_test_program = {
     .instructions = pio_test_program_instructions,
-    .length = 2,
+    .length = 13,
     .origin = -1,
 };
 
@@ -35,18 +46,26 @@ static inline pio_sm_config pio_test_program_get_default_config(uint offset) {
     return c;
 }
 
-static inline void pio_test_program_init( PIO pio, uint sm, uint offset, uint pin ) {
+static inline void pio_test_program_init( PIO pio, uint sm, uint offset ) {
+	int i;
 	pio_sm_config c = pio_test_program_get_default_config( offset );
-	// ステートマシンのOUTピングループを1つのピン、つまりこの関数の `pin` 
-	// パラメータにマップします。
-	sm_config_set_out_pins( &c, pin, 1 );
-	sm_config_set_set_pins( &c, pin, 1 );
+	// OUT, INピングループのマッピング
+	sm_config_set_out_pins( &c, 0, 8 );
+	sm_config_set_in_pins( &c, 27 );
 	// このピンのGPIO機能を設定する（パッドにPIOを接続する）。
-	pio_gpio_init( pio, pin );
-	// PIOでピンの方向を出力に設定する。
-	pio_sm_set_consecutive_pindirs( pio, sm, pin, 1, true);
+	for( i = 0; i < 8; i++ ) {
+		pio_gpio_init( pio, i );
+	}
+	pio_gpio_init( pio, 27 );
+	pio_gpio_init( pio, 28 );
+	// PIOで GPIO0～7ピンの方向を出力に設定する。
+	pio_sm_set_consecutive_pindirs( pio, sm, 0, 8, true );
+	// PIOで GPIO27～28ピンの方向を入力に設定する。
+	pio_sm_set_consecutive_pindirs( pio, sm, 27, 2, false );
 	// コンフィギュレーションをロードし、プログラムのスタート地点にジャンプします。
 	pio_sm_init( pio, sm, offset, &c );
+	// バンクレジスタの初期値を書き込む
+	pio_sm_put_blocking( pio, sm, 0x01000302 );
 	// ステートマシンの実行を設定する。
 	pio_sm_set_enabled( pio, sm, true );
 }

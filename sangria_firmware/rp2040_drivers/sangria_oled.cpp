@@ -229,12 +229,10 @@ void CSANGRIA_OLED::update( void ) {
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::clear( void ) {
-	int y, x;
+	int i;
 
-	for( y = 0; y < OLED_HEIGHT; y++ ) {
-		for( x = 0; x < OLED_WIDTH; x++ ) {
-			this->frame_buffer[ OLED_WIDTH * y + x ] = 0;
-		}
+	for( i = 0; i < (OLED_WIDTH * OLED_HEIGHT); i++ ) {
+		this->frame_buffer[ i ] = 0;
 	}
 	this->x = 0;
 	this->y = 0;

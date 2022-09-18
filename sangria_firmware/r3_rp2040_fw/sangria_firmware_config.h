@@ -49,9 +49,9 @@
 //	GPIO PIN defines: I2C connection ports
 //
 #define SANGRIA_I2C0			i2c0
-#define SANGRIA_I2C0_CLOCK		(400 * 1000)
-#define SANGRIA_I2C0_SCL		27
-#define SANGRIA_I2C0_SDA		26
+#define SANGRIA_I2C0_CLOCK		(100 * 1000)
+#define SANGRIA_I2C0_SCL		1
+#define SANGRIA_I2C0_SDA		0
 
 #define SANGRIA_I2C1			i2c1
 #define SANGRIA_I2C1_CLOCK		(400 * 1000)
