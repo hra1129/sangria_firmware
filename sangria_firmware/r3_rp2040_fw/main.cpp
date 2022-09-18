@@ -302,7 +302,7 @@ static int suspend_mode( void ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		sleep_ms( 200 );
+		sleep_ms( 100 );
 	}
 }
 
@@ -316,10 +316,15 @@ static int suspend_mode( void ) {
 //
 static int battery_status_mode( void ) {
 	int time_out = 50;	//	5.0sec
+	static const int led_duty[] = { 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 7, 7, 7, 6, 6, 5, 4, 3, 2 };
+	int index = 0;
+	int i;
 
+	p_battery->power_on();
 	p_oled->power_on();
 	while( time_out ) {
-		if( board_button_read() ) {
+		p_jogdial->update();
+		if( p_jogdial->get_enter_button() ) {
 			//	Reset time out counter
 			time_out = 50;
 		}
@@ -328,15 +333,18 @@ static int battery_status_mode( void ) {
 			return 1;
 		}
 		display_battery_status( p_oled, p_battery );
-		p_keyboard->backlight( 0 );
-		sleep_ms( 50 );
-		p_keyboard->backlight( 1 );
-		sleep_ms( 50 );
+		for( i = 0; i < 10; i++ ) {
+			p_keyboard->backlight( 1 );
+			sleep_ms( led_duty[index] );
+			p_keyboard->backlight( 0 );
+			sleep_ms( 10 - led_duty[index] );
+			index = (index + 1) % (sizeof(led_duty) / sizeof(led_duty[0]));
+		}
 		time_out--;
 	}
 	//	Go to Suspend Mode
-	p_keyboard->backlight( 0 );
 	p_oled->power_off();
+	p_battery->power_off();
 	return 0;
 }
 
