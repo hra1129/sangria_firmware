@@ -321,7 +321,8 @@ static int battery_status_mode( void ) {
 	int i;
 
 	p_battery->power_on();
-	p_oled->power_on();
+	p_keyboard->backlight( 1 );
+	p_oled->power_on();				// <== VERY SLOW!
 	while( time_out ) {
 		p_jogdial->update();
 		if( p_jogdial->get_enter_button() ) {
