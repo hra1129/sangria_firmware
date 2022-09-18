@@ -183,7 +183,7 @@ public:
 				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 48, 0 );
 			}
 			//	Battery status
-			//display_battery_status( this->p_oled, this->p_battery );
+			display_battery_status( this->p_oled, this->p_battery );
 		}
 		p_oled->update();
 	}
@@ -327,11 +327,15 @@ static int battery_status_mode( void ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		//display_battery_status( p_oled, p_battery );
-		sleep_ms( 100 );
+		display_battery_status( p_oled, p_battery );
+		p_keyboard->backlight( 0 );
+		sleep_ms( 50 );
+		p_keyboard->backlight( 1 );
+		sleep_ms( 50 );
 		time_out--;
 	}
 	//	Go to Suspend Mode
+	p_keyboard->backlight( 0 );
 	p_oled->power_off();
 	return 0;
 }
