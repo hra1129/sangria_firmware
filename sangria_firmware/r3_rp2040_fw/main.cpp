@@ -320,7 +320,6 @@ static int battery_status_mode( void ) {
 	int index = 0;
 	int i;
 
-	p_battery->power_on();
 	p_keyboard->backlight( 1 );
 	p_oled->power_on();				// <== VERY SLOW!
 	while( time_out ) {
@@ -331,9 +330,12 @@ static int battery_status_mode( void ) {
 		}
 		if( p_keyboard->check_host_connected() ) {
 			//	Go to Run Mode
+			p_oled->power_off();
+			p_keyboard->backlight( 0 );
 			return 1;
 		}
 		display_battery_status( p_oled, p_battery );
+		p_oled->update();
 		for( i = 0; i < 10; i++ ) {
 			p_keyboard->backlight( 1 );
 			sleep_ms( led_duty[index] );
@@ -345,7 +347,7 @@ static int battery_status_mode( void ) {
 	}
 	//	Go to Suspend Mode
 	p_oled->power_off();
-	p_battery->power_off();
+	p_keyboard->backlight( 0 );
 	return 0;
 }
 
@@ -356,7 +358,6 @@ static void run_mode( void ) {
 
 	anime.set( p_oled, p_battery );
 
-	p_battery->power_on();
 	p_keyboard->backlight( 1 );
 	p_oled->power_on();
 
@@ -439,6 +440,7 @@ int main( void ) {
 	p_battery->set_i2c( p_i2c_bq );
 	keyboard.set_jogdial( p_jogdial );
 
+	p_battery->power_on();
 	multicore_launch_core1( other_core );
 
 	tusb_init();

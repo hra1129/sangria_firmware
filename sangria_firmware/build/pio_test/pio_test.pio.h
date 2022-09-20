@@ -13,30 +13,28 @@
 // -------- //
 
 #define pio_test_wrap_target 0
-#define pio_test_wrap 12
+#define pio_test_wrap 10
 
 static const uint16_t pio_test_program_instructions[] = {
             //     .wrap_target
     0xa0e0, //  0: mov    osr, pins                  
-    0x6042, //  1: out    y, 2                       
-    0x8080, //  2: pull   noblock                    
-    0xa027, //  3: mov    x, osr                     
-    0x006c, //  4: jmp    !y, 12                     
-    0x6068, //  5: out    null, 8                    
-    0x0087, //  6: jmp    y--, 7                     
-    0x006c, //  7: jmp    !y, 12                     
-    0x6068, //  8: out    null, 8                    
-    0x008a, //  9: jmp    y--, 10                    
-    0x006c, // 10: jmp    !y, 12                     
-    0x6068, // 11: out    null, 8                    
-    0x6008, // 12: out    pins, 8                    
+    0x60c1, //  1: out    isr, 1                     
+    0x6041, //  2: out    y, 1                       
+    0x8080, //  3: pull   noblock                    
+    0xa027, //  4: mov    x, osr                     
+    0x0067, //  5: jmp    !y, 7                      
+    0x6070, //  6: out    null, 16                   
+    0xa046, //  7: mov    y, isr                     
+    0x006a, //  8: jmp    !y, 10                     
+    0x6068, //  9: out    null, 8                    
+    0x6008, // 10: out    pins, 8                    
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program pio_test_program = {
     .instructions = pio_test_program_instructions,
-    .length = 13,
+    .length = 11,
     .origin = -1,
 };
 

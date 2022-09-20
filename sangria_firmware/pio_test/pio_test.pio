@@ -5,21 +5,18 @@
 .program pio_test
 .wrap_target
 	mov		osr, pins			; OSR = { GPIO26, ... ,GPIO0,GPIO31,GPIO30,GPIO29,GPIO28,GPIO27 }
-	out		Y, 2				; Y = { 0,0,0, ... ,0,GPIO28,GPIO27 }
+	out		isr, 1				; ISR = { 0,0,0, ... ,0,GPIO27 }
+	out		Y, 1				; Y = { 0,0,0, ... ,0,GPIO28 }
 
 	pull	noblock				; OSR = (TX FIFO is empty) ? X : TX FIFO
 	mov		X, osr				; X = OSR    ※ OSR の値を X にバックアップしておく
-	jmp		!Y  out_part		; if Y==0 goto out_bank2
+	jmp		!Y  out_skip_bit1	; if Y==0 goto out_skip_bit1
+	out		NULL, 16
+out_skip_bit1:
+	mov		Y, isr
+	jmp		!Y  out_skip_bit0	; if Y==0 goto out_skip_bit0
 	out		NULL, 8
-	jmp		Y-- n1				; Y--
-n1:
-	jmp		!Y  out_part		; if Y==0 goto out_bank3
-	out		NULL, 8
-	jmp		Y-- n2				; Y--
-n2:
-	jmp		!Y  out_part		; if Y==0 goto out_bank0
-	out		NULL, 8
-out_part:
+out_skip_bit0:
 	out		pins, 8
 .wrap
 

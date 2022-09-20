@@ -108,7 +108,7 @@ CSANGRIA_OLED::CSANGRIA_OLED() {
 	gpio_set_dir( SANGRIA_OLED_ON_N, GPIO_OUT );
 	gpio_set_dir( SANGRIA_OLED_RST_N, GPIO_OUT );
 
-	this->power_off();
+	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_OFF );
 	sleep_ms( 10 );
 }
 
@@ -126,7 +126,7 @@ void CSANGRIA_OLED::power_on( void ) {
 	//	- Turn on the VDD and AVDD power, keep the RES pin="L" (>10us)
 	gpio_put( SANGRIA_OLED_RST_N, 0 );
 	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_ON );
-	sleep_ms( 1000 );
+	sleep_ms( 100 );
 	gpio_put( SANGRIA_OLED_RST_N, 1 );
 	sleep_ms( 1000 );
 
@@ -190,6 +190,15 @@ void CSANGRIA_OLED::power_on( void ) {
 
 // --------------------------------------------------------------------
 void CSANGRIA_OLED::power_off( void ) {
+	int count = 0;
+
+	this->send_buffer[count++] = SSD13X6_CONTROL_CMD_STREAM;		// Control byte
+	this->send_buffer[count++] = SSD13X6_DISPLAY_OFF;				// set display off
+	this->send_buffer[count++] = SSD13X6_SET_CHARGE_PUMP;			// enable charge pump regulator 8Dh, 10h
+	this->send_buffer[count++] = 0x10;
+	p_i2c->write( OLED_ADDR, this->send_buffer, count );
+	sleep_ms( 500 );
+
 	//	OLED Power OFF
 	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_OFF );
 }
