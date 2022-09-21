@@ -58,20 +58,21 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 	if( p_battery->check_battery_management_device() ) {
 		int status = p_battery->get_system_status();
 		switch( (status >> 6) & 3 ) {
+		default:
 		case 0:		//	Unkown
-			p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
+			p_icon = get_icon( SANGRIA_ICON_BIG_NO_POWER );
 			break;
 		case 1:		//	USB host
-			p_icon = get_icon( SANGRIA_ICON_USB_POWER );
+			p_icon = get_icon( SANGRIA_ICON_BIG_USB_POWER );
 			break;
 		case 2:		//	Adapter port
-			p_icon = get_icon( SANGRIA_ICON_AC_ADAPTER );
+			p_icon = get_icon( SANGRIA_ICON_BIG_AC_POWER );
 			break;
-		default:	//	OTG
-			p_icon = get_icon( SANGRIA_ICON_USB_POWER );
+		case 3:		//	OTG
+			p_icon = get_icon( SANGRIA_ICON_BIG_OTG_POWER );
 			break;
 		}
-		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
+		p_oled->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		switch( (status >> 4) & 3 ) {
 		case 0:		//	Not charging
 			p_icon = get_icon( SANGRIA_ICON_EMPTY );
@@ -90,8 +91,8 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 	}
 	else {
 		//	Unkown
-		p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
-		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
+		p_icon = get_icon( SANGRIA_ICON_BIG_NO_POWER );
+		p_oled->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		//	Not charging
 		p_icon = get_icon( SANGRIA_ICON_EMPTY );
 		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
@@ -171,16 +172,16 @@ public:
 			p_oled->clear();
 			//	Key status
 			if( p_keyboard->get_shift_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 0, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 32, 0 );
 			}
 			if( p_keyboard->get_alt_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 16, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 48, 0 );
 			}
 			if( p_keyboard->get_sym_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 32, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 64, 0 );
 			}
 			if( p_keyboard->get_ctrl_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 48, 0 );
+				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 80, 0 );
 			}
 			//	Battery status
 			display_battery_status( this->p_oled, this->p_battery );
@@ -290,11 +291,37 @@ void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 //		1: Go to Run Mode
 //
 static int suspend_mode( void ) {
+	int status;
+	bool is_oled_power = false;
 
 	p_keyboard->backlight( 0 );
 	while( 1 ) {
+		//	Check power plug
+		if( p_battery->check_battery_management_device() ) {
+			status = p_battery->get_system_status();
+			if( ((status >> 6) & 3) != 0 ) {
+				if( !is_oled_power ) {
+					is_oled_power = true;
+					p_oled->power_on();
+				}
+				display_battery_status( p_oled, p_battery );
+				p_oled->update();
+			}
+			else {
+				if( is_oled_power ) {
+					is_oled_power = false;
+					p_oled->power_off();
+				}
+			}
+		}
+		else {
+			if( is_oled_power ) {
+				is_oled_power = false;
+				p_oled->power_off();
+			}
+		}
 		p_jogdial->update();
-		if( p_jogdial->get_enter_button() ) {
+		if( !is_oled_power && p_jogdial->get_enter_button() ) {
 			//	Go to Battery Status Mode
 			return 0;
 		}

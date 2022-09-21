@@ -13,4 +13,8 @@ python image_1bpp_converter.py ../font/sym.png
 python image_1bpp_converter.py ../font/ctrl.png
 python image_1bpp_converter.py ../font/ac_adapter.png
 python image_1bpp_converter.py ../font/usb_power.png
+python image_1bpp_converter.py ../font/big_ac_power.png
+python image_1bpp_converter.py ../font/big_usb_power.png
+python image_1bpp_converter.py ../font/big_no_power.png
+python image_1bpp_converter.py ../font/big_otg_power.png
 pause
