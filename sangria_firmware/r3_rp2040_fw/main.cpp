@@ -201,7 +201,7 @@ public:
 
 	CSHUTDOWN_ANIME() {
 		state = 0;
-		p_string = "RasPi0 HAS\nSHUTDOWN...";
+		p_string = "RasPiZero HAS\nSHUTDOWN...";
 		index = 0;
 		count = 0;
 	}

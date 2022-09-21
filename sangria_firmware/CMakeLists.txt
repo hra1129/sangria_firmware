@@ -28,6 +28,3 @@ add_compile_options(-Wall
 add_subdirectory(rp2040_drivers)
 add_subdirectory(r1_rp2040_fw)
 add_subdirectory(r3_rp2040_fw)
-add_subdirectory(pio_test)
-add_subdirectory(gpio_test)
-add_subdirectory(gpio_test2)
