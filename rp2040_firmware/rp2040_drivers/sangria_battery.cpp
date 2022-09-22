@@ -29,6 +29,7 @@
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "hardware/adc.h"
 #include "hardware/i2c.h"
 #include "pico/binary_info.h"
 
@@ -58,6 +59,10 @@
 CSANGRIA_BATTERY::CSANGRIA_BATTERY() {
 
 	this->p_i2c = nullptr;
+	adc_init();
+	adc_gpio_init( SANGRIA_BATTERY_ADC );
+	adc_select_input( 3 );
+
 	gpio_init( SANGRIA_BQ_INT );
 	gpio_init( SANGRIA_BQ_OTG );
 	gpio_init( SANGRIA_BQ_CE_N );
@@ -132,4 +137,10 @@ uint8_t CSANGRIA_BATTERY::read_register( uint8_t address ) {
 	buffer = 0xFF;
 	this->p_i2c->read( BQ_ADDR, &buffer, 1 );
 	return buffer;
+}
+
+// --------------------------------------------------------------------
+int CSANGRIA_BATTERY::get_battery_level( void ) {
+
+	return (int) adc_read();
 }

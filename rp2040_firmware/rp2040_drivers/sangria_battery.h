@@ -118,6 +118,16 @@ public:
 	//	comment:
 	//
 	uint8_t read_register( uint8_t address );
+
+	// --------------------------------------------------------------------
+	//	get battery level
+	//	input:
+	//		none
+	//	output:
+	//		battery level
+	//	comment:
+	//
+	int get_battery_level( void );
 };
 
 #endif

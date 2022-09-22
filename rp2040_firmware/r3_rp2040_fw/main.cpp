@@ -54,6 +54,7 @@ static CSANGRIA_BATTERY *p_battery;
 // --------------------------------------------------------------------
 static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery, int anime ) {
 	const uint8_t *p_icon;
+	char s_buffer[32];
 
 	if( p_battery->check_battery_management_device() ) {
 		int status = p_battery->get_system_status();
@@ -97,6 +98,9 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 		p_icon = get_icon( SANGRIA_ICON_EMPTY );
 		p_oled->copy_1bpp( p_icon, 32, 32, 96, 0 );
 	}
+	p_oled->set_position( 2, 3 );
+	sprintf( s_buffer, "BAT-LV:%d", p_battery->get_battery_level() );
+	p_oled->puts( s_buffer );
 }
 
 // --------------------------------------------------------------------

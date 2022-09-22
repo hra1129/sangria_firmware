@@ -78,6 +78,7 @@
 #define SANGRIA_BQ_INT			17
 #define SANGRIA_BQ_OTG			16
 #define SANGRIA_BQ_CE_N			2
+#define SANGRIA_BATTERY_ADC		29
 
 // --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard/buttons
