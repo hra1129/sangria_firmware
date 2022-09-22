@@ -1291,9 +1291,9 @@ Discarded input sections
                 0x00000000       0x28 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .text.board_uart_write
                 0x00000000       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
- .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
- .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
- .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
+ .text          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc04kTig.o
+ .data          0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc04kTig.o
+ .bss           0x00000000        0x0 C:\Users\hra\AppData\Local\Temp\cc04kTig.o
  .text          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
  .data          0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
  .bss           0x00000000        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
@@ -1868,7 +1868,7 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
+ .boot2         0x10000000      0x100 C:\Users\hra\AppData\Local\Temp\cc04kTig.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -2029,9 +2029,9 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  .text._Z17get_sangria_logo2v
                 0x100013b8        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
                 0x100013b8                get_sangria_logo2()
- .text._Z8get_icon17SANGRIA_ICON_ID_T
+ .text._Z8get_iconi
                 0x100013c0        0xc CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
-                0x100013c0                get_icon(SANGRIA_ICON_ID_T)
+                0x100013c0                get_icon(int)
  .text._Z8get_fontv
                 0x100013cc        0x8 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
                 0x100013cc                get_font()
@@ -2977,7 +2977,7 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
 .iplt           0x10011818        0x0
  .iplt          0x10011818        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10011818     0x2dbc
+.rodata         0x10011818     0x31dc
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata._Z10other_corev.str1.4
                 0x10011818       0x17 CMakeFiles/r1_rp2040_fw.dir/main.cpp.obj
@@ -3008,386 +3008,402 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x10011ff0       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL15icon_no_battery
                 0x10012010       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL16big_battery_full
+                0x10012030       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL17big_battery_low_a
+                0x100120b0       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL17big_battery_low_b
+                0x10012130       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL18big_battery_high_a
+                0x100121b0       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL18big_battery_high_b
+                0x10012230       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL19big_battery_empty_a
+                0x100122b0       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL19big_battery_empty_b
+                0x10012330       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+ .rodata._ZL20big_bq_is_not_detect
+                0x100123b0       0x80 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL4font
-                0x10012030      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10012430      0x300 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL6p_icon
-                0x10012330       0x40 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10012730       0x64 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL8icon_alt
-                0x10012370       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10012794       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL8icon_sym
-                0x10012390       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x100127b4       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_ctrl
-                0x100123b0       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x100127d4       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_full
-                0x100123d0       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x100127f4       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_half
-                0x100123f0       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10012814       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata._ZL9icon_high
-                0x10012410       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
+                0x10012834       0x20 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_graphic_resource.cpp.obj
  .rodata.str1.4
-                0x10012430       0x1f CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
- *fill*         0x1001244f        0x1 
+                0x10012854       0x1f CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+ *fill*         0x10012873        0x1 
  .rodata.__compound_literal.0
-                0x10012450        0x2 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
- *fill*         0x10012452        0x2 
+                0x10012874        0x2 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+ *fill*         0x10012876        0x2 
  .rodata.desc_configuration
-                0x10012454       0x22 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x10012454                desc_configuration
- *fill*         0x10012476        0x2 
+                0x10012878       0x22 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x10012878                desc_configuration
+ *fill*         0x1001289a        0x2 
  .rodata.desc_device
-                0x10012478       0x12 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x10012478                desc_device
- *fill*         0x1001248a        0x2 
+                0x1001289c       0x12 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x1001289c                desc_device
+ *fill*         0x100128ae        0x2 
  .rodata.desc_hid_report
-                0x1001248c       0x43 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
-                0x1001248c                desc_hid_report
- *fill*         0x100124cf        0x1 
+                0x100128b0       0x43 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/usb_descriptors.c.obj
+                0x100128b0                desc_hid_report
+ *fill*         0x100128f3        0x1 
  .rodata.spin_lock_claim_unused.str1.4
-                0x100124d0       0x1b CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x100124eb        0x5 
+                0x100128f4       0x1b CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x1001290f        0x1 
  .rodata.at_the_end_of_time
-                0x100124f0        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
-                0x100124f0                at_the_end_of_time
+                0x10012910        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/common/pico_time/time.c.obj
+                0x10012910                at_the_end_of_time
  .rodata.hardware_alarm_claim.str1.4
-                0x100124f8       0x22 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x1001251a        0x2 
+                0x10012918       0x22 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x1001293a        0x2 
  .rodata.panic.str1.4
-                0x1001251c       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x1001293c       0x10 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                                  0x12 (size before relaxing)
  .rodata.hard_assertion_failure.str1.4
-                0x1001252c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x1001294c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata._ftoa.str1.4
-                0x10012538       0x15 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x1001254d        0x3 
+                0x10012958       0x15 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x1001296d        0x3 
  .rodata._vsnprintf
-                0x10012550      0x1e0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10012970      0x1e0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.pow10.0
-                0x10012730       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10012b50       0x50 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.__wrap_malloc.str1.4
-                0x10012780        0xe CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
- *fill*         0x1001278e        0x2 
+                0x10012ba0        0xe CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+ *fill*         0x10012bae        0x2 
  .rodata.str1.4
-                0x10012790       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10012bb0       0x44 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x100127d4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10012bf4        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x100127e0        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10012c00        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x100127ec        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10012c0c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x100127f8        0x2 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x100127fa        0x2 
+                0x10012c18        0x2 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x10012c1a        0x2 
  .rodata.dcd_rp2040_irq.str1.4
-                0x100127fc       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10012c1c       0x14 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata._hw_endpoint_buffer_control_update32.part.0.isra.0.str1.4
-                0x10012810       0x1f CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1001282f        0x1 
+                0x10012c30       0x1f CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10012c4f        0x1 
  .rodata.hw_endpoint_xfer_continue.str1.4
-                0x10012830       0x29 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10012859        0x3 
+                0x10012c50       0x29 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10012c79        0x3 
  .rodata.str1.4
-                0x1001285c        0x7 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10012863        0x1 
+                0x10012c7c        0x7 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10012c83        0x1 
  .rodata.tud_task
-                0x10012864       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10012c84       0x8c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x100128f0       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10012d10       0x18 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.hidd_control_xfer_cb
-                0x10012908       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                0x10012d28       0x30 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
  .rodata.str1.4
-                0x10012938        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10012d58        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .rodata.__bi_121.0
-                0x1001293c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10012d5c        0xc CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .rodata.__bi_131.1
-                0x10012948        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10012d68        0x8 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .rodata._ZTIN9__gnu_cxx20recursive_init_errorE
-                0x10012950        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
-                0x10012950                typeinfo for __gnu_cxx::recursive_init_error
+                0x10012d70        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10012d70                typeinfo for __gnu_cxx::recursive_init_error
  .rodata._ZTSN9__gnu_cxx20recursive_init_errorE
-                0x1001295c       0x23 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
-                0x1001295c                typeinfo name for __gnu_cxx::recursive_init_error
- *fill*         0x1001297f        0x1 
+                0x10012d7c       0x23 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10012d7c                typeinfo name for __gnu_cxx::recursive_init_error
+ *fill*         0x10012d9f        0x1 
  .rodata._ZTVN9__gnu_cxx20recursive_init_errorE
-                0x10012980       0x14 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
-                0x10012980                vtable for __gnu_cxx::recursive_init_error
+                0x10012da0       0x14 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10012da0                vtable for __gnu_cxx::recursive_init_error
  .rodata._ZTIN10__cxxabiv120__si_class_type_infoE
-                0x10012994        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
-                0x10012994                typeinfo for __cxxabiv1::__si_class_type_info
+                0x10012db4        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10012db4                typeinfo for __cxxabiv1::__si_class_type_info
  .rodata._ZTSN10__cxxabiv120__si_class_type_infoE
-                0x100129a0       0x25 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
-                0x100129a0                typeinfo name for __cxxabiv1::__si_class_type_info
- *fill*         0x100129c5        0x3 
+                0x10012dc0       0x25 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10012dc0                typeinfo name for __cxxabiv1::__si_class_type_info
+ *fill*         0x10012de5        0x3 
  .rodata._ZTVN10__cxxabiv120__si_class_type_infoE
-                0x100129c8       0x2c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
-                0x100129c8                vtable for __cxxabiv1::__si_class_type_info
+                0x10012de8       0x2c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10012de8                vtable for __cxxabiv1::__si_class_type_info
  .rodata._ZTISt9type_info
-                0x100129f4        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
-                0x100129f4                typeinfo for std::type_info
+                0x10012e14        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
+                0x10012e14                typeinfo for std::type_info
  .rodata._ZTSSt9type_info
-                0x100129fc        0xd c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
-                0x100129fc                typeinfo name for std::type_info
- *fill*         0x10012a09        0x3 
+                0x10012e1c        0xd c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
+                0x10012e1c                typeinfo name for std::type_info
+ *fill*         0x10012e29        0x3 
  .rodata._ZTIN10__cxxabiv117__class_type_infoE
-                0x10012a0c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
-                0x10012a0c                typeinfo for __cxxabiv1::__class_type_info
+                0x10012e2c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10012e2c                typeinfo for __cxxabiv1::__class_type_info
  .rodata._ZTSN10__cxxabiv117__class_type_infoE
-                0x10012a18       0x22 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
-                0x10012a18                typeinfo name for __cxxabiv1::__class_type_info
- *fill*         0x10012a3a        0x2 
+                0x10012e38       0x22 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10012e38                typeinfo name for __cxxabiv1::__class_type_info
+ *fill*         0x10012e5a        0x2 
  .rodata._ZTVN10__cxxabiv117__class_type_infoE
-                0x10012a3c       0x2c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
-                0x10012a3c                vtable for __cxxabiv1::__class_type_info
+                0x10012e5c       0x2c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10012e5c                vtable for __cxxabiv1::__class_type_info
  .rodata._ZNKSt9exception4whatEv.str1.4
-                0x10012a68        0xf c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
- *fill*         0x10012a77        0x1 
+                0x10012e88        0xf c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+ *fill*         0x10012e97        0x1 
  .rodata._ZNKSt13bad_exception4whatEv.str1.4
-                0x10012a78       0x13 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
- *fill*         0x10012a8b        0x1 
+                0x10012e98       0x13 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+ *fill*         0x10012eab        0x1 
  .rodata._ZTIN10__cxxabiv115__forced_unwindE
-                0x10012a8c        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012a8c                typeinfo for __cxxabiv1::__forced_unwind
+                0x10012eac        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012eac                typeinfo for __cxxabiv1::__forced_unwind
  .rodata._ZTIN10__cxxabiv119__foreign_exceptionE
-                0x10012a94        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012a94                typeinfo for __cxxabiv1::__foreign_exception
+                0x10012eb4        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012eb4                typeinfo for __cxxabiv1::__foreign_exception
  .rodata._ZTISt13bad_exception
-                0x10012a9c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012a9c                typeinfo for std::bad_exception
+                0x10012ebc        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012ebc                typeinfo for std::bad_exception
  .rodata._ZTISt9exception
-                0x10012aa8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012aa8                typeinfo for std::exception
+                0x10012ec8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012ec8                typeinfo for std::exception
  .rodata._ZTSN10__cxxabiv115__forced_unwindE
-                0x10012ab0       0x20 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012ab0                typeinfo name for __cxxabiv1::__forced_unwind
+                0x10012ed0       0x20 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012ed0                typeinfo name for __cxxabiv1::__forced_unwind
  .rodata._ZTSN10__cxxabiv119__foreign_exceptionE
-                0x10012ad0       0x24 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012ad0                typeinfo name for __cxxabiv1::__foreign_exception
+                0x10012ef0       0x24 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012ef0                typeinfo name for __cxxabiv1::__foreign_exception
  .rodata._ZTSSt13bad_exception
-                0x10012af4       0x12 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012af4                typeinfo name for std::bad_exception
- *fill*         0x10012b06        0x2 
+                0x10012f14       0x12 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012f14                typeinfo name for std::bad_exception
+ *fill*         0x10012f26        0x2 
  .rodata._ZTSSt9exception
-                0x10012b08        0xd c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012b08                typeinfo name for std::exception
- *fill*         0x10012b15        0x3 
+                0x10012f28        0xd c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012f28                typeinfo name for std::exception
+ *fill*         0x10012f35        0x3 
  .rodata._ZTVSt13bad_exception
-                0x10012b18       0x14 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
-                0x10012b18                vtable for std::bad_exception
+                0x10012f38       0x14 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10012f38                vtable for std::bad_exception
  .rodata._ZN9__gnu_cxx27__verbose_terminate_handlerEv.str1.4
-                0x10012b2c       0x94 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
- .rodata        0x10012bc0     0x1144 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(cp-demangle.o)
+                0x10012f4c       0x94 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
+ .rodata        0x10012fe0     0x1144 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(cp-demangle.o)
  .rodata.str1.4
-                0x10013d04      0x899 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(cp-demangle.o)
+                0x10014124      0x899 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(cp-demangle.o)
                                 0x8e9 (size before relaxing)
- *fill*         0x1001459d        0x3 
+ *fill*         0x100149bd        0x3 
  .rodata._ZL28read_encoded_value_with_basehjPKhPj
-                0x100145a0       0x34 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
-                0x100145d4                . = ALIGN (0x4)
+                0x100149c0       0x34 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x100149f4                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x100145d4                . = ALIGN (0x4)
+                0x100149f4                . = ALIGN (0x4)
 
-.ARM.extab      0x100145d4      0x10c
+.ARM.extab      0x100149f4      0x10c
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  .ARM.extab.text._ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
-                0x100145d4        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x100149f4        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
  .ARM.extab.text._ZN10__cxxabiv111__terminateEPFvvE
-                0x100145e0       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014a00       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
  .ARM.extab.text._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x10014608       0x34 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
+                0x10014a28       0x34 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
  .ARM.extab.text.__cxa_type_match
-                0x1001463c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
+                0x10014a5c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
  .ARM.extab.text.unlikely.__cxa_call_unexpected
-                0x10014648       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
+                0x10014a68       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
  .ARM.extab.text.__cxa_begin_catch
-                0x10014670        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
+                0x10014a90        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
  .ARM.extab.text._ZL28read_encoded_value_with_basehjPKhPj
-                0x1001467c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x10014a9c        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
  .ARM.extab.text.__gxx_personality_v0
-                0x10014688       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
- .ARM.extab     0x100146b0       0x24 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(unwind-arm.o)
- .ARM.extab     0x100146d4        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
-                0x100146e0                __exidx_start = .
+                0x10014aa8       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+ .ARM.extab     0x10014ad0       0x24 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(unwind-arm.o)
+ .ARM.extab     0x10014af4        0xc c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
+                0x10014b00                __exidx_start = .
 
-.ARM.exidx      0x100146e0      0x1b8
+.ARM.exidx      0x10014b00      0x1b8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.text.__cxa_guard_acquire
-                0x100146e0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
+                0x10014b00        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
  .ARM.exidx.text.__cxa_guard_release
-                0x100146e8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
+                0x10014b08        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
  .ARM.exidx.text._ZN9__gnu_cxx20recursive_init_errorD2Ev
-                0x100146f0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10014b10        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN9__gnu_cxx20recursive_init_errorD0Ev
-                0x100146f0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10014b10        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN9__gnu_cxx20recursive_init_errorC2Ev
-                0x100146f0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
+                0x10014b10        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard_error.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv120__si_class_type_infoD2Ev
-                0x100146f0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10014b10        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv120__si_class_type_infoD0Ev
-                0x100146f0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10014b10        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
-                0x100146f0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10014b10        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
-                0x100146f8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10014b18        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
-                0x10014700        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
+                0x10014b20        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(si_class_type_info.o)
  .ARM.exidx.text._ZNSt9type_infoD2Ev
-                0x10014708        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
+                0x10014b28        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
  .ARM.exidx.text._ZNKSt9type_info14__is_pointer_pEv
-                0x10014710        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
+                0x10014b30        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9type_infoeqERKS_
-                0x10014710        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
+                0x10014b30        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(tinfo.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
-                0x10014710        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b30        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
-                0x10014718        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b38        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
  .ARM.exidx.text._ZN10__cxxabiv117__class_type_infoD2Ev
-                0x10014720        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b40        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv117__class_type_infoD0Ev
-                0x10014720        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b40        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
-                0x10014720        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b40        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
-                0x10014720        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b40        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
-                0x10014720        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
+                0x10014b40        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(class_type_info.o)
  .ARM.exidx.text._ZN12_GLOBAL__N_14pool4freeEPv.constprop.0
-                0x10014728        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
+                0x10014b48        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
  .ARM.exidx.text._ZN12_GLOBAL__N_14pool8allocateEj.constprop.0
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_allocate_exception
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_free_exception
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.startup._GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_alloc.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt9exceptionD2Ev
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt13bad_exceptionD2Ev
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt9exception4whatEv
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNKSt13bad_exception4whatEv
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZNSt13bad_exceptionD0Ev
-                0x10014730        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
+                0x10014b50        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_exception.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv111__terminateEPFvvE
-                0x10014730        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b50        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
  .ARM.exidx.text._ZSt9terminatev
-                0x10014738        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b58        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
  .ARM.exidx.text._ZN10__cxxabiv112__unexpectedEPFvvE
-                0x10014740        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b60        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
  .ARM.exidx.text._ZSt10unexpectedv
-                0x10014748        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b68        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZSt13get_terminatev
-                0x10014748        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b68        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
  .ARM.exidx.text._ZSt14get_unexpectedv
-                0x10014750        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
+                0x10014b70        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_terminate.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP21_Unwind_Control_Block
-                0x10014750        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
+                0x10014b70        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
  .ARM.exidx.text.__cxa_init_primary_exception
-                0x10014758        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
+                0x10014b78        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
  .ARM.exidx.text.__cxa_throw
-                0x10014760        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
+                0x10014b80        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
  .ARM.exidx.text.__cxa_rethrow
-                0x10014768        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
+                0x10014b88        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_throw.o)
  .ARM.exidx.text._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x10014770       0x10 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
+                0x10014b90       0x10 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(vterminate.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_type_match
-                0x10014780        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
+                0x10014ba0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
  .ARM.exidx.text.__cxa_begin_cleanup
-                0x10014788        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
+                0x10014ba8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
  .ARM.exidx.text.__gnu_end_cleanup
-                0x10014790        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
+                0x10014bb0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZN10__cxxabiv1L24__is_gxx_exception_classEPc
-                0x10014790        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
+                0x10014bb0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__cxa_call_terminate
-                0x10014790        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
+                0x10014bb0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.unlikely.__cxa_call_unexpected
-                0x10014790        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
+                0x10014bb0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_call.o)
  .ARM.exidx.text.__cxa_begin_catch
-                0x10014798        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
+                0x10014bb8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
  .ARM.exidx.text.__cxa_end_catch
-                0x100147a0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
+                0x10014bc0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_catch.o)
  .ARM.exidx.text.__cxa_get_globals_fast
-                0x100147a8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_globals.o)
+                0x10014bc8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_globals.o)
  .ARM.exidx.text.__cxa_get_globals
-                0x100147b0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_globals.o)
+                0x10014bd0        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_globals.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._ZL28read_encoded_value_with_basehjPKhPj
-                0x100147b0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x10014bd0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
  .ARM.exidx.text._ZL21base_of_encoded_valuehP15_Unwind_Context
-                0x100147b8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x10014bd8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
  .ARM.exidx.text._ZL17parse_lsda_headerP15_Unwind_ContextPKhP16lsda_header_info
-                0x100147c0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x10014be0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
  .ARM.exidx.text.__gxx_personality_v0
-                0x100147c8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
+                0x10014be8        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_personality.o)
  .ARM.exidx.text.__cxa_current_exception_type
-                0x100147d0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_type.o)
- .ARM.exidx     0x100147d8       0x90 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(unwind-arm.o)
+                0x10014bf0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(eh_type.o)
+ .ARM.exidx     0x10014bf8       0x90 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(unwind-arm.o)
                                  0xd8 (size before relaxing)
- .ARM.exidx     0x10014868       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
+ .ARM.exidx     0x10014c88       0x28 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
                                  0x38 (size before relaxing)
  .ARM.exidx.text.unlikely
-                0x10014890        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
+                0x10014cb0        0x8 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(pr-support.o)
                                  0x10 (size before relaxing)
-                0x10014898                __exidx_end = .
+                0x10014cb8                __exidx_end = .
 
-.rel.dyn        0x10014898        0x0
- .rel.iplt      0x10014898        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x10014898                . = ALIGN (0x4)
-                0x10014898                __binary_info_start = .
+.rel.dyn        0x10014cb8        0x0
+ .rel.iplt      0x10014cb8        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x10014cb8                . = ALIGN (0x4)
+                0x10014cb8                __binary_info_start = .
 
-.binary_info    0x10014898       0x28
+.binary_info    0x10014cb8       0x28
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr46
-                0x10014898        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
+                0x10014cb8        0x4 CMakeFiles/r1_rp2040_fw.dir/__/rp2040_drivers/sangria_i2c.cpp.obj
  .binary_info.keep.__bi_ptr22
-                0x1001489c        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cbc        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x100148a0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cc0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x100148a4        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cc4        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x100148a8        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cc8        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x100148ac        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014ccc        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x100148b0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cd0        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr81
-                0x100148b4        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x10014cd4        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr121
-                0x100148b8        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10014cd8        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .binary_info.keep.__bi_ptr131
-                0x100148bc        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+                0x10014cdc        0x4 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  *(.binary_info.*)
-                0x100148c0                __binary_info_end = .
-                0x100148c0                . = ALIGN (0x4)
-                0x100148c0                __etext = .
+                0x10014ce0                __binary_info_end = .
+                0x10014ce0                . = ALIGN (0x4)
+                0x10014ce0                __etext = .
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -3396,7 +3412,7 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x20000000       0xc0 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x20000000                ram_vector_table
 
-.data           0x200000c0     0x1c08 load address 0x100148c0
+.data           0x200000c0     0x1c08 load address 0x10014ce0
                 0x200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -3575,27 +3591,27 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
                 0x20001cc8                . = ALIGN (0x4)
                 0x20001cc8                __data_end__ = .
 
-.igot.plt       0x20001cc8        0x0 load address 0x100164c8
+.igot.plt       0x20001cc8        0x0 load address 0x100168e8
  .igot.plt      0x20001cc8        0x0 c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x20001cc8        0x0 load address 0x100164c8
+                0x20001cc8        0x0 load address 0x100168e8
                 0x20001cc8                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x20040000        0x0 load address 0x100164c8
+.scratch_x      0x20040000        0x0 load address 0x100168e8
                 0x20040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                . = ALIGN (0x4)
                 0x20040000                __scratch_x_end__ = .
-                0x100164c8                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x100168e8                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x100164c8
+.scratch_y      0x20041000        0x0 load address 0x100168e8
                 0x20041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                . = ALIGN (0x4)
                 0x20041000                __scratch_y_end__ = .
-                0x100164c8                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x100168e8                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .bss            0x20001cc8      0xa64
                 0x20001cc8                . = ALIGN (0x4)
@@ -3749,8 +3765,8 @@ LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-
  *(.stack*)
  .stack         0x20041000      0x800 CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x100164c8        0x0
-                0x100164c8                __flash_binary_end = .
+.flash_end      0x100168e8        0x0
+                0x100168e8                __flash_binary_end = .
                 0x20040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -3835,7 +3851,7 @@ LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/
 LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 LOAD CMakeFiles/r1_rp2040_fw.dir/936531764aea65db7280ebb444b961b1/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 LOAD CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
-LOAD C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
+LOAD C:\Users\hra\AppData\Local\Temp\cc04kTig.o
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -3969,7 +3985,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000934       0x2c CMakeFiles/r1_rp2040_fw.dir/C_/Users/hra/Documents/github/sangria_firmware/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
  .ARM.attributes
-                0x00000960       0x22 C:\Users\hra\AppData\Local\Temp\cc0cCGJZ.o
+                0x00000960       0x22 C:\Users\hra\AppData\Local\Temp\cc04kTig.o
  .ARM.attributes
                 0x00000982       0x2c c:/progra~2/gnu arm embedded toolchain/10 2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a(guard.o)
  .ARM.attributes

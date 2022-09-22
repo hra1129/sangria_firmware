@@ -17,4 +17,12 @@ python image_1bpp_converter.py ../font/big_ac_power.png
 python image_1bpp_converter.py ../font/big_usb_power.png
 python image_1bpp_converter.py ../font/big_no_power.png
 python image_1bpp_converter.py ../font/big_otg_power.png
+python image_1bpp_converter.py ../font/big_bq_is_not_detect.png
+python image_1bpp_converter.py ../font/big_battery_empty_a.png
+python image_1bpp_converter.py ../font/big_battery_empty_b.png
+python image_1bpp_converter.py ../font/big_battery_low_a.png
+python image_1bpp_converter.py ../font/big_battery_low_b.png
+python image_1bpp_converter.py ../font/big_battery_high_a.png
+python image_1bpp_converter.py ../font/big_battery_high_b.png
+python image_1bpp_converter.py ../font/big_battery_full.png
 pause

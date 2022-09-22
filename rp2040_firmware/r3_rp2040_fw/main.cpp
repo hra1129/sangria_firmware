@@ -52,7 +52,7 @@ static CSANGRIA_OLED *p_oled;
 static CSANGRIA_BATTERY *p_battery;
 
 // --------------------------------------------------------------------
-static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
+static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery, int anime ) {
 	const uint8_t *p_icon;
 
 	if( p_battery->check_battery_management_device() ) {
@@ -75,27 +75,27 @@ static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_b
 		p_oled->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		switch( (status >> 4) & 3 ) {
 		case 0:		//	Not charging
-			p_icon = get_icon( SANGRIA_ICON_EMPTY );
+			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_EMPTY_A + anime );
 			break;
 		case 1:		//	Pre charging
-			p_icon = get_icon( SANGRIA_ICON_HALF );
+			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_LOW_A + anime );
 			break;
 		case 2:		//	Fast charging
-			p_icon = get_icon( SANGRIA_ICON_HIGH );
+			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_HIGH_A + anime );
 			break;
 		default:	//	Charge termination done
-			p_icon = get_icon( SANGRIA_ICON_FULL );
+			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_FULL_A + anime );
 			break;
 		}
-		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
+		p_oled->copy_1bpp( p_icon, 32, 32, 96, 0 );
 	}
 	else {
 		//	Unkown
-		p_icon = get_icon( SANGRIA_ICON_BIG_NO_POWER );
+		p_icon = get_icon( SANGRIA_ICON_BIG_BQ_IS_NOT_DETECT );
 		p_oled->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		//	Not charging
 		p_icon = get_icon( SANGRIA_ICON_EMPTY );
-		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
+		p_oled->copy_1bpp( p_icon, 32, 32, 96, 0 );
 	}
 }
 
@@ -184,7 +184,8 @@ public:
 				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 80, 0 );
 			}
 			//	Battery status
-			display_battery_status( this->p_oled, this->p_battery );
+			count = (count + 1) & 63;
+			display_battery_status( this->p_oled, this->p_battery, count >> 5 );
 		}
 		p_oled->update();
 	}
@@ -291,9 +292,10 @@ void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 //		1: Go to Run Mode
 //
 static int suspend_mode( void ) {
-	int status;
+	int status, count;
 	bool is_oled_power = false;
 
+	count = 0;
 	p_keyboard->backlight( 0 );
 	while( 1 ) {
 		//	Check power plug
@@ -304,7 +306,8 @@ static int suspend_mode( void ) {
 					is_oled_power = true;
 					p_oled->power_on();
 				}
-				display_battery_status( p_oled, p_battery );
+				count = (count + 1) & 15;
+				display_battery_status( p_oled, p_battery, count >> 3 );
 				p_oled->update();
 			}
 			else {
@@ -345,8 +348,9 @@ static int battery_status_mode( void ) {
 	int time_out = 50;	//	5.0sec
 	static const int led_duty[] = { 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 7, 7, 7, 6, 6, 5, 4, 3, 2 };
 	int index = 0;
-	int i;
+	int i, count;
 
+	count = 0;
 	p_keyboard->backlight( 1 );
 	p_oled->power_on();				// <== VERY SLOW!
 	while( time_out ) {
@@ -361,7 +365,8 @@ static int battery_status_mode( void ) {
 			p_keyboard->backlight( 0 );
 			return 1;
 		}
-		display_battery_status( p_oled, p_battery );
+		count = (count + 1) & 15;
+		display_battery_status( p_oled, p_battery, count >> 3 );
 		p_oled->update();
 		for( i = 0; i < 10; i++ ) {
 			p_keyboard->backlight( 1 );
