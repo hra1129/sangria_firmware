@@ -458,6 +458,10 @@ int main( void ) {
 
 	board_init();
 
+	//	Turn off GPS module.
+	gpio_init( SANGRIA_GPS_POWER );
+	gpio_put( SANGRIA_GPS_POWER, 0 );
+
 	CSANGRIA_JOGDIAL jogdial;
 	CSANGRIA_KEYBOARD keyboard;
 	CSANGRIA_I2C i2c_oled( SANGRIA_OLED_I2C, SANGRIA_I2C1_CLOCK, SANGRIA_I2C1_SCL, SANGRIA_I2C1_SDA );
