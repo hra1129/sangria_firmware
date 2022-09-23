@@ -163,7 +163,7 @@ void CSANGRIA_OLED::power_on( void ) {
 	#endif
 
 	this->send_buffer[count++] = SSD13X6_SET_CONTRAST;				// set contrast control
-	this->send_buffer[count++] = 0x7F;								// - 127
+	this->send_buffer[count++] = 16;
 
 	this->send_buffer[count++] = SSD13X6_DISPLAY_ALL_ON_RESUME;		// disable entire display on A4h
 
@@ -201,6 +201,22 @@ void CSANGRIA_OLED::power_off( void ) {
 
 	//	OLED Power OFF
 	gpio_put( SANGRIA_OLED_ON_N, OLED_POWER_OFF );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_OLED::set_contrast_level( int level ) {
+	int count = 0;
+
+	if( level < 0 ) {
+		level = 0;
+	}
+	if( level > 255 ) {
+		level = 255;
+	}
+	this->send_buffer[count++] = SSD13X6_CONTROL_CMD_STREAM;		// Control byte
+	this->send_buffer[count++] = SSD13X6_SET_CONTRAST;				// set contrast control
+	this->send_buffer[count++] = level;
+	p_i2c->write( OLED_ADDR, this->send_buffer, count );
 }
 
 // --------------------------------------------------------------------

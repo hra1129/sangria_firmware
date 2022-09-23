@@ -81,6 +81,10 @@
 #define SANGRIA_BATTERY_ADC		29
 
 // --------------------------------------------------------------------
+//	GPIO PIN defines: GPS
+#define SANGRIA_GPS_POWER		15
+
+// --------------------------------------------------------------------
 //	GPIO PIN defines: keyboard/buttons
 //	[!] NOT CHANGE!
 //

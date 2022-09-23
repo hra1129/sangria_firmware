@@ -198,6 +198,16 @@ public:
 	//	comment:
 	//
 	void set_position( int xx, int yy );
+
+	// --------------------------------------------------------------------
+	//	set_contrast_level
+	//	input:
+	//		level ...... 0 (MIN) - 255 (MAX)
+	//	output:
+	//		none
+	//	comment:
+	//
+	void set_contrast_level( int level );
 };
 
 #endif

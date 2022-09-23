@@ -41,6 +41,8 @@
 #include "sangria_oled.h"
 #include "sangria_usb_keyboard.h"
 #include "sangria_battery.h"
+#include "sangria_gps.h"
+#include "sangria_flash.h"
 
 #include "sangria_graphic_resource.h"
 
@@ -50,6 +52,8 @@ static CSANGRIA_I2C *p_i2c_oled;
 static CSANGRIA_I2C *p_i2c_bq;
 static CSANGRIA_OLED *p_oled;
 static CSANGRIA_BATTERY *p_battery;
+static CSANGRIA_GPS *p_gps;
+static CSANGRIA_FLASH *p_flash;
 
 // --------------------------------------------------------------------
 static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery, int anime ) {
@@ -458,16 +462,14 @@ int main( void ) {
 
 	board_init();
 
-	//	Turn off GPS module.
-	gpio_init( SANGRIA_GPS_POWER );
-	gpio_put( SANGRIA_GPS_POWER, 0 );
-
 	CSANGRIA_JOGDIAL jogdial;
 	CSANGRIA_KEYBOARD keyboard;
 	CSANGRIA_I2C i2c_oled( SANGRIA_OLED_I2C, SANGRIA_I2C1_CLOCK, SANGRIA_I2C1_SCL, SANGRIA_I2C1_SDA );
 	CSANGRIA_I2C i2c_bq( SANGRIA_BQ_I2C, SANGRIA_I2C0_CLOCK, SANGRIA_I2C0_SCL, SANGRIA_I2C0_SDA );
 	CSANGRIA_OLED oled;
 	CSANGRIA_BATTERY battery;
+	CSANGRIA_GPS gps;
+	CSANGRIA_FLASH flash;
 
 	p_jogdial = &jogdial;
 	p_keyboard = &keyboard;
@@ -475,10 +477,15 @@ int main( void ) {
 	p_i2c_bq = &i2c_bq;
 	p_oled = &oled;
 	p_battery = &battery;
+	p_gps = &gps;
+	p_flash = &flash;
 
 	p_oled->set_i2c( p_i2c_oled );
 	p_battery->set_i2c( p_i2c_bq );
 	keyboard.set_jogdial( p_jogdial );
+
+	//p_flash->read();
+	//p_flash->write();
 
 	p_battery->power_on();
 	multicore_launch_core1( other_core );

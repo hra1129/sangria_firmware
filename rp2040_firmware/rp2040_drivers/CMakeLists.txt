@@ -10,6 +10,8 @@ target_sources( rp2040_drivers INTERFACE
 	${CMAKE_CURRENT_LIST_DIR}/sangria_graphic_resource.cpp
 	${CMAKE_CURRENT_LIST_DIR}/sangria_usb_keyboard.cpp
 	${CMAKE_CURRENT_LIST_DIR}/sangria_battery.cpp
+	${CMAKE_CURRENT_LIST_DIR}/sangria_gps.cpp
+	${CMAKE_CURRENT_LIST_DIR}/sangria_flash.cpp
 	${CMAKE_CURRENT_LIST_DIR}/usb_descriptors.c
 )
 
@@ -17,6 +19,7 @@ target_link_libraries( rp2040_drivers INTERFACE
 	pico_stdlib
 	pico_multicore
 	hardware_i2c
+	hardware_flash
 	tinyusb_device
 	tinyusb_board
 )

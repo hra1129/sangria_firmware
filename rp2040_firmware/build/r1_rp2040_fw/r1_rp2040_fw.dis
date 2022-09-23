@@ -1995,7 +1995,7 @@ Disassembly of section .text:
 1000113c:	00002014 	.word	0x00002014
 10001140:	8102dac8 	.word	0x8102dac8
 10001144:	00002018 	.word	0x00002018
-10001148:	d5a6a47f 	.word	0xd5a6a47f
+10001148:	d5a6a410 	.word	0xd5a6a410
 1000114c:	0000201c 	.word	0x0000201c
 10001150:	af148d80 	.word	0xaf148d80
 
@@ -34477,7 +34477,7 @@ Disassembly of section .data:
 20000152:	b082      	sub	sp, #8
 20000154:	000c      	movs	r4, r1
 20000156:	0007      	movs	r7, r0
-20000158:	f001 f8ca 	bl	200012f0 <__time_us_64_veneer>
+20000158:	f001 f8e2 	bl	20001320 <__time_us_64_veneer>
 2000015c:	22fa      	movs	r2, #250	; 0xfa
 2000015e:	2300      	movs	r3, #0
 20000160:	9000      	str	r0, [sp, #0]
@@ -34485,7 +34485,7 @@ Disassembly of section .data:
 20000164:	0020      	movs	r0, r4
 20000166:	0092      	lsls	r2, r2, #2
 20000168:	2100      	movs	r1, #0
-2000016a:	f001 f8d9 	bl	20001320 <____wrap___aeabi_lmul_veneer>
+2000016a:	f001 f8d1 	bl	20001310 <____wrap___aeabi_lmul_veneer>
 2000016e:	9a00      	ldr	r2, [sp, #0]
 20000170:	9b01      	ldr	r3, [sp, #4]
 20000172:	0014      	movs	r4, r2
@@ -34507,7 +34507,7 @@ Disassembly of section .data:
 20000194:	f381 8810 	msr	PRIMASK, r1
 20000198:	0020      	movs	r0, r4
 2000019a:	0029      	movs	r1, r5
-2000019c:	f001 f8b0 	bl	20001300 <__best_effort_wfe_or_timeout_veneer>
+2000019c:	f001 f8d8 	bl	20001350 <__best_effort_wfe_or_timeout_veneer>
 200001a0:	2800      	cmp	r0, #0
 200001a2:	d120      	bne.n	200001e6 <mutex_enter_timeout_ms+0x9a>
 200001a4:	683a      	ldr	r2, [r7, #0]
@@ -34858,7 +34858,7 @@ Disassembly of section .data:
 20000464:	f7ff ffe6 	bl	20000434 <_Unwind_DebugHook>
 20000468:	1d28      	adds	r0, r5, #4
 2000046a:	f000 fc1d 	bl	20000ca8 <__restore_core_regs>
-2000046e:	f000 ff4f 	bl	20001310 <__abort_veneer>
+2000046e:	f000 ff47 	bl	20001300 <__abort_veneer>
 20000472:	46c0      	nop			; (mov r8, r8)
 
 20000474 <unwind_phase2_forced>:
@@ -35043,8 +35043,8 @@ Disassembly of section .data:
 200005e4:	f000 fb60 	bl	20000ca8 <__restore_core_regs>
 200005e8:	2201      	movs	r2, #1
 200005ea:	f7ff ff43 	bl	20000474 <unwind_phase2_forced>
-200005ee:	f000 fe8f 	bl	20001310 <__abort_veneer>
-200005f2:	f000 fe8d 	bl	20001310 <__abort_veneer>
+200005ee:	f000 fe87 	bl	20001300 <__abort_veneer>
+200005f2:	f000 fe85 	bl	20001300 <__abort_veneer>
 200005f6:	46c0      	nop			; (mov r8, r8)
 
 200005f8 <__gnu_Unwind_Resume_or_Rethrow>:
@@ -35383,7 +35383,7 @@ Disassembly of section .data:
 20000890:	0001      	movs	r1, r0
 20000892:	ab04      	add	r3, sp, #16
 20000894:	0030      	movs	r0, r6
-20000896:	f000 fd53 	bl	20001340 <____cxa_type_match_veneer>
+20000896:	f000 fd2b 	bl	200012f0 <____cxa_type_match_veneer>
 2000089a:	2800      	cmp	r0, #0
 2000089c:	d16c      	bne.n	20000978 <__gnu_unwind_pr_common+0x248>
 2000089e:	3508      	adds	r5, #8
@@ -35476,7 +35476,7 @@ Disassembly of section .data:
 2000095a:	63b5      	str	r5, [r6, #56]	; 0x38
 2000095c:	0004      	movs	r4, r0
 2000095e:	0030      	movs	r0, r6
-20000960:	f000 fcf6 	bl	20001350 <____cxa_begin_cleanup_veneer>
+20000960:	f000 fcee 	bl	20001340 <____cxa_begin_cleanup_veneer>
 20000964:	2800      	cmp	r0, #0
 20000966:	d100      	bne.n	2000096a <__gnu_unwind_pr_common+0x23a>
 20000968:	e713      	b.n	20000792 <__gnu_unwind_pr_common+0x62>
@@ -35529,7 +35529,7 @@ Disassembly of section .data:
 200009cc:	0001      	movs	r1, r0
 200009ce:	ab04      	add	r3, sp, #16
 200009d0:	0030      	movs	r0, r6
-200009d2:	f000 fcb5 	bl	20001340 <____cxa_type_match_veneer>
+200009d2:	f000 fc8d 	bl	200012f0 <____cxa_type_match_veneer>
 200009d6:	3701      	adds	r7, #1
 200009d8:	3404      	adds	r4, #4
 200009da:	2800      	cmp	r0, #0
@@ -36508,7 +36508,7 @@ Disassembly of section .data:
 
 20001178 <_Unwind_GetDataRelBase>:
 20001178:	b510      	push	{r4, lr}
-2000117a:	f000 f8c9 	bl	20001310 <__abort_veneer>
+2000117a:	f000 f8c1 	bl	20001300 <__abort_veneer>
 
 2000117e <_Unwind_GetTextRelBase>:
 2000117e:	b510      	push	{r4, lr}
@@ -36700,41 +36700,41 @@ Disassembly of section .data:
 200012ec:	0000      	movs	r0, r0
 	...
 
-200012f0 <__time_us_64_veneer>:
+200012f0 <____cxa_type_match_veneer>:
 200012f0:	b401      	push	{r0}
-200012f2:	4802      	ldr	r0, [pc, #8]	; (200012fc <__time_us_64_veneer+0xc>)
+200012f2:	4802      	ldr	r0, [pc, #8]	; (200012fc <____cxa_type_match_veneer+0xc>)
 200012f4:	4684      	mov	ip, r0
 200012f6:	bc01      	pop	{r0}
 200012f8:	4760      	bx	ip
 200012fa:	bf00      	nop
-200012fc:	10002815 	.word	0x10002815
+200012fc:	1000f0ed 	.word	0x1000f0ed
 
-20001300 <__best_effort_wfe_or_timeout_veneer>:
+20001300 <__abort_veneer>:
 20001300:	b401      	push	{r0}
-20001302:	4802      	ldr	r0, [pc, #8]	; (2000130c <__best_effort_wfe_or_timeout_veneer+0xc>)
+20001302:	4802      	ldr	r0, [pc, #8]	; (2000130c <__abort_veneer+0xc>)
 20001304:	4684      	mov	ip, r0
 20001306:	bc01      	pop	{r0}
 20001308:	4760      	bx	ip
 2000130a:	bf00      	nop
-2000130c:	10002671 	.word	0x10002671
+2000130c:	1000fbc9 	.word	0x1000fbc9
 
-20001310 <__abort_veneer>:
+20001310 <____wrap___aeabi_lmul_veneer>:
 20001310:	b401      	push	{r0}
-20001312:	4802      	ldr	r0, [pc, #8]	; (2000131c <__abort_veneer+0xc>)
+20001312:	4802      	ldr	r0, [pc, #8]	; (2000131c <____wrap___aeabi_lmul_veneer+0xc>)
 20001314:	4684      	mov	ip, r0
 20001316:	bc01      	pop	{r0}
 20001318:	4760      	bx	ip
 2000131a:	bf00      	nop
-2000131c:	1000fbc9 	.word	0x1000fbc9
+2000131c:	100058cd 	.word	0x100058cd
 
-20001320 <____wrap___aeabi_lmul_veneer>:
+20001320 <__time_us_64_veneer>:
 20001320:	b401      	push	{r0}
-20001322:	4802      	ldr	r0, [pc, #8]	; (2000132c <____wrap___aeabi_lmul_veneer+0xc>)
+20001322:	4802      	ldr	r0, [pc, #8]	; (2000132c <__time_us_64_veneer+0xc>)
 20001324:	4684      	mov	ip, r0
 20001326:	bc01      	pop	{r0}
 20001328:	4760      	bx	ip
 2000132a:	bf00      	nop
-2000132c:	100058cd 	.word	0x100058cd
+2000132c:	10002815 	.word	0x10002815
 
 20001330 <____wrap_memcpy_veneer>:
 20001330:	b401      	push	{r0}
@@ -36745,23 +36745,23 @@ Disassembly of section .data:
 2000133a:	bf00      	nop
 2000133c:	10005a49 	.word	0x10005a49
 
-20001340 <____cxa_type_match_veneer>:
+20001340 <____cxa_begin_cleanup_veneer>:
 20001340:	b401      	push	{r0}
-20001342:	4802      	ldr	r0, [pc, #8]	; (2000134c <____cxa_type_match_veneer+0xc>)
+20001342:	4802      	ldr	r0, [pc, #8]	; (2000134c <____cxa_begin_cleanup_veneer+0xc>)
 20001344:	4684      	mov	ip, r0
 20001346:	bc01      	pop	{r0}
 20001348:	4760      	bx	ip
 2000134a:	bf00      	nop
-2000134c:	1000f0ed 	.word	0x1000f0ed
+2000134c:	1000f1ad 	.word	0x1000f1ad
 
-20001350 <____cxa_begin_cleanup_veneer>:
+20001350 <__best_effort_wfe_or_timeout_veneer>:
 20001350:	b401      	push	{r0}
-20001352:	4802      	ldr	r0, [pc, #8]	; (2000135c <____cxa_begin_cleanup_veneer+0xc>)
+20001352:	4802      	ldr	r0, [pc, #8]	; (2000135c <__best_effort_wfe_or_timeout_veneer+0xc>)
 20001354:	4684      	mov	ip, r0
 20001356:	bc01      	pop	{r0}
 20001358:	4760      	bx	ip
 2000135a:	bf00      	nop
-2000135c:	1000f1ad 	.word	0x1000f1ad
+2000135c:	10002671 	.word	0x10002671
 
 20001360 <_ZZN12CSANGRIA_I2CC4EP8i2c_instmmmE7__bi_46>:
 20001360:	50520008 00000000                       ..RP....
