@@ -26,5 +26,5 @@ add_compile_options(-Wall
 
 # Hardware-specific examples in subdirectories:
 add_subdirectory(rp2040_drivers)
-add_subdirectory(r1_rp2040_fw)
+# add_subdirectory(r1_rp2040_fw)
 add_subdirectory(r3_rp2040_fw)

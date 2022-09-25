@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware USB keybard device driver
+//	Sangria firmware
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,11 +23,25 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_USB_KEYBOARD_H__
-#define __SANGRIA_USB_KEYBOARD_H__
+#include "controller.h"
 
-#include "sangria_keyboard.h"
+// --------------------------------------------------------------------
+CSANGRIA_CONTROLLER::CSANGRIA_CONTROLLER() {
+}
 
-void hid_task( CSANGRIA_KEYBOARD *p_keyboard );
+// --------------------------------------------------------------------
+void CSANGRIA_CONTROLLER::initialize( void ) {
 
-#endif
+	this->p_jogdial		= new CSANGRIA_JOGDIAL();
+	this->p_keyboard	= new CSANGRIA_KEYBOARD();
+	this->p_i2c_oled	= new CSANGRIA_I2C( SANGRIA_OLED_I2C, SANGRIA_I2C1_CLOCK, SANGRIA_I2C1_SCL, SANGRIA_I2C1_SDA );
+	this->p_i2c_bq		= new CSANGRIA_I2C( SANGRIA_BQ_I2C, SANGRIA_I2C0_CLOCK, SANGRIA_I2C0_SCL, SANGRIA_I2C0_SDA );
+	this->p_oled		= new CSANGRIA_OLED();
+	this->p_battery		= new CSANGRIA_BATTERY();
+	this->p_gps			= new CSANGRIA_GPS();
+	this->p_flash		= new CSANGRIA_FLASH();
+
+	this->p_oled->set_i2c( p_i2c_oled );
+	this->p_battery->set_i2c( p_i2c_bq );
+	this->p_keyboard->set_jogdial( p_jogdial );
+}

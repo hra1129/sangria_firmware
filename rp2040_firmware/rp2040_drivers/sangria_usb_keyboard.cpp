@@ -73,7 +73,7 @@ C_FUNC void tud_resume_cb( void ) {
 //--------------------------------------------------------------------+
 // USB HID
 //--------------------------------------------------------------------+
-static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
+static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD *p_keyboard ) {
 	// skip if hid is not ready yet
 	if(  !tud_hid_ready() ) {
 		unmount_counter++;
@@ -91,7 +91,7 @@ static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
 	static bool has_keyboard_key = false;
 
 	uint8_t keycode[6];
-	int index = keyboard.update( keycode );
+	int index = p_keyboard->update( keycode );
 
 	if( index ) {
 		if( tud_suspended() ) {
@@ -120,7 +120,7 @@ static void send_hid_report( uint8_t report_id, CSANGRIA_KEYBOARD &keyboard ) {
 // tud_hid_report_complete_cb() is used to send the next report after previous one is complete
 
 //void hid_task( CSANGRIA_KEYBOARD &keyboard, CSANGRIA_JOGDIAL &jogdial ) {
-void hid_task( CSANGRIA_KEYBOARD &keyboard ) {
+void hid_task( CSANGRIA_KEYBOARD *p_keyboard ) {
 	// Poll every 10ms
 	const uint32_t interval_ms = 10;
 	static uint32_t start_ms = 0;
@@ -129,7 +129,7 @@ void hid_task( CSANGRIA_KEYBOARD &keyboard ) {
 		return; // not enough time
 	}
 	start_ms += interval_ms;
-	send_hid_report( REPORT_ID_KEYBOARD, keyboard );
+	send_hid_report( REPORT_ID_KEYBOARD, p_keyboard );
 }
 
 // --------------------------------------------------------------------

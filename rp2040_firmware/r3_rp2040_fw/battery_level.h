@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------
 //	The MIT License (MIT)
 //	
-//	Sangria firmware USB keybard device driver
+//	Sangria firmware
 //	Copyright (c) 2022 Takayuki Hara
 //	
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,11 +23,9 @@
 //	THE SOFTWARE.
 // --------------------------------------------------------------------
 
-#ifndef __SANGRIA_USB_KEYBOARD_H__
-#define __SANGRIA_USB_KEYBOARD_H__
+#ifndef __SANGRIA_BATTERY_LEVEL_H__
+#define __SANGRIA_BATTERY_LEVEL_H__
 
-#include "sangria_keyboard.h"
-
-void hid_task( CSANGRIA_KEYBOARD *p_keyboard );
+void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime );
 
 #endif

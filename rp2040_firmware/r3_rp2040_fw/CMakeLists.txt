@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.13)
 add_executable( r3_rp2040_fw )
 
 target_sources( r3_rp2040_fw PUBLIC
+	controller.cpp
+	battery_level.cpp
 	main.cpp
 )
 
