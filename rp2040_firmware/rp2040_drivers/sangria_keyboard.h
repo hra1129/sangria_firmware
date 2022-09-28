@@ -47,13 +47,24 @@ private:
 	bool caps_key;
 	bool sym_key;
 	bool ctrl_key;
+
+	bool menu_mode;
 public:
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_KEYBOARD();
 
 	// --------------------------------------------------------------------
-	//	
+	//	Function to return true in menu mode
+	bool is_menu_mode( void ) const {
+		return this->menu_mode;
+	}
+
+	// --------------------------------------------------------------------
+	//	Exit function from menu mode
+	void exit_menu_mode( void ) {
+		this->menu_mode = false;
+	}
 
 	// --------------------------------------------------------------------
 	//	Set jogdial

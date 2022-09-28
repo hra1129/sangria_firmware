@@ -165,6 +165,7 @@ CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
 	this->shift_key = false;
 	this->sym_key = false;
 	this->ctrl_key = false;
+	this->menu_mode = false;
 }
 
 // --------------------------------------------------------------------
@@ -188,6 +189,14 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 	uint32_t key_data;
 	uint16_t hid_key_code;
 
+	if( this->menu_mode ) {
+		//	In menu mode, it returns "no keys pressed" as a USB keyboard.
+		for( i = 0; i < 6; i++ ) {
+			key_code[ i ] = HID_KEY_NONE;
+		}
+		return 0;
+	}
+
 	modifier_index = (this->alt_key ? MODIFIER_ALT_KEY : 0) + (this->sym_key ? MODIFIER_SYM_KEY : 0);
 	index = 0;
 	virtual_modifier_index = -1;	//	invalid
@@ -209,6 +218,14 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 		p_jogdial->update();
 
 		if( p_jogdial->get_back_button() ) {
+			if( (this->current_key_matrix[1] & (1 << 6)) == 0 && (this->current_key_matrix[2] & (1 << 3)) == 0 ) {
+				//	If the combination of [Left-Shift]+[Right-Shift]+[Jog BACK] is pressed, the menu mode is entered.
+				this->menu_mode = true;
+				for( i = 0; i < 6; i++ ) {
+					key_code[ i ] = HID_KEY_NONE;
+				}
+				return 0;
+			}
 			key_code[ index ] = JOGDIAL_BACK_KEY;
 			index++;
 		}
