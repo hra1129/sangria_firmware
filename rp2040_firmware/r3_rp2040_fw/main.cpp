@@ -37,6 +37,7 @@
 
 #include "controller.h"
 #include "battery_level.h"
+#include "custom_menu.h"
 #include "sangria_graphic_resource.h"
 
 static CSANGRIA_CONTROLLER controller;
@@ -211,6 +212,40 @@ public:
 };
 
 // --------------------------------------------------------------------
+//	Custom menu mode
+//
+static void custom_menu_mode( CSANGRIA_CONTROLLER *p_controller ) {
+	uint32_t start_ms, end_ms;
+	CSANGRIA_CUSTOM_MENU menu;
+
+	p_controller->get_oled()->clear();
+	p_controller->get_oled()->update();
+	while( p_controller->get_jogdial()->get_back_button() ) {
+		p_controller->get_jogdial()->update();
+		sleep_ms( 16 );
+	}
+
+	for(;;) {
+		start_ms = board_millis();
+		p_controller->get_jogdial()->update();
+		if( !menu.draw( p_controller ) ) {
+			break;
+		}
+
+		if( !p_controller->get_keyboard()->check_host_connected() ) {
+			break;
+		}
+
+		end_ms = board_millis();
+		if( (end_ms - start_ms) < 16 ) {
+			sleep_ms( 16 - (end_ms - start_ms) );
+		}
+	}
+
+	p_controller->get_keyboard()->exit_menu_mode();
+}
+
+// --------------------------------------------------------------------
 //	Suspend mode
 //	input:
 //		none
@@ -225,6 +260,12 @@ static int suspend_mode( CSANGRIA_CONTROLLER *p_controller ) {
 	count = 0;
 	p_controller->get_keyboard()->backlight( 0 );
 	for(;;) {
+		//	Check enter the custom menu mode
+		if( p_controller->get_keyboard()->is_menu_mode() ) {
+			//	Go to custom menu mode
+			custom_menu_mode( p_controller );
+			continue;
+		}
 		//	Check power plug
 		if( p_controller->get_battery()->check_battery_management_device() ) {
 			status = p_controller->get_battery()->get_system_status();
@@ -321,6 +362,13 @@ static void run_mode( CSANGRIA_CONTROLLER *p_controller ) {
 	p_controller->get_oled()->power_on();
 
 	for(;;) {
+		//	Check enter the custom menu mode
+		if( p_controller->get_keyboard()->is_menu_mode() ) {
+			//	Go to custom menu mode
+			custom_menu_mode( p_controller );
+			continue;
+		}
+
 		start_ms = board_millis();
 		anime.draw();
 

@@ -5,6 +5,7 @@ add_executable( r3_rp2040_fw )
 target_sources( r3_rp2040_fw PUBLIC
 	controller.cpp
 	battery_level.cpp
+	custom_menu.cpp
 	main.cpp
 )
 
