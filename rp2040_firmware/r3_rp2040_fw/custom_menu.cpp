@@ -34,14 +34,14 @@
 // --------------------------------------------------------------------
 static const char *p_menu_item[] = {
 //	 0123456789012345
-	" OLED LV.(ON)",
-	" OLED LV.(OFF)",
-	" KEY CUSTOM",
-	" ITEM3",
-	" ITEM4",
-	" ITEM5",
-	" ITEM6",
-	" EXIT",
+	"OLED LV.(ON)",
+	"OLED LV.(OFF)",
+	"KEY CUSTOM",
+	"ITEM3",
+	"ITEM4",
+	"ITEM5",
+	"ITEM6",
+	"EXIT",
 };
 
 typedef enum {
@@ -59,6 +59,60 @@ typedef enum {
 
 // --------------------------------------------------------------------
 CSANGRIA_CUSTOM_MENU::CSANGRIA_CUSTOM_MENU() {
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_CUSTOM_MENU::wait_release_jogdial_buttons( CSANGRIA_CONTROLLER *p_controller ) {
+
+	while( p_controller->get_jogdial()->get_enter_button() || p_controller->get_jogdial()->get_back_button() ) {
+		p_controller->get_jogdial()->update();
+		sleep_ms( 1 );
+	}
+}
+
+// --------------------------------------------------------------------
+bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, const char *p_name, int &level ) {
+	int i;
+	static const int oled_level[] = { 1, 2, 4, 8, 16, 32, 64, 127 };
+	char s_buffer[16];
+
+	p_controller->get_oled()->clear();
+	//	Move cursor position
+	if( level > 0 && p_controller->get_jogdial()->get_down_button() ) {
+		level--;
+	}
+	if( level < 7 && p_controller->get_jogdial()->get_up_button() ) {
+		level++;
+	}
+
+	//	Check button
+	if( p_controller->get_jogdial()->get_enter_button() ) {
+		if( cursor_pos == MENU_ITEM_EXIT ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_TOP;
+			return false;
+		}
+	}
+	if( p_controller->get_jogdial()->get_back_button() ) {
+		wait_release_jogdial_buttons( p_controller );
+		return false;
+	}
+
+	p_controller->get_oled()->clear();
+	p_controller->get_oled()->set_position( 0, 0 );
+	p_controller->get_oled()->puts( p_name );
+	p_controller->get_oled()->set_position( 0, 1 );
+	p_controller->get_oled()->puts( "----------------" );
+	p_controller->get_oled()->set_position( 0, 2 );
+	p_controller->get_oled()->puts( "LV[" );
+	for( i = 0; i < 8; i++ ) {
+		p_controller->get_oled()->putc( i <= level ? '#' : '-' );
+	}
+	sprintf( s_buffer, "] %3d", level );
+	p_controller->get_oled()->puts( s_buffer );
+	p_controller->get_oled()->update();
+	p_controller->get_oled()->set_contrast_level( oled_level[ level ] );
+	return true;
 }
 
 // --------------------------------------------------------------------
@@ -103,10 +157,22 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 	//	Check button
 	if( p_controller->get_jogdial()->get_enter_button() ) {
 		if( cursor_pos == MENU_ITEM_EXIT ) {
+			wait_release_jogdial_buttons( p_controller );
 			return false;
+		}
+		if( cursor_pos == MENU_ITEM_ID_OLED_ON_LEVEL ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_OLED_ON_LEVEL;
+			return true;
+		}
+		if( cursor_pos == MENU_ITEM_ID_OLED_OFF_LEVEL ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_OLED_OFF_LEVEL;
+			return true;
 		}
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
+		wait_release_jogdial_buttons( p_controller );
 		return false;
 	}
 	return true;
@@ -120,6 +186,16 @@ bool CSANGRIA_CUSTOM_MENU::draw( CSANGRIA_CONTROLLER *p_controller ) {
 	default:
 	case SANGRIA_MENU_TOP:
 		result = this->draw_top_menu( p_controller );
+		break;
+	case SANGRIA_MENU_OLED_ON_LEVEL:
+		if( !this->draw_oled_level( p_controller, "OLED ON LEVEL", oled_on_level ) ) {
+			menu_state = SANGRIA_MENU_TOP;
+		}
+		break;
+	case SANGRIA_MENU_OLED_OFF_LEVEL:
+		if( !this->draw_oled_level( p_controller, "OLED OFF LEVEL", oled_off_level ) ) {
+			menu_state = SANGRIA_MENU_TOP;
+		}
 		break;
 	}
 	return result;

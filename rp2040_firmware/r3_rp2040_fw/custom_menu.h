@@ -30,6 +30,8 @@
 
 typedef enum {
 	SANGRIA_MENU_TOP		= 0,
+	SANGRIA_MENU_OLED_ON_LEVEL,
+	SANGRIA_MENU_OLED_OFF_LEVEL,
 } CSANGRIA_CUSTOM_MENU_STATE;
 
 class CSANGRIA_CUSTOM_MENU {
@@ -37,7 +39,11 @@ private:
 	CSANGRIA_CUSTOM_MENU_STATE	menu_state = SANGRIA_MENU_TOP;
 	int menu_pos = 0;
 	int cursor_pos = 0;
+	void wait_release_jogdial_buttons( CSANGRIA_CONTROLLER *p_controller );
 public:
+	int oled_on_level = 0;
+	int oled_off_level = 2;
+
 	// --------------------------------------------------------------------
 	//	Constructor
 	CSANGRIA_CUSTOM_MENU();
@@ -46,6 +52,7 @@ public:
 	//	Draw task
 	bool draw( CSANGRIA_CONTROLLER *p_controller );
 	bool draw_top_menu( CSANGRIA_CONTROLLER *p_controller );
+	bool draw_oled_level( CSANGRIA_CONTROLLER *p_controller, const char *p_name, int &level );
 };
 
 #endif
