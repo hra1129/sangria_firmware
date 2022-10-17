@@ -134,18 +134,11 @@ void smdd_transfer_bitmap( unsigned char *p_image ) {
 }
 
 // --------------------------------------------------------------------
-static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level ) {
+static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
 	int i, x, y, width, height, zoom, bit_count, line_count;
 	uint32_t p;
 	unsigned char d;
 	const uint32_t *p_src_left;
-
-	if( is_blink ) {
-		c = (c + 1) * threshold;
-	}
-	else {
-		c = threshold;
-	}
 
 	width		= 400 >> zoom_level;
 	height		= 240 >> zoom_level;
@@ -163,7 +156,7 @@ static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, 
 				p = (p & 255) + ((p >> 8) & 255) + ((p >> 16) & 255);
 				for( i = 0; i < zoom; i++ ) {
 					d <<= 1;
-					d += ( p > c );
+					d += ( p > threshold );
 				}
 				bit_count += zoom;
 				if( bit_count >= 8 ) {
@@ -178,18 +171,11 @@ static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, 
 }
 
 // --------------------------------------------------------------------
-static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level ) {
+static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
 	int i, x, y, width, height, zoom, bit_count, line_count;
 	uint32_t p;
 	unsigned char d;
 	const uint16_t *p_src_left;
-
-	if( is_blink ) {
-		c = (c + 1) * threshold;
-	}
-	else {
-		c = threshold;
-	}
 
 	width		= 400 >> zoom_level;
 	height		= 240 >> zoom_level;
@@ -207,7 +193,7 @@ static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, 
 				p = ((p & 31) + ((p >> 6) & 31) + ((p >> 11) & 31)) << 3;
 				for( i = 0; i < zoom; i++ ) {
 					d <<= 1;
-					d += ( p > c );
+					d += ( p > threshold );
 				}
 				bit_count += zoom;
 				if( bit_count >= 8 ) {

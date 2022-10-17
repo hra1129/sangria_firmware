@@ -125,7 +125,7 @@ static void main_process( int sem_id, uint32_t *p_capture, unsigned char *p_bitm
 		semop( sem_id, &lock_operations, 1 );
 		fbc_capture( p_capture );
 		zoom_mode();
-		smdd_convert_image( p_capture, p_bitmap, c, zoom_x, zoom_y, zoom_level );
+		smdd_convert_image( p_capture, p_bitmap, zoom_x, zoom_y, zoom_level );
 		smdd_transfer_bitmap( p_bitmap );
 		semop( sem_id, &unlock_operations, 1 );
 	}
