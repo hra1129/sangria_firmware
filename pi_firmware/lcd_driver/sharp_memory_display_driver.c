@@ -69,7 +69,7 @@ static const unsigned char mirror[256] = {
 static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level );
 static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level );
 
-static void (*p_convert_image)( const void *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level ) = NULL;
+static void (*p_convert_image)( const void *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) = NULL;
 
 // --------------------------------------------------------------------
 int smdd_initialize( void ) {
