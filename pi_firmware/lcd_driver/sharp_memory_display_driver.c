@@ -208,9 +208,9 @@ static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, 
 }
 
 // --------------------------------------------------------------------
-void smdd_convert_image( const void *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level ) {
+void smdd_convert_image( const void *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
 
-	p_convert_image( p_src, p_dest, c, zoom_x, zoom_y, zoom_level );
+	p_convert_image( p_src, p_dest, zoom_x, zoom_y, zoom_level );
 }
 
 // --------------------------------------------------------------------
