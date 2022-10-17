@@ -41,7 +41,6 @@ _deps
 cmake-*
 .DS_Store
 CMakeCache.txt
-Makefile
 CMakeFiles
 cmake_install.cmake
 pico-sdk
