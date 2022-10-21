@@ -37,9 +37,9 @@ static unsigned char	invert		= 0;
 static int				threshold	= 128;
 static int				hspi		= -1;
 
-#define CS				1
-#define DISPON			12
-#define EXTCOMIN		0
+#define CS				28
+#define DISPON			32
+#define EXTCOMIN		27
 
 #define SPEED			3500000
 
