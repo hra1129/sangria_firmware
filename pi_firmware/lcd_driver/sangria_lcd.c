@@ -37,8 +37,6 @@
 
 //static int hspi;
 static volatile int is_active = 1;
-static int zoom_x, zoom_y, zoom_level;
-static const int scroll_speed = 4;
 
  union semun {
 	int val;
@@ -78,31 +76,9 @@ static void command_line_options( int argc, char *argv[], int *p_do_splash ) {
 			i++;
 			smdd_set_threshold( atoi( argv[i] ) );
 		}
-		else if( strcmp( argv[i], "-noblink" ) == 0 ) {
-			smdd_set_blink( 0 );
-		}
 		else {
 			fprintf( stderr, "[WARNING] Unknown command line option %s.\n", argv[i] );
 		}
-	}
-}
-
-// --------------------------------------------------------------------
-static void zoom_mode( void ) {
-	const int width = 400;
-	const int height = 240;
-
-	if( zoom_x < 0 ) {
-		zoom_x = 0;
-	}
-	else if( zoom_x + width >= 400 ) {
-		zoom_x = 400 - width;
-	}
-	if( zoom_y < 0 ) {
-		zoom_y = 0;
-	}
-	else if( zoom_y + height >= 240 ) {
-		zoom_y = 240 - height;
 	}
 }
 
@@ -118,14 +94,10 @@ static void main_process( int sem_id, uint32_t *p_capture, unsigned char *p_bitm
 	unlock_operations.sem_op = 1;
 	unlock_operations.sem_flg = SEM_UNDO;
 
-	zoom_x = 0;
-	zoom_y = 0;
-	zoom_level = 0;
 	while( is_active ) {
 		semop( sem_id, &lock_operations, 1 );
 		fbc_capture( p_capture );
-		zoom_mode();
-		smdd_convert_image( p_capture, p_bitmap, zoom_x, zoom_y, zoom_level );
+		smdd_convert_image( p_capture, p_bitmap );
 		smdd_transfer_bitmap( p_bitmap );
 		semop( sem_id, &unlock_operations, 1 );
 	}

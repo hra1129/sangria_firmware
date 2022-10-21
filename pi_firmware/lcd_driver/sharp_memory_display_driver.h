@@ -71,13 +71,10 @@ void smdd_transfer_bitmap( unsigned char *p_image );
 //	input)
 //		p_src ....... 32bpp image data
 //		p_dest ...... 1bpp image data address
-//		zoom_x ...... X
-//		zoom_y ...... Y
-//		zoom_level .. 0: normal, 1: x2 zoom, 2: x4 zoom, 3: x8 zoom
 //	output)
 //		*p_dest .. 1bpp image data
 // --------------------------------------------------------------------
-void smdd_convert_image( const void *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level );
+void smdd_convert_image( const void *p_src, unsigned char *p_dest );
 
 // --------------------------------------------------------------------
 //	smdd_set_invert()
@@ -87,15 +84,6 @@ void smdd_convert_image( const void *p_src, unsigned char *p_dest, int zoom_x, i
 //		none
 // --------------------------------------------------------------------
 void smdd_set_invert( int inv );
-
-// --------------------------------------------------------------------
-//	smdd_set_blink()
-//	input)
-//		blink ...... 0: not blink, 1: blink
-//	output)
-//		none
-// --------------------------------------------------------------------
-void smdd_set_blink( int blink );
 
 // --------------------------------------------------------------------
 //	smdd_set_threshold()

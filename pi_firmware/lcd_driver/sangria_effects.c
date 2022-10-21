@@ -22,6 +22,7 @@
 //	DEALINGS IN THE SOFTWARE.
 // --------------------------------------------------------------------
 
+#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <armbianio.h>

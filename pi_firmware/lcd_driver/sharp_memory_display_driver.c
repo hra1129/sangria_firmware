@@ -21,25 +21,25 @@
 //	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 //	DEALINGS IN THE SOFTWARE.
 // ====================================================================
-// 2022/Mar/17th	t.hara
+// 2022/Oct/18th	t.hara
 // --------------------------------------------------------------------
 
 #include <armbianio.h>
+#include <stdio.h>
 #include <string.h>
 #include "sharp_memory_display_driver.h"
 #include "fb_convert.h"
 
 //	Parameter
-static const int		ref_height				= 240;
+static const int		ref_height	= 240;
 
 static unsigned char	invert		= 0;
-static unsigned char	is_blink	= 1;
 static int				threshold	= 128;
 static int				hspi		= -1;
 
-#define CS				16
-#define DISPON			18
-#define EXTCOMIN		22
+#define CS				1
+#define DISPON			12
+#define EXTCOMIN		0
 
 #define SPEED			3500000
 
@@ -66,16 +66,17 @@ static const unsigned char mirror[256] = {
 	15, 143, 79, 207, 47, 175, 111, 239, 31, 159, 95, 223, 63, 191, 127, 255
 };
 
-static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level );
-static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, int c, int zoom_x, int zoom_y, int zoom_level );
+static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest );
+static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest );
 
-static void (*p_convert_image)( const void *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) = NULL;
+static void (*p_convert_image)( const void *p_src, unsigned char *p_dest ) = NULL;
 
 // --------------------------------------------------------------------
 int smdd_initialize( void ) {
 	int bpp;
 	unsigned char frame_buffer[ 50 * 240 ] = { 0 };
 
+	AIOInitBoard( "Raspberry Pi" );
 	AIOAddGPIO( CS			, GPIO_OUT );
 	AIOAddGPIO( DISPON		, GPIO_OUT );
 	AIOAddGPIO( EXTCOMIN	, GPIO_OUT );
@@ -134,83 +135,63 @@ void smdd_transfer_bitmap( unsigned char *p_image ) {
 }
 
 // --------------------------------------------------------------------
-static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
-	int i, x, y, width, height, zoom, bit_count, line_count;
+static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest ) {
+	int x, y, width, height, bit_count;
 	uint32_t p;
 	unsigned char d;
-	const uint32_t *p_src_left;
 
-	width		= 400 >> zoom_level;
-	height		= 240 >> zoom_level;
-	p_src		+= zoom_x + zoom_y * 400;
+	width		= 400;
+	height		= 240;
 	d			= 0;
 	bit_count	= 0;
-	zoom		= 1 << zoom_level;
-	line_count	= 0;
 
 	for( y = 0; y < height; y++ ) {
-		p_src_left	= p_src;
-		for( line_count = 0; line_count < zoom; line_count++ ) {
-			for( x = 0; x < width; x++ ) {
-				p = *(p_src++);
-				p = (p & 255) + ((p >> 8) & 255) + ((p >> 16) & 255);
-				for( i = 0; i < zoom; i++ ) {
-					d <<= 1;
-					d += ( p > threshold );
-				}
-				bit_count += zoom;
-				if( bit_count >= 8 ) {
-					*(p_dest++) = d ^ invert;
-					bit_count = 0;
-				}
+		for( x = 0; x < width; x++ ) {
+			p = *(p_src++);
+			p = (p & 255) + ((p >> 8) & 255) + ((p >> 16) & 255);
+			d <<= 1;
+			d += ( p > threshold );
+			bit_count++;
+			if( bit_count >= 8 ) {
+				*(p_dest++) = d ^ invert;
+				bit_count = 0;
 			}
-			p_src = p_src_left;
 		}
 		p_src += 400;
 	}
 }
 
 // --------------------------------------------------------------------
-static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
-	int i, x, y, width, height, zoom, bit_count, line_count;
+static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest ) {
+	int x, y, width, height, bit_count;
 	uint32_t p;
 	unsigned char d;
-	const uint16_t *p_src_left;
 
-	width		= 400 >> zoom_level;
-	height		= 240 >> zoom_level;
-	p_src		+= zoom_x + zoom_y * 400;
+	width		= 400;
+	height		= 240;
 	d			= 0;
 	bit_count	= 0;
-	zoom		= 1 << zoom_level;
-	line_count	= 0;
 
 	for( y = 0; y < height; y++ ) {
-		p_src_left	= p_src;
-		for( line_count = 0; line_count < zoom; line_count++ ) {
-			for( x = 0; x < width; x++ ) {
-				p = (uint32_t) *(p_src++);
-				p = ((p & 31) + ((p >> 6) & 31) + ((p >> 11) & 31)) << 3;
-				for( i = 0; i < zoom; i++ ) {
-					d <<= 1;
-					d += ( p > threshold );
-				}
-				bit_count += zoom;
-				if( bit_count >= 8 ) {
-					*(p_dest++) = d ^ invert;
-					bit_count = 0;
-				}
+		for( x = 0; x < width; x++ ) {
+			p = (uint32_t) *(p_src++);
+			p = ((p & 31) + ((p >> 6) & 31) + ((p >> 11) & 31)) << 3;
+			d <<= 1;
+			d += ( p > threshold );
+			bit_count++;
+			if( bit_count >= 8 ) {
+				*(p_dest++) = d ^ invert;
+				bit_count = 0;
 			}
-			p_src = p_src_left;
 		}
 		p_src += 400;
 	}
 }
 
 // --------------------------------------------------------------------
-void smdd_convert_image( const void *p_src, unsigned char *p_dest, int zoom_x, int zoom_y, int zoom_level ) {
+void smdd_convert_image( const void *p_src, unsigned char *p_dest ) {
 
-	p_convert_image( p_src, p_dest, zoom_x, zoom_y, zoom_level );
+	p_convert_image( p_src, p_dest );
 }
 
 // --------------------------------------------------------------------
@@ -221,17 +202,6 @@ void smdd_set_invert( int inv ) {
 	}
 	else {
 		invert = 0x00;
-	}
-}
-
-// --------------------------------------------------------------------
-void smdd_set_blink( int blink ) {
-
-	if( blink ) {
-		is_blink = 0x01;
-	}
-	else {
-		is_blink = 0x00;
 	}
 }
 
