@@ -157,7 +157,6 @@ static void smdd_convert_image32( const uint32_t *p_src, unsigned char *p_dest )
 				bit_count = 0;
 			}
 		}
-		p_src += 400;
 	}
 }
 
@@ -184,7 +183,6 @@ static void smdd_convert_image16( const uint16_t *p_src, unsigned char *p_dest )
 				bit_count = 0;
 			}
 		}
-		p_src += 400;
 	}
 }
 
