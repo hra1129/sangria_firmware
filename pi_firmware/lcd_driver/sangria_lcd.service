@@ -4,7 +4,7 @@ Requires=pigpiod.service
 After=pigpiod.service
 
 [Service]
-ExecStart=/usr/local/bin/sangria_lcd -noblink -invert --
+ExecStart=/usr/local/bin/sangria_lcd --
 Type=simple
 Restart=on-failure
 

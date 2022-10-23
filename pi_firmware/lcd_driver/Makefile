@@ -25,9 +25,9 @@ clean:
 
 install: sangria_lcd
 	echo "Install sangria_lcd service."
+	sudo systemctl stop sangria_lcd.service
 	sudo cp ./sangria_lcd /usr/local/bin/
 	sudo cp ./sangria_lcd.service /etc/systemd/system/
 	sudo chmod 644 /etc/systemd/system/sangria_lcd.service
-	sudo systemctl stop sangria_lcd.service
 	sudo systemctl enable sangria_lcd.service
 	sudo systemctl start sangria_lcd.service
