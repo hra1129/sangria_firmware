@@ -20,6 +20,7 @@
 
 	2.1. “ú–{ŒêŠÂ‹«‚Ìİ’è
 		$ sudo apt-get install uim-fep uim-anthy fonts-noto-mono fbterm
+		$ sudo usermod -aG video user-name
 		$ sudo chmod u+s /usr/bin/fbterm
 		$ sudo setcap 'cap_sys_tty_config+ep' /usr/bin/fbterm
 		$ sudo chmod 0666 /dev/fb0
