@@ -213,46 +213,6 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 		this->current_key_matrix[i] = (uint8_t) key_data;
 	}
 
-	//	Update jogdial press informations and send datas
-	if( p_jogdial != nullptr ) {
-		p_jogdial->update();
-
-		if( p_jogdial->get_back_button() ) {
-			if( (this->current_key_matrix[1] & (1 << 6)) == 0 && (this->current_key_matrix[2] & (1 << 3)) == 0 ) {
-				//	If the combination of [Left-Shift]+[Right-Shift]+[Jog BACK] is pressed, the menu mode is entered.
-				this->menu_mode = true;
-				for( i = 0; i < 6; i++ ) {
-					key_code[ i ] = HID_KEY_NONE;
-				}
-				return 0;
-			}
-			key_code[ index ] = JOGDIAL_BACK_KEY;
-			index++;
-		}
-		else if( p_jogdial->get_enter_button() ) {
-			key_code[ index ] = JOGDIAL_ENTER_KEY;
-			index++;
-		}
-		else if( p_jogdial->get_up_button() ) {
-			if( (modifier_index & MODIFIER_SYM_KEY) == 0 ) {
-				key_code[ index ] = JOGDIAL_UP_KEY;
-			}
-			else {
-				key_code[ index ] = JOGDIAL_RIGHT_KEY;
-			}
-			index++;
-		}
-		else if( p_jogdial->get_down_button() ) {
-			if( (modifier_index & MODIFIER_SYM_KEY) == 0 ) {
-				key_code[ index ] = JOGDIAL_DOWN_KEY;
-			}
-			else {
-				key_code[ index ] = JOGDIAL_LEFT_KEY;
-			}
-			index++;
-		}
-	}
-
 	for( i = 0; i < 5; i++ ) {
 		key_data = this->current_key_matrix[i];
 
@@ -263,7 +223,7 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 				switch( hid_key_code ) {
 				default:
 				case VHID_SYM_KEY:
-					this->_check_toggle_modifier( this->sym_key, this->last_key_matrix[i], key_data, j );
+					this->sym_key = ( (key_data & (1 << j)) == 0 );
 					break;
 				case VHID_ALT_KEY:
 					this->alt_key = ( (key_data & (1 << j)) == 0 );
@@ -279,7 +239,7 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 					this->_check_toggle_modifier( this->shift_key, this->last_key_matrix[i], key_data, j );
 					break;
 				case VHID_CTRL_KEY:
-					this->_check_toggle_modifier( this->ctrl_key, this->last_key_matrix[i], key_data, j );
+					this->ctrl_key = ( (key_data & (1 << j)) == 0 );
 					if( this->ctrl_key ) {
 						key_code[ index ] = HID_KEY_CONTROL_LEFT;
 						index++;
@@ -322,6 +282,47 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 			}
 		}
 	}
+
+	//	Update jogdial press informations and send datas
+	if( p_jogdial != nullptr ) {
+		p_jogdial->update();
+
+		if( p_jogdial->get_back_button() ) {
+			if( (this->current_key_matrix[1] & (1 << 6)) == 0 && (this->current_key_matrix[2] & (1 << 3)) == 0 ) {
+				//	If the combination of [Left-Shift]+[Right-Shift]+[Jog BACK] is pressed, the menu mode is entered.
+				this->menu_mode = true;
+				for( i = 0; i < 6; i++ ) {
+					key_code[ i ] = HID_KEY_NONE;
+				}
+				return 0;
+			}
+			key_code[ index ] = JOGDIAL_BACK_KEY;
+			index++;
+		}
+		else if( p_jogdial->get_enter_button() ) {
+			key_code[ index ] = JOGDIAL_ENTER_KEY;
+			index++;
+		}
+		else if( p_jogdial->get_up_button() ) {
+			if( this->sym_key ) {
+				key_code[ index ] = JOGDIAL_RIGHT_KEY;
+			}
+			else {
+				key_code[ index ] = JOGDIAL_UP_KEY;
+			}
+			index++;
+		}
+		else if( p_jogdial->get_down_button() ) {
+			if( this->sym_key ) {
+				key_code[ index ] = JOGDIAL_LEFT_KEY;
+			}
+			else {
+				key_code[ index ] = JOGDIAL_DOWN_KEY;
+			}
+			index++;
+		}
+	}
+
 	for( i = index; i < 6; i++ ) {
 		key_code[ i ] = HID_KEY_NONE;
 	}
