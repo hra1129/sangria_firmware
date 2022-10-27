@@ -95,3 +95,29 @@
 
 		$ sudo smbpasswd -a pi
 		$ sudo systemctl restart smbd
+
+3 usbmount で rp2040 のファーム更新用ストレージデバイスを自動認識させる
+	3.1. usbmount をインストールする
+		$ sudo apt-get install usbmount exfat-fuse
+		$ sudo nano /etc/usbmount/usbmount.conf
+
+		下記のキーを下記のように修正する
+		FILESYSTEMS="vfat ext2 ext3 ext4 hfsplus ntfs fuseblk"
+		VERBOSE=yes
+
+		sudo mkdir /etc/systemd/system/systemd-udevd.service.d
+		sudo nano -w /etc/systemd/system/systemd-udevd.service.d/00-my-custom-mountflags.conf
+
+		下記を追記
+		[Service]
+		PrivateMounts=no
+
+		$ sudo nano /lib/systemd/system/systemd-udevd.service
+
+		下記のキーを最後に追加
+			MountFlags=shared
+
+		$ sudo systemctl daemon-reexec
+		$ sudo service systemd-udevd restart
+
+	→ まだうまくいっていない。保留。

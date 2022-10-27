@@ -45,16 +45,18 @@ static CSANGRIA_CONTROLLER controller;
 // --------------------------------------------------------------------
 class CBOOT_ANIME {
 public:
-	int x;
-	int y;
+	int char_count;
 	int wait;
 	int state;
 	int count;
 	CSANGRIA_CONTROLLER *p_controller;
+	const char *s_title;
 
-	CBOOT_ANIME() {
-		x = 128;
-		y = 0;
+	const int c_string_putc_wait = 6;
+	const int c_title_display_wait = 240;
+	
+	CBOOT_ANIME(): s_title( "SANGRIA System\nVersion R3\n" ) {
+		char_count = 1;
 		wait = 0;
 		state = 0;
 	}
@@ -64,49 +66,45 @@ public:
 	}
 
 	void draw( void ) {
+		int i;
+
 		if( state == 0 ) {
-			//	左右からスワイプ
-			p_controller->get_oled()->clear();
-			if( y == 0 ) {
-				p_controller->get_oled()->copy_1bpp( get_sangria_logo1(), 128, 32, x, 0 );
-				y = 1;
+			//	文字を順次表示
+			if( wait == 0 ) {
+				p_controller->get_oled()->clear();
+				for( i = 0; i < char_count; i++ ) {
+					p_controller->get_oled()->putc( s_title[i] );
+				}
+				p_controller->get_oled()->putc( 127 );
+				if( s_title[ char_count ] == '\0' ) {
+					state++;
+					wait = c_title_display_wait;
+				}
+				else {
+					char_count++;
+					wait = c_string_putc_wait;
+				}
 			}
 			else {
-				p_controller->get_oled()->copy_1bpp( get_sangria_logo1(), 128, 32, -x, 0 );
-				y = 0;
-				x--;
-			}
-			if( x == 0 && y == 0 ) {
-				state = 1;
-				wait = 0;
+				wait--;
 			}
 		}
 		else if( state == 1 ) {
-			//	点滅
-			x = sqrt( wait * 8 );
-			if( x != y ) {
-				y = x;
-				p_controller->get_oled()->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
-			}
-			else {
-				p_controller->get_oled()->copy_1bpp( get_sangria_logo2(), 128, 32, 0, 0 );
-			}
-			wait++;
-			if( wait >= 300 ) {
-				state = 2;
-				wait = 100;
-			}
-		}
-		else if( state == 2 ) {
-			//	停止
-			wait--;
+			//	カーソルを点滅
 			if( wait == 0 ) {
-				state = 3;
-				wait = 20;
-				count = 10;
+				state++;
 			}
 			else {
-				p_controller->get_oled()->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
+				p_controller->get_oled()->clear();
+				p_controller->get_oled()->puts( s_title );
+				p_controller->get_oled()->set_position( 0, 2 );
+				if( (wait & 16) == 0 ) {
+					p_controller->get_oled()->putc( ' ' );
+				}
+				else {
+					p_controller->get_oled()->putc( 127 );
+				}
+				wait--;
 			}
 		}
 		else {
