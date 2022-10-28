@@ -272,7 +272,7 @@ static int suspend_mode( CSANGRIA_CONTROLLER *p_controller ) {
 					is_oled_power = true;
 					p_controller->get_oled()->power_on();
 				}
-				count = (count + 1) & 15;
+				count = (count + 1) & 63;
 				display_battery_status( p_controller, count >> 3 );
 				p_controller->get_oled()->update();
 			}
@@ -331,7 +331,7 @@ static int battery_status_mode( CSANGRIA_CONTROLLER *p_controller ) {
 			p_controller->get_keyboard()->backlight( 0 );
 			return 1;
 		}
-		count = (count + 1) & 15;
+		count = (count + 1) & 63;
 		display_battery_status( p_controller, count >> 3 );
 		p_controller->get_oled()->update();
 		for( i = 0; i < 10; i++ ) {

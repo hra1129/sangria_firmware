@@ -35,156 +35,98 @@
 #include "pico/multicore.h"
 #include "hardware/gpio.h"
 
-#include "sangria_firmware_config.h"
-#include "sangria_jogdial.h"
-#include "sangria_keyboard.h"
-#include "sangria_oled.h"
-#include "sangria_usb_keyboard.h"
-#include "sangria_battery.h"
-
+#include "controller.h"
+#include "battery_level.h"
+#include "custom_menu.h"
 #include "sangria_graphic_resource.h"
 
-static CSANGRIA_KEYBOARD *p_keyboard;
-static CSANGRIA_JOGDIAL *p_jogdial;
-static CSANGRIA_I2C *p_i2c;
-static CSANGRIA_OLED *p_oled;
-static CSANGRIA_BATTERY *p_battery;
-
-// --------------------------------------------------------------------
-static void display_battery_status( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
-	const uint8_t *p_icon;
-
-	if( p_battery->check_battery_management_device() ) {
-		int status = p_battery->get_system_status();
-		switch( (status >> 6) & 3 ) {
-		case 0:		//	Unkown
-			p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
-			break;
-		case 1:		//	USB host
-			p_icon = get_icon( SANGRIA_ICON_USB_POWER );
-			break;
-		case 2:		//	Adapter port
-			p_icon = get_icon( SANGRIA_ICON_AC_ADAPTER );
-			break;
-		default:	//	OTG
-			p_icon = get_icon( SANGRIA_ICON_USB_POWER );
-			break;
-		}
-		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
-		switch( (status >> 4) & 3 ) {
-		case 0:		//	Not charging
-			p_icon = get_icon( SANGRIA_ICON_EMPTY );
-			break;
-		case 1:		//	Pre charging
-			p_icon = get_icon( SANGRIA_ICON_HALF );
-			break;
-		case 2:		//	Fast charging
-			p_icon = get_icon( SANGRIA_ICON_HIGH );
-			break;
-		default:	//	Charge termination done
-			p_icon = get_icon( SANGRIA_ICON_FULL );
-			break;
-		}
-		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
-	}
-	else {
-		//	Unkown
-		p_icon = get_icon( SANGRIA_ICON_NO_BATTERY );
-		p_oled->copy_1bpp( p_icon, 16, 16, 80, 0 );
-		//	Not charging
-		p_icon = get_icon( SANGRIA_ICON_EMPTY );
-		p_oled->copy_1bpp( p_icon, 16, 16, 96, 0 );
-	}
-}
+static CSANGRIA_CONTROLLER controller;
 
 // --------------------------------------------------------------------
 class CBOOT_ANIME {
 public:
-	int x;
-	int y;
+	int char_count;
 	int wait;
 	int state;
 	int count;
-	CSANGRIA_OLED *p_oled;
-	CSANGRIA_BATTERY *p_battery;
+	CSANGRIA_CONTROLLER *p_controller;
+	const char *s_title;
 
-	CBOOT_ANIME() {
-		x = 128;
-		y = 0;
+	const int c_string_putc_wait = 6;
+	const int c_title_display_wait = 240;
+	
+	CBOOT_ANIME(): s_title( "SANGRIA System\nVersion R1\n" ) {
+		char_count = 1;
 		wait = 0;
 		state = 0;
 	}
 
-	void set( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
-		this->p_oled = p_oled;
-		this->p_battery = p_battery;
+	void set( CSANGRIA_CONTROLLER *_p_controller ) {
+		this->p_controller = _p_controller;
 	}
 
 	void draw( void ) {
+		int i;
+
 		if( state == 0 ) {
-			//	左右からスワイプ
-			p_oled->clear();
-			if( y == 0 ) {
-				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, x, 0 );
-				y = 1;
+			//	文字を順次表示
+			if( wait == 0 ) {
+				p_controller->get_oled()->clear();
+				for( i = 0; i < char_count; i++ ) {
+					p_controller->get_oled()->putc( s_title[i] );
+				}
+				p_controller->get_oled()->putc( 127 );
+				if( s_title[ char_count ] == '\0' ) {
+					state++;
+					wait = c_title_display_wait;
+				}
+				else {
+					char_count++;
+					wait = c_string_putc_wait;
+				}
 			}
 			else {
-				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, -x, 0 );
-				y = 0;
-				x--;
-			}
-			if( x == 0 && y == 0 ) {
-				state = 1;
-				wait = 0;
+				wait--;
 			}
 		}
 		else if( state == 1 ) {
-			//	点滅
-			x = sqrt( wait * 8 );
-			if( x != y ) {
-				y = x;
-				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
-			}
-			else {
-				p_oled->copy_1bpp( get_sangria_logo2(), 128, 32, 0, 0 );
-			}
-			wait++;
-			if( wait >= 300 ) {
-				state = 2;
-				wait = 100;
-			}
-		}
-		else if( state == 2 ) {
-			//	停止
-			wait--;
+			//	カーソルを点滅
 			if( wait == 0 ) {
-				state = 3;
-				wait = 20;
-				count = 10;
+				state++;
 			}
 			else {
-				p_oled->copy_1bpp( get_sangria_logo1(), 128, 32, 0, 0 );
+				p_controller->get_oled()->clear();
+				p_controller->get_oled()->puts( s_title );
+				p_controller->get_oled()->set_position( 0, 2 );
+				if( (wait & 16) == 0 ) {
+					p_controller->get_oled()->putc( ' ' );
+				}
+				else {
+					p_controller->get_oled()->putc( 127 );
+				}
+				wait--;
 			}
 		}
 		else {
-			p_oled->clear();
+			p_controller->get_oled()->clear();
 			//	Key status
-			if( p_keyboard->get_shift_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 0, 0 );
+			if( p_controller->get_keyboard()->get_shift_key() ) {
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 32, 0 );
 			}
-			if( p_keyboard->get_alt_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 16, 0 );
+			if( p_controller->get_keyboard()->get_alt_key() ) {
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 48, 0 );
 			}
-			if( p_keyboard->get_sym_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 32, 0 );
+			if( p_controller->get_keyboard()->get_sym_key() ) {
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 64, 0 );
 			}
-			if( p_keyboard->get_ctrl_key() ) {
-				p_oled->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 48, 0 );
+			if( p_controller->get_keyboard()->get_ctrl_key() ) {
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 80, 0 );
 			}
 			//	Battery status
-			display_battery_status( this->p_oled, this->p_battery );
+			count = (count + 1) & 63;
+			display_battery_status( p_controller, count >> 5 );
 		}
-		p_oled->update();
+		p_controller->get_oled()->update();
 	}
 };
 
@@ -195,19 +137,17 @@ public:
 	int count;
 	const char *p_string;
 	int index;
-	CSANGRIA_OLED *p_oled;
-	CSANGRIA_BATTERY *p_battery;
+	CSANGRIA_CONTROLLER *p_controller;
 
 	CSHUTDOWN_ANIME() {
 		state = 0;
-		p_string = "RasPi0 HAS\nSHUTDOWN...";
+		p_string = "RasPiZero HAS\nSHUTDOWN...";
 		index = 0;
 		count = 0;
 	}
 
-	void set( CSANGRIA_OLED *p_oled, CSANGRIA_BATTERY *p_battery ) {
-		this->p_oled = p_oled;
-		this->p_battery = p_battery;
+	void set( CSANGRIA_CONTROLLER *_p_controller ) {
+		this->p_controller = _p_controller;
 	}
 
 	int draw( void ) {
@@ -215,10 +155,10 @@ public:
 
 		if( state == 0 ) {
 			//	カーソル点滅
-			p_oled->clear();
+			p_controller->get_oled()->clear();
 			if( (count & 16) != 0 ) {
-				p_oled->set_position( 0, 3 );
-				p_oled->putc( 127 );
+				p_controller->get_oled()->set_position( 0, 3 );
+				p_controller->get_oled()->putc( 127 );
 			}
 			count++;
 			if( count >= 120 ) {
@@ -233,12 +173,12 @@ public:
 					count = 0;
 				}
 				else {
-					p_oled->clear();
-					p_oled->set_position( 0, 3 );
+					p_controller->get_oled()->clear();
+					p_controller->get_oled()->set_position( 0, 3 );
 					for( i = 0; i < index; i++ ) {
-						p_oled->putc( p_string[i] );
+						p_controller->get_oled()->putc( p_string[i] );
 					}
-					p_oled->putc( 127 );
+					p_controller->get_oled()->putc( 127 );
 					count = 10;
 					index++;
 				}
@@ -248,15 +188,15 @@ public:
 			}
 		}
 		else if( state == 2 ) {
-			p_oled->clear();
-			p_oled->set_position( 0, 3 );
-			p_oled->puts( p_string );
+			p_controller->get_oled()->clear();
+			p_controller->get_oled()->set_position( 0, 3 );
+			p_controller->get_oled()->puts( p_string );
 			if( (count & 32) != 0 ) {
-				p_oled->putc( 127 );
+				p_controller->get_oled()->putc( 127 );
 			}
 			count++;
 			if( count >= 360 ) {
-				p_oled->clear();
+				p_controller->get_oled()->clear();
 				state = 3;
 			}
 		}
@@ -264,20 +204,43 @@ public:
 			//	Finish
 			return 0;
 		}
-		p_oled->update();
+		p_controller->get_oled()->update();
 		return 1;
 	}
 };
 
 // --------------------------------------------------------------------
-void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
+//	Custom menu mode
+//
+static void custom_menu_mode( CSANGRIA_CONTROLLER *p_controller ) {
+	uint32_t start_ms, end_ms;
+	CSANGRIA_CUSTOM_MENU menu;
+
+	p_controller->get_oled()->clear();
+	p_controller->get_oled()->update();
+	while( p_controller->get_jogdial()->get_back_button() ) {
+		p_controller->get_jogdial()->update();
+		sleep_ms( 16 );
+	}
 
 	for(;;) {
-		//	tinyusb device task
-		tud_task();
-		//	sangria_usb_keyboard HID task
-		hid_task( keyboard );
+		start_ms = board_millis();
+		p_controller->get_jogdial()->update();
+		if( !menu.draw( p_controller ) ) {
+			break;
+		}
+
+		if( !p_controller->get_keyboard()->check_host_connected() ) {
+			break;
+		}
+
+		end_ms = board_millis();
+		if( (end_ms - start_ms) < 16 ) {
+			sleep_ms( 16 - (end_ms - start_ms) );
+		}
 	}
+
+	p_controller->get_keyboard()->exit_menu_mode();
 }
 
 // --------------------------------------------------------------------
@@ -288,15 +251,50 @@ void usb_core( CSANGRIA_KEYBOARD &keyboard ) {
 //		0: Go to Battery Status Mode
 //		1: Go to Run Mode
 //
-static int suspend_mode( void ) {
+static int suspend_mode( CSANGRIA_CONTROLLER *p_controller ) {
+	int status, count;
+	bool is_oled_power = false;
 
-	p_keyboard->backlight( 0 );
-	while( 1 ) {
-		if( board_button_read() ) {
+	count = 0;
+	p_controller->get_keyboard()->backlight( 0 );
+	for(;;) {
+		//	Check enter the custom menu mode
+		if( p_controller->get_keyboard()->is_menu_mode() ) {
+			//	Go to custom menu mode
+			custom_menu_mode( p_controller );
+			continue;
+		}
+		//	Check power plug
+		if( p_controller->get_battery()->check_battery_management_device() ) {
+			status = p_controller->get_battery()->get_system_status();
+			if( ((status >> 6) & 3) != 0 ) {
+				if( !is_oled_power ) {
+					is_oled_power = true;
+					p_controller->get_oled()->power_on();
+				}
+				count = (count + 1) & 15;
+				display_battery_status( p_controller, count >> 3 );
+				p_controller->get_oled()->update();
+			}
+			else {
+				if( is_oled_power ) {
+					is_oled_power = false;
+					p_controller->get_oled()->power_off();
+				}
+			}
+		}
+		else {
+			if( is_oled_power ) {
+				is_oled_power = false;
+				p_controller->get_oled()->power_off();
+			}
+		}
+		p_controller->get_jogdial()->update();
+		if( !is_oled_power && p_controller->get_jogdial()->get_enter_button() ) {
 			//	Go to Battery Status Mode
 			return 0;
 		}
-		if( p_keyboard->check_host_connected() ) {
+		if( p_controller->get_keyboard()->check_host_connected() ) {
 			//	Go to Run Mode
 			return 1;
 		}

@@ -41,7 +41,7 @@
 // --------------------------------------------------------------------
 void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime ) {
 	const uint8_t *p_icon;
-	char s_buffer[32];
+	int battery_level;
 
 	if( p_controller->get_battery()->check_battery_management_device() ) {
 		int status = p_controller->get_battery()->get_system_status();
@@ -63,19 +63,19 @@ void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime ) {
 		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		switch( (status >> 4) & 3 ) {
 		case 0:		//	Not charging
-			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_EMPTY_A + anime );
+			p_icon = get_icon( SANGRIA_ICON_NO_CHARGE );
 			break;
 		case 1:		//	Pre charging
-			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_LOW_A + anime );
+			p_icon = get_icon( SANGRIA_ICON_PRE_CHARGE0 + (anime & 1) );
 			break;
 		case 2:		//	Fast charging
-			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_HIGH_A + anime );
+			p_icon = get_icon( SANGRIA_ICON_CHARGE0 + (anime & 7) );
 			break;
 		default:	//	Charge termination done
-			p_icon = get_icon( SANGRIA_ICON_BIG_BATTERY_FULL_A + anime );
+			p_icon = get_icon( SANGRIA_ICON_CHARGE_TERMINATION_DONE );
 			break;
 		}
-		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 96, 0 );
+		p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 96, 16 );
 	}
 	else {
 		//	Unkown
@@ -85,7 +85,12 @@ void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime ) {
 		p_icon = get_icon( SANGRIA_ICON_EMPTY );
 		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 96, 0 );
 	}
-	p_controller->get_oled()->set_position( 2, 3 );
-	sprintf( s_buffer, "BAT-LV:%d", p_controller->get_battery()->get_battery_level() );
-	p_controller->get_oled()->puts( s_buffer );
+	battery_level = p_controller->get_battery()->get_battery_level();
+	//	Normalize 0%...100% ==> 0...5
+	battery_level = ((battery_level - 1100) * 5) / (1750 - 1100);
+	if( battery_level > 5 ) {
+		battery_level = 5;
+	}
+	p_icon = get_icon( SANGRIA_ICON_BATTERY_000 + battery_level );
+	p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 96, 0 );
 }

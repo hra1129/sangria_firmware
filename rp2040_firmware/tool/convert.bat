@@ -25,4 +25,22 @@ python image_1bpp_converter.py ../font/big_battery_low_b.png
 python image_1bpp_converter.py ../font/big_battery_high_a.png
 python image_1bpp_converter.py ../font/big_battery_high_b.png
 python image_1bpp_converter.py ../font/big_battery_full.png
+python image_1bpp_converter.py ../font/battery_000.png
+python image_1bpp_converter.py ../font/battery_020.png
+python image_1bpp_converter.py ../font/battery_040.png
+python image_1bpp_converter.py ../font/battery_060.png
+python image_1bpp_converter.py ../font/battery_080.png
+python image_1bpp_converter.py ../font/battery_100.png
+python image_1bpp_converter.py ../font/charge0.png
+python image_1bpp_converter.py ../font/charge1.png
+python image_1bpp_converter.py ../font/charge2.png
+python image_1bpp_converter.py ../font/charge3.png
+python image_1bpp_converter.py ../font/charge4.png
+python image_1bpp_converter.py ../font/charge5.png
+python image_1bpp_converter.py ../font/charge6.png
+python image_1bpp_converter.py ../font/charge7.png
+python image_1bpp_converter.py ../font/no_charge.png
+python image_1bpp_converter.py ../font/pre_charge0.png
+python image_1bpp_converter.py ../font/pre_charge1.png
+python image_1bpp_converter.py ../font/charge_termination_done.png
 pause
