@@ -43,4 +43,23 @@ python image_1bpp_converter.py ../font/no_charge.png
 python image_1bpp_converter.py ../font/pre_charge0.png
 python image_1bpp_converter.py ../font/pre_charge1.png
 python image_1bpp_converter.py ../font/charge_termination_done.png
+python image_1bpp_converter.py ../font/arrow0.png
+python image_1bpp_converter.py ../font/arrow1.png
+python image_1bpp_converter.py ../font/arrow2.png
+python image_1bpp_converter.py ../font/arrow3.png
+python image_1bpp_converter.py ../font/arrow4.png
+python image_1bpp_converter.py ../font/arrow5.png
+python image_1bpp_converter.py ../font/arrow6.png
+python image_1bpp_converter.py ../font/arrow7.png
+python image_1bpp_converter.py ../font/arrow8.png
+python image_1bpp_converter.py ../font/arrow9.png
+python image_1bpp_converter.py ../font/arrow10.png
+python image_1bpp_converter.py ../font/arrow11.png
+python image_1bpp_converter.py ../font/arrow12.png
+python image_1bpp_converter.py ../font/arrow13.png
+python image_1bpp_converter.py ../font/arrow14.png
+python image_1bpp_converter.py ../font/arrow15.png
+python image_1bpp_converter.py ../font/gps.png
+python image_1bpp_converter.py ../font/ac_power_detect.png
+python image_1bpp_converter.py ../font/ac_power_no_detect.png
 pause

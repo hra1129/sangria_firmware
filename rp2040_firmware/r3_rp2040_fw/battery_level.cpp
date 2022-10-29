@@ -41,56 +41,75 @@
 // --------------------------------------------------------------------
 void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime ) {
 	const uint8_t *p_icon;
-	int battery_level;
+	char s_buffer[10];
+	int battery_level, battery_percent;
+	bool is_charging = false;
 
 	if( p_controller->get_battery()->check_battery_management_device() ) {
 		int status = p_controller->get_battery()->get_system_status();
 		switch( (status >> 6) & 3 ) {
 		default:
 		case 0:		//	Unkown
-			p_icon = get_icon( SANGRIA_ICON_BIG_NO_POWER );
+			p_icon = get_icon( SANGRIA_ICON_AC_POWER_NO_DETECT );
 			break;
 		case 1:		//	USB host
-			p_icon = get_icon( SANGRIA_ICON_BIG_USB_POWER );
+			p_icon = get_icon( SANGRIA_ICON_AC_POWER_NO_DETECT );
 			break;
 		case 2:		//	Adapter port
-			p_icon = get_icon( SANGRIA_ICON_BIG_AC_POWER );
+			p_icon = get_icon( SANGRIA_ICON_AC_POWER_DETECT );
 			break;
 		case 3:		//	OTG
-			p_icon = get_icon( SANGRIA_ICON_BIG_OTG_POWER );
+			p_icon = get_icon( SANGRIA_ICON_AC_POWER_DETECT );
 			break;
 		}
 		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 0, 0 );
 		switch( (status >> 4) & 3 ) {
 		case 0:		//	Not charging
-			p_icon = get_icon( SANGRIA_ICON_NO_CHARGE );
+			is_charging = false;
 			break;
 		case 1:		//	Pre charging
-			p_icon = get_icon( SANGRIA_ICON_PRE_CHARGE0 + (anime & 1) );
+			is_charging = true;
 			break;
 		case 2:		//	Fast charging
-			p_icon = get_icon( SANGRIA_ICON_CHARGE0 + (anime & 7) );
+			is_charging = true;
 			break;
 		default:	//	Charge termination done
-			p_icon = get_icon( SANGRIA_ICON_CHARGE_TERMINATION_DONE );
+			is_charging = false;
 			break;
 		}
-		p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 96, 16 );
 	}
 	else {
-		//	Unkown
-		p_icon = get_icon( SANGRIA_ICON_BIG_BQ_IS_NOT_DETECT );
+		//	Unkown (Not detect the BQ device.)
+		p_icon = get_icon( SANGRIA_ICON_AC_POWER_NO_DETECT );
 		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 0, 0 );
-		//	Not charging
-		p_icon = get_icon( SANGRIA_ICON_EMPTY );
-		p_controller->get_oled()->copy_1bpp( p_icon, 32, 32, 96, 0 );
 	}
+	//	Battery level information
 	battery_level = p_controller->get_battery()->get_battery_level();
+	p_controller->get_oled()->set_position( 4, 3 );
+	sprintf( s_buffer, "%7d", battery_level );
+	p_controller->get_oled()->puts( s_buffer );
 	//	Normalize 0%...100% ==> 0...5
+	battery_percent = (battery_level - 1100) * 100 / (1750 - 1100);
+	if( battery_percent > 100 ) {
+		battery_percent = 100;
+	}
 	battery_level = ((battery_level - 1100) * 5) / (1750 - 1100);
 	if( battery_level > 5 ) {
 		battery_level = 5;
 	}
+	if( battery_percent < 0 ) {
+		battery_level = 0;
+		battery_percent = 0;
+	}
 	p_icon = get_icon( SANGRIA_ICON_BATTERY_000 + battery_level );
-	p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 96, 0 );
+	p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 96, 8 );
+	p_controller->get_oled()->set_position( 12, 3 );
+	sprintf( s_buffer, "%3d%%", battery_percent );
+	p_controller->get_oled()->puts( s_buffer );
+	//	Arrow indicator
+	if( is_charging ) {
+		p_icon = get_icon( SANGRIA_ICON_ARROW0 + (anime & 15) );
+		p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 32, 8 );
+		p_controller->get_oled()->copy_1bpp( p_icon, 32, 16, 64, 8 );
+	}
 }

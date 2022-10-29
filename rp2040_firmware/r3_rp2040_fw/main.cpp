@@ -111,16 +111,16 @@ public:
 			p_controller->get_oled()->clear();
 			//	Key status
 			if( p_controller->get_keyboard()->get_shift_key() ) {
-				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 16, 16, 32, 0 );
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SHIFT ), 8, 8, 32, 0 );
 			}
 			if( p_controller->get_keyboard()->get_alt_key() ) {
-				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 16, 16, 48, 0 );
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_ALT ), 8, 8, 40, 0 );
 			}
 			if( p_controller->get_keyboard()->get_sym_key() ) {
-				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 16, 16, 64, 0 );
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_SYM ), 8, 8, 48, 0 );
 			}
 			if( p_controller->get_keyboard()->get_ctrl_key() ) {
-				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 16, 16, 80, 0 );
+				p_controller->get_oled()->copy_1bpp( get_icon( SANGRIA_ICON_CTRL ), 8, 8, 56, 0 );
 			}
 			//	Battery status
 			count = (count + 1) & 63;
@@ -272,7 +272,7 @@ static int suspend_mode( CSANGRIA_CONTROLLER *p_controller ) {
 					is_oled_power = true;
 					p_controller->get_oled()->power_on();
 				}
-				count = (count + 1) & 63;
+				count = (count + 1) & 127;
 				display_battery_status( p_controller, count >> 3 );
 				p_controller->get_oled()->update();
 			}
@@ -298,7 +298,7 @@ static int suspend_mode( CSANGRIA_CONTROLLER *p_controller ) {
 			//	Go to Run Mode
 			return 1;
 		}
-		sleep_ms( 100 );
+		sleep_ms( 20 );
 	}
 }
 
@@ -331,14 +331,14 @@ static int battery_status_mode( CSANGRIA_CONTROLLER *p_controller ) {
 			p_controller->get_keyboard()->backlight( 0 );
 			return 1;
 		}
-		count = (count + 1) & 63;
+		count = (count + 1) & 127;
 		display_battery_status( p_controller, count >> 3 );
 		p_controller->get_oled()->update();
 		for( i = 0; i < 10; i++ ) {
 			p_controller->get_keyboard()->backlight( 1 );
 			sleep_ms( led_duty[index] );
 			p_controller->get_keyboard()->backlight( 0 );
-			sleep_ms( 10 - led_duty[index] );
+			sleep_ms( 2 - led_duty[index] );
 			index = (index + 1) % (sizeof(led_duty) / sizeof(led_duty[0]));
 		}
 		time_out--;
