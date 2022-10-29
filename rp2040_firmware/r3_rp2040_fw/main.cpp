@@ -334,11 +334,11 @@ static int battery_status_mode( CSANGRIA_CONTROLLER *p_controller ) {
 		count = (count + 1) & 127;
 		display_battery_status( p_controller, count >> 3 );
 		p_controller->get_oled()->update();
-		for( i = 0; i < 10; i++ ) {
+		for( i = 0; i < 2; i++ ) {
 			p_controller->get_keyboard()->backlight( 1 );
 			sleep_ms( led_duty[index] );
 			p_controller->get_keyboard()->backlight( 0 );
-			sleep_ms( 2 - led_duty[index] );
+			sleep_ms( 10 - led_duty[index] );
 			index = (index + 1) % (sizeof(led_duty) / sizeof(led_duty[0]));
 		}
 		time_out--;
