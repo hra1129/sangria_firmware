@@ -32,12 +32,16 @@
 #include "sangria_graphic_resource.h"
 
 // --------------------------------------------------------------------
+//	main.cpp
+void do_write_flash( void );
+
+// --------------------------------------------------------------------
 static const char *p_menu_item[] = {
 //	 0123456789012345
 	"OLED LV.(ON)",
 	"OLED LV.(OFF)",
 	"KEY CUSTOM",
-	"ITEM3",
+	"FLASH WR TEST",
 	"ITEM4",
 	"ITEM5",
 	"ITEM6",
@@ -48,7 +52,7 @@ typedef enum {
 	MENU_ITEM_ID_OLED_ON_LEVEL = 0,
 	MENU_ITEM_ID_OLED_OFF_LEVEL,
 	MENU_ITEM_ID_KEY_CUSTOM,
-	MENU_ITEM_ID_RESERVED3,
+	MENU_ITEM_ID_FLASH_WRITE_TEST,
 	MENU_ITEM_ID_RESERVED4,
 	MENU_ITEM_ID_RESERVED5,
 	MENU_ITEM_ID_RESERVED6,
@@ -116,6 +120,15 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 }
 
 // --------------------------------------------------------------------
+bool CSANGRIA_CUSTOM_MENU::draw_flash_write_test( CSANGRIA_CONTROLLER *p_controller ) {
+
+	do_write_flash();
+	menu_state = SANGRIA_MENU_TOP;
+	wait_release_jogdial_buttons( p_controller );
+	return false;
+}
+
+// --------------------------------------------------------------------
 bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 	int i;
 
@@ -170,6 +183,11 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 			menu_state = SANGRIA_MENU_OLED_OFF_LEVEL;
 			return true;
 		}
+		if( cursor_pos == MENU_ITEM_ID_FLASH_WRITE_TEST ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_FLASH_WRITE_TEST;
+			return true;
+		}
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
 		wait_release_jogdial_buttons( p_controller );
@@ -194,6 +212,11 @@ bool CSANGRIA_CUSTOM_MENU::draw( CSANGRIA_CONTROLLER *p_controller ) {
 		break;
 	case SANGRIA_MENU_OLED_OFF_LEVEL:
 		if( !this->draw_oled_level( p_controller, "OLED OFF LEVEL", oled_off_level ) ) {
+			menu_state = SANGRIA_MENU_TOP;
+		}
+		break;
+	case SANGRIA_MENU_FLASH_WRITE_TEST:
+		if( !this->draw_flash_write_test( p_controller ) ) {
 			menu_state = SANGRIA_MENU_TOP;
 		}
 		break;

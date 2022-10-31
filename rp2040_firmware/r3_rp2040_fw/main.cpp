@@ -41,6 +41,15 @@
 #include "sangria_graphic_resource.h"
 
 static CSANGRIA_CONTROLLER controller;
+static volatile bool is_usb_running = false;
+static semaphore_t sem;
+
+// --------------------------------------------------------------------
+void do_write_flash( void ) {
+
+	is_usb_running = false;
+	sem_acquire_blocking( &sem );
+}
 
 // --------------------------------------------------------------------
 class CBOOT_ANIME {
@@ -412,11 +421,20 @@ static void shutdown_mode( CSANGRIA_CONTROLLER *p_controller ) {
 void usb_core( void ) {
 
 	tusb_init();
-	for(;;) {
-		//	tinyusb device task
-		tud_task();
-		//	sangria_usb_keyboard HID task
-		hid_task( controller.get_keyboard() );
+	while( true ) {
+		is_usb_running = true;
+		while( is_usb_running ) {
+			//	tinyusb device task
+			tud_task();
+			//	sangria_usb_keyboard HID task
+			hid_task( controller.get_keyboard() );
+		}
+		//	Disconnect
+		tud_disconnect();
+		sleep_ms( 1 );
+		controller.get_flash()->write();
+		sem_release( &sem );
+		tud_connect();
 	}
 }
 
@@ -439,6 +457,7 @@ int main( void ) {
 
 	board_init();
 	controller.initialize();
+	sem_init( &sem, 0, 1 );
 
 	controller.get_battery()->power_on();
 

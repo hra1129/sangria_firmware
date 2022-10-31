@@ -32,6 +32,7 @@ typedef enum {
 	SANGRIA_MENU_TOP		= 0,
 	SANGRIA_MENU_OLED_ON_LEVEL,
 	SANGRIA_MENU_OLED_OFF_LEVEL,
+	SANGRIA_MENU_FLASH_WRITE_TEST,
 } CSANGRIA_CUSTOM_MENU_STATE;
 
 class CSANGRIA_CUSTOM_MENU {
@@ -53,6 +54,7 @@ public:
 	bool draw( CSANGRIA_CONTROLLER *p_controller );
 	bool draw_top_menu( CSANGRIA_CONTROLLER *p_controller );
 	bool draw_oled_level( CSANGRIA_CONTROLLER *p_controller, const char *p_name, int &level );
+	bool draw_flash_write_test( CSANGRIA_CONTROLLER *p_controller );
 };
 
 #endif

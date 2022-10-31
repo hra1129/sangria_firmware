@@ -89,11 +89,11 @@ void display_battery_status( CSANGRIA_CONTROLLER *p_controller, int anime ) {
 	sprintf( s_buffer, "%7d", battery_level );
 	p_controller->get_oled()->puts( s_buffer );
 	//	Normalize 0%...100% ==> 0...5
-	battery_percent = (battery_level - 1100) * 100 / (1750 - 1100);
+	battery_percent = (battery_level - 1100) * 100 / (1700 - 1100);
 	if( battery_percent > 100 ) {
 		battery_percent = 100;
 	}
-	battery_level = ((battery_level - 1100) * 5) / (1750 - 1100);
+	battery_level = ((battery_level - 1100) * 5) / (1700 - 1100);
 	if( battery_level > 5 ) {
 		battery_level = 5;
 	}
