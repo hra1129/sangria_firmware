@@ -339,6 +339,33 @@ void CSANGRIA_OLED::copy_1bpp( const uint8_t *p_image, int width, int height, in
 }
 
 // --------------------------------------------------------------------
+void CSANGRIA_OLED::copy_1bpp_part( const uint8_t *p_image, int width, int height, int sx, int sy, int sw, int sh, int dx, int dy ) {
+	int px, py, bit_mask, offset, ptr, pitch;
+
+	pitch = (width + 7) >> 3;
+	offset = (sx >> 3) + sy * pitch;
+	for( py = 0; py < sh; py++ ) {
+		bit_mask = 0x80 >> (sx & 7);
+		ptr = 0;
+		for( px = 0; px < sw; px++ ) {
+			this->pset( dx + px, dy + py, p_image[offset + ptr] & bit_mask );
+			bit_mask >>= 1;
+			if( bit_mask == 0 ) {
+				ptr++;
+				bit_mask = 0x80;
+			}
+			if( (sx + px) >= width ) {
+				break;
+			}
+		}
+		offset += pitch;
+		if( (sy + py) >= height ) {
+			break;
+		}
+	}
+}
+
+// --------------------------------------------------------------------
 void CSANGRIA_OLED::scroll_up( void ) {
 	int y, x;
 

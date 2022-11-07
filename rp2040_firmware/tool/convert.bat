@@ -62,4 +62,8 @@ python image_1bpp_converter.py ../font/arrow15.png
 python image_1bpp_converter.py ../font/gps.png
 python image_1bpp_converter.py ../font/ac_power_detect.png
 python image_1bpp_converter.py ../font/ac_power_no_detect.png
+python image_1bpp_converter.py ../font/keyboard.png
+python image_1bpp_converter.py ../font/us_keymap.png
+python image_1bpp_converter.py ../font/keymap_sangria.png
+python image_1bpp_converter.py ../font/keymap_target.png
 pause

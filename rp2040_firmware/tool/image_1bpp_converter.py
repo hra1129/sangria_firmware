@@ -51,6 +51,8 @@ def convert( input_name, output_name ):
 				if x >= img.width:
 					y = y + 1
 					x = 0
+		if (( int((img.width + 7) / 8) * img.height ) % 16) != 0:
+			file.write( '\n' )
 		file.write( '};\n' )
 	print( "Success!!" )
 

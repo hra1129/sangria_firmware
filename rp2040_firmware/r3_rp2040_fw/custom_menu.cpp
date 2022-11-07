@@ -102,7 +102,6 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 		return false;
 	}
 
-	p_controller->get_oled()->clear();
 	p_controller->get_oled()->set_position( 0, 0 );
 	p_controller->get_oled()->puts( p_name );
 	p_controller->get_oled()->set_position( 0, 1 );
@@ -116,6 +115,37 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 	p_controller->get_oled()->puts( s_buffer );
 	p_controller->get_oled()->update();
 	p_controller->get_oled()->set_contrast_level( oled_level[ level ] );
+	return true;
+}
+
+// --------------------------------------------------------------------
+bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) {
+	const uint8_t *p_icon;
+	CSANGRIA_OLED *p_oled = p_controller->get_oled();
+
+	//	Check button
+	if( p_controller->get_jogdial()->get_enter_button() ) {
+		if( cursor_pos == MENU_ITEM_EXIT ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_TOP;
+			return false;
+		}
+	}
+	if( p_controller->get_jogdial()->get_back_button() ) {
+		wait_release_jogdial_buttons( p_controller );
+		return false;
+	}
+
+	p_oled->clear();
+	p_icon = get_icon( SANGRIA_ICON_KEYMAP_SANGRIA );
+	p_oled->copy_1bpp( p_icon, 36, 8, 40, 0 );
+	p_icon = get_icon( SANGRIA_ICON_KEYMAP_TARGET );
+	p_oled->copy_1bpp( p_icon, 36, 8, 52, 24 );
+	p_icon = get_icon( SANGRIA_ICON_KEYBOARD );
+	p_oled->copy_1bpp_part( p_icon, 320, 128, 0, 0, 32, 32, 8, 0 );
+	p_icon = get_icon( SANGRIA_ICON_US_KEYMAP );
+	p_oled->copy_1bpp_part( p_icon, 512, 512, 0, 0, 32, 32, 88, 0 );
+	p_oled->update();
 	return true;
 }
 
@@ -183,6 +213,11 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 			menu_state = SANGRIA_MENU_OLED_OFF_LEVEL;
 			return true;
 		}
+		if( cursor_pos == MENU_ITEM_ID_KEY_CUSTOM ) {
+			wait_release_jogdial_buttons( p_controller );
+			menu_state = SANGRIA_MENU_KEY_CUSTOM;
+			return true;
+		}
 		if( cursor_pos == MENU_ITEM_ID_FLASH_WRITE_TEST ) {
 			wait_release_jogdial_buttons( p_controller );
 			menu_state = SANGRIA_MENU_FLASH_WRITE_TEST;
@@ -212,6 +247,11 @@ bool CSANGRIA_CUSTOM_MENU::draw( CSANGRIA_CONTROLLER *p_controller ) {
 		break;
 	case SANGRIA_MENU_OLED_OFF_LEVEL:
 		if( !this->draw_oled_level( p_controller, "OLED OFF LEVEL", oled_off_level ) ) {
+			menu_state = SANGRIA_MENU_TOP;
+		}
+		break;
+	case SANGRIA_MENU_KEY_CUSTOM:
+		if( !this->draw_key_custom( p_controller ) ) {
 			menu_state = SANGRIA_MENU_TOP;
 		}
 		break;

@@ -126,7 +126,7 @@ public:
 	void line( int x1, int y1, int x2, int y2, int c );
 
 	// --------------------------------------------------------------------
-	//	Line
+	//	copy
 	//	input:
 	//		p_image ... image data address (8bpp)
 	//		width ..... width of image data
@@ -141,7 +141,7 @@ public:
 	void copy( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
 
 	// --------------------------------------------------------------------
-	//	Line
+	//	copy_1bpp
 	//	input:
 	//		p_image ... image data address (1bpp)
 	//		width ..... width of image data
@@ -154,6 +154,25 @@ public:
 	//		Draw a image
 	//
 	void copy_1bpp( const uint8_t *p_image, int width, int height, int x = 0, int y = 0 );
+
+	// --------------------------------------------------------------------
+	//	copy_1bpp_part
+	//	input:
+	//		p_image ... image data address (1bpp)
+	//		width ..... width of image data
+	//		height .... height of image data
+	//		sx ........ source left position
+	//		sy ........ source top position
+	//		sw ........ source width
+	//		sh ........ source height
+	//		dx ........ destination left position
+	//		dy ........ destination top position
+	//	output:
+	//		none
+	//	comment:
+	//		Draw a image
+	//
+	void copy_1bpp_part( const uint8_t *p_image, int width, int height, int sx, int sy, int sw, int sh, int dx, int dy );
 
 	// --------------------------------------------------------------------
 	//	scroll_up
