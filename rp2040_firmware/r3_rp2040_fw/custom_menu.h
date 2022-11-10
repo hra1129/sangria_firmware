@@ -45,6 +45,10 @@ private:
 public:
 	int oled_on_level = 0;
 	int oled_off_level = 2;
+	int sangria_key_position = 0;
+	int us_key_position = 0;
+	int is_us_key_select = 0;
+	int animation = 0;
 
 	// --------------------------------------------------------------------
 	//	Constructor

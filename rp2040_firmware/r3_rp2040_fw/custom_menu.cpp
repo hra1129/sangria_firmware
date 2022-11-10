@@ -122,30 +122,75 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) {
 	const uint8_t *p_icon;
 	CSANGRIA_OLED *p_oled = p_controller->get_oled();
+	uint8_t key_code[6];
 
 	//	Check button
+	p_controller->get_keyboard()->update( key_code );
+	p_controller->get_jogdial()->update();
 	if( p_controller->get_jogdial()->get_enter_button() ) {
-		if( cursor_pos == MENU_ITEM_EXIT ) {
-			wait_release_jogdial_buttons( p_controller );
-			menu_state = SANGRIA_MENU_TOP;
-			return false;
-		}
+		this->is_us_key_select = 1 - this->is_us_key_select;
+		wait_release_jogdial_buttons( p_controller );
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
 		wait_release_jogdial_buttons( p_controller );
+		this->is_us_key_select = 0;
 		return false;
 	}
 
+	if( this->is_us_key_select ) {
+		//	US Keymap select
+		if( !p_controller->get_keyboard()->get_sym_key() ) {
+			if( p_controller->get_jogdial()->get_up_button() ) {
+				this->us_key_position = (this->us_key_position & 0xF0) | ((this->us_key_position +  1) & 0x0F);
+			}
+			else if( p_controller->get_jogdial()->get_down_button() ) {
+				this->us_key_position = (this->us_key_position & 0xF0) | ((this->us_key_position + 15) & 0x0F);
+			}
+		}
+		else {
+			if( p_controller->get_jogdial()->get_up_button() ) {
+				this->us_key_position = (this->us_key_position + 0x10) & 0xFF;
+			}
+			else if( p_controller->get_jogdial()->get_down_button() ) {
+				this->us_key_position = (this->us_key_position + 0xF0) & 0xFF;
+			}
+		}
+	}
+	else {
+		//	Sangria key select
+		if( !p_controller->get_keyboard()->get_sym_key() ) {
+			if( p_controller->get_jogdial()->get_up_button() ) {
+				this->sangria_key_position = (this->sangria_key_position / 10) * 10 + (((this->sangria_key_position % 10) + 1) % 10);
+			}
+			else if( p_controller->get_jogdial()->get_down_button() ) {
+				this->sangria_key_position = (this->sangria_key_position / 10) * 10 + (((this->sangria_key_position % 10) + 9) % 10);
+			}
+		}
+		else {
+			if( p_controller->get_jogdial()->get_up_button() ) {
+				this->sangria_key_position = (this->sangria_key_position + 10) % 40;
+			}
+			else if( p_controller->get_jogdial()->get_down_button() ) {
+				this->sangria_key_position = (this->sangria_key_position + 30) % 40;
+			}
+		}
+	}
+
 	p_oled->clear();
-	p_icon = get_icon( SANGRIA_ICON_KEYMAP_SANGRIA );
-	p_oled->copy_1bpp( p_icon, 36, 8, 40, 0 );
-	p_icon = get_icon( SANGRIA_ICON_KEYMAP_TARGET );
-	p_oled->copy_1bpp( p_icon, 36, 8, 52, 24 );
+	if( this->is_us_key_select || ((this->animation & 16) != 0) ) {
+		p_icon = get_icon( SANGRIA_ICON_KEYMAP_SANGRIA );
+		p_oled->copy_1bpp( p_icon, 36, 8, 40, 0 );
+	}
+	if( !this->is_us_key_select || ((this->animation & 16) != 0) ) {
+		p_icon = get_icon( SANGRIA_ICON_KEYMAP_TARGET );
+		p_oled->copy_1bpp( p_icon, 36, 8, 52, 24 );
+	}
 	p_icon = get_icon( SANGRIA_ICON_KEYBOARD );
-	p_oled->copy_1bpp_part( p_icon, 320, 128, 0, 0, 32, 32, 8, 0 );
+	p_oled->copy_1bpp_part( p_icon, 320, 128, (this->sangria_key_position % 10) * 32, (this->sangria_key_position / 10) * 32, 32, 32, 8, 0 );
 	p_icon = get_icon( SANGRIA_ICON_US_KEYMAP );
-	p_oled->copy_1bpp_part( p_icon, 512, 512, 0, 0, 32, 32, 88, 0 );
+	p_oled->copy_1bpp_part( p_icon, 512, 512, (this->us_key_position & 0x0F) * 32, (this->us_key_position >> 4) * 32, 32, 32, 88, 0 );
 	p_oled->update();
+	this->animation = (this->animation + 1) & 63;
 	return true;
 }
 

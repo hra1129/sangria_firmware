@@ -189,14 +189,6 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 	uint32_t key_data;
 	uint16_t hid_key_code;
 
-	if( this->menu_mode ) {
-		//	In menu mode, it returns "no keys pressed" as a USB keyboard.
-		for( i = 0; i < 6; i++ ) {
-			key_code[ i ] = HID_KEY_NONE;
-		}
-		return 0;
-	}
-
 	modifier_index = (this->alt_key ? MODIFIER_ALT_KEY : 0) + (this->sym_key ? MODIFIER_SYM_KEY : 0);
 	index = 0;
 	virtual_modifier_index = -1;	//	invalid
@@ -283,8 +275,12 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 		}
 	}
 
-	//	Update jogdial press informations and send datas
-	if( p_jogdial != nullptr ) {
+	if( this->menu_mode ) {
+		//	In menu mode, it returns "no keys pressed" as a USB keyboard.
+		index = 0;
+	}
+	else if( p_jogdial != nullptr ) {
+		//	Update jogdial press informations and send datas
 		p_jogdial->update();
 
 		if( p_jogdial->get_back_button() ) {
