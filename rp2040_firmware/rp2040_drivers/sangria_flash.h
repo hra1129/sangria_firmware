@@ -30,8 +30,9 @@
 #include "sangria_firmware_config.h"
 
 typedef struct {
-	int		oled_contrast_level_for_stand_by;
-	int		oled_contrast_level_for_power_on;
+	int			oled_contrast_level_for_stand_by;
+	int			oled_contrast_level_for_power_on;
+	uint16_t	key_matrix_table[ 4 ][ 5 * 8 ];
 } SANGRIA_FLASH_DATA_T;
 
 class CSANGRIA_FLASH {

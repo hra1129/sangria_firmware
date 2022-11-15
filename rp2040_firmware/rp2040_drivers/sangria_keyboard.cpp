@@ -100,6 +100,12 @@ static const uint16_t default_key_matrix_table[ 4 ][ 5 * 8 ] = {
 #define MODIFIER_SYM_KEY	(1 << 1)
 
 // --------------------------------------------------------------------
+const uint16_t (*CSANGRIA_KEYBOARD::get_default_keymap( void ))[40] {
+
+	return default_key_matrix_table;
+}
+
+// --------------------------------------------------------------------
 CSANGRIA_KEYBOARD::CSANGRIA_KEYBOARD() {
 	size_t i, j;
 

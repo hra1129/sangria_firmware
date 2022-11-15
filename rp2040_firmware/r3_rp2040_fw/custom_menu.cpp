@@ -62,6 +62,35 @@ typedef enum {
 #define MENU_HEIGHT	4
 
 // --------------------------------------------------------------------
+//  key bit assign
+//         ROW0 ROW1 ROW2 ROW3 ROW4 ROW5 ROW6
+//    COL0  Q    W   sym   A   alt  SPC  MIC
+//    COL1  E    S    D    P    Z    X   SH1
+//    COL2  R    G    T   SH2   V    C    F
+//    COL3  U    H    Y   RET   B    N    J
+//    COL4  O    L    I   BK    $    M    K
+//    COL5 JEN  JUP  JDN  BAK  N/A  N/A  N/A  ※Jogdialは、管理の都合でここにマッピング 
+#define CR( col, row )	( (row) + (col) * 8 )
+
+//  key index
+//          0    1    2    3    4    5    6    7    8    9
+//     0    Q    W    E    R    T    Y    U    I    O    P
+//     1    A    S    D    F    G    H    J    K    L    BK
+//     2   alt   Z    X    C    V    B    N    M    $   RET
+//     3   SH1  MIC  SPC  sym  SH2  JEN  JUP  JDN  BAK  N/A
+//
+static const int keyindex_assign_table[] = {
+	//  Q        W        E        R        T        Y        U        I        O        P
+	CR(0,0), CR(0,1), CR(1,0), CR(2,0), CR(2,2), CR(3,2), CR(3,0), CR(4,2), CR(4,0), CR(1,3),
+	//  A        S        D        F        G        H        J        K        L        BK
+	CR(0,3), CR(1,1), CR(1,2), CR(2,6), CR(2,1), CR(3,1), CR(3,6), CR(4,6), CR(4,1), CR(4,3),
+	// alt       Z        X        C        V        B        N        M        $       RET
+	CR(0,4), CR(1,4), CR(1,5), CR(2,5), CR(2,4), CR(3,4), CR(3,5), CR(4,5), CR(4,4), CR(3,3),
+	// SH1      MIC      SPC      sym      SH2      JEN      JUP      JDN      BAK      N/A
+	CR(1,6), CR(0,6), CR(0,5), CR(0,2), CR(2,3), CR(5,0), CR(5,1), CR(5,2), CR(5,3), CR(5,4),
+};
+
+// --------------------------------------------------------------------
 CSANGRIA_CUSTOM_MENU::CSANGRIA_CUSTOM_MENU() {
 }
 
@@ -176,6 +205,11 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 		}
 	}
 
+	if( !this->is_us_key_select ) {
+		//	Sangriaキーを選択している最中は、連動して USキーの表示が変化する
+		this->us_key_position = p_controller->get_flash()->get()->key_matrix_table[0][ keyindex_assign_table[ this->sangria_key_position ] ] & 255;
+	}
+
 	p_oled->clear();
 	if( this->is_us_key_select || ((this->animation & 16) != 0) ) {
 		p_icon = get_icon( SANGRIA_ICON_KEYMAP_SANGRIA );
@@ -261,6 +295,8 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 		if( cursor_pos == MENU_ITEM_ID_KEY_CUSTOM ) {
 			wait_release_jogdial_buttons( p_controller );
 			menu_state = SANGRIA_MENU_KEY_CUSTOM;
+			//	★暫定★ 
+			memcpy( p_controller->get_flash()->get()->key_matrix_table, p_controller->get_keyboard()->get_default_keymap(), sizeof(uint16_t) * 4 * 5 * 8 );
 			return true;
 		}
 		if( cursor_pos == MENU_ITEM_ID_FLASH_WRITE_TEST ) {
