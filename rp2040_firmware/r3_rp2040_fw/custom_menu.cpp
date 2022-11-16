@@ -71,6 +71,8 @@ typedef enum {
 //    COL4  O    L    I   BK    $    M    K
 //    COL5 JEN  JUP  JDN  BAK  N/A  N/A  N/A  ※Jogdialは、管理の都合でここにマッピング 
 #define CR( col, row )	( (row) + (col) * 8 )
+#define CR_GET_COL( cr )	( (cr) >> 3 )
+#define CR_GET_ROW( cr )	( (cr) & 7 )
 
 //  key index
 //          0    1    2    3    4    5    6    7    8    9

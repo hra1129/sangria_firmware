@@ -46,61 +46,66 @@
 bool tud_check_host_connected( void );
 
 // --------------------------------------------------------------------
-//         ROW1 ROW2 ROW3 ROW4 ROW5 ROW6 ROW7
-//    COL1  Q    W   sym   A   alt  SPC  MIC
-//    COL2  E    S    D    P    Z    X   SH1
-//    COL3  R    G    T   SH2   V    C    F
-//    COL4  U    H    Y   RET   B    N    J
-//    COL5  O    L    I   BK    $    M    K
+//         ROW0 ROW0 ROW1 ROW2 ROW3 ROW4 ROW5
+//    COL0  Q    W   sym   A   alt  SPC  MIC
+//    COL1  E    S    D    P    Z    X   SH1
+//    COL2  R    G    T   SH2   V    C    F
+//    COL3  U    H    Y   RET   B    N    J
+//    COL4  O    L    I   BK    $    M    K
+//    COL5 JEN  JUP  JDN  BAK  N/A  N/A  N/A  ※Jogdialは、管理の都合でここにマッピング 
 
-static const uint16_t default_key_matrix_table[ 4 ][ 5 * 8 ] = {
+static const uint16_t default_key_matrix_table[ 4 ][ 6 * 8 ] = {
 	{	// Normal
-		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		HID_KEY_Q            , HID_KEY_W             , VHID_SYM_KEY , HID_KEY_A                , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_TAB       , 0, // COL1
-		HID_KEY_E            , HID_KEY_S             , HID_KEY_D    , HID_KEY_P                , HID_KEY_X        , HID_KEY_Z         , VHID_SHIFT_KEY    , 0, // COL2
-		HID_KEY_R            , HID_KEY_G             , HID_KEY_T    , VHID_CTRL_KEY            , HID_KEY_V        , HID_KEY_C         , HID_KEY_F         , 0, // COL3
-		HID_KEY_U            , HID_KEY_H             , HID_KEY_Y    , HID_KEY_ENTER            , HID_KEY_B        , HID_KEY_N         , HID_KEY_J         , 0, // COL4
-		HID_KEY_O            , HID_KEY_L             , HID_KEY_I    , HID_KEY_BACKSPACE        , _S(HID_KEY_4)    , HID_KEY_M         , HID_KEY_K         , 0, // COL5
+		// ROW0                ROW1                    ROW2                ROW3                       ROW4               ROW5                ROW6                DUMMY
+		HID_KEY_Q            , HID_KEY_W             , VHID_SYM_KEY      , HID_KEY_A                , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_TAB       , 0, // COL0
+		HID_KEY_E            , HID_KEY_S             , HID_KEY_D         , HID_KEY_P                , HID_KEY_X        , HID_KEY_Z         , VHID_SHIFT_KEY    , 0, // COL1
+		HID_KEY_R            , HID_KEY_G             , HID_KEY_T         , VHID_CTRL_KEY            , HID_KEY_V        , HID_KEY_C         , HID_KEY_F         , 0, // COL2
+		HID_KEY_U            , HID_KEY_H             , HID_KEY_Y         , HID_KEY_ENTER            , HID_KEY_B        , HID_KEY_N         , HID_KEY_J         , 0, // COL3
+		HID_KEY_O            , HID_KEY_L             , HID_KEY_I         , HID_KEY_BACKSPACE        , _S(HID_KEY_4)    , HID_KEY_M         , HID_KEY_K         , 0, // COL4
+		HID_KEY_TAB          , HID_KEY_ARROW_UP      , HID_KEY_ARROW_DOWN, HID_KEY_ESCAPE           , 0                , 0                 , 0                 , 0, // COL5
 	},
 	{	// Alt
-		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_A(HID_KEY_Q)        , _A(HID_KEY_W)         , VHID_SYM_KEY , _A(HID_KEY_A)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_BACKSLASH , 0, // COL1
-		_A(HID_KEY_E)        , _A(HID_KEY_S)         , _A(HID_KEY_D), _A(HID_KEY_P)            , _A(HID_KEY_X)    , _A(HID_KEY_Z)     , VHID_SHIFT_KEY    , 0, // COL2
-		_A(HID_KEY_R)        , _A(HID_KEY_G)         , _A(HID_KEY_T), VHID_CTRL_KEY            , _A(HID_KEY_V)    , _A(HID_KEY_C)     , _A(HID_KEY_F)     , 0, // COL3
-		_A(HID_KEY_U)        , _A(HID_KEY_H)         , _A(HID_KEY_Y), HID_KEY_BRACKET_RIGHT    , _A(HID_KEY_B)    , _A(HID_KEY_N)     , _A(HID_KEY_J)     , 0, // COL4
-		_A(HID_KEY_O)        , _A(HID_KEY_L)         , _A(HID_KEY_I), HID_KEY_BRACKET_LEFT     , HID_KEY_GRAVE    , _A(HID_KEY_M)     , _A(HID_KEY_K)     , 0, // COL5
+		// ROW0                ROW1                    ROW2                ROW3                       ROW4               ROW5                ROW6                DUMMY
+		_A(HID_KEY_Q)        , _A(HID_KEY_W)         , VHID_SYM_KEY      , _A(HID_KEY_A)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_BACKSLASH , 0, // COL0
+		_A(HID_KEY_E)        , _A(HID_KEY_S)         , _A(HID_KEY_D)     , _A(HID_KEY_P)            , _A(HID_KEY_X)    , _A(HID_KEY_Z)     , VHID_SHIFT_KEY    , 0, // COL1
+		_A(HID_KEY_R)        , _A(HID_KEY_G)         , _A(HID_KEY_T)     , VHID_CTRL_KEY            , _A(HID_KEY_V)    , _A(HID_KEY_C)     , _A(HID_KEY_F)     , 0, // COL2
+		_A(HID_KEY_U)        , _A(HID_KEY_H)         , _A(HID_KEY_Y)     , HID_KEY_BRACKET_RIGHT    , _A(HID_KEY_B)    , _A(HID_KEY_N)     , _A(HID_KEY_J)     , 0, // COL3
+		_A(HID_KEY_O)        , _A(HID_KEY_L)         , _A(HID_KEY_I)     , HID_KEY_BRACKET_LEFT     , HID_KEY_GRAVE    , _A(HID_KEY_M)     , _A(HID_KEY_K)     , 0, // COL4
+		HID_KEY_TAB          , HID_KEY_ARROW_UP      , HID_KEY_ARROW_DOWN, HID_KEY_ESCAPE           , 0                , 0                 , 0                 , 0, // COL5
 	},
 	{	// Sym
-		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_S(HID_KEY_3)        , HID_KEY_1             , VHID_SYM_KEY , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_0         , 0, // COL1
-		HID_KEY_2            , HID_KEY_4             , HID_KEY_5    , _S(HID_KEY_2)            , HID_KEY_8        , HID_KEY_7         , VHID_SHIFT_KEY    , 0, // COL2
-		HID_KEY_3            , HID_KEY_SLASH         , _S(HID_KEY_9), VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_9         , HID_KEY_6         , 0, // COL3
-		HID_KEY_EQUAL        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), HID_KEY_ENTER            , _S(HID_KEY_1)    , HID_KEY_COMMA     , HID_KEY_SEMICOLON , 0, // COL4
-		_S(HID_KEY_EQUAL)    , _S(HID_KEY_APOSTROPHE), HID_KEY_MINUS, HID_KEY_BACKSPACE        , HID_KEY_EQUAL    , HID_KEY_PERIOD    , HID_KEY_APOSTROPHE, 0, // COL5
+		// ROW0                ROW1                    ROW2                ROW3                       ROW4               ROW5                ROW6                DUMMY
+		_S(HID_KEY_3)        , HID_KEY_1             , VHID_SYM_KEY      , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_0         , 0, // COL0
+		HID_KEY_2            , HID_KEY_4             , HID_KEY_5         , _S(HID_KEY_2)            , HID_KEY_8        , HID_KEY_7         , VHID_SHIFT_KEY    , 0, // COL1
+		HID_KEY_3            , HID_KEY_SLASH         , _S(HID_KEY_9)     , VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_9         , HID_KEY_6         , 0, // COL2
+		HID_KEY_EQUAL        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0)     , HID_KEY_ENTER            , _S(HID_KEY_1)    , HID_KEY_COMMA     , HID_KEY_SEMICOLON , 0, // COL3
+		_S(HID_KEY_EQUAL)    , _S(HID_KEY_APOSTROPHE), HID_KEY_MINUS     , HID_KEY_BACKSPACE        , HID_KEY_EQUAL    , HID_KEY_PERIOD    , HID_KEY_APOSTROPHE, 0, // COL4
+		HID_KEY_TAB          , HID_KEY_ARROW_RIGHT   , HID_KEY_ARROW_LEFT, HID_KEY_ESCAPE           , 0                , 0                 , 0                 , 0, // COL5
 	},
 	{	// Alt and Sym
-		// ROW1                ROW2                    ROW3           ROW4                       ROW5               ROW6                ROW7                DUMMY
-		_S(HID_KEY_3)        , HID_KEY_F1            , VHID_SYM_KEY , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_F10       , 0, // COL1
-		HID_KEY_F2           , HID_KEY_F4            , HID_KEY_F5   , _S(HID_KEY_2)            , HID_KEY_F8       , HID_KEY_F7        , VHID_SHIFT_KEY    , 0, // COL2
-		HID_KEY_F3           , HID_KEY_SLASH         , _S(HID_KEY_9), VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_F9        , HID_KEY_F6        , 0, // COL3
-		HID_KEY_GRAVE        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0), _S(HID_KEY_BRACKET_RIGHT), _S(HID_KEY_1)    , _S(HID_KEY_COMMA) , HID_KEY_SEMICOLON , 0, // COL4
-		_S(HID_KEY_BACKSLASH), _S(HID_KEY_APOSTROPHE), _S(HID_KEY_7), _S(HID_KEY_BRACKET_LEFT) , HID_KEY_EQUAL    , _S(HID_KEY_PERIOD), HID_KEY_APOSTROPHE, 0, // COL5
+		// ROW0                ROW1                    ROW2                ROW3                       ROW4               ROW5                ROW6                DUMMY
+		_S(HID_KEY_3)        , HID_KEY_F1            , VHID_SYM_KEY      , _S(HID_KEY_8)            , VHID_ALT_KEY     , HID_KEY_SPACE     , HID_KEY_F10       , 0, // COL0
+		HID_KEY_F2           , HID_KEY_F4            , HID_KEY_F5        , _S(HID_KEY_2)            , HID_KEY_F8       , HID_KEY_F7        , VHID_SHIFT_KEY    , 0, // COL1
+		HID_KEY_F3           , HID_KEY_SLASH         , _S(HID_KEY_9)     , VHID_CTRL_KEY            , _S(HID_KEY_SLASH), HID_KEY_F9        , HID_KEY_F6        , 0, // COL2
+		HID_KEY_GRAVE        , _S(HID_KEY_SEMICOLON) , _S(HID_KEY_0)     , _S(HID_KEY_BRACKET_RIGHT), _S(HID_KEY_1)    , _S(HID_KEY_COMMA) , HID_KEY_SEMICOLON , 0, // COL3
+		_S(HID_KEY_BACKSLASH), _S(HID_KEY_APOSTROPHE), _S(HID_KEY_7)     , _S(HID_KEY_BRACKET_LEFT) , HID_KEY_EQUAL    , _S(HID_KEY_PERIOD), HID_KEY_APOSTROPHE, 0, // COL4
+		HID_KEY_TAB          , HID_KEY_ARROW_RIGHT   , HID_KEY_ARROW_LEFT, HID_KEY_ESCAPE           , 0                , 0                 , 0                 , 0, // COL5
 	},
 };
 
-#define JOGDIAL_BACK_KEY    HID_KEY_ESCAPE
-#define JOGDIAL_ENTER_KEY   HID_KEY_TAB
-#define JOGDIAL_UP_KEY      HID_KEY_ARROW_UP
-#define JOGDIAL_DOWN_KEY    HID_KEY_ARROW_DOWN
-#define JOGDIAL_LEFT_KEY    HID_KEY_ARROW_LEFT
-#define JOGDIAL_RIGHT_KEY   HID_KEY_ARROW_RIGHT
+#define CR( col, row )	( (row) + (col) * 8 )
+
+#define JOGDIAL_ENTER_KEY   CR( 5, 0 )
+#define JOGDIAL_UP_KEY      CR( 5, 1 )
+#define JOGDIAL_DOWN_KEY    CR( 5, 2 )
+#define JOGDIAL_BACK_KEY    CR( 5, 3 )
 
 // --------------------------------------------------------------------
 #define MODIFIER_ALT_KEY	(1 << 0)
 #define MODIFIER_SYM_KEY	(1 << 1)
 
 // --------------------------------------------------------------------
-const uint16_t (*CSANGRIA_KEYBOARD::get_default_keymap( void ))[40] {
+const uint16_t (*CSANGRIA_KEYBOARD::get_default_keymap( void ))[ 6 * 8 ] {
 
 	return default_key_matrix_table;
 }
@@ -289,39 +294,31 @@ int CSANGRIA_KEYBOARD::update( uint8_t key_code[] ) {
 		//	Update jogdial press informations and send datas
 		p_jogdial->update();
 
-		if( p_jogdial->get_back_button() ) {
-			if( (this->current_key_matrix[1] & (1 << 6)) == 0 && (this->current_key_matrix[2] & (1 << 3)) == 0 ) {
-				//	If the combination of [Left-Shift]+[Right-Shift]+[Jog BACK] is pressed, the menu mode is entered.
-				this->menu_mode = true;
-				for( i = 0; i < 6; i++ ) {
-					key_code[ i ] = HID_KEY_NONE;
+		if( index < 6 ) {
+			if( p_jogdial->get_back_button() ) {
+				if( (this->current_key_matrix[1] & (1 << 6)) == 0 && (this->current_key_matrix[2] & (1 << 3)) == 0 ) {
+					//	If the combination of [Left-Shift]+[Right-Shift]+[Jog BACK] is pressed, the menu mode is entered.
+					this->menu_mode = true;
+					for( i = 0; i < 6; i++ ) {
+						key_code[ i ] = HID_KEY_NONE;
+					}
+					return 0;
 				}
-				return 0;
+				key_code[ index ] = key_matrix_table[ modifier_index ][ JOGDIAL_BACK_KEY ];
+				index++;
 			}
-			key_code[ index ] = JOGDIAL_BACK_KEY;
-			index++;
-		}
-		else if( p_jogdial->get_enter_button() ) {
-			key_code[ index ] = JOGDIAL_ENTER_KEY;
-			index++;
-		}
-		else if( p_jogdial->get_up_button() ) {
-			if( this->sym_key ) {
-				key_code[ index ] = JOGDIAL_RIGHT_KEY;
+			else if( p_jogdial->get_enter_button() ) {
+				key_code[ index ] = key_matrix_table[ modifier_index ][ JOGDIAL_ENTER_KEY ];
+				index++;
 			}
-			else {
-				key_code[ index ] = JOGDIAL_UP_KEY;
+			else if( p_jogdial->get_up_button() ) {
+				key_code[ index ] = key_matrix_table[ modifier_index ][ JOGDIAL_UP_KEY ];
+				index++;
 			}
-			index++;
-		}
-		else if( p_jogdial->get_down_button() ) {
-			if( this->sym_key ) {
-				key_code[ index ] = JOGDIAL_LEFT_KEY;
+			else if( p_jogdial->get_down_button() ) {
+				key_code[ index ] = key_matrix_table[ modifier_index ][ JOGDIAL_DOWN_KEY ];
+				index++;
 			}
-			else {
-				key_code[ index ] = JOGDIAL_DOWN_KEY;
-			}
-			index++;
 		}
 	}
 

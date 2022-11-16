@@ -38,7 +38,7 @@ private:
 	uint8_t current_key_matrix[5];
 
 	uint8_t last_key_code[6];
-	uint16_t key_matrix_table[4][ 5 * 8 ];
+	uint16_t key_matrix_table[4][ 6 * 8 ];
 
 	void _check_toggle_modifier( bool &current_key, uint8_t last_key_press, uint8_t current_key_press, int bit_num );
 
@@ -103,7 +103,7 @@ public:
 	void backlight( bool is_on );
 
 	// --------------------------------------------------------------------
-	const uint16_t (*get_default_keymap( void ))[40];
+	const uint16_t (*get_default_keymap( void ))[ 6 * 8 ];
 };
 
 #endif
