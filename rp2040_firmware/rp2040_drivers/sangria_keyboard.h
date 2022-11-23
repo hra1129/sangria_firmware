@@ -103,7 +103,7 @@ public:
 	void backlight( bool is_on );
 
 	// --------------------------------------------------------------------
-	const uint16_t (*get_default_keymap( void ))[ 6 * 8 ];
+	static const uint16_t (*get_default_keymap( void ))[ 6 * 8 ];
 };
 
 #endif

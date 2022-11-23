@@ -297,8 +297,6 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 		if( cursor_pos == MENU_ITEM_ID_KEY_CUSTOM ) {
 			wait_release_jogdial_buttons( p_controller );
 			menu_state = SANGRIA_MENU_KEY_CUSTOM;
-			//	★暫定★ 
-			memcpy( p_controller->get_flash()->get()->key_matrix_table, p_controller->get_keyboard()->get_default_keymap(), sizeof(uint16_t) * 4 * 5 * 8 );
 			return true;
 		}
 		if( cursor_pos == MENU_ITEM_ID_FLASH_WRITE_TEST ) {

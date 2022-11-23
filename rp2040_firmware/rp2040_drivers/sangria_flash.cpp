@@ -25,6 +25,7 @@
 
 #include <cstring>
 #include "sangria_flash.h"
+#include "sangria_keyboard.h"
 #include "pico/stdlib.h"
 #include "hardware/flash.h"
 
@@ -51,10 +52,29 @@ CSANGRIA_FLASH::CSANGRIA_FLASH() {
 }
 
 // --------------------------------------------------------------------
+void CSANGRIA_FLASH::get_check_sum( uint16_t *p_sum1, uint16_t *p_sum2, SANGRIA_FLASH_DATA_T *p_target ) {
+	uint8_t *p_data = (uint8_t*) &(p_target->SANGRIA_FLASH_DATA_FIRST_MEMBER);
+	int length = (int)sizeof(SANGRIA_FLASH_DATA_T) - (int)( &(((SANGRIA_FLASH_DATA_T*)0)->SANGRIA_FLASH_DATA_FIRST_MEMBER) );
+
+	uint16_t sum1, sum2;
+	sum1 = 0xDEAD;
+	sum2 = 0xBEEF;
+	for( int i = 0; i < length; i++ ) {
+		sum1 = ((sum1 + p_data[i]) ^ 0x53A2) & 0x0FFFF;
+		sum2 = ((sum2 - p_data[i]) ^ 0x4018) & 0x0FFFF;
+	}
+	*p_sum1 = sum1;
+	*p_sum2 = sum2;
+}
+
+// --------------------------------------------------------------------
 void CSANGRIA_FLASH::write( void ) {
 	uint offset, data_size;
 	int i, pages;
 	uint8_t buffer[ FLASH_PAGE_SIZE ], *p_data;
+
+	// Update check sum
+	this->get_check_sum( &(this->data.check_sum1), &(this->data.check_sum2), &(this->data) );
 
 	// Erase current data
 	data_size = (sizeof(this->data) + (FLASH_SECTOR_SIZE - 1)) % FLASH_SECTOR_SIZE;
@@ -74,7 +94,33 @@ void CSANGRIA_FLASH::write( void ) {
 }
 
 // --------------------------------------------------------------------
+bool CSANGRIA_FLASH::is_check_sum_ok( void ) {
+	uint16_t sum1, sum2;
+	SANGRIA_FLASH_DATA_T *p_data = (SANGRIA_FLASH_DATA_T*) FLASH_WINDOW_ADDRESS;
+
+	this->get_check_sum( &sum1, &sum2, p_data );
+	if( sum1 != p_data->check_sum1 || sum2 != p_data->check_sum2 ) {
+		return false;
+	}
+	return true;
+}
+
+// --------------------------------------------------------------------
 void CSANGRIA_FLASH::read( void ) {
 
-	memcpy( &(this->data), FLASH_WINDOW_ADDRESS, sizeof(this->data) );
+	if( this->is_check_sum_ok() ) {
+		memcpy( &(this->data), FLASH_WINDOW_ADDRESS, sizeof(this->data) );
+		return;
+	}
+	//	Flash data is broken.
+	//	Set initial data to this->data, but not write it to flash.
+	this->load_initial_data();
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_FLASH::load_initial_data( void ) {
+
+	this->data.oled_contrast_level_for_stand_by = 0;
+	this->data.oled_contrast_level_for_power_on = 2;
+	memcpy( this->data.key_matrix_table, CSANGRIA_KEYBOARD::get_default_keymap(), sizeof(uint16_t) * 4 * 6 * 8 );
 }

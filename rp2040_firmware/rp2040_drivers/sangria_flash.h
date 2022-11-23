@@ -30,14 +30,20 @@
 #include "sangria_firmware_config.h"
 
 typedef struct {
+	uint16_t	check_sum1;
+	uint16_t	check_sum2;
 	int			oled_contrast_level_for_stand_by;
 	int			oled_contrast_level_for_power_on;
 	uint16_t	key_matrix_table[ 4 ][ 6 * 8 ];
 } SANGRIA_FLASH_DATA_T;
 
+#define SANGRIA_FLASH_DATA_FIRST_MEMBER oled_contrast_level_for_stand_by
+
 class CSANGRIA_FLASH {
 private:
 	SANGRIA_FLASH_DATA_T	data;
+
+	void get_check_sum( uint16_t *p_sum1, uint16_t *p_sum2, SANGRIA_FLASH_DATA_T *p_target );
 
 public:
 	// --------------------------------------------------------------------
@@ -50,10 +56,16 @@ public:
 	}
 
 	// --------------------------------------------------------------------
+	bool is_check_sum_ok( void );
+
+	// --------------------------------------------------------------------
 	void write( void );
 
 	// --------------------------------------------------------------------
 	void read( void );
+
+	// --------------------------------------------------------------------
+	void load_initial_data( void );
 };
 
 #endif
