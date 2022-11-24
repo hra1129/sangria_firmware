@@ -46,7 +46,7 @@
 bool tud_check_host_connected( void );
 
 // --------------------------------------------------------------------
-//         ROW0 ROW0 ROW1 ROW2 ROW3 ROW4 ROW5
+//         ROW0 ROW1 ROW2 ROW3 ROW4 ROW5 ROW6
 //    COL0  Q    W   sym   A   alt  SPC  MIC
 //    COL1  E    S    D    P    Z    X   SH1
 //    COL2  R    G    T   SH2   V    C    F
@@ -192,6 +192,16 @@ void CSANGRIA_KEYBOARD::_check_toggle_modifier( bool &current_key, uint8_t last_
 		//	Timing of the push
 		current_key = !current_key;
 	}
+}
+
+// --------------------------------------------------------------------
+bool CSANGRIA_KEYBOARD::get_key_hit( int key_code ) {
+	int row, col;
+
+	row = 1 << (key_code & 7);
+	col = key_code >> 3;
+
+	return( ((this->last_key_matrix[col] & row) == 0) && ((this->current_key_matrix[col] & row) != 0) );
 }
 
 // --------------------------------------------------------------------

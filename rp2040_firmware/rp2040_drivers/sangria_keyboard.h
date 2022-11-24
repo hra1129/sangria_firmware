@@ -98,6 +98,8 @@ public:
 
 	bool check_host_connected( void );
 
+	bool get_key_hit( int key_code );
+
 	// --------------------------------------------------------------------
 	//	backlight control
 	void backlight( bool is_on );
