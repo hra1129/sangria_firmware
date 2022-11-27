@@ -50,6 +50,7 @@ public:
 	int is_us_key_select = 0;
 	int animation = 0;
 	int sangria_modifier = 0;
+	int last_key_state[4] = {};
 
 	// --------------------------------------------------------------------
 	//	Constructor

@@ -170,7 +170,9 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 		this->is_us_key_select = 0;
 		return false;
 	}
-	if( p_controller->get_keyboard()->get_key_hit( CR(0,3) ) ) {
+
+	if( !this->last_key_state[0] && p_controller->get_keyboard()->get_key_hit( CR(0,3) ) ) {
+		this->last_key_state[0] = true;
 		//	ALT Key
 		if( this->is_us_key_select ) {
 		}
@@ -178,7 +180,12 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_ALT_KEY;
 		}
 	}
-	if( p_controller->get_keyboard()->get_key_hit( CR(1,1) ) ) {
+	else {
+		this->last_key_state[0] = p_controller->get_keyboard()->get_key_hit( CR(0,3) );
+	}
+
+	if( !this->last_key_state[1] && p_controller->get_keyboard()->get_key_hit( CR(1,1) ) ) {
+		this->last_key_state[1] = true;
 		//	SYM Key
 		if( this->is_us_key_select ) {
 		}
@@ -186,11 +193,24 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_SYM_KEY;
 		}
 	}
-	if( p_controller->get_keyboard()->get_key_hit( CR(2,5) ) ) {
+	else {
+		this->last_key_state[1] = p_controller->get_keyboard()->get_key_hit( CR(1,1) );
+	}
+
+	if( !this->last_key_state[2] && p_controller->get_keyboard()->get_key_hit( CR(2,5) ) ) {
+		this->last_key_state[2] = true;
 		//	CTRL Key
 	}
-	if( p_controller->get_keyboard()->get_key_hit( CR(3,1) ) ) {
+	else {
+		this->last_key_state[2] = p_controller->get_keyboard()->get_key_hit( CR(2,5) );
+	}
+
+	if( !this->last_key_state[3] && p_controller->get_keyboard()->get_key_hit( CR(3,1) ) ) {
+		this->last_key_state[3] = true;
 		//	SHIFT Key
+	}
+	else {
+		this->last_key_state[3] = p_controller->get_keyboard()->get_key_hit( CR(3,1) );
 	}
 
 	if( this->is_us_key_select ) {

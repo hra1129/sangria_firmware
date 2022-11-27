@@ -201,7 +201,7 @@ bool CSANGRIA_KEYBOARD::get_key_hit( int key_code ) {
 	row = 1 << (key_code & 7);
 	col = key_code >> 3;
 
-	return( ((this->last_key_matrix[col] & row) == 0) && ((this->current_key_matrix[col] & row) != 0) );
+	return( (this->current_key_matrix[col] & row) != 0 );
 }
 
 // --------------------------------------------------------------------
