@@ -88,24 +88,69 @@ static const int keyindex_assign_table[] = {
 
 #define MODIFIER_ALT_KEY	(1 << 0)
 #define MODIFIER_SYM_KEY	(1 << 1)
-#define MODIFIER_CTRL_KEY	(1 << 2)
-#define MODIFIER_SHIFT_KEY	(1 << 3)
 
 #define MODIFIER_SHIFT_BIT	0x1000
 #define MODIFIER_ALT_BIT	0x2000
+
+#define SANGRIA_KEY_A	CR(0,3)
+#define SANGRIA_KEY_S	CR(1,1)
+#define SANGRIA_KEY_C	CR(2,5)
+#define SANGRIA_KEY_H	CR(3,1)
 
 // --------------------------------------------------------------------
 CSANGRIA_CUSTOM_MENU::CSANGRIA_CUSTOM_MENU() {
 }
 
 // --------------------------------------------------------------------
-void CSANGRIA_CUSTOM_MENU::wait_release_jogdial_buttons( CSANGRIA_CONTROLLER *p_controller ) {
+void CSANGRIA_CUSTOM_MENU::wait_release_enter_button( CSANGRIA_CONTROLLER *p_controller ) {
 
 	do {
 		sleep_ms( 1 );
 		p_controller->get_jogdial()->update();
-	} while( p_controller->get_jogdial()->get_enter_button() || p_controller->get_jogdial()->get_back_button() );
+	} while( this->check_enter_button( p_controller ) || p_controller->get_jogdial()->get_back_button() );
 	p_controller->get_jogdial()->update();
+}
+
+// --------------------------------------------------------------------
+bool CSANGRIA_CUSTOM_MENU::check_enter_button( CSANGRIA_CONTROLLER *p_controller ) {
+
+	return p_controller->get_keyboard()->get_key_hit( CR(0,5) );
+}
+
+// --------------------------------------------------------------------
+void CSANGRIA_CUSTOM_MENU::update_modifier_state( CSANGRIA_CONTROLLER *p_controller ) {
+
+	if( !this->last_key_state[0] && p_controller->get_keyboard()->get_key_hit( SANGRIA_KEY_A ) ) {
+		this->last_key_state[0] = true;
+		//	A Key
+		if( this->is_us_key_select ) {
+			//	toggle ALT
+			this->us_key_modifier = this->us_key_modifier ^ MODIFIER_ALT_BIT;
+		}
+		else {
+			//	toggle ALT
+			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_ALT_KEY;
+		}
+	}
+	else {
+		this->last_key_state[0] = p_controller->get_keyboard()->get_key_hit( SANGRIA_KEY_A );
+	}
+
+	if( !this->last_key_state[1] && p_controller->get_keyboard()->get_key_hit( SANGRIA_KEY_S ) ) {
+		this->last_key_state[1] = true;
+		//	S Key
+		if( this->is_us_key_select ) {
+			//	toggle SHIFT
+			this->us_key_modifier = this->us_key_modifier ^ MODIFIER_SHIFT_BIT;
+		}
+		else {
+			//	toggle Sym
+			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_SYM_KEY;
+		}
+	}
+	else {
+		this->last_key_state[1] = p_controller->get_keyboard()->get_key_hit( SANGRIA_KEY_S );
+	}
 }
 
 // --------------------------------------------------------------------
@@ -124,15 +169,15 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 	}
 
 	//	Check button
-	if( p_controller->get_jogdial()->get_enter_button() ) {
+	if( this->check_enter_button( p_controller ) ) {
 		if( cursor_pos == MENU_ITEM_EXIT ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			menu_state = SANGRIA_MENU_TOP;
 			return false;
 		}
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
-		wait_release_jogdial_buttons( p_controller );
+		wait_release_enter_button( p_controller );
 		return false;
 	}
 
@@ -156,61 +201,18 @@ bool CSANGRIA_CUSTOM_MENU::draw_oled_level( CSANGRIA_CONTROLLER *p_controller, c
 bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) {
 	const uint8_t *p_icon;
 	CSANGRIA_OLED *p_oled = p_controller->get_oled();
-	uint8_t key_code[6];
 
 	//	Check button
-	p_controller->get_keyboard()->update( key_code );
+	p_controller->get_keyboard()->update( this->key_code );
 	p_controller->get_jogdial()->update();
-	if( p_controller->get_jogdial()->get_enter_button() ) {
+	if( this->check_enter_button( p_controller ) ) {
 		this->is_us_key_select = 1 - this->is_us_key_select;
-		wait_release_jogdial_buttons( p_controller );
+		wait_release_enter_button( p_controller );
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
-		wait_release_jogdial_buttons( p_controller );
+		wait_release_enter_button( p_controller );
 		this->is_us_key_select = 0;
 		return false;
-	}
-
-	if( !this->last_key_state[0] && p_controller->get_keyboard()->get_key_hit( CR(0,3) ) ) {
-		this->last_key_state[0] = true;
-		//	ALT Key
-		if( this->is_us_key_select ) {
-		}
-		else {
-			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_ALT_KEY;
-		}
-	}
-	else {
-		this->last_key_state[0] = p_controller->get_keyboard()->get_key_hit( CR(0,3) );
-	}
-
-	if( !this->last_key_state[1] && p_controller->get_keyboard()->get_key_hit( CR(1,1) ) ) {
-		this->last_key_state[1] = true;
-		//	SYM Key
-		if( this->is_us_key_select ) {
-		}
-		else {
-			this->sangria_modifier = this->sangria_modifier ^ MODIFIER_SYM_KEY;
-		}
-	}
-	else {
-		this->last_key_state[1] = p_controller->get_keyboard()->get_key_hit( CR(1,1) );
-	}
-
-	if( !this->last_key_state[2] && p_controller->get_keyboard()->get_key_hit( CR(2,5) ) ) {
-		this->last_key_state[2] = true;
-		//	CTRL Key
-	}
-	else {
-		this->last_key_state[2] = p_controller->get_keyboard()->get_key_hit( CR(2,5) );
-	}
-
-	if( !this->last_key_state[3] && p_controller->get_keyboard()->get_key_hit( CR(3,1) ) ) {
-		this->last_key_state[3] = true;
-		//	SHIFT Key
-	}
-	else {
-		this->last_key_state[3] = p_controller->get_keyboard()->get_key_hit( CR(3,1) );
 	}
 
 	if( this->is_us_key_select ) {
@@ -254,8 +256,14 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 
 	if( !this->is_us_key_select ) {
 		//	Sangriaキーを選択している最中は、連動して USキーの表示が変化する
-		this->us_key_position = p_controller->get_flash()->get()->key_matrix_table[0][ keyindex_assign_table[ this->sangria_key_position ] ] & 255;
+		this->us_key_position = p_controller->get_flash()->get()->key_matrix_table[ this->sangria_modifier ][ keyindex_assign_table[ this->sangria_key_position ] ] & 255;
+		this->us_key_modifier = p_controller->get_flash()->get()->key_matrix_table[ this->sangria_modifier ][ keyindex_assign_table[ this->sangria_key_position ] ] & ~255;
 	}
+	else {
+		p_controller->get_flash()->get()->key_matrix_table[ this->sangria_modifier ][ keyindex_assign_table[ this->sangria_key_position ] ] = this->us_key_position | this->us_key_modifier;
+	}
+
+	this->update_modifier_state( p_controller );
 
 	p_oled->clear();
 	//	Sangria / Keymap の点滅表示
@@ -280,7 +288,15 @@ bool CSANGRIA_CUSTOM_MENU::draw_key_custom( CSANGRIA_CONTROLLER *p_controller ) 
 	}
 	//	USキーマップのキー表示(右側)
 	p_icon = get_icon( SANGRIA_ICON_US_KEYMAP );
-	p_oled->copy_1bpp_part( p_icon, 512, 512, (this->us_key_position & 0x0F) * 32, (this->us_key_position >> 4) * 32, 32, 32, 88, 0 );
+	p_oled->copy_1bpp_part( p_icon, 512, 512, (this->us_key_position & 0x0F) * 32, ((this->us_key_position >> 4) & 0x0F) * 32, 32, 32, 88, 0 );
+	if( (this->us_key_modifier & MODIFIER_ALT_BIT) != 0 ) {
+		p_icon = get_icon( SANGRIA_ICON_ALT );
+		p_oled->copy_1bpp( p_icon, 8, 8, 120, 8 );
+	}
+	if( (this->us_key_modifier & MODIFIER_SHIFT_BIT) != 0 ) {
+		p_icon = get_icon( SANGRIA_ICON_SHIFT );
+		p_oled->copy_1bpp( p_icon, 8, 8, 120, 16 );
+	}
 	p_oled->update();
 	this->animation = (this->animation + 1) & 63;
 	return true;
@@ -291,7 +307,7 @@ bool CSANGRIA_CUSTOM_MENU::draw_flash_write( CSANGRIA_CONTROLLER *p_controller )
 
 	do_write_flash();
 	menu_state = SANGRIA_MENU_TOP;
-	wait_release_jogdial_buttons( p_controller );
+	wait_release_enter_button( p_controller );
 	return false;
 }
 
@@ -299,8 +315,11 @@ bool CSANGRIA_CUSTOM_MENU::draw_flash_write( CSANGRIA_CONTROLLER *p_controller )
 bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 	int i;
 
+	this->animation = (this->animation + 1) & 0x1F;
 	p_controller->get_oled()->clear();
 	//	Move cursor position
+	p_controller->get_keyboard()->update( this->key_code );
+	p_controller->get_jogdial()->update();
 	if( p_controller->get_jogdial()->get_up_button() ) {
 		cursor_pos--;
 	}
@@ -322,7 +341,7 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 	}
 	//	Draw menu
 	for( i = 0; i < MENU_HEIGHT; i++ ) {
-		if( (menu_pos + i) == cursor_pos ) {
+		if( (menu_pos + i) == cursor_pos && (this->animation & 0x18) != 0 ) {
 			p_controller->get_oled()->set_position( 0, i );
 			p_controller->get_oled()->putc( '[' );
 			p_controller->get_oled()->puts( p_menu_item[ menu_pos + i ] );
@@ -333,36 +352,37 @@ bool CSANGRIA_CUSTOM_MENU::draw_top_menu( CSANGRIA_CONTROLLER *p_controller ) {
 			p_controller->get_oled()->puts( p_menu_item[ menu_pos + i ] );
 		}
 	}
+
 	p_controller->get_oled()->update();
 	//	Check button
-	if( p_controller->get_jogdial()->get_enter_button() ) {
+	if( this->check_enter_button( p_controller ) ) {
 		if( cursor_pos == MENU_ITEM_EXIT ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			return false;
 		}
 		if( cursor_pos == MENU_ITEM_ID_OLED_ON_LEVEL ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			menu_state = SANGRIA_MENU_OLED_ON_LEVEL;
 			return true;
 		}
 		if( cursor_pos == MENU_ITEM_ID_OLED_OFF_LEVEL ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			menu_state = SANGRIA_MENU_OLED_OFF_LEVEL;
 			return true;
 		}
 		if( cursor_pos == MENU_ITEM_ID_KEY_CUSTOM ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			menu_state = SANGRIA_MENU_KEY_CUSTOM;
 			return true;
 		}
 		if( cursor_pos == MENU_ITEM_ID_FLASH_WRITE ) {
-			wait_release_jogdial_buttons( p_controller );
+			wait_release_enter_button( p_controller );
 			menu_state = SANGRIA_MENU_FLASH_WRITE;
 			return true;
 		}
 	}
 	if( p_controller->get_jogdial()->get_back_button() ) {
-		wait_release_jogdial_buttons( p_controller );
+		wait_release_enter_button( p_controller );
 		return false;
 	}
 	return true;

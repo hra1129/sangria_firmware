@@ -41,16 +41,20 @@ private:
 	CSANGRIA_CUSTOM_MENU_STATE	menu_state = SANGRIA_MENU_TOP;
 	int menu_pos = 0;
 	int cursor_pos = 0;
-	void wait_release_jogdial_buttons( CSANGRIA_CONTROLLER *p_controller );
+	uint8_t key_code[6];
+	void wait_release_enter_button( CSANGRIA_CONTROLLER *p_controller );
+	bool check_enter_button( CSANGRIA_CONTROLLER *p_controller );
+	void update_modifier_state( CSANGRIA_CONTROLLER *p_controller );
 public:
 	int oled_on_level = 0;
 	int oled_off_level = 2;
 	int sangria_key_position = 0;
 	int us_key_position = 0;
+	int us_key_modifier = 0;
 	int is_us_key_select = 0;
 	int animation = 0;
 	int sangria_modifier = 0;
-	int last_key_state[4] = {};
+	int last_key_state[2] = {};
 
 	// --------------------------------------------------------------------
 	//	Constructor

@@ -35,8 +35,11 @@ private:
 	CSANGRIA_JOGDIAL *p_jogdial;
 	
 	uint8_t last_key_matrix[5];
+
+public:
 	uint8_t current_key_matrix[5];
 
+private:
 	uint8_t last_key_code[6];
 	uint16_t key_matrix_table[4][ 6 * 8 ];
 
